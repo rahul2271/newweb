@@ -8,7 +8,7 @@ export default function ServicesSection() {
         <h2 className="text-4xl font-bold text-center mb-12">Our Services</h2>
 
         {/* Services Wrapper */}
-        <div className="flex sm:flex-nowrap sm:overflow-x-auto sm:gap-8 py-4 md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="flex sm:flex-wrap sm:overflow-x-auto sm:gap-8 py-4 md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 scroll-smooth">
           {[ // Service Cards
             { icon: 'web.png', title: 'Web Development', description: 'We create user-centric designs that convert.' },
             { icon: 'digital-marketing.png', title: 'Digital Marketing', description: 'Grow your business with data-driven strategies.' },

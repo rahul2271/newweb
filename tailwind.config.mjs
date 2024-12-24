@@ -8,7 +8,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        'mypurple': '#953ee2',
+        'dark-bg': '#0d0f11',
       },
       colors: {
         background: "var(--background)",

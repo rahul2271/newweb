@@ -26,9 +26,9 @@ export default function BlogSection() {
     ];
   
     return (
-      <section className="py-16 px-8 bg-white">
+      <section className="py-16 px-8 bg-[#0d0f11]">
         <div className="container mx-auto max-w-7xl">
-          <h2 className="text-3xl font-semibold text-gray-800 text-center mb-8">
+          <h2 className="text-3xl font-semibold text-gray-200 text-center mb-8">
             Latest Articles and Insights
           </h2>
   
@@ -51,7 +51,7 @@ export default function BlogSection() {
                     {article.title}
                   </h3>
                   {/* Article Description */}
-                  <p className="text-gray-600 mb-4">{article.description}</p>
+                  <p className="text-gray-300 mb-4">{article.description}</p>
                   {/* Read More Button */}
                   <a
                     href={article.link}
@@ -68,7 +68,7 @@ export default function BlogSection() {
           <div className="text-center mt-8">
             <a
               href="/blog"
-              className="inline-flex items-center px-8 py-3 bg-purple-600 text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"
+              className="inline-flex items-center px-8 py-3 bg-gradient-to-br from-[#953ee2] to-black text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"
             >
               Explore More Articles
             </a>

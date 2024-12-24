@@ -19,8 +19,8 @@ const BoldStats = () => {
   }, []);
 
   return (
-    <section className="rounded-[150px] bg-[#0d0f11] text-white py-20 px-8 md:px-12">
-      <h2 className="text-4xl font-bold text-center mb-12">
+    <section className=" bg-gradient-to-r from-purple-100 to-white text-white py-20 px-8 md:px-12">
+      <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">
         Results That Speak for Themselves
       </h2>
 
@@ -66,7 +66,7 @@ const BoldStats = () => {
         ))}
       </div>
 
-      <p className="text-center mt-6 text-lg">
+      <p className="text-center mt-6 text-lg text-gray-900">
         These aren’t just numbers. These are real results for real businesses.
       </p>
     </section>

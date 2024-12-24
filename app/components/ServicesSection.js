@@ -3,9 +3,13 @@ import Link from 'next/link';
 
 export default function ServicesSection() {
   return (
-    <section className="bg-[#0d0f11] py-20 mx-auto shadow-md text-gray-200 rounded-[150px] overflow-hidden">
+    // <section className="bg-[#0d0f11] py-20 mx-auto shadow-md text-gray-200  overflow-hidden">
+    <>
+    <hr></hr>
+    <section className="bg-gradient-to-r from-purple-100 to-white py-20 mx-auto shadow-md text-gray-200  overflow-hidden">
+
       <div className="max-w-screen-xl mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-12">Our Services</h2>
+        <h2 className="text-4xl text-gray-900 font-bold text-center mb-12">Our Services</h2>
 
         {/* Services Wrapper */}
         <div className="flex sm:flex-wrap sm:overflow-x-auto sm:gap-8 py-4 md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 scroll-smooth">
@@ -50,5 +54,6 @@ export default function ServicesSection() {
         </div>
       </div>
     </section>
+    </>
   );
 }

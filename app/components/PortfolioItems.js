@@ -45,7 +45,7 @@ const InteractivePortfolio = () => {
 
   return (
     <section className="py-20 px-8 md:px-12 bg-[#0d0f11] text-white">
-      <h2 className="text-4xl font-bold text-center mb-12 text-[#953ee2]">
+      <h2 className="text-4xl font-bold text-center mb-12 text-gray-200">
         Showcasing Our Best Work
       </h2>
 
@@ -98,7 +98,7 @@ const InteractivePortfolio = () => {
       <div className="text-center mt-12">
         <a
           href="#contact"
-          className="bg-[#953ee2] text-white py-2 px-8 rounded-full text-lg font-semibold"
+          className="bg-gradient-to-br from-[#953ee2] to-black text-white py-2 px-8 rounded-full text-lg font-semibold"
         >
           Want This for Your Brand? Let’s Talk.
         </a>

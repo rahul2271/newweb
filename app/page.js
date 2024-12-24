@@ -12,7 +12,7 @@ import CTASection from "./components/CTASection";
 import ValueProposition from "./components/ValueProposition";
 import FAQSection from "./components/FAQSection";
 import DownloadResourceSection from "./components/DownloadResourceSection";
-import TestimonialsSection from "./components/TestimonialsSection";
+
 import BlogSection from "./components/BlogSection";
 import Chatbot from "./components/Chatbot";
 // import ContactSection from "./components/ContactSection";
@@ -29,11 +29,11 @@ export default function Home() {
 <SuccessStories/>
 <BoldStats/>
 <PortfolioItems/>
-{/* <CTASection/> */}
+<CTASection/>
 <ValueProposition/>
 <FAQSection/>
 <DownloadResourceSection/>
-<TestimonialsSection/>
+
 <BlogSection/>
 <Chatbot/>
 {/* <ContactSection/> */}

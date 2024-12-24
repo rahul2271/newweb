@@ -2,7 +2,7 @@
 
 export default function Footer() {
     return (
-      <footer className="bg-gray-800 text-white py-10">
+      <footer className="bg-gradient-to-r from-purple-100 to-white text-gray-900 py-10">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
             {/* Contact Info */}
@@ -55,7 +55,7 @@ export default function Footer() {
   
           {/* Footer Bottom */}
           <div className="mt-8 border-t border-gray-700 pt-4 text-center text-sm">
-            <p>&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} RC Tech Solutions. All rights reserved.</p>
           </div>
         </div>
       </footer>

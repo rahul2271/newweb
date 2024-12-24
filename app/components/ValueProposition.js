@@ -20,7 +20,7 @@ export default function ValueProposition() {
   }, []);
 
   return (
-    <section className="py-16 px-8 bg-gradient-to-r from-white to-gray-100">
+    <section className="py-16 px-8 bg-gradient-to-r from-purple-100 to-white">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
         {/* Left Column (Text) */}
         <div className="space-y-6 animate-on-scroll opacity-0 transform -translate-x-10">
@@ -64,7 +64,7 @@ export default function ValueProposition() {
 
       {/* Call to Action Button */}
       <div className="text-center mt-12">
-        <a href="#why-us" className="inline-block px-8 py-3 bg-purple-600 text-white text-lg font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300">
+        <a href="#why-us" className="inline-block px-8 py-3 bg-gradient-to-br from-[#953ee2] to-black text-white text-lg font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300">
           See the Difference
         </a>
       </div>

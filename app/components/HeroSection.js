@@ -15,7 +15,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="rounded-b-[150px] relative w-full h-screen bg-black overflow-hidden">
+    <section className=" relative w-full h-screen bg-black overflow-hidden">
       {/* Full-Screen Background Video */}
       <video
         autoPlay

@@ -10,9 +10,9 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="py-16 px-8 bg-gray-50">
+    <section className="py-16 px-8 bg-[#0d0f11]">
       <div className="container mx-auto max-w-4xl">
-        <h2 className="text-3xl font-semibold text-center text-gray-800 mb-10">Frequently Asked Questions</h2>
+        <h2 className="text-3xl font-semibold text-center text-gray-200 mb-10">Frequently Asked Questions</h2>
 
         {/* FAQ Accordion */}
         <div className="space-y-6">
@@ -20,7 +20,7 @@ export default function FAQSection() {
           <div className="border-b border-gray-300">
             <button
               onClick={() => toggle(1)}
-              className="w-full text-left py-4 text-xl font-medium text-gray-800 flex justify-between items-center focus:outline-none"
+              className="w-full text-left py-4 text-xl font-medium text-gray-200 flex justify-between items-center focus:outline-none"
             >
               <span>How quickly can I expect my website to be live?</span>
               <svg
@@ -43,10 +43,10 @@ export default function FAQSection() {
           </div>
 
           {/* Question 2 */}
-          <div className="border-b border-gray-300">
+          <div className="border-b border-gray-200">
             <button
               onClick={() => toggle(2)}
-              className="w-full text-left py-4 text-xl font-medium text-gray-800 flex justify-between items-center focus:outline-none"
+              className="w-full text-left py-4 text-xl font-medium text-gray-200 flex justify-between items-center focus:outline-none"
             >
               <span>What makes your web development different from others?</span>
               <svg
@@ -73,7 +73,7 @@ export default function FAQSection() {
         <div className="mt-10 text-center">
           <a
             href="#contact"
-            className="inline-block px-8 py-3 bg-purple-600 text-white text-lg font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"
+            className="inline-block px-8 py-3 bg-gradient-to-br from-[#953ee2] to-black text-white text-white text-lg font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"
           >
             Have More Questions? Get in Touch
           </a>

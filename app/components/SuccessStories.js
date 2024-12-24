@@ -70,7 +70,7 @@ export default function SuccessStories() {
 
       {/* CTA Button */}
       <div className="text-center mt-8">
-        <button className="px-6 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-all">
+        <button className="px-6 py-2 bg-gradient-to-br from-[#953ee2] to-black text-white font-semibold rounded-lg hover:bg-purple-700 transition-all">
           See More Success Stories
         </button>
       </div>

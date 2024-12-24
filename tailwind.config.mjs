@@ -8,6 +8,9 @@ export default {
   theme: {
     extend: {
       colors: {
+        'mypurple': '#953ee2',
+      },
+      colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
@@ -15,3 +18,4 @@ export default {
   },
   plugins: [],
 };
+

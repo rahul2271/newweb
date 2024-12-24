@@ -1,0 +1,69 @@
+'use client'
+import { useState, useEffect } from 'react';
+
+export default function ProblemSolution() {
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  // Track scroll position to apply dynamic scroll effects
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  return (
+    <section className="relative w-full py-20 bg-[#0d0f11] text-white">
+      <div className="flex flex-col md:flex-row items-center justify-center max-w-screen-xl mx-auto px-4 gap-x-12">
+        {/* Left Side: Problem */}
+        <div className="w-full md:w-1/2 text-center md:text-left mb-12 md:mb-0">
+          <h2 className={`text-2xl md:text-4xl font-bold leading-tight mb-6 opacity-0 transition-all duration-1000 ease-in-out
+            ${scrollPosition > 100 ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-8'}`}>
+            Is Your Digital Strategy Leaving You Behind?
+          </h2>
+          <div className="flex justify-center md:justify-start space-x-8">
+            <div className={`opacity-0 transition-opacity duration-1000 ease-in-out
+              ${scrollPosition > 200 ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-8'} flex flex-col items-center`}>
+              <img src="/icons/low-sales.png" alt="Low Conversions" className="h-12 w-12 mb-4 transition-transform duration-1000 ease-in-out" />
+              <p>Low Conversions</p>
+            </div>
+            <div className={`opacity-0 transition-opacity duration-1000 ease-in-out
+              ${scrollPosition > 300 ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-8'} flex flex-col items-center`}>
+              <img src="/icons/poor-traffic.png" alt="Poor Traffic" className="h-12 w-12 mb-4 transition-transform duration-1000 ease-in-out" />
+              <p>Poor Traffic</p>
+            </div>
+            <div className={`opacity-0 transition-opacity duration-1000 ease-in-out
+              ${scrollPosition > 400 ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-8'} flex flex-col items-center`}>
+              <img src="/icons/outdated-design.png" alt="Outdated Design" className="h-12 w-12 mb-4 transition-transform duration-1000 ease-in-out" />
+              <p>Outdated Design</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Side: Solution */}
+        <div className="w-full md:w-1/2 text-center mt-[70px] md:text-left">
+          <h2 className={`text-2xl md:text-4xl font-bold leading-tight mb-6 opacity-0 transition-all duration-1000 ease-in-out
+            ${scrollPosition > 100 ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-8'}`}>
+            We Turn Your Struggles Into Digital Triumphs
+          </h2>
+          <p className={`text-[12px] md:text-xl mb-6 opacity-0 transition-opacity duration-1000 ease-in-out
+            ${scrollPosition > 200 ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-8'}`}>
+            From increasing conversions to designing modern, high-performance websites, we’re here to change the game.
+          </p>
+
+          {/* CTA Button */}
+          <a
+            href="#services"
+            className="bg-gradient-to-br from-[#953ee2] to-black hover:scale-105 hover:rotate-2 inline-block  text-white px-8 py-3 rounded-full text-lg transition-all duration-300 transform hover:scale-110 "
+          >
+            Discover How We Do It
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}

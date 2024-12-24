@@ -21,14 +21,14 @@ export default function CTASection() {
       </section>
 
       {/* Sticky CTA Button */}
-      <div className="fixed bottom-8 right-8">
+      {/* <div className="fixed bottom-8 right-8">
         <Link
           href="#contact"
           className="bg-[#953ee2] text-white px-6 py-3 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-white hover:text-[#953ee2] hover:scale-110"
         >
           Contact Us
         </Link>
-      </div>
+      </div> */}
     </>
   );
 }

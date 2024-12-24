@@ -29,7 +29,7 @@ export default function Home() {
 <SuccessStories/>
 <BoldStats/>
 <PortfolioItems/>
-<CTASection/>
+{/* <CTASection/> */}
 <ValueProposition/>
 <FAQSection/>
 <DownloadResourceSection/>

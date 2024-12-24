@@ -8,10 +8,7 @@ export default function ServicesSection() {
         <h2 className="text-4xl font-bold text-center mb-12">Our Services</h2>
 
         {/* Services Wrapper */}
-        <div
-          className="flex overflow-visible z-1 md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 py-4 relative"
-          style={{ overflow: 'visible' }} // Ensure cards can extend outward
-        >
+        <div className="flex sm:flex-nowrap sm:overflow-x-auto sm:gap-8 py-4 md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[ // Service Cards
             { icon: 'web.png', title: 'Web Development', description: 'We create user-centric designs that convert.' },
             { icon: 'digital-marketing.png', title: 'Digital Marketing', description: 'Grow your business with data-driven strategies.' },
@@ -22,8 +19,7 @@ export default function ServicesSection() {
           ].map((service, index) => (
             <div
               key={index}
-              className="relative flex-shrink-0 md:flex-shrink group p-6  rounded-xl shadow-xl w-80 md:w-auto transition-all transform duration-500 hover:scale-105 hover:rotate-2 hover:shadow-2xl bg-gradient-to-br from-[#953ee2] to-black z-10"
-              style={{ position: 'relative', overflow: 'visible' }} // Ensure hover effect is not clipped
+              className="relative flex-shrink-0 p-6 rounded-xl shadow-xl w-80 transition-all transform duration-500 hover:scale-105 hover:rotate-2 hover:shadow-2xl bg-gradient-to-br from-[#953ee2] to-black z-10"
             >
               {/* Hover Animation Effect */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-black via-[#953ee2] to-black rounded-xl blur-sm transition-opacity duration-500"></div>

@@ -21,10 +21,10 @@ export default function HeroSection() {
         autoPlay
         loop
         muted
+        playsInline // Essential for mobile video playback
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
       >
         <source src="/hero1.mp4" type="video/mp4" />
-        {/* Optional Fallback Video Formats */}
         <source src="/hero.webm" type="video/webm" />
         Your browser does not support the video tag.
       </video>
@@ -45,9 +45,7 @@ export default function HeroSection() {
         <button
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className={`bg-gradient-to-br from-[#953ee2] to-black hover:scale-105 hover:rotate-2 text-white px-8 py-3 rounded-full text-lg transition-all duration-300 transform ${
-            isHovered ? 'scale-105' : ''
-          }`}
+          className={`bg-gradient-to-br from-[#953ee2] to-black hover:scale-105 hover:rotate-2 text-white px-8 py-3 rounded-full text-lg transition-all duration-300 transform ${isHovered ? 'scale-105' : ''}`}
         >
           {isHovered ? "Let's Build" : "Start Your Journey"}
         </button>

@@ -37,7 +37,7 @@ const BoldStats = () => {
         Results That Speak for Themselves
       </h2>
 
-      <div className="rounded-[30px] p-6 shadow-lg-lg lg:shadow-xl text-purple-600 grid grid-cols-1 md:grid-cols-3 gap-12">
+      <div className="rounded-[30px] p-6 shadow-lg-lg lg:shadow-xl text-purple-600 flex flex-wrap justify-center gap-8 md:grid md:grid-cols-3">
         {stats.map((stat, index) => (
           <motion.div
             key={index}

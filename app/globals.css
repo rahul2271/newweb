@@ -132,3 +132,15 @@ img:hover {
 .inner-shadow {
   box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3);
 }
+
+@media (min-width: 1024px) {
+  .slick-slide {
+    display: flex;
+    justify-content: center;
+  }
+  .slick-track {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+    gap: 20px; /* Add gap between cards */
+  }
+}

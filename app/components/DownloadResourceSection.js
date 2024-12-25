@@ -19,8 +19,8 @@ export default function DownloadResourceSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Left Side (Text) */}
           <div className="space-y-6">
-            <h2 className="text-3xl font-semibold text-gray-800">Download Our Free Resource</h2>
-            <p className="text-lg text-gray-600">
+            <h2 className="text-5xl font-medium text-gray-800">Download Our Free Resource</h2>
+            <p className="text-lg font-light text-gray-600">
               Get the ultimate guide to growing your business online with actionable tips on website optimization, SEO, and digital marketing.
             </p>
 

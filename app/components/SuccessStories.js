@@ -24,7 +24,7 @@ export default function SuccessStories() {
   return (
     <section className="relative bg-[#0d0f11] py-16 px-4 text-white">
       {/* Section Title */}
-      <h2 className="text-4xl font-bold text-center mb-12">Success Stories</h2>
+      <h2 className="text-4xl font-medium text-center mb-12">Success Stories</h2>
 
       {/* Testimonial Slider */}
       <div className="flex justify-center items-center">

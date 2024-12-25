@@ -47,7 +47,7 @@ export default function ProblemSolution() {
         </div>
 
         {/* Right Side: Solution */}
-        <div className="w-full  p-6 shadow-xl rounded-[50px] md:w-1/2 text-center mt-[70px] md:text-left">
+        <div className="w-full  p-6 shadow-xl rounded-[50px] md:w-1/2 text-center md:mt-[70px] mt-[-40px] md:text-left">
           <h2 className={`text-gray-900 text-2xl md:text-4xl font-regular leading-tight mb-6 opacity-0 transition-all duration-1000 ease-in-out
             ${scrollPosition > 100 ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-8'}`}>
             We Turn Your Struggles Into Digital Triumphs

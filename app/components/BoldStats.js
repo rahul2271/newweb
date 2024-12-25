@@ -33,7 +33,7 @@ const BoldStats = () => {
 
   return (
     <section className="bg-gradient-to-r from-purple-100 to-white text-white py-20 px-8 md:px-12">
-      <h2 className="text-4xl font-medium text-center mb-12 text-gray-900">
+      <h2 className="text-3xl md:text-5xl font-medium text-center mb-12 text-gray-900">
         Results That Speak for Themselves
       </h2>
 
@@ -57,7 +57,7 @@ const BoldStats = () => {
               rotate: 3,
             }}
           >
-            <div className="text-5xl md:text-6xl font-extrabold">
+            <div className="text-2xl mt-[-20px] md:text-5xl md:text-6xl font-extrabold">
               {counts[index]}{stat.number === 99.9 ? "%" : (stat.number === 40 || stat.number === 15746 ? "+" : "")}
             </div>
             <p className="text-lg mt-4">{stat.label}</p>
@@ -65,7 +65,7 @@ const BoldStats = () => {
         ))}
       </div>
 
-      <p className="text-center mt-6 font-light text-lg text-gray-900">
+      <p className="text-center mt-6 text-sm  font-light md:text-lg text-gray-900">
         These aren’t just numbers. These are real results for real businesses.
       </p>
     </section>

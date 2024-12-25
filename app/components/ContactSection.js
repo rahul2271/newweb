@@ -27,8 +27,8 @@ export default function ContactSection() {
       <div className="container mx-auto px-4">
         {/* Headline and Subtext */}
         <div className="text-center mb-8">
-          <h2 className="text-3xl sm:text-4xl font-bold">Let’s Build Something Great Together</h2>
-          <p className="mt-4 text-lg sm:text-xl">Fill out the form below or drop us a message, and we'll get back to you ASAP!</p>
+          <h2 className="md:text-3xl text-xl font-bold">Let’s Build Something Great Together</h2>
+          <p className="mt-4 md:text-lg text-xl">Fill out the form below or drop us a message, and we'll get back to you ASAP!</p>
         </div>
 
         {/* Contact Form and Google Map */}

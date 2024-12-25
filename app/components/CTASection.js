@@ -7,8 +7,8 @@ export default function CTASection() {
       {/* Main CTA Section */}
       <section className="bg-[#0d0f11] py-20 text-white">
         <div className="max-w-screen-xl mx-auto px-6 text-center">
-          <h2 className="text-5xl font-bold mb-4">Let’s Create Digital Masterpieces Together</h2>
-          <p className="text-xl mb-8">Don’t wait. Start building the future of your brand today.</p>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">Let’s Create Digital Masterpieces Together</h2>
+          <p className="text-lg md:text-xl mb-8">Don’t wait. Start building the future of your brand today.</p>
 
           {/* CTA Button */}
           <Link

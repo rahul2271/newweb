@@ -11,20 +11,33 @@ const stats = [
 ];
 
 const BoldStats = () => {
-  const [counting, setCounting] = useState(false);
+  const [counts, setCounts] = useState(stats.map(() => 0)); // Initialize counts for each stat
 
-  // Trigger counting animation once component mounts
   useEffect(() => {
-    setCounting(true);
+    // Animate each stat from 0 to its target value
+    stats.forEach((stat, index) => {
+      const interval = setInterval(() => {
+        setCounts((prev) => {
+          const updated = [...prev];
+          if (updated[index] < stat.number) {
+            updated[index] = Math.min(updated[index] + Math.ceil(stat.number / 100), stat.number); // Increment count
+          }
+          return updated;
+        });
+      }, 20); // Update every 20ms
+
+      // Clear interval when animation is complete
+      return () => clearInterval(interval);
+    });
   }, []);
 
   return (
-    <section className=" bg-gradient-to-r from-purple-100 to-white text-white py-20 px-8 md:px-12">
+    <section className="bg-gradient-to-r from-purple-100 to-white text-white py-20 px-8 md:px-12">
       <h2 className="text-4xl font-bold text-center mb-12 text-gray-900">
         Results That Speak for Themselves
       </h2>
 
-      <div className="grid grid-cols-1 text-purple-600 md:grid-cols-3 gap-12">
+      <div className="rounded-[30px] p-6 shadow-lg-lg lg:shadow-xl text-purple-600 grid grid-cols-1 md:grid-cols-3 gap-12">
         {stats.map((stat, index) => (
           <motion.div
             key={index}
@@ -33,7 +46,6 @@ const BoldStats = () => {
             animate={{
               opacity: 1,
               scale: 1,
-              x: 0, // Slide-in effect
             }}
             transition={{
               delay: index * 0.2,
@@ -41,26 +53,13 @@ const BoldStats = () => {
               ease: "easeOut",
             }}
             whileHover={{
-              scale: 1.05, // Hover effect
-              rotate: 3, // Slight rotation on hover
+              scale: 1.05,
+              rotate: 3,
             }}
           >
-            <motion.div
-              className="text-5xl md:text-6xl font-extrabold"
-              initial={{ count: 1 }}
-              animate={{
-                count: counting ? stat.number : 1, // Start from 1 and animate to the target number
-              }}
-              transition={{
-                count: {
-                  duration: 2,
-                  ease: "easeOut",
-                },
-              }}
-            >
-              {/* Dynamically render the count with + sign */}
-              {counting ? `${Math.floor(stat.number)}+` : 1}
-            </motion.div>
+            <div className="text-5xl md:text-6xl font-extrabold">
+              {counts[index]}{stat.number === 99.9 ? "%" : (stat.number === 40 || stat.number === 15746 ? "+" : "")}
+            </div>
             <p className="text-lg mt-4">{stat.label}</p>
           </motion.div>
         ))}

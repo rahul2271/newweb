@@ -7,6 +7,9 @@ export default {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        black: '0 0 10px rgba(0, 0, 0, 0.5)', // Uniform shadow
+      },
       colors: {
         'dark-bg': '#0d0f11',
       },

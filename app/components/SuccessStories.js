@@ -35,13 +35,13 @@ export default function SuccessStories() {
               className="flex-shrink-0 w-80 h-60 perspective-1000 snap-center"
             >
               <motion.div
-                className="relative w-full h-full transform transition-transform duration-700 hover:rotate-y-180 rounded-lg shadow-inner"
-                style={{ transformStyle: "preserve-3d" }}
+                className="relative w-full h-full transform transition-transform duration-700 hover:rotate-y-180 rounded-xl shadow-lg hover:shadow-2xl hover:scale-105"
+                style={{ transformStyle: "preserve-3d", overflow: "visible" }}
               >
                 {/* Front Side */}
                 <div
-                  className="absolute inset-0 bg-gray-100 text-black flex flex-col items-center justify-center rounded-lg p-4"
-                  style={{ backfaceVisibility: "hidden" }}
+                  className="absolute inset-0 bg-gray-100 text-black flex flex-col items-center justify-center rounded-xl p-4"
+                  style={{ backfaceVisibility: "hidden", overflow: "visible" }}
                 >
                   {/* Client Logo with Circular Shape */}
                   <img
@@ -54,7 +54,7 @@ export default function SuccessStories() {
 
                 {/* Back Side */}
                 <div
-                  className="absolute inset-0 bg-purple-600 text-white flex flex-col items-center justify-center rounded-lg p-6"
+                  className="absolute inset-0 bg-purple-600 text-white flex flex-col items-center justify-center rounded-xl p-6"
                   style={{
                     transform: "rotateY(180deg)",
                     backfaceVisibility: "hidden",

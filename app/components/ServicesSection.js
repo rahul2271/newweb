@@ -26,7 +26,7 @@ export default function ServicesSection() {
               className="relative flex-shrink-0 p-6 rounded-xl shadow-xl w-80 transition-all transform duration-500 hover:scale-105 hover:rotate-2 hover:shadow-2xl bg-gradient-to-br from-[#953ee2] to-black z-10"
             >
               {/* Hover Animation Effect */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-black via-[#953ee2] to-black rounded-xl blur-sm transition-opacity duration-500"></div>
+              <div className="shadow-white p-6 rounded-lg absolute inset-0 opacity-0 group-hover:opacity-100 bg-gradient-to-br from-black via-[#953ee2] to-black rounded-xl blur-sm transition-opacity duration-500"></div>
               
               <div className="relative z-20 text-center">
                 <img

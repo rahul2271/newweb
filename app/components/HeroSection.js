@@ -33,7 +33,7 @@ export default function HeroSection() {
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
         {/* Headline */}
         <h1 className="text-5xl md:text-6xl font-bold uppercase leading-tight mb-4">
-          Your Digital Evolution Starts Here
+        Conquer the Waves. Command the Flow.
         </h1>
 
         {/* Subtext */}

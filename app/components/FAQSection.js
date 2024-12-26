@@ -1,85 +1,109 @@
 'use client'
 import { useState } from 'react';
+import { FaQuestionCircle, FaRegHandshake } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
-export default function FAQSection() {
-  const [open, setOpen] = useState(null);
+const faqs = [
+  {
+    question: 'What services do you offer?',
+    answer:
+      'We offer web development, digital marketing, SEO, and custom video editing services. We work with you to build solutions tailored to your business.',
+  },
+  {
+    question: 'How do I get started?',
+    answer:
+      'To start working with us, simply reach out through the contact form or book a consultation call. We’ll guide you through the planning process.',
+  },
+  {
+    question: 'What is your pricing?',
+    answer:
+      'Our pricing depends on the scope of the project. We offer customized solutions to suit your needs and budget. Contact us for a free consultation.',
+  },
+  {
+    question: 'How long does a project take?',
+    answer:
+      'The timeline varies based on the complexity of the project. Typically, it ranges from a few weeks to a few months. We’ll provide a more detailed timeline after understanding your requirements.',
+  },
+];
 
-  const toggle = (index) => {
-    setOpen(open === index ? null : index);
+const FaqSection = () => {
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const toggleFAQ = (index) => {
+    setActiveIndex(activeIndex === index ? null : index); // Toggle open/close
   };
 
   return (
-    <section className="py-12 px-6 md:px-8 bg-[#0d0f11]">
-      <div className="container mx-auto max-w-4xl">
-        <h2 className="text-2xl md:text-5xl font-medium text-center text-gray-200 mb-8 md:mb-10">
-          Frequently Asked Questions
-        </h2>
-
-        {/* FAQ Accordion */}
-        <div className="space-y-6">
-          {/* Question 1 */}
-          <div className="border-b border-gray-300">
-            <button
-              onClick={() => toggle(1)}
-              className="w-full text-left py-4 text-lg md:text-xl font-regular text-gray-200 flex justify-between items-center focus:outline-none"
-            >
-              <span>How quickly can I expect my website to be live?</span>
-              <svg
-                className={`w-6 h-6 transition-transform ${open === 1 ? 'rotate-180' : ''}`}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div
-              className={`transition-all duration-500 overflow-hidden ${open === 1 ? 'max-h-screen py-4' : 'max-h-0'}`}
-            >
-              <p className="text-gray-600 text-sm md:text-base">
-                Our typical website timeline is 4-6 weeks, depending on the complexity of your project.
-              </p>
-            </div>
-          </div>
-
-          {/* Question 2 */}
-          <div className="border-b border-gray-200">
-            <button
-              onClick={() => toggle(2)}
-              className="w-full text-left py-4 text-lg md:text-xl font-regular text-gray-200 flex justify-between items-center focus:outline-none"
-            >
-              <span>What makes your web development different from others?</span>
-              <svg
-                className={`w-6 h-6 transition-transform ${open === 2 ? 'rotate-180' : ''}`}
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div
-              className={`transition-all duration-500 overflow-hidden ${open === 2 ? 'max-h-screen py-4' : 'max-h-0'}`}
-            >
-              <p className="text-gray-600 text-sm md:text-base">
-                We focus on responsive design, user experience, and high-performance coding practices to ensure your site not only looks great but also functions at its best.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* CTA Button */}
-        <div className="mt-8 md:mt-10 text-center">
-          <a
-            href="#contact"
-            className="inline-block px-6 py-3 md:px-8 md:py-4 bg-gradient-to-br from-[#953ee2] to-black text-white text-sm md:text-lg font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"
+    <div className="bg-gradient-to-r from-purple-100 to-white py-16 px-4 sm:px-6 lg:px-8">
+      <h2 className="text-3xl font-bold text-center text-purple-700 mb-12">Frequently Asked Questions</h2>
+      
+      <div className="max-w-2xl mx-auto space-y-6">
+        {faqs.map((faq, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="border-b border-gray-300"
           >
-            Have More Questions? Get in Touch
-          </a>
-        </div>
+            <div
+              className="flex justify-between items-center p-4 cursor-pointer hover:bg-purple-50 transition-all"
+              onClick={() => toggleFAQ(index)}
+            >
+              <div className="flex items-center space-x-2">
+                <FaQuestionCircle className="text-purple-600" />
+                <span className="font-medium text-gray-800">{faq.question}</span>
+              </div>
+              <motion.div
+                animate={{ rotate: activeIndex === index ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  className="w-5 h-5 text-purple-600"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </motion.div>
+            </div>
+
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{
+                height: activeIndex === index ? 'auto' : 0,
+                opacity: activeIndex === index ? 1 : 0,
+              }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden p-4 text-gray-700"
+            >
+              {faq.answer}
+            </motion.div>
+          </motion.div>
+        ))}
       </div>
-    </section>
+
+      {/* CTA Section */}
+      <div className="text-center mt-10">
+        <p className="text-lg text-gray-700">
+          Didn’t find what you’re looking for?{' '}
+          <a
+            href="#"
+            className="text-purple-600 font-semibold hover:text-purple-800"
+          >
+            Chat with Us
+          </a>
+        </p>
+      </div>
+    </div>
   );
-}
+};
+
+export default FaqSection;

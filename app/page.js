@@ -10,11 +10,14 @@ import BoldStats from "./components/BoldStats";
 import PortfolioItems from "./components/PortfolioItems"
 import CTASection from "./components/CTASection";
 import ValueProposition from "./components/ValueProposition";
-import FAQSection from "./components/FAQSection";
+// import FAQSection from "./components/FAQSection";
 import DownloadResourceSection from "./components/DownloadResourceSection";
-
+import FaqSection from "./components/FAQSection";
 import BlogSection from "./components/BlogSection";
 import Chatbot from "./components/Chatbot";
+import Timeline from "./components/Timeline";
+// import ProjectTracker from "./components/project-tracker";
+// import JourneyMap from './components/JourneyMap';
 // import ContactSection from "./components/ContactSection";
 
 
@@ -24,6 +27,9 @@ export default function Home() {
 <HeroSection/>
 {/* <SmoothBackgroundSection/> */}
 {/* <ProductShowcase/> */}
+<Timeline/>
+{/* <JourneyMap/> */}
+{/* <ProjectTracker/> */}
 <ProblemSolution/>
 <ServicesSection/>
 <SuccessStories/>
@@ -31,7 +37,9 @@ export default function Home() {
 <PortfolioItems/>
 <CTASection/>
 <ValueProposition/>
-<FAQSection/>
+
+<FaqSection/>
+{/* <FAQSection/> */}
 <DownloadResourceSection/>
 
 <BlogSection/>

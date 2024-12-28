@@ -1,8 +1,8 @@
 import Razorpay from 'razorpay';
 
 const razorpay = new Razorpay({
-  key_id: process.env.local.RAZORPAY_KEY_ID,
-  key_secret: process.env.local.RAZORPAY_KEY_SECRET,
+  key_id: "rzp_live_M4zgcJI8tvu0sm",
+  key_secret: "c5wVth8uugD9XtkRkLUkb5EM",
 });
 
 export async function POST(request) {

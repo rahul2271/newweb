@@ -20,7 +20,7 @@ export default function WebinarList() {
   const today = new Date().toISOString().split('T')[0];
 
   return (
-    <main className="bg-gradient-to-r from-purple-100 to-white text-white min-h-screen p-6 sm:p-10">
+    <main className="bg-gradient-to-r from-pink-500 to-yellow-500 text-white min-h-screen p-6 sm:p-10">
       <h1 className="text-4xl text-black sm:text-5xl font-bold text-center mb-10 sm:mb-14">
         Upcoming Webinars
       </h1>
@@ -88,7 +88,7 @@ export default function WebinarList() {
       </div>
 
       {/* Desktop Grid */}
-      <div className="hidden sm:grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="hidden sm:grid  grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {webinars.map((webinar) => (
           <div
             key={webinar.id}

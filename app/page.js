@@ -29,26 +29,29 @@ export default function Home() {
 <>
 <HeroSection/>
 {/* <ResourcesPage/> */}
-
+<ProblemSolution/>
+<ServicesSection/>
 {/* <SmoothBackgroundSection/> */}
 {/* <ProductShowcase/> */}
 <Timeline/>
 {/* <JourneyMap/> */}
 {/* <ProjectTracker/> */}
-<ProblemSolution/>
-<ServicesSection/>
-<SuccessStories/>
-<BoldStats/>
-<PortfolioItems/>
-<WebinarList/>
-<CTASection/>
 <ValueProposition/>
+<DownloadResourceSection/>
+
+
+
+<BoldStats/>
+
+<SuccessStories/>
+<PortfolioItems/>
+<CTASection/>
 
 <FaqSection/>
 {/* <FAQSection/> */}
-<DownloadResourceSection/>
-
 <BlogSection/>
+
+<WebinarList/>
 <Chatbot/>
 {/* <ContactSection/> */}
 </>

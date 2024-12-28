@@ -26,7 +26,7 @@ export default function BlogSection() {
     ];
   
     return (
-      <section className="py-16 px-8 bg-[#0d0f11]">
+      <section className="py-16 px-8 bg-gradient-to-r from-gray-800 to-gray-900">
         <div className="container mx-auto max-w-7xl">
           <h2 className="text-3xl font-semibold text-gray-200 text-center mb-8">
             Latest Articles and Insights
@@ -68,7 +68,7 @@ export default function BlogSection() {
           <div className="text-center mt-8">
             <a
               href="/blog"
-              className="inline-flex items-center px-8 py-3 bg-gradient-to-br from-[#953ee2] to-black text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"
+              className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"
             >
               Explore More Articles
             </a>

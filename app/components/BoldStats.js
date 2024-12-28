@@ -37,7 +37,7 @@ const BoldStats = () => {
         Results That Speak for Themselves
       </h2>
 
-      <div className="rounded-[30px] p-6 shadow-lg-lg lg:shadow-xl text-purple-600 flex flex-wrap justify-center gap-8 md:grid md:grid-cols-3">
+      <div className="rounded-[30px] p-6 shadow-lg-lg lg:shadow-xl bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent hover:text-black inline-block  flex flex-wrap justify-center gap-8 md:grid md:grid-cols-3">
         {stats.map((stat, index) => (
           <motion.div
             key={index}
@@ -57,7 +57,7 @@ const BoldStats = () => {
               rotate: 3,
             }}
           >
-            <div className="text-2xl mt-[-20px] md:text-5xl md:text-6xl font-extrabold">
+            <div className="text-2xl  mt-[-20px] md:text-5xl md:text-6xl font-extrabold">
               {counts[index]}{stat.number === 99.9 ? "%" : (stat.number === 40 || stat.number === 15746 ? "+" : "")}
             </div>
             <p className="text-lg mt-4">{stat.label}</p>

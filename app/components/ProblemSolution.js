@@ -47,12 +47,12 @@ export default function ProblemSolution() {
         </div>
 
         {/* Right Side: Solution */}
-        <div className="w-full  p-6 shadow-xl rounded-[50px] md:w-1/2 text-center md:mt-[70px] mt-[-40px] md:text-left">
-          <h2 className={`text-gray-900 text-2xl md:text-4xl font-regular leading-tight mb-6 opacity-0 transition-all duration-1000 ease-in-out
+        <div className="w-full bg-gradient-to-r from-gray-800 to-gray-900  p-6 shadow-2xl rounded-[50px] md:w-1/2 text-center md:mt-[70px] mt-[-40px] md:text-left">
+          <h2 className={`text-gray-200 text-2xl md:text-4xl font-regular leading-tight mb-6 opacity-0 transition-all duration-1000 ease-in-out
             ${scrollPosition > 100 ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-8'}`}>
             We Turn Your Struggles Into Digital Triumphs
           </h2>
-          <p className={`text-gray-900 text-[10px] font-light md:text-xl mb-6 opacity-0 transition-opacity duration-1000 ease-in-out
+          <p className={`text-gray-300 text-[10px] font-light md:text-xl mb-6 opacity-0 transition-opacity duration-1000 ease-in-out
             ${scrollPosition > 200 ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-8'}`}>
             From increasing conversions to designing modern, high-performance websites, we’re here to change the game.
           </p>
@@ -60,7 +60,7 @@ export default function ProblemSolution() {
           {/* CTA Button */}
           <a
             href="#services"
-            className="bg-gradient-to-br from-[#953ee2] to-black hover:scale-105 hover:rotate-2 inline-block  text-white px-8 py-3 rounded-full text-lg transition-all duration-300 transform hover:scale-110 "
+            className="bg-gradient-to-r from-purple-600 to-blue-600 hover:scale-105 hover:rotate-2 inline-block  text-white px-8 py-3 rounded-full text-lg transition-all duration-300 transform hover:scale-110 "
           >
             Discover How We Do It
           </a>

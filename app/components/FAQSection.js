@@ -34,8 +34,8 @@ const FaqSection = () => {
   };
 
   return (
-    <div className="bg-gradient-to-r from-purple-100 to-white py-16 px-4 sm:px-6 lg:px-8">
-      <h2 className="text-3xl font-bold text-center text-purple-700 mb-12">Frequently Asked Questions</h2>
+    <div className="bg-gradient-to-r from-gray-800 to-gray-900 py-16 px-4 sm:px-6 lg:px-8">
+      <h2 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-yellow-500 mb-12">Frequently Asked Questions</h2>
       
       <div className="max-w-2xl mx-auto space-y-6">
         {faqs.map((faq, index) => (
@@ -47,12 +47,12 @@ const FaqSection = () => {
             className="border-b border-gray-300"
           >
             <div
-              className="flex justify-between items-center p-4 cursor-pointer hover:bg-purple-50 transition-all"
+              className="flex justify-between items-center p-4 cursor-pointer  transition-all"
               onClick={() => toggleFAQ(index)}
             >
               <div className="flex items-center space-x-2">
                 <FaQuestionCircle className="text-purple-600" />
-                <span className="font-medium text-gray-800">{faq.question}</span>
+                <span className="font-medium text-gray-200">{faq.question}</span>
               </div>
               <motion.div
                 animate={{ rotate: activeIndex === index ? 180 : 0 }}
@@ -82,7 +82,7 @@ const FaqSection = () => {
                 opacity: activeIndex === index ? 1 : 0,
               }}
               transition={{ duration: 0.3 }}
-              className="overflow-hidden p-4 text-gray-700"
+              className="overflow-hidden p-4 text-gray-300"
             >
               {faq.answer}
             </motion.div>
@@ -92,11 +92,11 @@ const FaqSection = () => {
 
       {/* CTA Section */}
       <div className="text-center mt-10">
-        <p className="text-lg text-gray-700">
+        <p className="text-lg text-gray-200">
           Didn’t find what you’re looking for?{' '}
           <a
             href="#"
-            className="text-purple-600 font-semibold hover:text-purple-800"
+            className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-yellow-500 font-semibold "
           >
             Chat with Us
           </a>

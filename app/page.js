@@ -19,12 +19,17 @@ import Timeline from "./components/Timeline";
 // import ProjectTracker from "./components/project-tracker";
 // import JourneyMap from './components/JourneyMap';
 // import ContactSection from "./components/ContactSection";
+// import ResourcesPage from './resources/page';
+import WebinarList from "./webinars/page";
+
 
 
 export default function Home() {
   return (
 <>
 <HeroSection/>
+{/* <ResourcesPage/> */}
+
 {/* <SmoothBackgroundSection/> */}
 {/* <ProductShowcase/> */}
 <Timeline/>
@@ -35,6 +40,7 @@ export default function Home() {
 <SuccessStories/>
 <BoldStats/>
 <PortfolioItems/>
+<WebinarList/>
 <CTASection/>
 <ValueProposition/>
 

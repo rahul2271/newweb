@@ -27,7 +27,7 @@ export default function DownloadResourceSection() {
             {/* Download Button */}
             <button
               onClick={() => setFormVisible(true)}
-              className="inline-flex items-center px-8 py-3 bg-purple-600 text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"
+              className="inline-flex items-center px-8 py-3 bg-gradient-to-r from-pink-500 to-yellow-500 text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300"
             >
               <span>Download Now</span>
               <svg
@@ -82,7 +82,7 @@ export default function DownloadResourceSection() {
                   </div>
                   <button
                     type="submit"
-                    className="w-full px-8 py-3 bg-purple-600 text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300 mt-4"
+                    className="w-full px-8 py-3 bg-gradient-to-r from-pink-500 to-yellow-500 text-white font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300 mt-4"
                   >
                     Submit and Download
                   </button>

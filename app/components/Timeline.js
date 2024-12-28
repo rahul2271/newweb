@@ -43,41 +43,44 @@ export default function Timeline() {
   const [currentStep, setCurrentStep] = useState(0);
 
   return (
-    <div className="bg-gradient-to-r from-purple-100 to-white max-w-auto mx-auto p-6 md:p-10">
-      <h2 className="text-2xl md:text-4xl text-center font-bold text-purple mb-8 md:mb-10">Our Proven Process: From Dream to Reality</h2>
+    <>
+      <div className="bg-gradient-to-r from-purple-100 to-white max-w-auto mx-auto p-6 md:p-10">
+        <h2 className="text-2xl md:text-4xl text-center font-bold text-purple mb-8 md:mb-10">Our Proven Process: From Dream to Reality</h2>
 
-      <div className="relative">
-        <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-purple to-darkblue" />
-        
-        {/* Flexbox adjusted for mobile */}
-        <div className="flex flex-wrap items-center justify-center md:justify-between mb-8 md:mb-10">
-          {milestones.map((milestone, index) => (
-            <div
-              key={index}
-              className={`cursor-pointer relative flex flex-col items-center w-1/2 md:w-auto mb-6 md:mb-0 ${currentStep === index ? 'text-purple' : 'text-gray-600'}`}
-              onClick={() => setCurrentStep(index)}
-            >
-              <div className={`p-4 rounded-full bg-white shadow-md ${currentStep === index ? 'border-4 border-gradient-to-br from-[#953ee2] to-black' : ''}`}>
-                <span className="text-4xl">{milestone.icon}</span>
+        <div className="relative">
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-purple to-darkblue" />
+          
+          {/* Flexbox adjusted for mobile */}
+          <div className="flex flex-wrap items-center justify-center md:justify-between mb-8 md:mb-10">
+            {milestones.map((milestone, index) => (
+              <div
+                key={index}
+                className={`cursor-pointer relative flex flex-col items-center w-1/2 md:w-auto mb-6 md:mb-0 ${currentStep === index ? 'text-purple' : 'text-gray-600'}`}
+                onClick={() => setCurrentStep(index)}
+              >
+                <div className={`p-4 rounded-full bg-white shadow-md ${currentStep === index ? 'border-4 border-gradient-to-br from-[#953ee2] to-black' : ''}`}>
+                  <span className="text-4xl">{milestone.icon}</span>
+                </div>
+                <span className={`mt-2 text-sm text-center md:text-base ${currentStep === index ? 'font-semibold' : ''}`}>{milestone.title}</span>
               </div>
-              <span className={`mt-2 text-sm text-center md:text-base ${currentStep === index ? 'font-semibold' : ''}`}>{milestone.title}</span>
-            </div>
-          ))}
+            ))}
+          </div>
+
+          {/* Milestone details section */}
+          <div className="bg-gradient-to-r from-gray-800 to-gray-900 p-6 text-center rounded-lg shadow-lg text-gray-200">
+            <h3 className="text-xl md:text-2xl font-bold text-gray-200">{milestones[currentStep].title}</h3>
+            <p className="mt-2 text-sm md:text-gray-200">{milestones[currentStep].description}</p>
+            <p className="mt-4 text-xs md:text-sm text-gray-300">Tech Stack: {milestones[currentStep].tech}</p>
+          </div>
         </div>
 
-        {/* Milestone details section */}
-        <div className="bg-white p-6 text-center rounded-lg shadow-lg text-gray-700">
-          <h3 className="text-xl md:text-2xl font-bold text-purple">{milestones[currentStep].title}</h3>
-          <p className="mt-2 text-sm md:text-base">{milestones[currentStep].description}</p>
-          <p className="mt-4 text-xs md:text-sm text-gray-500">Tech Stack: {milestones[currentStep].tech}</p>
+
+        <div className="flex justify-center mt-8 md:mt-10">
+          <button className="bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2 px-6 rounded-full hover:bg-white hover:text-purple border-2 border-purple transition-all">
+            Let's Build the Future Together
+          </button>
         </div>
       </div>
-
-      <div className="flex justify-center mt-8 md:mt-10">
-        <button className="bg-gradient-to-br from-[#953ee2] to-black text-white py-2 px-6 rounded-full hover:bg-white hover:text-purple border-2 border-purple transition-all">
-          Let's Build the Future Together
-        </button>
-      </div>
-    </div>
+    </>
   );
 }

@@ -30,7 +30,7 @@ export default function HeroSection() {
       </video>
 
       {/* Hero Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
+      <div className=" relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
         {/* Headline */}
         <h1 className="text-5xl md:text-6xl font-bold uppercase leading-tight mb-4">
         Conquer the Waves. Command the Flow.
@@ -45,7 +45,7 @@ export default function HeroSection() {
         <button
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className={`bg-gradient-to-br from-[#953ee2] to-black hover:scale-105 hover:rotate-2 text-white px-8 py-3 rounded-full text-lg transition-all duration-300 transform ${isHovered ? 'scale-105' : ''}`}
+          className={`bg-gradient-to-r from-purple-600 to-blue-600 hover:scale-105 hover:rotate-2 text-white px-8 py-3 rounded-full text-lg transition-all duration-300 transform ${isHovered ? 'scale-105' : ''}`}
         >
           {isHovered ? "Let's Build" : "Start Your Journey"}
         </button>

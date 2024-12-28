@@ -63,7 +63,7 @@ export default function ValueProposition() {
 
       {/* Call to Action Button */}
       <div className="text-center mt-12">
-        <a href="#why-us" className="inline-block px-8 py-3 bg-gradient-to-br from-[#953ee2] to-black text-white text-sm md:text-lg font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300">
+        <a href="#why-us" className="inline-block px-8 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm md:text-lg font-semibold rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300">
           Discover How We Can Help You Grow
         </a>
       </div>

@@ -22,7 +22,7 @@ const testimonials = [
 
 export default function SuccessStories() {
   return (
-    <section className="relative bg-[#0d0f11] py-16 px-4 text-white">
+    <section className="relative bg-gradient-to-r from-gray-800 to-gray-900 py-16 px-4 text-white">
       {/* Section Title */}
       <h2 className="text-4xl font-medium text-center mb-12">Success Stories</h2>
 
@@ -70,7 +70,7 @@ export default function SuccessStories() {
 
       {/* CTA Button */}
       <div className="text-center mt-8">
-        <button className="px-6 py-2 bg-gradient-to-br from-[#953ee2] to-black text-white font-semibold rounded-lg hover:bg-purple-700 transition-all">
+        <button className="px-6 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-all">
           See More Success Stories
         </button>
       </div>

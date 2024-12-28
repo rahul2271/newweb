@@ -1,7 +1,9 @@
+// app/layout.js
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Example from "./components/Header";
 import Footer from "./components/Footer";
+import Head from "next/head";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,11 +23,18 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <Head>
+        {/* Include Razorpay Checkout Script */}
+        <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+      </Head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      ><Example/>
+      >
+        {/* Header component */}
+        <Example />
         {children}
-        <Footer/>
+        {/* Footer component */}
+        <Footer />
       </body>
     </html>
   );

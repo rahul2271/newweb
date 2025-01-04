@@ -1,18 +1,15 @@
 // app/layout.js
-import { Geist, Geist_Mono } from "next/font/google";
+import { Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Example from "./components/Header";
 import Footer from "./components/Footer";
 import Head from "next/head";
+import CursorEffect from "./components/CursorEffect";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair-display",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["400", "500", "700"], // Specify the font weights you need
 });
 
 export const metadata = {
@@ -27,10 +24,9 @@ export default function RootLayout({ children }) {
         {/* Include Razorpay Checkout Script */}
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
       </Head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${playfairDisplay.variable} antialiased`}>
         {/* Header component */}
+        <CursorEffect/>
         <Example />
         {children}
         {/* Footer component */}

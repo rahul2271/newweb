@@ -38,6 +38,11 @@ const callsToAction = [
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
+  // Function to close the mobile menu
+  const closeMenu = () => {
+    setMobileMenuOpen(false)
+  }
+
   return (
     <header className="bg-blur absolute top-0 left-0 right-0 z-50">
       <nav aria-label="Global" className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8">
@@ -82,7 +87,7 @@ export default function Example() {
                       <item.icon aria-hidden="true" className="h-6 text-gray-600 group-hover:text-[#953ee2]" />
                     </div>
                     <div className="flex-auto">
-                      <a href={item.href} className="block font-semibold text-gray-900 transition-all duration-300 group-hover:text-[#953ee2]">
+                      <a href={item.href} className="block font-semibold text-gray-900 transition-all duration-300 group-hover:text-[#953ee2]" onClick={closeMenu}>
                         {item.name}
                       </a>
                       <p className="mt-1 text-gray-600 group-hover:text-[#953ee2]">{item.description}</p>
@@ -96,6 +101,7 @@ export default function Example() {
                     key={item.name}
                     href={item.href}
                     className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold text-gray-900 hover:bg-gray-100"
+                    onClick={closeMenu}
                   >
                     <item.icon aria-hidden="true" className="h-5 text-gray-400" />
                     {item.name}
@@ -126,7 +132,7 @@ export default function Example() {
         <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-black px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
+              <span className="sr-only">RC Tech Solutions</span>
               <img
                 alt="RC Tech Solutions Logo"
                 src="RC Logo.png"
@@ -157,6 +163,7 @@ export default function Example() {
                         as="a"
                         href={item.href}
                         className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold text-gray-100 hover:bg-[#953ee2]"
+                        onClick={closeMenu}
                       >
                         {item.name}
                       </DisclosureButton>
@@ -166,18 +173,21 @@ export default function Example() {
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-100 hover:bg-[#953ee2]"
+                  onClick={closeMenu}
                 >
                   Features
                 </a>
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-100 hover:bg-[#953ee2]"
+                  onClick={closeMenu}
                 >
                   Marketplace
                 </a>
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-100 hover:bg-[#953ee2]"
+                  onClick={closeMenu}
                 >
                   Company
                 </a>
@@ -186,6 +196,7 @@ export default function Example() {
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold text-gray-100 hover:bg-[#953ee2]"
+                  onClick={closeMenu}
                 >
                   Log in
                 </a>

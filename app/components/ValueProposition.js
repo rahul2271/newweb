@@ -23,7 +23,9 @@ export default function ValueProposition() {
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
         {/* Left Column (Text) */}
         <div className="space-y-6 animate-on-scroll opacity-0 transform -translate-x-10">
-          <h2 className="text-2xl md:text-3xl font-medium text-gray-800">What Sets RC Tech Solutions Apart?</h2>
+        <h2 className="text-6xl font-extrabold tracking-tight leading-tight text-gray-900 mb-4">
+        What Sets <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">RC Tech Solutions </span>
+              Apart?</h2>
           <p className="text-md md:text-xl font-regular text-gray-600">We don’t just build websites; we create powerful digital solutions that help your brand thrive in a competitive world.</p>
           <ul className="space-y-4 list-none">
             <li className="flex items-center text:sm md:text-lg font-light text-gray-700">

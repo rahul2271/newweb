@@ -15,7 +15,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className=" relative w-full h-screen bg-black overflow-hidden">
+    <section className="relative w-full h-screen bg-black overflow-hidden">
       {/* Full-Screen Background Video */}
       <video
         autoPlay
@@ -29,11 +29,14 @@ export default function HeroSection() {
         Your browser does not support the video tag.
       </video>
 
+      {/* Gradient Overlay */}
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 opacity-90 z-5"></div>
+
       {/* Hero Content */}
-      <div className=" relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
         {/* Headline */}
         <h1 className="text-5xl md:text-6xl font-bold uppercase leading-tight mb-4">
-        Conquer the Waves. Command the Flow.
+          Conquer the Waves. Command the Flow.
         </h1>
 
         {/* Subtext */}
@@ -50,13 +53,6 @@ export default function HeroSection() {
           {isHovered ? "Let's Build" : "Start Your Journey"}
         </button>
       </div>
-
-      {/* Sticky CTA */}
-      {/* <div className="fixed top-4 right-4 z-20">
-        <button className="bg-gradient-to-br from-[#953ee2] to-black hover:scale-105 hover:rotate-2 text-white px-4 py-2 rounded-full text-sm">
-          Start Your Journey
-        </button>
-      </div> */}
     </section>
   );
 }

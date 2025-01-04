@@ -50,7 +50,9 @@ export default function ServicesSection() {
       {/* Mobile-only Section with Slider */}
       <section className="mt-[-50px] block lg:hidden bg-gradient-to-r from-purple-100 to-white py-20 mx-auto shadow-md text-gray-200 overflow-hidden">
         <div className="max-w-screen-xl mx-auto px-4">
-          <h2 className="text-4xl text-gray-900 font-bold text-center mb-12">Our Services</h2>
+        <h2 className="text-6xl font-extrabold tracking-tight leading-tight text-gray-900 mb-4">
+              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Services</span>
+            </h2>
 
           {/* Slick Carousel */}
           <Slider {...settings}>
@@ -99,7 +101,9 @@ export default function ServicesSection() {
       {/* Desktop-only Section with Grid */}
       <section className="hidden lg:block bg-gradient-to-r from-purple-100 to-white py-20 mx-auto shadow-md text-gray-200 overflow-hidden">
         <div className="max-w-screen-xl mx-auto px-4">
-          <h2 className="text-5xl text-gray-900 font-medium text-center mb-12">Our Services</h2>
+        <h2 className="text-6xl font-extrabold tracking-tight leading-tight text-gray-900 mb-4">
+              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Services</span>
+            </h2>
 
           {/* Services Wrapper */}
           <div className="flex sm:flex-wrap sm:overflow-x-auto sm:gap-8 py-4 md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 scroll-smooth">

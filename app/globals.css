@@ -30,7 +30,7 @@
 
 
 body {
-  font-family: 'Poppins', sans-serif;
+  /* font-family: 'Poppins', sans-serif; */
   background-color: #ffffff;
 }
 
@@ -62,7 +62,7 @@ button:hover {
 /* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Bebas+Neue&display=swap'); */
 
 body {
-  font-family: 'Poppins', sans-serif;
+  /* font-family: 'Poppins', sans-serif; */
 }
 
 /* Primary color for CTA */
@@ -155,3 +155,61 @@ img:hover {
 }
 
 
+:root {
+  --font-primary: var(--font-playfair-display);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-primary), serif;
+}
+
+p {
+  font-family: "Arial", sans-serif; /* Use a different font for body text */
+}
+
+
+/* Hide the default cursor */
+html, body {
+  cursor: none;
+}
+
+/* Custom cursor dot */
+.cursor-dot {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background-color: #953ee2; /* Main color for the cursor */
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease-out, opacity 0.2s ease-out;
+}
+
+/* Particles (smoke or powder effect) */
+.cursor-particle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: rgba(149, 62, 226, 0.5); /* Powder color */
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particleEffect 1s forwards;
+  transform-origin: center;
+}
+
+/* Particle trail effect */
+@keyframes particleEffect {
+  0% {
+    transform: scale(1) translate(0, 0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2) translate(5px, -10px);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(0) translate(15px, 20px);
+    opacity: 0;
+  }
+}

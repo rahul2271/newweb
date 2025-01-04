@@ -34,6 +34,8 @@ export default function Home() {
 <>
 {/* <CursorEffect/> */}
 <HeroSection/>
+<ProblemSolution/>
+
 {/*<div className="min-h-screen bg-gray-100 py-10">
 
       
@@ -51,7 +53,6 @@ export default function Home() {
 {/* <ChatGPTSection/> */}
 {/* <ResourcesPage/> */}
 <Capabilities/>
-<ProblemSolution/>
 {/* <ServicesSection/> */}
 {/* <SmoothBackgroundSection/> */}
 {/* <ProductShowcase/> */}

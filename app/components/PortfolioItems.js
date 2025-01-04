@@ -44,7 +44,7 @@ const InteractivePortfolio = () => {
   };
 
   return (
-    <section className="py-20 px-8 md:px-12 bg-gradient-to-r from-gray-800 to-gray-900 text-white">
+    <section className="py-20 px-8 md:px-12 bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 text-white">
       <h2 className="text-3xl md:text-5xl font-medium text-center mb-12 text-gray-200">
         Showcasing Our Best Work
       </h2>

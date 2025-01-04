@@ -33,7 +33,7 @@ const BoldStats = () => {
 
   return (
     <section className="bg-gradient-to-r from-purple-100 to-white text-white py-20 px-8 md:px-12">
-      <h2 className="text-3xl md:text-5xl font-medium text-center mb-12 text-gray-900">
+      <h2 className="text-3xl text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 md:text-5xl font-extrabold text-center mb-12 text-gray-900">
         Results That Speak for Themselves
       </h2>
 

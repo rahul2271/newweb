@@ -22,7 +22,7 @@ const testimonials = [
 
 export default function SuccessStories() {
   return (
-    <section className="relative bg-gradient-to-r from-gray-800 to-gray-900 py-16 px-4 text-white">
+    <section className="relative bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 py-16 px-4 text-white">
       {/* Section Title */}
       <h2 className="text-4xl font-medium text-center mb-12">Success Stories</h2>
 

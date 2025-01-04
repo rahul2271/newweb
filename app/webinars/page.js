@@ -40,7 +40,7 @@ export default function WebinarList() {
         >
           {webinars.map((webinar) => (
             <SwiperSlide key={webinar.id}>
-              <div className="relative group p-8 bg-gradient-to-r from-gray-800 to-gray-900 shadow-lg rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl transform hover:translate-y-3 ease-in-out">
+              <div className="relative group p-8 bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 shadow-lg rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl transform hover:translate-y-3 ease-in-out">
                 {/* Webinar Image (if available) */}
                 {webinar.imageUrl && (
                   <img

@@ -30,7 +30,7 @@ export default function HeroSection() {
       </video>
 
       {/* Gradient Overlay */}
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 opacity-70 z-5"></div>
+      {/* <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 opacity-90 z-5"></div> */}
 
       {/* Hero Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">

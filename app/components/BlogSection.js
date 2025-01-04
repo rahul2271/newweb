@@ -26,7 +26,7 @@ export default function BlogSection() {
     ];
   
     return (
-      <section className="py-16 px-8 bg-gradient-to-r from-gray-800 to-gray-900">
+      <section className="py-16 px-8 bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900">
         <div className="container mx-auto max-w-7xl">
           <h2 className="text-3xl font-semibold text-gray-200 text-center mb-8">
             Latest Articles and Insights

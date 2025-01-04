@@ -4,7 +4,7 @@ import HeroSection from './components/HeroSection';
 // import ProductShowcase from './components/ProductShowcase';
 // import SmoothBackgroundSection from './components/SmoothBackgroundSection';
 import ProblemSolution from './components/ProblemSolution';
-import ServicesSection from './components/ServicesSection';
+// import ServicesSection from './components/ServicesSection';
 import SuccessStories from "./components/SuccessStories";
 import BoldStats from "./components/BoldStats";
 import PortfolioItems from "./components/PortfolioItems"
@@ -15,7 +15,7 @@ import DownloadResourceSection from "./components/DownloadResourceSection";
 import FaqSection from "./components/FAQSection";
 import BlogSection from "./components/BlogSection";
 import Chatbot from "./components/Chatbot";
-import Timeline from "./components/Timeline";
+// import Timeline from "./components/Timeline";
 // import ProjectTracker from "./components/project-tracker";
 // import JourneyMap from './components/JourneyMap';
 // import ContactSection from "./components/ContactSection";
@@ -23,7 +23,7 @@ import Timeline from "./components/Timeline";
 import WebinarList from "./webinars/page";
 // import ChatGPTSection from "./components/Gpt";
 // import SEO from "./components/seo";
-import Quiz from "./components/Quiz";
+// import Quiz from "./components/Quiz";
 import Capabilities from "./components/capabilities";
 
 

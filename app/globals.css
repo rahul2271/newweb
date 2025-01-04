@@ -213,3 +213,14 @@ html, body {
     opacity: 0;
   }
 }
+
+/* Hide cursor on mobile devices (below 768px) */
+@media (max-width: 768px) {
+  .cursor-dot {
+    display: none;
+  }
+  .cursor-particle {
+    display: none;
+  }
+}
+

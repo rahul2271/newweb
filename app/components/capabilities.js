@@ -20,7 +20,7 @@ import {
 const Capabilities = () => {
   const capabilities = [
     {
-      title: "Custom Web Development",
+      title: "Web Development",
       description: "You dream it, we build it. Websites that perform and impress.",
       hoverText: "Code Your Dreams into Reality.",
       icon: <FaCode />,
@@ -162,16 +162,16 @@ const Capabilities = () => {
 
               {/* Normal Content */}
               <div className="text-center group-hover:opacity-0 transition-opacity duration-300">
-                <h3 className="text-xl font-bold mb-4">{capability.title}</h3>
-                <p className="text-gray-300">{capability.description}</p>
+                <h3 className="text-xl place-content-center mx-auto max-w-auto font-bold mb-4">{capability.title}</h3>
+                {/* <p className="text-gray-300 text-[12px]">{capability.description}</p> */}
               </div>
 
               {/* Hover Content */}
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <h3 className="text-2xl font-extrabold text-white mb-4">{capability.hoverText}</h3>
+              <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 px-4">
+                <h3 className="text-lg font-extrabold text-white mb-4">{capability.hoverText}</h3>
                 <a
                   href="#"
-                  className="px-6 py-2 bg-white text-purple-600 font-semibold rounded-full shadow-md hover:bg-gray-100 transition duration-300"
+                  className="px-6 py-2 bg-white text-purple-600 font-semibold rounded-full shadow-xl hover:bg-gray-100 transition duration-300"
                 >
                   Explore
                 </a>

@@ -14,7 +14,7 @@ export default function Chatbot() {
       {/* Chatbot Icon */}
       <div
         onClick={toggleChatbot}
-        className="fixed bottom-4 right-4 z-50 w-16 h-16 bg-purple-600 shadow-xl text-white rounded-full flex items-center justify-center cursor-pointer transform hover:scale-110 transition-all duration-300"
+        className="fixed bottom-4 right-4 z-50 w-16 h-16  bg-gradient-to-r from-purple-600 to-blue-600 shadow-xl text-white rounded-full flex items-center justify-center cursor-pointer transform hover:scale-110 transition-all duration-300"
       >
         <span className="text-2xl font-bold">💬</span>
       </div>

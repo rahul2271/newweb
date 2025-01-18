@@ -13,12 +13,12 @@ export default function DownloadResourceSection() {
     {
       title: 'AI Chatbot',
       description: 'A personalized chatbot leveraging GPT for real-time interaction.',
-      image: '/images/ai-chatbot.jpg',
+      image: './minimalist.png',
     },
     {
       title: 'AR Product Viewer',
       description: 'Interactive AR application for virtual product try-ons.',
-      image: '/images/ar-product-viewer.jpg',
+      image: './leadgen.png',
     },
     {
       title: 'VR Tour',
@@ -88,9 +88,9 @@ export default function DownloadResourceSection() {
                     alt={projects[currentProject].title}
                     className="w-full h-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center text-center">
-                    <h4 className="text-xl font-bold">{projects[currentProject].title}</h4>
-                    <p className="text-sm text-gray-300">{projects[currentProject].description}</p>
+                  <div className="absolute inset-0 bg-black bg-opacity-0 flex flex-col justify-center items-center text-center">
+                    {/* <h4 className="text-xl font-bold">{projects[currentProject].title}</h4> */}
+                    {/* <p className="text-sm text-gray-300">{projects[currentProject].description}</p> */}
                   </div>
                 </div>
                 <div className="flex justify-between items-center mt-4">

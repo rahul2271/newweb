@@ -1,73 +1,61 @@
-'use client';
 
-import { useEffect } from 'react';
+"use client"
+import { useEffect } from "react";
 
-const CursorEffect = () => {
+const CustomCursor = () => {
   useEffect(() => {
-    const cursor = document.getElementById('cursor');
-    const smokeContainer = document.getElementById('smoke');
+    const cursor = document.querySelector(".custom-cursor");
+    const cursorRing = document.querySelector(".custom-cursor-ring");
+    const particles = document.querySelector(".custom-cursor-particles");
 
-    let mouseX = 0;
-    let mouseY = 0;
-    let cursorX = 0;
-    let cursorY = 0;
-    let isMoving = false;
+    let mouseX = 0, mouseY = 0;
 
-    // Smooth transition towards the mouse
-    const smoothMove = () => {
-      if (isMoving) {
-        cursorX += (mouseX - cursorX) / 8; // Smoothing factor
-        cursorY += (mouseY - cursorY) / 8; // Smoothing factor
-
-        cursor.style.left = `${cursorX}px`;
-        cursor.style.top = `${cursorY}px`;
-      }
-      requestAnimationFrame(smoothMove);
-    };
-
-    // Track mouse movement
-    const handleMouseMove = (e) => {
+    const updateCursor = (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
-      if (!isMoving) {
-        isMoving = true;
-      }
-      generatePowderParticles(e);  // Create particles on mouse move
+
+      // Move the main cursor and ring
+      cursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+      cursorRing.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
     };
 
-    // Function to generate particles (powder effect) on mouse move
-    const generatePowderParticles = (e) => {
-      const particle = document.createElement('div');
-      particle.classList.add('cursor-particle');
-      particle.style.left = `${e.clientX - 6}px`;
-      particle.style.top = `${e.clientY - 6}px`;
-      
-      smokeContainer.appendChild(particle);
-
-      // Remove the particle after animation ends
-      setTimeout(() => {
-        smokeContainer.removeChild(particle);
-      }, 1000); // Matches the duration of the animation
+    const handleHoverStart = () => {
+      cursor.classList.add("hover");
+      cursorRing.classList.add("hover");
+      particles.classList.add("active");
     };
 
-    // Add event listeners
-    document.addEventListener('mousemove', handleMouseMove);
+    const handleHoverEnd = () => {
+      cursor.classList.remove("hover");
+      cursorRing.classList.remove("hover");
+      particles.classList.remove("active");
+    };
 
-    // Start smooth cursor movement
-    smoothMove();
+    // Mouse move and hover events
+    document.addEventListener("mousemove", updateCursor);
+    const clickableElements = document.querySelectorAll("a, button");
+    clickableElements.forEach((el) => {
+      el.addEventListener("mouseenter", handleHoverStart);
+      el.addEventListener("mouseleave", handleHoverEnd);
+    });
 
-    // Cleanup event listeners on unmount
+    // Cleanup
     return () => {
-      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener("mousemove", updateCursor);
+      clickableElements.forEach((el) => {
+        el.removeEventListener("mouseenter", handleHoverStart);
+        el.removeEventListener("mouseleave", handleHoverEnd);
+      });
     };
   }, []);
 
   return (
     <>
-      <div id="cursor" className="cursor-dot"></div>
-      <div id="smoke" className="cursor-smoke"></div>
+      <div className="custom-cursor"></div>
+      <div className="custom-cursor-ring"></div>
+      <div className="custom-cursor-particles"></div>
     </>
   );
 };
 
-export default CursorEffect;
+export default CustomCursor;

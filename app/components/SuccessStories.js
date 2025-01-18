@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const testimonials = [
   {
-    logo: "/client-logo1.png",
+    logo: "./minimalist.png",
     quote: "RC Tech Solutions redefined our digital strategy. The impact was immediate!",
     details: "Increased traffic by 45%, enhanced UI/UX, and boosted conversion rates.",
   },

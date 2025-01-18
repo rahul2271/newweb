@@ -23,7 +23,7 @@ import Chatbot from "./components/Chatbot";
 import WebinarList from "./webinars/page";
 // import ChatGPTSection from "./components/Gpt";
 // import SEO from "./components/seo";
-// import Quiz from "./components/Quiz";
+import Quiz from "./components/Quiz";
 import Capabilities from "./components/capabilities";
 
 
@@ -32,23 +32,17 @@ import Capabilities from "./components/capabilities";
 export default function Home() {
   return (
 <>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
 {/* <CursorEffect/> */}
 <HeroSection/>
 <ProblemSolution/>
 
-{/*<div className="min-h-screen bg-gray-100 py-10">
-
-      
-      <main className="max-w-3xl mx-auto p-6 bg-white shadow-xl rounded-lg">
-        <h1 className="text-3xl font-semibold text-center text-purple-600">Find Your Perfect Service</h1>
-        <p className="text-center text-gray-600 mt-4">
-          Answer a few questions, and we’ll recommend the best solutions for you!
-        </p>
-
+<div className="bg-gradient-to-r from-purple-100 to-white"><Quiz /></div>
         
-        <Quiz />
-      </main>
-    </div> */}
+     
 {/* <SEO/> */}
 {/* <ChatGPTSection/> */}
 {/* <ResourcesPage/> */}

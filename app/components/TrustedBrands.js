@@ -44,29 +44,28 @@ export default function BrandsSection() {
           </div>
         </div>
 
-        {/* Swiper for Mobile (Auto-Scroll with slow rotation) */}
+        {/* Swiper for Mobile (Auto-Scroll) */}
         <div className="lg:hidden">
           <Swiper
-            spaceBetween={20} // Increased gap between logos
-            slidesPerView={3} // Adjust number of logos visible on mobile
+            spaceBetween={10} // Reduced gap between logos
+            slidesPerView={3} // Increase slides per view for mobile
             loop={true}
             autoplay={{
-              delay: 3000, // Slow auto-scroll delay (3 seconds per slide)
+              delay: 2000, // Auto-scroll delay (2 seconds per slide)
               disableOnInteraction: false, // Keep autoplay active even after interaction
             }}
-            speed={5000} // Slow down the transition speed
             breakpoints={{
               640: {
                 slidesPerView: 4,
-                spaceBetween: 15, // Adjust gap for 640px+ screens
+                spaceBetween: 10, // Adjust gap for 640px+ screens
               },
               768: {
                 slidesPerView: 5,
-                spaceBetween: 20, // Adjust gap for 768px+ screens
+                spaceBetween: 10, // Adjust gap for 768px+ screens
               },
               1024: {
                 slidesPerView: 5,
-                spaceBetween: 20, // Adjust gap for larger screens
+                spaceBetween: 10, // Adjust gap for larger screens
               },
             }}
           >

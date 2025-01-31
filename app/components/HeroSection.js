@@ -36,13 +36,12 @@ export default function HeroSection() {
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
         {/* Headline */}
         <h1 className="text-5xl md:text-6xl font-bold uppercase leading-tight mb-4">
-          Conquer the Waves. Command the Flow.
+          Turning ideas into Digital reality.
         </h1>
 
         {/* Subtext */}
         <p className="text-xl md:text-2xl font-light mb-8">
-          Make your brand unforgettable. We build digital experiences that drive results.
-        </p>
+        Your business isn’t average. Neither are we. Let’s build something extraordinary together.        </p>
 
         {/* CTA Button */}
         <button

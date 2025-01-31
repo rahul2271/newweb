@@ -1,5 +1,6 @@
 'use client'
-
+import Link from 'next/link'
+// import WebDevelopmentPage from './Services/WebDevelopment/page'
 import { useState } from 'react'
 import {
   Dialog,
@@ -22,6 +23,7 @@ import {
   XMarkIcon,
 } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
+import { Imprima } from 'next/font/google'
 
 const products = [
   { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
@@ -51,7 +53,7 @@ export default function Example() {
             <span className="sr-only">RC Tech Solutions</span>
             <img
               alt="RC Tech Solutions Logo"
-              src="./RC Logo.png"
+              src="/RC Logo.png"
               className="h-12 w-auto"
             />
           </a>
@@ -178,19 +180,20 @@ export default function Example() {
                   Features
                 </a>
                 <a
-                  href="#"
+                  href="./webde"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-100 hover:bg-[#953ee2]"
                   onClick={closeMenu}
                 >
                   Marketplace
                 </a>
-                <a
-                  href="#"
+                <Link
+                  href="/services/web-development
+                  "
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-100 hover:bg-[#953ee2]"
                   onClick={closeMenu}
                 >
                   Company
-                </a>
+                </Link>
               </div>
               <div className="py-6">
                 <a

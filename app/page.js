@@ -25,6 +25,9 @@ import WebinarList from "./webinars/page";
 // import SEO from "./components/seo";
 import Quiz from "./components/Quiz";
 import Capabilities from "./components/capabilities";
+import BrandsSection from "./components/TrustedBrands";
+
+
 
 
 
@@ -38,6 +41,7 @@ export default function Home() {
 />
 {/* <CursorEffect/> */}
 <HeroSection/>
+<BrandsSection/>
 <ProblemSolution/>
 
 <div className="bg-gradient-to-r from-purple-100 to-white"><Quiz /></div>

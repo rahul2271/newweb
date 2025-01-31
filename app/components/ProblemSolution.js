@@ -26,7 +26,7 @@ export default function ProblemSolution() {
 
           <h2 className={` text-transparent md:pb-[20px] bg-clip-text bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 text-3xl md:text-5xl tracking-tight leading-tight font-extrabold leading-tight mb-6 text-gray-900 opacity-0 transition-all duration-1000 ease-in-out
             ${scrollPosition > 100 ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-8'}`}>
-            Is Your Digital Strategy Leaving You Behind?
+            Is Your Digital Strategy Costing You Growth?
           </h2>
           <div className="flex justify-center md:justify-start space-x-8">
             <div className={`text-gray-900 font-light opacity-0 transition-opacity duration-1000 ease-in-out
@@ -51,12 +51,11 @@ export default function ProblemSolution() {
         <div className="w-full bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900  p-6 shadow-2xl rounded-[50px] md:w-1/2 text-center md:mt-[70px] mt-[-40px] md:text-left">
           <h2 className={`text-gray-200 text-2xl md:text-3xl font-regular leading-tight mb-6 opacity-0 transition-all duration-1000 ease-in-out
             ${scrollPosition > 100 ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-8'}`}>
-            We Turn Your Struggles Into Digital Triumphs
+            We Turn Your Challenges Into Opportunities.
           </h2>
           <p className={`text-gray-300 text-[10px] font-light md:text-sm mb-6 opacity-0 transition-opacity duration-1000 ease-in-out
             ${scrollPosition > 200 ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-8'}`}>
-            From increasing conversions to designing modern, high-performance websites, we’re here to change the game.
-          </p>
+From increasing your website traffic to boosting conversions and creating designs that speak, we specialize in solutions that grow your business          </p>
 
           {/* CTA Button */}
           <a

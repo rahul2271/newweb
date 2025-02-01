@@ -27,6 +27,7 @@ export default function RootLayout({ children }) {
       <body className={`${playfairDisplay.variable} antialiased`}>
         {/* Header component */}
         <CursorEffect/>
+        
         <Example />
         {children}
         {/* Footer component */}

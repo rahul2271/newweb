@@ -22,15 +22,15 @@ export default function HeroSection() {
         loop
         muted
         playsInline // Essential for mobile video playback
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        className="blur-[1px] absolute top-0 left-0 w-full h-full object-cover z-0"
       >
-        <source src="/hero1.mp4" type="video/mp4" />
+        <source src="/code.mp4" type="video/mp4" />
         <source src="/hero.webm" type="video/webm" />
         Your browser does not support the video tag.
       </video>
 
       {/* Gradient Overlay */}
-      {/* <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 opacity-90 z-5"></div> */}
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 opacity-90  z-5"></div>
 
       {/* Hero Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">

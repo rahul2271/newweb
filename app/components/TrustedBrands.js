@@ -1,6 +1,8 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css"; // Import Swiper styles
+import "swiper/css/autoplay"; // Import Swiper autoplay styles
+import { Autoplay } from "swiper/modules"; // Import Autoplay module from Swiper
 
 export default function BrandsSection() {
   const brands = [
@@ -27,23 +29,6 @@ export default function BrandsSection() {
           Brands That <span className="italic underline">Trust</span> Us
         </h2>
 
-        {/* Marquee Animation for Scrolling Logos (Desktop) */}
-        <div className="hidden lg:block overflow-hidden relative">
-          <div className="absolute animate-marquee">
-            <div className="flex space-x-10">
-              {brands.map((brand, index) => (
-                <div key={index} className="flex justify-center">
-                  <img
-                    src={brand.logo}
-                    alt={brand.name}
-                    className="w-28 h-28 object-contain transition duration-300 filter brightness-0 invert"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
         {/* Swiper for Mobile (Auto-Scroll) */}
         <div className="lg:hidden">
           <Swiper
@@ -54,6 +39,7 @@ export default function BrandsSection() {
               delay: 2000, // Auto-scroll delay (2 seconds per slide)
               disableOnInteraction: false, // Keep autoplay active even after interaction
             }}
+            modules={[Autoplay]} // Pass the Autoplay module here
             breakpoints={{
               640: {
                 slidesPerView: 4,

@@ -322,3 +322,15 @@ body {
   align-items: center;
   gap: 1rem;
 } */
+/* Hide cursor on smaller screens */
+@media (max-width: 1024px) {
+  .hide-cursor {
+    cursor: none !important;
+  }
+}
+.fixed-badge {
+  position: fixed;
+  bottom: 20px; /* Adjust as needed */
+  right: 20px;  /* Adjust as needed */
+  z-index: 1000; /* Keeps it above other content */
+}

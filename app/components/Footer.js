@@ -59,9 +59,9 @@ export default function Footer() {
             <ul className="space-y-2 text-sm text-gray-300">
               <li>📍 3126, Sector 82, JLPL Industrial Area, Sahibzada Ajit Singh Nagar, Punjab 140306</li>
               <li>📞 +91 70096-46377</li>
-              <li>📧 hello@rctechsolutions.com</li>
+              <li>📧 business@rctechsolutions.com</li>
             </ul>
-            <p className="text-xs mt-3 italic text-purple-200">{greeting} – Powered by Team RC 🚀</p>
+            <p className="text-xs mt-3 italic text-purple-200">{greeting} – Powered by Team RC </p>
           </div>
 
           {/* Quick Links */}

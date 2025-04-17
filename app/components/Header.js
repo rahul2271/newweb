@@ -26,7 +26,7 @@ export default function PremiumHeader() {
   }, [])
 
   return (
-    <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-[#0f0f0f]/90 backdrop-blur-lg shadow-xl' : 'bg-transparent'}`}>
+    <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-gradient-to-br from-black via-gray-900 to-black backdrop-blur-lg shadow-xl' : 'bg-transparent'}`}>
       <nav className="w-full px-4 sm:px-6 lg:px-12 max-w-screen-xl mx-auto flex items-center justify-between py-4">
         <div className="flex items-center space-x-3">
           <Link href="/" className="flex items-center text-white font-extrabold text-2xl tracking-tight">
@@ -66,7 +66,7 @@ export default function PremiumHeader() {
 
       {/* Mobile Menu */}
       <Dialog as="div" className="xl:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-        <Dialog.Panel className="fixed inset-0 z-50 bg-[#0f0f0f] px-6 pt-6 pb-10 overflow-y-auto w-full">
+        <Dialog.Panel className="fixed inset-0 z-50 bg-gradient-to-br from-black via-gray-900 to-black px-6 pt-6 pb-10 overflow-y-auto w-full">
           <div className="flex justify-between items-center">
             <Link href="/" className="flex items-center space-x-2 text-white text-xl font-bold">
               <img src="/RC Logo.png" alt="Logo" className="h-8 w-auto" />

@@ -13,6 +13,11 @@ import {
   FaBullhorn,
 } from "react-icons/fa";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
+
 const services = [
   {
     title: "Web Development",
@@ -70,12 +75,50 @@ const services = [
   },
 ];
 
+const ServiceCard = ({ service, idx, openIndex, toggleIndex }) => (
+  <div
+    onClick={() => toggleIndex(idx)}
+    className="cursor-pointer p-6 rounded-3xl bg-black border border-white/10 shadow-lg hover:shadow-purple-500/30 transition-all duration-300 group"
+  >
+    <div className="flex items-center gap-4">
+      <div className="text-3xl bg-gradient-to-r from-purple-600 to-blue-600 p-4 rounded-full shadow-lg">
+        {service.icon}
+      </div>
+      <h3 className="text-xl font-semibold tracking-wide group-hover:text-purple-400 transition duration-300">
+        {service.title}
+      </h3>
+    </div>
+
+    <div
+      className={`mt-4 transition-all duration-500 ease-in-out overflow-hidden ${
+        openIndex === idx ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+      }`}
+    >
+      <ul className="mt-4 pl-4 space-y-2 text-sm text-gray-300">
+        {service.sub.map((item, i) => (
+          <li key={i} className="flex items-start gap-2">
+            <span className="text-purple-400">•</span> {item}
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-6">
+        <Link href={`/services/${service.slug}`}>
+          <button className="text-sm font-semibold px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 transition-all duration-300 shadow-md">
+            Know More →
+          </button>
+        </Link>
+      </div>
+    </div>
+  </div>
+);
+
 const CapabilitiesAccordion = () => {
   const [openIndex, setOpenIndex] = useState(null);
 
-const toggleIndex = (index) => {
-  setOpenIndex(openIndex === index ? null : index);
-};
+  const toggleIndex = (index) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
   return (
     <section className="bg-gradient-to-br from-black via-gray-900 to-black text-white py-24">
@@ -87,44 +130,37 @@ const toggleIndex = (index) => {
           </span>
         </h2>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Mobile View - Swiper */}
+        <div className="lg:hidden">
+          <Swiper
+            spaceBetween={20}
+            slidesPerView={1.2}
+            // pagination={{ clickable: true }}
+            modules={[Pagination]}
+          >
+            {services.map((service, idx) => (
+              <SwiperSlide key={idx}>
+                <ServiceCard
+                  service={service}
+                  idx={idx}
+                  openIndex={openIndex}
+                  toggleIndex={toggleIndex}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+
+        {/* Desktop View - Grid */}
+        <div className="hidden lg:grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((service, idx) => (
-            <div
+            <ServiceCard
               key={idx}
-              onClick={() => toggleIndex(idx)}
-              className="cursor-pointer p-6 rounded-3xl bg-black border border-white/10 shadow-lg hover:shadow-purple-500/30 transition-all duration-300 group"
-            >
-              <div className="flex items-center gap-4">
-                <div className="text-3xl bg-gradient-to-r from-purple-600 to-blue-600 p-4 rounded-full shadow-lg">
-                  {service.icon}
-                </div>
-                <h3 className="text-xl font-semibold tracking-wide group-hover:text-purple-400 transition duration-300">
-                  {service.title}
-                </h3>
-              </div>
-
-              <div
-                className={`mt-4 transition-all duration-500 ease-in-out overflow-hidden ${
-                  openIndex === idx ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-                }`}
-              >
-                <ul className="mt-4 pl-4 space-y-2 text-sm text-gray-300">
-                  {service.sub.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      <span className="text-purple-400">•</span> {item}
-                    </li>
-                  ))}
-                </ul>
-
-                <div className="mt-6">
-                  <Link href={`/services/${service.slug}`}>
-                    <button className="text-sm font-semibold px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 transition-all duration-300 shadow-md">
-                      Know More →
-                    </button>
-                  </Link>
-                </div>
-              </div>
-            </div>
+              service={service}
+              idx={idx}
+              openIndex={openIndex}
+              toggleIndex={toggleIndex}
+            />
           ))}
         </div>
       </div>

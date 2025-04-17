@@ -19,7 +19,7 @@ export default function ValueProposition() {
   }, []);
 
   return (
-    <section className="py-16 px-8 bg-gradient-to-r from-purple-100 to-white">
+    <section className="py-16 px-8 bg-gradient-to-br from-gray-300 via-white to-gray-300">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-16">
         {/* Left Column (Text) */}
         <div className="space-y-6 animate-on-scroll opacity-0 transform -translate-x-10">

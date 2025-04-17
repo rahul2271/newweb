@@ -7,7 +7,7 @@ import ProblemSolution from './components/ProblemSolution';
 // import ServicesSection from './components/ServicesSection';
 import SuccessStories from "./components/SuccessStories";
 import BoldStats from "./components/BoldStats";
-import PortfolioItems from "./components/PortfolioItems"
+// import PortfolioItems from "./components/PortfolioItems"
 import CTASection from "./components/CTASection";
 import ValueProposition from "./components/ValueProposition";
 // import FAQSection from "./components/FAQSection";
@@ -66,14 +66,14 @@ export default function Home() {
 <BoldStats/>
 
 <SuccessStories/>
-<PortfolioItems/>
+{/* <PortfolioItems/> */}
 <CTASection/>
 
 <FaqSection/>
 {/* <FAQSection/> */}
 <BlogSection/>
 
-<WebinarList/>
+{/* <WebinarList/> */}
 <Chatbot/>
 {/* <ContactSection/> */}
 </>

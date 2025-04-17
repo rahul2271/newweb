@@ -99,13 +99,13 @@ export default function Quiz() {
   };
 
   return (
-    <div className="flex items-center justify-center p-4 md:p-8 max-w-full bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900">
+    <div className="flex items-center justify-center  p-4 md:p-8 max-w-full bg-gradient-to-br from-gray-300 via-white to-gray-300 md:pt-[150px] md:pb-[150px]">
       <div className="flex flex-col lg:flex-row w-full max-w-screen-xl">
         {/* Left Section: Engaging Content */}
         <div className="w-full lg:w-1/2 p-8 text-white flex flex-col justify-center space-y-8">
           <h2 className="text-3xl lg:text-5xl font-extrabold tracking-tight bg-gradient-to-r from-pink-500 to-yellow-500  text-transparent bg-clip-text">Take Your Business to <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">New Heights</span> </h2>
-          <p className="text-lg lg:text-xl">We specialize in delivering premium solutions tailored to help your business grow, succeed, and stand out in the digital world. Answer a few questions, and we’ll suggest the best solutions for your unique needs.</p>
-          <ul className="list-disc space-y-4 text-base lg:text-lg">
+          <p className="text-lg lg:text-xl text-gray-900">We specialize in delivering premium solutions tailored to help your business grow, succeed, and stand out in the digital world. Answer a few questions, and we’ll suggest the best solutions for your unique needs.</p>
+          <ul className="list-disc space-y-4 text-gray-900 lg:text-lg">
             <li>Custom Web Development</li>
             <li>Branding & Logo Design</li>
             <li>Social Media Strategy</li>
@@ -121,7 +121,7 @@ export default function Quiz() {
         </div>
 
         {/* Right Section: Form */}
-        <div className="w-full lg:w-1/2 p-8 bg-white rounded-3xl shadow-xl">
+        <div className="w-full lg:w-1/2 p-8 bg-white rounded-3xl shadow-2xl">
           {step === "form" && (
             <form onSubmit={handleSubmitForm} className="space-y-8">
               <h2 className="text-3xl lg:text-4xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-yellow-500">Tell Us About Your Business</h2>

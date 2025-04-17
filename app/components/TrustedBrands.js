@@ -11,19 +11,19 @@ export default function BrandsSection() {
     { name: "Chargebee", logo: "/chargebee.png" },
     { name: "Razorpay", logo: "/razorpay.png" },
     { name: "Cleartax", logo: "/cleartax.png" },
-    { name: "Locus", logo: "/locus.png" },
-    { name: "minimalist", logo: "/redtape.png" },
-    { name: "yuktiherbs", logo: "/yukti herbs.png" },
-    { name: "unacademy", logo: "/un.png" },
-    { name: "Dr. Andriana Setnik", logo: "/geek.png" },
     { name: "Store My Goods", logo: "/bedeol.png" },
-    { name: "SWCC", logo: "/swcc.png" },
-    { name: "Woodland", logo: "/woodland.webp" },
-    { name: "Almas Drinking Water", logo: "/almas.png" },
+
+    { name: "Minimalist", logo: "/redtape.png" },
+    { name: "Yukti Herbs", logo: "/yukti herbs.png" },
+    { name: "Unacademy", logo: "/un.png" },
+    { name: "Dr. Andriana Setnik", logo: "/geek.png" },
+    // { name: "SWCC", logo: "/swcc.png" },
+    // { name: "Woodland", logo: "/woodland.webp" },
+    // { name: "Almas Drinking Water", logo: "/almas.png" },
   ];
 
   return (
-    <section className="bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 py-16">
+    <section className="bg-gradient-to-br from-gray-300 via-white to-gray-300 py-16">
       <div className="container mx-auto text-center">
         <h2 className="mb-[50px] text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 text-6xl font-extrabold">
           Brands That <span className="italic underline">Trust</span> Us
@@ -76,7 +76,7 @@ export default function BrandsSection() {
               <img
                 src={brand.logo}
                 alt={brand.name}
-                className="w-[150px] h-[150px] object-contain transition duration-300 filter brightness-0 invert"
+                className="w-[150px] h-[150px] object-contain transition duration-300 filter brightness-100 "
               />
             </div>
           ))}

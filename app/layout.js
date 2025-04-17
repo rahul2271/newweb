@@ -4,7 +4,7 @@ import "./globals.css";
 import Example from "./components/Header";
 import Footer from "./components/Footer";
 import Head from "next/head";
-import CursorEffect from "./components/CursorEffect";
+// import CursorEffect from "./components/CursorEffect";
 
 const playfairDisplay = Playfair_Display({
   variable: "--font-playfair-display",
@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
       </Head>
       <body className={`${playfairDisplay.variable} antialiased`}>
         {/* Header component */}
-        <CursorEffect/>
+        {/* <CursorEffect/> */}
         
         <Example />
         {children}

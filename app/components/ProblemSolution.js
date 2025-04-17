@@ -18,31 +18,34 @@ export default function ProblemSolution() {
 
   return (
         // <section className="relative w-full py-20 bg-[#0d0f11] text-white">bg-gradient-to-r from-purple-100 to-white
-        <section className="relative w-full py-20 bg-gradient-to-r from-purple-100 to-white text-white">
+        <section className="relative w-full py-20 bg-gradient-to-br from-black via-gray-900 to-black text-gray-100">
 
     <div className="flex flex-col md:flex-row items-center justify-center max-w-screen-xl mx-auto px-4 gap-x-12">
         {/* Left Side: Problem */}
         <div className="w-full md:w-1/2 text-center md:text-left mb-12 md:mb-0">
 
-          <h2 className={` text-transparent md:pb-[20px] bg-clip-text bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 text-3xl md:text-5xl tracking-tight leading-tight font-extrabold leading-tight mb-6 text-gray-900 opacity-0 transition-all duration-1000 ease-in-out
-            ${scrollPosition > 100 ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-8'}`}>
-            Is Your Digital Strategy Costing You Growth?
-          </h2>
+        <h2
+  className={`text-transparent md:pb-[20px] bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 text-3xl md:text-5xl tracking-tight leading-tight font-extrabold mb-6 text-gray-900 opacity-0 transition-all duration-1000 ease-in-out
+    ${scrollPosition > 100 ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-8'}`}
+>
+  Is Your Digital Strategy Costing You Growth?
+</h2>
+
           <div className="flex justify-center md:justify-start space-x-8">
             <div className={`text-gray-900 font-light opacity-0 transition-opacity duration-1000 ease-in-out
               ${scrollPosition > 200 ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-8'} flex flex-col items-center`}>
-              <img src="/icons/low-sale.png" alt="Low Conversions" className="h-[70px] w-[70px]   mb-4 transition-transform duration-1000 ease-in-out" />
-              <p className='text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 font-light text-md '>Low Conversions</p>
+              <img src="/icons/low-sale.png" alt="Low Conversions" className="h-[70px] w-[70px] bg-white rounded-full p-1   mb-4 transition-transform duration-1000 ease-in-out" />
+              <p className='text-transparent bg-clip-text bg-gradient-to-r from-gray-400 via-gray-100 to-gray-400 font-bold text-md '>Low Conversions</p>
             </div>
             <div className={`text-gray-900 font-light opacity-0 transition-opacity duration-1000 ease-in-out
               ${scrollPosition > 300 ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-8'} flex flex-col items-center`}>
-              <img src="/icons/low-trafficc.png" alt="Poor Traffic" className="h-[70px] w-[70px] mb-4  transition-transform duration-1000 ease-in-out" />
-              <p className='text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 font-light text-md '>Poor Traffic</p>
+              <img src="/icons/low-trafficc.png" alt="Poor Traffic" className="h-[70px] w-[70px] mb-4 bg-white rounded-full p-1  transition-transform duration-1000 ease-in-out" />
+              <p className='text-transparent bg-clip-text bg-gradient-to-r from-gray-400 via-gray-100 to-gray-400 font-bold text-md '>Poor Traffic</p>
             </div>
             <div className={`text-gray-900 font-light opacity-0 transition-opacity duration-1000 ease-in-out
               ${scrollPosition > 400 ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-8'} flex flex-col items-center`}>
-              <img src="/icons/reject_5421402.png" alt="Outdated Design" className="h-[70px] w-[70px]  mb-4 transition-transform duration-1000 ease-in-out" />
-              <p className='text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 font-light text-md '>Outdated Design</p>
+              <img src="/icons/reject_5421402.png" alt="Outdated Design" className="h-[70px] w-[70px] bg-white rounded-full p-1  mb-4 transition-transform duration-1000 ease-in-out" />
+              <p className='text-transparent bg-clip-text bg-gradient-to-r from-gray-400 via-gray-100 to-gray-400 font-bold text-md '>Outdated Design</p>
             </div>
           </div>
         </div>
@@ -55,7 +58,7 @@ export default function ProblemSolution() {
           </h2>
           <p className={`text-gray-300 text-[10px] font-light md:text-sm mb-6 opacity-0 transition-opacity duration-1000 ease-in-out
             ${scrollPosition > 200 ? 'opacity-100 transform translate-x-0' : 'opacity-0 translate-x-8'}`}>
-From increasing your website traffic to boosting conversions and creating designs that speak, we specialize in solutions that grow your business          </p>
+          From increasing your website traffic to boosting conversions and creating designs that speak, we specialize in solutions that grow your business.          </p>
 
           {/* CTA Button */}
           <a

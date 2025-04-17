@@ -26,12 +26,12 @@ export default function PremiumHeader() {
   }, [])
 
   return (
-    <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${scrolled ? 'bg-gradient-to-br from-black via-gray-900 to-black backdrop-blur-lg shadow-xl' : 'bg-transparent'}`}>
+    <header className={`fixed w-full top-0 z-50 md:bg-black`}>
       <nav className="w-full px-4 sm:px-6 lg:px-12 max-w-screen-xl mx-auto flex items-center justify-between py-4">
         <div className="flex items-center space-x-3">
           <Link href="/" className="flex items-center text-white font-extrabold text-2xl tracking-tight">
             <img src="/RC Logo.png" alt="Logo" className="h-10 w-auto" />
-            
+            <span className="ml-2 hidden sm:inline">RC Tech</span>
           </Link>
         </div>
 
@@ -40,7 +40,7 @@ export default function PremiumHeader() {
             <Link
               key={item.name}
               href={item.href}
-              className="relative group text-white text-base font-medium transition-all"
+              className="relative group text-white text-base font-medium"
             >
               <span>{item.name}</span>
               <span className="absolute left-0 -bottom-1 w-0 h-0.5 bg-gradient-to-r from-[#953ee2] to-purple-500 transition-all group-hover:w-full"></span>
@@ -66,11 +66,11 @@ export default function PremiumHeader() {
 
       {/* Mobile Menu */}
       <Dialog as="div" className="xl:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-        <Dialog.Panel className="fixed inset-0 z-50 bg-gradient-to-br from-black via-gray-900 to-black px-6 pt-6 pb-10 overflow-y-auto w-full">
+        <Dialog.Panel className="fixed inset-0 z-50 bg-[#0f0f0f] px-6 pt-6 pb-10 overflow-y-auto w-full">
           <div className="flex justify-between items-center">
             <Link href="/" className="flex items-center space-x-2 text-white text-xl font-bold">
               <img src="/RC Logo.png" alt="Logo" className="h-8 w-auto" />
-              
+              <span>RC Tech</span>
             </Link>
             <button onClick={() => setMobileMenuOpen(false)} className="text-white">
               <XMarkIcon className="h-6 w-6" />

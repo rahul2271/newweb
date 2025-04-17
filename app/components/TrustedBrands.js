@@ -25,7 +25,7 @@ export default function BrandsSection() {
   return (
     <section className="bg-gradient-to-br from-gray-300 via-white to-gray-300 py-16">
       <div className="container mx-auto text-center">
-        <h2 className="mb-[50px] text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 text-3xl md:text-6xl font-extrabold">
+        <h2 className="mb-[50px] text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 text-4xl md:text-6xl font-extrabold">
           Brands That <span className="italic underline">Trust</span> Us
         </h2>
 
@@ -61,7 +61,7 @@ export default function BrandsSection() {
                   <img
                     src={brand.logo}
                     alt={brand.name}
-                    className="w-28 h-28 object-contain filter brightness-100 transition duration-300"
+                    className="w-20 h-20 object-contain filter brightness-100 transition duration-300"
                   />
                 </div>
               </SwiperSlide>

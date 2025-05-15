@@ -28,7 +28,7 @@ const services = [
   {
     title: "AI-Powered Solutions",
     icon: <FaRobot />,
-    slug: "ai-powered-solutions",
+    slug: "ai-powered",
     sub: ["Chatbots", "AI Automation", "Recommendation Engines"],
   },
   {
@@ -40,7 +40,7 @@ const services = [
   {
     title: "SEO Domination",
     icon: <FaSearch />,
-    slug: "seo-domination",
+    slug: "seo",
     sub: ["On-Page", "Technical SEO", "Link Building"],
   },
   {
@@ -52,7 +52,7 @@ const services = [
   {
     title: "DevOps & Cloud",
     icon: <FaServer />,
-    slug: "devops-cloud",
+    slug: "devops-and-cloud",
     sub: ["CI/CD", "Cloud Setup", "Monitoring & Logs"],
   },
   {
@@ -103,8 +103,8 @@ const ServiceCard = ({ service, idx, openIndex, toggleIndex }) => (
       </ul>
 
       <div className="mt-6">
-        <Link href={`/services/${service.slug}`}>
-          <button className="text-sm font-semibold px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 transition-all duration-300 shadow-md">
+        <Link target="_blank" href={`/services/${service.slug}`}>
+          <button  className="text-sm font-semibold px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 transition-all duration-300 shadow-md">
             Know More →
           </button>
         </Link>

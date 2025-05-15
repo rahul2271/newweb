@@ -1,41 +1,36 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { FaCode, FaPalette, FaDatabase, FaShoppingCart, FaTools, FaLaptopCode, FaCogs, FaTabletAlt, FaLayerGroup, FaFacebookF, FaStar, FaArrowRight } from 'react-icons/fa';
-import { useRef, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react'; // Import Swiper and SwiperSlide
-import 'swiper/css'; // Import Swiper styles
+import {
+  FaShopify,
+  FaWordpress,
+  FaMobileAlt,
+  FaLock,
+  FaBolt,
+  FaChartLine,
+  FaArrowRight,
+} from 'react-icons/fa';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
-// Custom hook for mobile detection
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
-
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); // Mobile width check
-    };
-
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener('resize', handleResize);
-    handleResize(); // Initial check
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
-
   return isMobile;
 }
 
-const services = [
-  { title: 'Web Application Development', icon: FaLaptopCode, color: 'from-sky-400 to-blue-500' },
-  { title: 'Website Design & Development', icon: FaPalette, color: 'from-green-400 to-teal-500' },
-  { title: 'Web Portal Development', icon: FaLayerGroup, color: 'from-orange-400 to-yellow-500' },
-  { title: 'Progressive Web App Development', icon: FaTabletAlt, color: 'from-yellow-400 to-amber-500' },
-  { title: 'Front-end Design & Development', icon: FaCode, color: 'from-purple-500 to-indigo-500' },
-  { title: 'Back-end Web Development', icon: FaDatabase, color: 'from-blue-500 to-indigo-600' },
-  { title: 'E-commerce Development', icon: FaShoppingCart, color: 'from-teal-400 to-green-400' },
-  { title: 'Custom CMS Development', icon: FaCogs, color: 'from-pink-400 to-red-500' },
-  { title: 'Web Support & Maintenance', icon: FaTools, color: 'from-indigo-400 to-purple-500' },
+const ecommerceFeatures = [
+  { title: 'Shopify & WooCommerce', icon: FaShopify, color: 'from-green-400 to-green-600' },
+  { title: 'Custom Storefronts', icon: FaWordpress, color: 'from-blue-500 to-blue-700' },
+  { title: 'Mobile-first Stores', icon: FaMobileAlt, color: 'from-pink-500 to-purple-600' },
+  { title: 'Secure Payments', icon: FaLock, color: 'from-indigo-500 to-purple-500' },
+  { title: 'Blazing Speed & UX', icon: FaBolt, color: 'from-yellow-400 to-orange-500' },
+  { title: 'Conversion Optimization', icon: FaChartLine, color: 'from-rose-400 to-red-500' },
 ];
 
 function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
@@ -45,10 +40,7 @@ function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
   const handleMouseMove = (e) => {
     const rect = cardRef.current?.getBoundingClientRect();
     if (rect) {
-      setPosition({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      });
+      setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
     }
   };
 
@@ -64,16 +56,8 @@ function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
     >
       <motion.div
         className={`absolute left-0 top-0 w-2 h-2 bg-gradient-to-r ${color} rounded-full`}
-        animate={{
-          x: position.x,
-          y: position.y,
-        }}
-        transition={{
-          type: 'spring',
-          damping: 40,
-          stiffness: 300,
-          mass: 0.5,
-        }}
+        animate={{ x: position.x, y: position.y }}
+        transition={{ type: 'spring', damping: 40, stiffness: 300, mass: 0.5 }}
         style={{ zIndex: 10 }}
       />
       <div className={`absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r ${color} scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500`} />
@@ -89,13 +73,14 @@ function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
   );
 }
 
-export default function WebDevelopmentPage() {
-  const isMobile = useIsMobile(); // Use the mobile detection hook
+export default function EcommercePage() {
+  const isMobile = useIsMobile();
 
   return (
     <>
+      {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 text-white px-6 md:px-16 py-20 overflow-hidden md:pt-[180px]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 via-[#0c0e10] to-gray-900 z-0"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 via-[#0c0e10] to-gray-900 z-0" />
         <div className="absolute inset-0 z-0 opacity-20 bg-[url('/grid-lines.svg')] bg-cover bg-center" />
 
         <div className="relative z-10 max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
@@ -106,27 +91,18 @@ export default function WebDevelopmentPage() {
             className="text-center lg:text-left w-full lg:w-2/3"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-[#2d3473] rounded-full text-sm bg-[#151b55] text-white/80">
-              Top-rated development company with <span className="text-blue-400 font-semibold">300+ reviews</span>
-              <span className="flex items-center gap-1 px-2 border-l border-[#2d3473] ml-2">
-                <FaFacebookF className="text-blue-500" />
-                <span className="text-white font-bold">4.8</span>
-                <span className="flex text-orange-400 text-xs">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </span>
-                <span className="text-white ml-1">50 reviews</span>
-              </span>
+              Sell Online at Scale
+              <span className="text-green-400 font-semibold ml-2">With Conversion-Focused Stores</span>
             </div>
 
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
-              Custom Web Development Solutions<br />That Drive&nbsp;
-              <span className="bg-gradient-to-r from-[#3f83f8] to-[#a855f7] bg-clip-text text-transparent">Results</span>
+              <span className="bg-gradient-to-r from-[#38bdf8] to-[#8b5cf6] bg-clip-text text-transparent">
+                E-Commerce Solutions
+              </span>{' '}
+              That Convert Visitors into Buyers
             </h1>
             <p className="text-white/80 text-lg max-w-2xl">
-              Partner with us to build high-performing websites and web applications that achieve your business goals.
+              We build blazing-fast online stores with modern design, powerful features, and integrated marketing tools.
             </p>
           </motion.div>
 
@@ -137,17 +113,17 @@ export default function WebDevelopmentPage() {
             className="bg-[#151b55] border border-[#2d3473] px-8 py-10 rounded-xl text-left w-full max-w-md shadow-2xl"
           >
             <h3 className="text-xl font-semibold text-white leading-snug mb-6">
-              Get <span className="underline decoration-orange-400">Project-based</span><br />
-              solutions or hire<br />
-              <span className="underline decoration-lime-300">dedicated teams</span>
+              Have products to sell?<br />
+              Let’s create a store that performs.
             </h3>
-            <button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg">
-              Discuss Your Requirements → 
+            <button className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg">
+              Book Free Store Strategy Call →
             </button>
           </motion.div>
         </div>
       </section>
 
+      {/* Services Section */}
       <section className="bg-[#f9f9f9] py-20 px-6 md:px-12">
         <div className="max-w-6xl mx-auto text-center">
           <motion.h2
@@ -156,32 +132,30 @@ export default function WebDevelopmentPage() {
             transition={{ duration: 0.6 }}
             className="text-3xl md:text-4xl font-extrabold leading-tight mb-12"
           >
-            Our Services
+            Everything You Need to Sell Online
           </motion.h2>
 
           {isMobile ? (
-            // Render Swiper for mobile devices
             <Swiper spaceBetween={20} slidesPerView={1.2} loop>
-              {services.map((service, index) => (
+              {ecommerceFeatures.map((feature, index) => (
                 <SwiperSlide key={index}>
                   <ServiceCard
-                    icon={service.icon}
-                    title={service.title}
-                    color={service.color}
+                    icon={feature.icon}
+                    title={feature.title}
+                    color={feature.color}
                     delay={0.2 + index * 0.1}
                   />
                 </SwiperSlide>
               ))}
             </Swiper>
           ) : (
-            // Render the grid for non-mobile devices
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services.map((service, index) => (
+              {ecommerceFeatures.map((feature, index) => (
                 <ServiceCard
                   key={index}
-                  icon={service.icon}
-                  title={service.title}
-                  color={service.color}
+                  icon={feature.icon}
+                  title={feature.title}
+                  color={feature.color}
                   delay={0.4 + index * 0.1}
                 />
               ))}

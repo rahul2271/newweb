@@ -1,10 +1,22 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaCode, FaPalette, FaDatabase, FaShoppingCart, FaTools, FaLaptopCode, FaCogs, FaTabletAlt, FaLayerGroup, FaFacebookF, FaStar, FaArrowRight } from 'react-icons/fa';
-import { useRef, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react'; // Import Swiper and SwiperSlide
-import 'swiper/css'; // Import Swiper styles
+import {
+  FaCode,
+  FaPalette,
+  FaDatabase,
+  FaShoppingCart,
+  FaTools,
+  FaLaptopCode,
+  FaCogs,
+  FaTabletAlt,
+  FaLayerGroup,
+  FaFacebookF,
+  FaStar,
+  FaArrowRight,
+} from 'react-icons/fa';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
 // Custom hook for mobile detection
 function useIsMobile() {
@@ -12,7 +24,7 @@ function useIsMobile() {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); // Mobile width check
+      setIsMobile(window.innerWidth <= 768);
     };
 
     window.addEventListener('resize', handleResize);
@@ -26,16 +38,17 @@ function useIsMobile() {
   return isMobile;
 }
 
+// Updated services list for AI-Powered Solutions
 const services = [
-  { title: 'Web Application Development', icon: FaLaptopCode, color: 'from-sky-400 to-blue-500' },
-  { title: 'Website Design & Development', icon: FaPalette, color: 'from-green-400 to-teal-500' },
-  { title: 'Web Portal Development', icon: FaLayerGroup, color: 'from-orange-400 to-yellow-500' },
-  { title: 'Progressive Web App Development', icon: FaTabletAlt, color: 'from-yellow-400 to-amber-500' },
-  { title: 'Front-end Design & Development', icon: FaCode, color: 'from-purple-500 to-indigo-500' },
-  { title: 'Back-end Web Development', icon: FaDatabase, color: 'from-blue-500 to-indigo-600' },
-  { title: 'E-commerce Development', icon: FaShoppingCart, color: 'from-teal-400 to-green-400' },
-  { title: 'Custom CMS Development', icon: FaCogs, color: 'from-pink-400 to-red-500' },
-  { title: 'Web Support & Maintenance', icon: FaTools, color: 'from-indigo-400 to-purple-500' },
+  { title: 'AI Chatbot Development', icon: FaLaptopCode, color: 'from-purple-500 to-indigo-500' },
+  { title: 'Custom AI Solutions', icon: FaCogs, color: 'from-blue-500 to-teal-500' },
+  { title: 'Natural Language Processing (NLP)', icon: FaPalette, color: 'from-green-400 to-lime-500' },
+  { title: 'Computer Vision Applications', icon: FaTabletAlt, color: 'from-pink-500 to-red-500' },
+  { title: 'Predictive Analytics', icon: FaDatabase, color: 'from-orange-400 to-yellow-500' },
+  { title: 'AI Integration for Web & Mobile', icon: FaCode, color: 'from-sky-500 to-blue-600' },
+  { title: 'Machine Learning Models', icon: FaLayerGroup, color: 'from-amber-500 to-yellow-400' },
+  { title: 'Voice Recognition Systems', icon: FaTools, color: 'from-indigo-400 to-violet-500' },
+  { title: 'AI-Based Recommendation Engines', icon: FaShoppingCart, color: 'from-teal-400 to-cyan-500' },
 ];
 
 function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
@@ -89,8 +102,8 @@ function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
   );
 }
 
-export default function WebDevelopmentPage() {
-  const isMobile = useIsMobile(); // Use the mobile detection hook
+export default function AIPoweredSolutionsPage() {
+  const isMobile = useIsMobile();
 
   return (
     <>
@@ -106,7 +119,7 @@ export default function WebDevelopmentPage() {
             className="text-center lg:text-left w-full lg:w-2/3"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-[#2d3473] rounded-full text-sm bg-[#151b55] text-white/80">
-              Top-rated development company with <span className="text-blue-400 font-semibold">300+ reviews</span>
+              Top-rated AI solutions provider with <span className="text-blue-400 font-semibold">300+ reviews</span>
               <span className="flex items-center gap-1 px-2 border-l border-[#2d3473] ml-2">
                 <FaFacebookF className="text-blue-500" />
                 <span className="text-white font-bold">4.8</span>
@@ -122,11 +135,11 @@ export default function WebDevelopmentPage() {
             </div>
 
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
-              Custom Web Development Solutions<br />That Drive&nbsp;
-              <span className="bg-gradient-to-r from-[#3f83f8] to-[#a855f7] bg-clip-text text-transparent">Results</span>
+              AI-Powered Solutions<br />That Drive&nbsp;
+              <span className="bg-gradient-to-r from-[#3f83f8] to-[#a855f7] bg-clip-text text-transparent">Innovation</span>
             </h1>
             <p className="text-white/80 text-lg max-w-2xl">
-              Partner with us to build high-performing websites and web applications that achieve your business goals.
+              Empower your business with cutting-edge AI tools built to scale, adapt, and transform your operations.
             </p>
           </motion.div>
 
@@ -139,10 +152,10 @@ export default function WebDevelopmentPage() {
             <h3 className="text-xl font-semibold text-white leading-snug mb-6">
               Get <span className="underline decoration-orange-400">Project-based</span><br />
               solutions or hire<br />
-              <span className="underline decoration-lime-300">dedicated teams</span>
+              <span className="underline decoration-lime-300">dedicated AI teams</span>
             </h3>
             <button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg">
-              Discuss Your Requirements → 
+              Discuss Your Requirements →
             </button>
           </motion.div>
         </div>
@@ -156,11 +169,10 @@ export default function WebDevelopmentPage() {
             transition={{ duration: 0.6 }}
             className="text-3xl md:text-4xl font-extrabold leading-tight mb-12"
           >
-            Our Services
+            AI-Powered Services
           </motion.h2>
 
           {isMobile ? (
-            // Render Swiper for mobile devices
             <Swiper spaceBetween={20} slidesPerView={1.2} loop>
               {services.map((service, index) => (
                 <SwiperSlide key={index}>
@@ -174,7 +186,6 @@ export default function WebDevelopmentPage() {
               ))}
             </Swiper>
           ) : (
-            // Render the grid for non-mobile devices
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {services.map((service, index) => (
                 <ServiceCard

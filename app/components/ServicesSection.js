@@ -57,12 +57,12 @@ export default function ServicesSection() {
           {/* Slick Carousel */}
           <Slider {...settings}>
             {[ // Service Cards
-              { icon: 'web.png', title: 'Web Development', description: 'We create user-centric designs that convert.' },
-              { icon: 'digital-marketing.png', title: 'Digital Marketing', description: 'Grow your business with data-driven strategies.' },
-              { icon: 'graphics-design.png', title: 'Graphics Designing', description: 'Creative visuals that speak volumes.' },
-              { icon: 'seo.png', title: 'SEO', description: 'Be seen. Be heard. Dominate search results.' },
-              { icon: 'smm.png', title: 'Social Media Marketing', description: 'Engage your audience like never before.' },
-              { icon: 'video-editing.png', title: 'Video Editing', description: 'We make content that resonates and gets shared.' },
+              { icon: 'web.png', title: 'Web Development', description: 'We create user-centric designs that convert.', link: '/services/web-development'},
+              { icon: 'digital-marketing.png', title: 'Digital Marketing', description: 'Grow your business with data-driven strategies.',link: '/services/web-development' },
+              { icon: 'graphics-design.png', title: 'Graphics Designing', description: 'Creative visuals that speak volumes.', link: '/services/web-development' },
+              { icon: 'seo.png', title: 'SEO', description: 'Be seen. Be heard. Dominate search results.', link: '/services/web-development' },
+              { icon: 'smm.png', title: 'Social Media Marketing', description: 'Engage your audience like never before.', link: '/services/web-development' },
+              { icon: 'video-editing.png', title: 'Video Editing', description: 'We make content that resonates and gets shared.', link: '/services/web-development' },
             ].map((service, index) => (
               <div
                 key={index}
@@ -89,7 +89,7 @@ export default function ServicesSection() {
           {/* CTA Button */}
           <div className="text-center mt-12">
             <Link
-              href="#portfolio"
+              href={service.link}
               className="bg-gradient-to-br from-black to-[#953ee2] inline-block bg-primary text-white px-8 py-3 rounded-full text-lg transition-all duration-300 transform hover:scale-110 hover:shadow-2xl"
             >
               See Our Results
@@ -108,12 +108,12 @@ export default function ServicesSection() {
           {/* Services Wrapper */}
           <div className="flex sm:flex-wrap sm:overflow-x-auto sm:gap-8 py-4 md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 scroll-smooth">
             {[ // Service Cards
-              { icon: 'web.png', title: 'Web Development', description: 'We create user-centric designs that convert.' },
-              { icon: 'digital-marketing.png', title: 'Digital Marketing', description: 'Grow your business with data-driven strategies.' },
-              { icon: 'graphics-design.png', title: 'Graphics Designing', description: 'Creative visuals that speak volumes.' },
-              { icon: 'seo.png', title: 'SEO', description: 'Be seen. Be heard. Dominate search results.' },
-              { icon: 'smm.png', title: 'Social Media Marketing', description: 'Engage your audience like never before.' },
-              { icon: 'video-editing.png', title: 'Video Editing', description: 'We make content that resonates and gets shared.' },
+              { icon: 'web.png', title: 'Web Development', description: 'We create user-centric designs that convert.', link: '/services/web-development' },
+              { icon: 'digital-marketing.png', title: 'Digital Marketing', description: 'Grow your business with data-driven strategies.', link: '/services/web-development' },
+              { icon: 'graphics-design.png', title: 'Graphics Designing', description: 'Creative visuals that speak volumes.', link: '/services/web-development' },
+              { icon: 'seo.png', title: 'SEO', description: 'Be seen. Be heard. Dominate search results.', link: '/services/web-development' },
+              { icon: 'smm.png', title: 'Social Media Marketing', description: 'Engage your audience like never before.', link: '/services/web-development' },
+              { icon: 'video-editing.png', title: 'Video Editing', description: 'We make content that resonates and gets shared.', link: '/services/web-development' },
             ].map((service, index) => (
               <div
                 key={index}
@@ -140,7 +140,7 @@ export default function ServicesSection() {
           {/* CTA Button */}
           <div className="text-center mt-12">
             <Link
-              href="#portfolio"
+               href={service.link}
               className="bg-gradient-to-r from-purple-600 to-blue-600 inline-block bg-primary text-white px-8 py-3 rounded-full text-lg transition-all duration-300 transform hover:scale-110 hover:shadow-2xl"
             >
               See Our Results

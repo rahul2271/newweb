@@ -38,7 +38,7 @@
     "selenium-webdriver": "^4.31.0",
     "slick-carousel": "^1.8.1",
     "socket.io-client": "^4.8.1",
-    "swiper": "^11.2.2"
+    "swiper": "^11.2.6"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

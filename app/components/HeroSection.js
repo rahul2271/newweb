@@ -1,57 +1,60 @@
-'use client'
-import { useState, useEffect } from 'react';
+import { CloudArrowUpIcon, LockClosedIcon, ServerIcon } from '@heroicons/react/20/solid'
 
-export default function HeroSection() {
-  const [isHovered, setIsHovered] = useState(false);
+const features = [
+  {
+    name: 'Push to deploy.',
+    description:
+      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.',
+    icon: CloudArrowUpIcon,
+  },
+  {
+    name: 'SSL certificates.',
+    description: 'Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.',
+    icon: LockClosedIcon,
+  },
+  {
+    name: 'Database backups.',
+    description: 'Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.',
+    icon: ServerIcon,
+  },
+]
 
-  useEffect(() => {
-    const handleScroll = () => {
-      // Optional: handle sticky CTA visibility during scroll if necessary
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
+export default function Example() {
   return (
-    <section className="relative w-full h-screen bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden">
-      {/* Full-Screen Background Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline // Essential for mobile video playback
-        className="blur-[1px] absolute top-0 left-0 w-full h-full object-cover z-0"
-      >
-        <source src="/code.mp4" type="video/mp4" />
-        <source src="/hero.webm" type="video/webm" />
-        Your browser does not support the video tag.
-      </video>
-
-      {/* Gradient Overlay */}
-      <div className="absolute top-0 left-0 w-full h-full bg-black opacity-90  z-5"></div>
-
-      {/* Hero Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
-        {/* Headline */}
-        <h1 className="text-5xl md:text-6xl font-bold uppercase leading-tight mb-4">
-          Turning ideas into Digital reality.
-        </h1>
-
-        {/* Subtext */}
-        <p className="text-xl md:text-2xl font-light mb-8">
-        Your business isn’t average. Neither are we. Let’s build something extraordinary together.        </p>
-
-        {/* CTA Button */}
-        <button
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          className={`bg-gradient-to-r from-purple-600 to-blue-600 hover:scale-105 hover:rotate-2 text-white px-8 py-3 rounded-full text-lg transition-all duration-300 transform ${isHovered ? 'scale-105' : ''}`}
-        >
-          {isHovered ? "Let's Build" : "Start Your Journey"}
-        </button>
+    <div className="overflow-hidden bg-white py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+          <div className="lg:pt-4 lg:pr-8">
+            <div className="lg:max-w-lg">
+              <h2 className="text-base/7 font-semibold text-indigo-600">AI Powered Solutions</h2>
+              <p className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-5xl">
+                RC Tech Solutions
+              </p>
+              <p className="mt-6 text-lg/8 text-gray-600">
+                Turing ideas into Digital Reality
+              </p>
+              <dl className="mt-10 max-w-xl space-y-8 text-base/7 text-gray-600 lg:max-w-none">
+                {features.map((feature) => (
+                  <div key={feature.name} className="relative pl-9">
+                    <dt className="inline font-semibold text-gray-900">
+                      <feature.icon aria-hidden="true" className="absolute top-1 left-1 size-5 text-indigo-600" />
+                      {feature.name}
+                    </dt>{' '}
+                    <dd className="inline">{feature.description}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+          <img
+            alt="Product screenshot"
+            src="unn.png"
+            width={2832}
+            height={1842}
+            className="w-[48rem] max-w-max mt-[-100px]  sm:w-[57rem] md:-ml-4 lg:-ml-0"
+          />
+        </div>
       </div>
-    </section>
-  );
+    </div>
+  )
 }

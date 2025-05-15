@@ -1,44 +1,40 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { FaCode, FaPalette, FaDatabase, FaShoppingCart, FaTools, FaLaptopCode, FaCogs, FaTabletAlt, FaLayerGroup, FaFacebookF, FaStar, FaArrowRight } from 'react-icons/fa';
-import { useRef, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react'; // Import Swiper and SwiperSlide
-import 'swiper/css'; // Import Swiper styles
+import {
+  FaAws,
+  FaCloud,
+  FaLock,
+  FaServer,
+  FaRocket,
+  FaArrowRight,
+} from 'react-icons/fa';
+import { SiKubernetes } from 'react-icons/si';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
 
-// Custom hook for mobile detection
+// Hook to detect mobile screens
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
-
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); // Mobile width check
-    };
-
-    window.addEventListener('resize', handleResize);
-    handleResize(); // Initial check
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
+    const onResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', onResize);
+    onResize();
+    return () => window.removeEventListener('resize', onResize);
   }, []);
-
   return isMobile;
 }
 
-const services = [
-  { title: 'Web Application Development', icon: FaLaptopCode, color: 'from-sky-400 to-blue-500' },
-  { title: 'Website Design & Development', icon: FaPalette, color: 'from-green-400 to-teal-500' },
-  { title: 'Web Portal Development', icon: FaLayerGroup, color: 'from-orange-400 to-yellow-500' },
-  { title: 'Progressive Web App Development', icon: FaTabletAlt, color: 'from-yellow-400 to-amber-500' },
-  { title: 'Front-end Design & Development', icon: FaCode, color: 'from-purple-500 to-indigo-500' },
-  { title: 'Back-end Web Development', icon: FaDatabase, color: 'from-blue-500 to-indigo-600' },
-  { title: 'E-commerce Development', icon: FaShoppingCart, color: 'from-teal-400 to-green-400' },
-  { title: 'Custom CMS Development', icon: FaCogs, color: 'from-pink-400 to-red-500' },
-  { title: 'Web Support & Maintenance', icon: FaTools, color: 'from-indigo-400 to-purple-500' },
+const cloudFeatures = [
+  { title: 'AWS & Azure Cloud', icon: FaAws, color: 'from-orange-400 to-yellow-500' },
+  { title: 'Cloud Storage & Backup', icon: FaCloud, color: 'from-blue-400 to-cyan-600' },
+  { title: 'Kubernetes Orchestration', icon: SiKubernetes, color: 'from-indigo-500 to-purple-600' },
+  { title: 'Cloud Security', icon: FaLock, color: 'from-green-400 to-teal-500' },
+  { title: 'Scalable Infrastructure', icon: FaServer, color: 'from-gray-500 to-gray-700' },
+  { title: 'Cloud Performance Optimization', icon: FaRocket, color: 'from-pink-500 to-red-600' },
 ];
 
-function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
+function FeatureCard({ icon: Icon, title, color, delay = 0 }) {
   const cardRef = useRef(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -60,7 +56,7 @@ function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
       viewport={{ once: true }}
-      className="relative group p-6 border border-transparent bg-white rounded-xl shadow-md hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 ease-in-out overflow-hidden"
+      className="relative group p-6 border border-transparent bg-white rounded-xl shadow-md hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 ease-in-out overflow-hidden cursor-pointer"
     >
       <motion.div
         className={`absolute left-0 top-0 w-2 h-2 bg-gradient-to-r ${color} rounded-full`}
@@ -77,20 +73,20 @@ function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
         style={{ zIndex: 10 }}
       />
       <div className={`absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r ${color} scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500`} />
-      <div className="text-3xl mb-4 text-indigo-500 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+      <div className="text-3xl mb-4 text-indigo-600 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
         <Icon />
       </div>
       <h3 className="text-lg font-semibold text-gray-800 mb-2">{title}</h3>
       <div className="flex items-center justify-between text-sm text-gray-500 group-hover:text-gray-800">
         Learn More
-        <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:text-indigo-500" />
+        <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:text-indigo-600" />
       </div>
     </motion.div>
   );
 }
 
-export default function WebDevelopmentPage() {
-  const isMobile = useIsMobile(); // Use the mobile detection hook
+export default function CloudIntegrationPage() {
+  const isMobile = useIsMobile();
 
   return (
     <>
@@ -106,27 +102,15 @@ export default function WebDevelopmentPage() {
             className="text-center lg:text-left w-full lg:w-2/3"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-[#2d3473] rounded-full text-sm bg-[#151b55] text-white/80">
-              Top-rated development company with <span className="text-blue-400 font-semibold">300+ reviews</span>
-              <span className="flex items-center gap-1 px-2 border-l border-[#2d3473] ml-2">
-                <FaFacebookF className="text-blue-500" />
-                <span className="text-white font-bold">4.8</span>
-                <span className="flex text-orange-400 text-xs">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                </span>
-                <span className="text-white ml-1">50 reviews</span>
-              </span>
+              Trusted Cloud Integration Experts with <span className="text-blue-400 font-semibold">seamless migration</span>
             </div>
 
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
-              Custom Web Development Solutions<br />That Drive&nbsp;
-              <span className="bg-gradient-to-r from-[#3f83f8] to-[#a855f7] bg-clip-text text-transparent">Results</span>
+              Cloud Integration Solutions<br />That Accelerate Your&nbsp;
+              <span className="bg-gradient-to-r from-[#3f83f8] to-[#a855f7] bg-clip-text text-transparent">Business Growth</span>
             </h1>
             <p className="text-white/80 text-lg max-w-2xl">
-              Partner with us to build high-performing websites and web applications that achieve your business goals.
+              We help you unify your cloud services with secure, scalable, and performance-driven integration.
             </p>
           </motion.div>
 
@@ -137,12 +121,12 @@ export default function WebDevelopmentPage() {
             className="bg-[#151b55] border border-[#2d3473] px-8 py-10 rounded-xl text-left w-full max-w-md shadow-2xl"
           >
             <h3 className="text-xl font-semibold text-white leading-snug mb-6">
-              Get <span className="underline decoration-orange-400">Project-based</span><br />
-              solutions or hire<br />
-              <span className="underline decoration-lime-300">dedicated teams</span>
+              Connect your apps,<br />
+              migrate data &<br />
+              <span className="underline decoration-lime-300">secure your cloud</span>
             </h3>
             <button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg">
-              Discuss Your Requirements → 
+              Talk to Our Experts →
             </button>
           </motion.div>
         </div>
@@ -156,32 +140,30 @@ export default function WebDevelopmentPage() {
             transition={{ duration: 0.6 }}
             className="text-3xl md:text-4xl font-extrabold leading-tight mb-12"
           >
-            Our Services
+            Cloud Integration Features
           </motion.h2>
 
           {isMobile ? (
-            // Render Swiper for mobile devices
             <Swiper spaceBetween={20} slidesPerView={1.2} loop>
-              {services.map((service, index) => (
+              {cloudFeatures.map((feature, index) => (
                 <SwiperSlide key={index}>
-                  <ServiceCard
-                    icon={service.icon}
-                    title={service.title}
-                    color={service.color}
+                  <FeatureCard
+                    icon={feature.icon}
+                    title={feature.title}
+                    color={feature.color}
                     delay={0.2 + index * 0.1}
                   />
                 </SwiperSlide>
               ))}
             </Swiper>
           ) : (
-            // Render the grid for non-mobile devices
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services.map((service, index) => (
-                <ServiceCard
+              {cloudFeatures.map((feature, index) => (
+                <FeatureCard
                   key={index}
-                  icon={service.icon}
-                  title={service.title}
-                  color={service.color}
+                  icon={feature.icon}
+                  title={feature.title}
+                  color={feature.color}
                   delay={0.4 + index * 0.1}
                 />
               ))}

@@ -27,7 +27,7 @@ import Quiz from "./components/Quiz";
 import Capabilities from "./components/capabilities";
 import BrandsSection from "./components/TrustedBrands";
 
-
+import { Header } from "./components/HeroSection";
 
 
 
@@ -41,7 +41,8 @@ export default function Home() {
   href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
 />
 {/* <CursorEffect/> */}
-<HeroSection/>
+{/* <HeroSection/> */}
+<Header/>
 <BrandsSection/>
 <ProblemSolution/>
 

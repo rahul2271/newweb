@@ -9,7 +9,6 @@ import {
   FaCodeBranch,
   FaSync,
   FaRocket,
-  FaStar,
   FaArrowRight,
 } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -49,13 +48,15 @@ function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
 
   return (
     <motion.div
+      role="button"
+      tabIndex={0}
       ref={cardRef}
       onMouseMove={handleMouseMove}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
       viewport={{ once: true }}
-      className="relative group p-6 border border-transparent bg-white rounded-xl shadow-md hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 ease-in-out overflow-hidden"
+      className="relative group p-6 border border-transparent bg-white rounded-xl shadow-md hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 ease-in-out overflow-hidden outline-none focus:ring-2 focus:ring-indigo-500"
     >
       <motion.div
         className={`absolute left-0 top-0 w-2 h-2 bg-gradient-to-r ${color} rounded-full`}
@@ -63,7 +64,9 @@ function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
         transition={{ type: 'spring', damping: 40, stiffness: 300, mass: 0.5 }}
         style={{ zIndex: 10 }}
       />
-      <div className={`absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r ${color} scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500`} />
+      <div
+        className={`absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r ${color} scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500`}
+      />
       <div className="text-3xl mb-4 text-indigo-500 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
         <Icon />
       </div>
@@ -105,7 +108,8 @@ export default function DevOpsCloudPage() {
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
               <span className="bg-gradient-to-r from-[#38bdf8] to-[#8b5cf6] bg-clip-text text-transparent">
                 DevOps & Cloud Solutions
-              </span> that Scale Seamlessly
+              </span>{' '}
+              that Scale Seamlessly
             </h1>
             <p className="text-white/80 text-lg max-w-2xl">
               Automate deployments, monitor systems, and scale effortlessly with our battle-tested DevOps and cloud practices.

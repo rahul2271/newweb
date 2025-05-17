@@ -1,5 +1,5 @@
 'use client';
-import Link from 'next/link';
+import Link from 'next/link';  
 import dynamic from 'next/dynamic';
 
 // Dynamically import Slider with ssr: false to disable server-side rendering
@@ -50,9 +50,14 @@ export default function ServicesSection() {
       {/* Mobile-only Section with Slider */}
       <section className="mt-[-50px] block lg:hidden bg-gradient-to-r from-purple-100 to-white py-20 mx-auto shadow-md text-gray-200 overflow-hidden">
         <div className="max-w-screen-xl mx-auto px-4">
-        <h2 className="text-6xl font-extrabold tracking-tight leading-tight text-gray-900 mb-4">
-              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Services</span>
-            </h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-4xl md:text-6xl font-light text-gray-900 tracking-tight leading-tight  text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-indigo-600 to-blue-600"
+        >
+          Brands That <span className="font-semibold ">Trust Us</span>
+        </motion.h2>
 
           {/* Slick Carousel */}
           <Slider {...settings}>
@@ -101,10 +106,14 @@ export default function ServicesSection() {
       {/* Desktop-only Section with Grid */}
       <section className="hidden lg:block bg-gradient-to-r from-purple-100 to-white py-20 mx-auto shadow-md text-gray-200 overflow-hidden">
         <div className="max-w-screen-xl mx-auto px-4">
-        <h2 className="text-6xl font-extrabold tracking-tight leading-tight text-gray-900 mb-4">
-              Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">Services</span>
-            </h2>
-
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-4xl md:text-6xl font-light text-gray-900 tracking-tight leading-tight  text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-indigo-600 to-blue-600"
+        >
+          Brands That <span className="font-semibold ">Trust Us</span>
+        </motion.h2>
           {/* Services Wrapper */}
           <div className="flex sm:flex-wrap sm:overflow-x-auto sm:gap-8 py-4 md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 scroll-smooth">
             {[ // Service Cards

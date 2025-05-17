@@ -1,8 +1,9 @@
 "use client";
+
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css"; // Import Swiper styles
-import "swiper/css/autoplay"; // Import Swiper autoplay styles
-import { Autoplay } from "swiper/modules"; // Import Autoplay module from Swiper
+import "swiper/css";
+import { Autoplay } from "swiper/modules";
+import { motion } from "framer-motion";
 
 export default function BrandsSection() {
   const brands = [
@@ -12,75 +13,96 @@ export default function BrandsSection() {
     { name: "Razorpay", logo: "/razorpay.png" },
     { name: "Cleartax", logo: "/cleartax.png" },
     { name: "Store My Goods", logo: "/bedeol.png" },
-
     { name: "Minimalist", logo: "/redtape.png" },
     { name: "Yukti Herbs", logo: "/yukti herbs.png" },
     { name: "Unacademy", logo: "/un.png" },
     { name: "Dr. Andriana Setnik", logo: "/geek.png" },
-    // { name: "SWCC", logo: "/swcc.png" },
-    // { name: "Woodland", logo: "/woodland.webp" },
-    // { name: "Almas Drinking Water", logo: "/almas.png" },
   ];
 
   return (
-    <section className="bg-white py-16">
-      <div className="container mx-auto text-center">
-        <h2 className="mb-[50px] text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 text-4xl md:text-6xl font-extrabold">
-          Brands That <span>Trust</span> Us
-        </h2>
+    <section className="relative bg-white py-24">
+      <div className="container mx-auto px-6 text-center ">
+        {/* Fancy Subheading */}
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-sm uppercase tracking-widest text-gray-400 mb-2  "
+        >
+          Our Clients
+        </motion.p>
 
-        {/* Swiper for Mobile (Auto-Scroll) */}
-        <div className="lg:hidden">
+        {/* Main Heading */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-4xl md:text-6xl font-light text-gray-900 tracking-tight leading-tight  text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-indigo-600 to-blue-600"
+        >
+          Brands That <span className="font-semibold ">Trust Us</span>
+        </motion.h2>
+
+        {/* Description */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.9 }}
+          className="mt-6 text-lg text-gray-500 max-w-2xl mx-auto"
+        >
+          We partner with premium companies who value aesthetics, trust, and performance.
+        </motion.p>
+
+        {/* Mobile Swiper */}
+        <div className="lg:hidden mt-16">
           <Swiper
-            spaceBetween={10} // Reduced gap between logos
-            slidesPerView={3} // Increase slides per view for mobile
+            spaceBetween={40}
+            slidesPerView={3}
             loop={true}
             autoplay={{
-              delay: 2000, // Auto-scroll delay (2 seconds per slide)
-              disableOnInteraction: false, // Keep autoplay active even after interaction
+              delay: 1800,
+              disableOnInteraction: false,
             }}
-            modules={[Autoplay]} // Pass the Autoplay module here
-            breakpoints={{
-              640: {
-                slidesPerView: 4,
-                spaceBetween: 10, // Adjust gap for 640px+ screens
-              },
-              768: {
-                slidesPerView: 5,
-                spaceBetween: 10, // Adjust gap for 768px+ screens
-              },
-              1024: {
-                slidesPerView: 5,
-                spaceBetween: 10, // Adjust gap for larger screens
-              },
-            }}
+            modules={[Autoplay]}
           >
             {brands.map((brand, index) => (
               <SwiperSlide key={index}>
                 <div className="flex justify-center">
-                  <img
-                    src={brand.logo}
-                    alt={brand.name}
-                    className="w-20 h-20 object-contain filter brightness-100 transition duration-300"
-                  />
+                  <div className="w-20 h-20 rounded-xl backdrop-blur-md bg-white/40 shadow-inner border border-gray-100 flex items-center justify-center hover:scale-105 transition-all duration-300">
+                    <img
+                      src={brand.logo}
+                      alt={brand.name}
+                      className="w-full h-full object-contain  hover:grayscale-0 transition duration-500"
+                    />
+                  </div>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
 
-        {/* Grid for Larger Screens (For larger screens without Swiper) */}
-        <div className="hidden lg:grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 items-center">
+        {/* Desktop Grid */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1.2 }}
+          className="hidden lg:grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-16 mt-24"
+        >
           {brands.map((brand, index) => (
-            <div key={index} className="flex justify-center">
-              <img
-                src={brand.logo}
-                alt={brand.name}
-                className="w-[150px] h-[150px] object-contain transition duration-300 filter brightness-100 "
-              />
-            </div>
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.05 }}
+              className="flex justify-center"
+            >
+              <div className="w-[140px] h-[140px] rounded-2xl bg-white/60 backdrop-blur-sm shadow-lg border border-gray-200 p-6 transition-all duration-300 flex items-center justify-center hover:shadow-2xl">
+                <img
+                  src={brand.logo}
+                  alt={brand.name}
+                  className="w-full h-full object-contain  hover:grayscale-0 transition duration-500"
+                />
+              </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

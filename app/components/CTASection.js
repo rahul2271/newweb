@@ -5,7 +5,7 @@ export default function CTASection() {
   return (
     <>
       {/* Main CTA Section */}
-      <section className="bg-gradient-to-br from-gray-300 via-white to-gray-300 py-20 text-white">
+      <section className="bg-white  py-20 text-white">
         <div className="max-w-screen-xl mx-auto px-6 text-center">
           <h2 className="text-3xl text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 md:text-5xl font-extrabold text-center pb-12 text-gray-900">Let’s Create Digital Masterpieces Together</h2>
           <p className="text-lg text-gray-900 md:text-xl mb-8">Don’t wait. Start building the future of your brand today.</p>

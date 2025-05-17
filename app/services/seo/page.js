@@ -58,7 +58,7 @@ function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
       viewport={{ once: true }}
-      className="relative group p-6 border border-transparent bg-white rounded-xl shadow-md hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 ease-in-out overflow-hidden"
+      className="relative group p-6 border border-transparent bg-white rounded-xl shadow-md hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 ease-in-out overflow-hidden cursor-pointer"
     >
       <motion.div
         className={`absolute left-0 top-0 w-2 h-2 bg-gradient-to-r ${color} rounded-full`}
@@ -66,7 +66,9 @@ function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
         transition={{ type: 'spring', damping: 40, stiffness: 300, mass: 0.5 }}
         style={{ zIndex: 10 }}
       />
-      <div className={`absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r ${color} scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500`} />
+      <div
+        className={`absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r ${color} scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500`}
+      />
       <div className="text-3xl mb-4 text-indigo-500 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
         <Icon />
       </div>
@@ -84,6 +86,7 @@ export default function SEODominationPage() {
 
   return (
     <>
+      {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 text-white px-6 md:px-16 py-20 overflow-hidden md:pt-[180px]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 via-[#0c0e10] to-gray-900 z-0" />
         <div className="absolute inset-0 z-0 opacity-20 bg-[url('/grid-lines.svg')] bg-cover bg-center" />
@@ -96,23 +99,25 @@ export default function SEODominationPage() {
             className="text-center lg:text-left w-full lg:w-2/3"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-[#2d3473] rounded-full text-sm bg-[#151b55] text-white/80">
-              Rank Higher Organically <span className="text-blue-400 font-semibold">across industries</span>
+              Rank Higher Organically{' '}
+              <span className="text-blue-400 font-semibold">across industries</span>
               <span className="flex items-center gap-1 px-2 border-l border-[#2d3473] ml-2">
                 <FaFacebookF className="text-blue-500" />
                 <span className="text-white font-bold">4.9</span>
                 <span className="flex text-orange-400 text-xs">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
+                  {[...Array(5)].map((_, i) => (
+                    <FaStar key={i} />
+                  ))}
                 </span>
                 <span className="text-white ml-1">90 reviews</span>
               </span>
             </div>
 
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
-              Dominate Google with <span className="bg-gradient-to-r from-[#facc15] to-[#f97316] bg-clip-text text-transparent">Advanced SEO</span>
+              Dominate Google with{' '}
+              <span className="bg-gradient-to-r from-[#facc15] to-[#f97316] bg-clip-text text-transparent">
+                Advanced SEO
+              </span>
             </h1>
             <p className="text-white/80 text-lg max-w-2xl">
               We don't just optimize — we strategize, analyze, and conquer search rankings so you get traffic that converts.
@@ -136,6 +141,7 @@ export default function SEODominationPage() {
         </div>
       </section>
 
+      {/* Services Section */}
       <section className="bg-[#f9f9f9] py-20 px-6 md:px-12">
         <div className="max-w-6xl mx-auto text-center">
           <motion.h2

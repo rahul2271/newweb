@@ -72,7 +72,7 @@ export default function Home() {
 
 <FaqSection/>
 {/* <FAQSection/> */}
-<BlogSection/>
+{/* <BlogSection/> */}
 
 {/* <WebinarList/> */}
 <Chatbot/>

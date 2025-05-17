@@ -58,6 +58,7 @@ function FeatureCard({ icon: Icon, title, color, delay = 0 }) {
       viewport={{ once: true }}
       className="relative group p-6 border border-transparent bg-white rounded-xl shadow-md hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 ease-in-out overflow-hidden cursor-pointer"
     >
+      {/* Glowing cursor follower */}
       <motion.div
         className={`absolute left-0 top-0 w-2 h-2 bg-gradient-to-r ${color} rounded-full`}
         animate={{
@@ -72,7 +73,9 @@ function FeatureCard({ icon: Icon, title, color, delay = 0 }) {
         }}
         style={{ zIndex: 10 }}
       />
+      {/* Hover bar */}
       <div className={`absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r ${color} scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500`} />
+
       <div className="text-3xl mb-4 text-indigo-600 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
         <Icon />
       </div>
@@ -90,11 +93,13 @@ export default function CloudIntegrationPage() {
 
   return (
     <>
+      {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 text-white px-6 md:px-16 py-20 overflow-hidden md:pt-[180px]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 via-[#0c0e10] to-gray-900 z-0"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 via-[#0c0e10] to-gray-900 z-0" />
         <div className="absolute inset-0 z-0 opacity-20 bg-[url('/grid-lines.svg')] bg-cover bg-center" />
 
         <div className="relative z-10 max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
+          {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -106,7 +111,8 @@ export default function CloudIntegrationPage() {
             </div>
 
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
-              Cloud Integration Solutions<br />That Accelerate Your&nbsp;
+              Cloud Integration Solutions<br />
+              That Accelerate Your&nbsp;
               <span className="bg-gradient-to-r from-[#3f83f8] to-[#a855f7] bg-clip-text text-transparent">Business Growth</span>
             </h1>
             <p className="text-white/80 text-lg max-w-2xl">
@@ -114,6 +120,7 @@ export default function CloudIntegrationPage() {
             </p>
           </motion.div>
 
+          {/* Right Box */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -132,6 +139,7 @@ export default function CloudIntegrationPage() {
         </div>
       </section>
 
+      {/* Features Section */}
       <section className="bg-[#f9f9f9] py-20 px-6 md:px-12">
         <div className="max-w-6xl mx-auto text-center">
           <motion.h2

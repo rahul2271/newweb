@@ -9,12 +9,12 @@ const testimonials = [
     details: "Increased traffic by 45%, enhanced UI/UX, and boosted conversion rates.",
   },
   {
-    logo: "/client-logo2.png",
+    logo: "/bedeol.png",
     quote: "Their professionalism and expertise are unmatched!",
     details: "Achieved 30% cost savings in our campaigns.",
   },
   {
-    logo: "/client-logo3.png",
+    logo: "/un.png",
     quote: "A complete game-changer for our online presence.",
     details: "Revenue growth of 60% in just 6 months.",
   },
@@ -22,7 +22,7 @@ const testimonials = [
 
 export default function SuccessStories() {
   return (
-    <section className="relative bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 py-16 px-4 text-white">
+    <section className="relative bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#0f0f0f] py-16 px-4 text-white">
       {/* Section Title */}
       <h2 className="text-4xl font-medium text-center mb-12">Success Stories</h2>
 

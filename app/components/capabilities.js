@@ -17,6 +17,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
+import { motion } from "framer-motion";
 
 const services = [
   {
@@ -84,7 +85,7 @@ const ServiceCard = ({ service, idx, openIndex, toggleIndex }) => (
       <div className="text-3xl bg-gradient-to-r from-purple-600 to-blue-600 p-4 rounded-full shadow-lg">
         {service.icon}
       </div>
-      <h3 className="text-xl font-semibold tracking-wide group-hover:text-purple-400 transition duration-300">
+      <h3 className="text-xl font-regular tracking-wide group-hover:text-purple-400 transition duration-300">
         {service.title}
       </h3>
     </div>
@@ -121,14 +122,16 @@ const CapabilitiesAccordion = () => {
   };
 
   return (
-    <section className="bg-gradient-to-br from-black via-gray-900 to-black text-white py-24">
+    <section className="bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#0f0f0f] text-white py-24">
       <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-5xl font-extrabold mb-16 text-center tracking-tight">
-          Our{" "}
-          <span className="bg-gradient-to-r from-purple-500 to-blue-500 text-transparent bg-clip-text">
-            Services
-          </span>
-        </h2>
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-4xl md:text-6xl text-center pb-12 font-light text-gray-200 tracking-tight leading-tight  "
+        >
+          Our <span className="font-semibold ">Services</span>
+        </motion.h2>
 
         {/* Mobile View - Swiper */}
         <div className="lg:hidden">

@@ -52,23 +52,48 @@ function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
       viewport={{ once: true }}
-      className="relative group p-6 border border-transparent bg-white rounded-xl shadow-md hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 ease-in-out overflow-hidden"
+      className="relative group p-6 bg-white rounded-xl border border-transparent shadow-md hover:shadow-2xl transition-all duration-300 ease-in-out overflow-hidden cursor-pointer
+                 hover:scale-[1.03]"
     >
+      {/* Gradient highlight dot following cursor */}
       <motion.div
-        className={`absolute left-0 top-0 w-2 h-2 bg-gradient-to-r ${color} rounded-full`}
+        className={`absolute left-0 top-0 w-2 h-2 bg-gradient-to-r ${color} rounded-full pointer-events-none`}
         animate={{ x: position.x, y: position.y }}
         transition={{ type: 'spring', damping: 40, stiffness: 300, mass: 0.5 }}
         style={{ zIndex: 10 }}
       />
-      <div className={`absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r ${color} scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500`} />
-      <div className="text-3xl mb-4 text-indigo-500 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+
+      {/* Gradient underline on hover */}
+      <div
+        className={`absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r ${color} scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500`}
+      />
+
+      {/* Icon with smooth hover transform */}
+      <div className="text-3xl mb-4 text-indigo-600 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
         <Icon />
       </div>
+
+      {/* Title */}
       <h3 className="text-lg font-semibold text-gray-800 mb-2">{title}</h3>
+
+      {/* Learn more link with arrow */}
       <div className="flex items-center justify-between text-sm text-gray-500 group-hover:text-gray-800">
         Learn More
-        <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:text-indigo-500" />
+        <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:text-indigo-600" />
       </div>
+
+      {/* Glow border effect on hover */}
+      <div
+        className={`pointer-events-none absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300`}
+        style={{
+          boxShadow: `0 0 15px 3px var(--tw-gradient-stops, ${color.replace(
+            /from-| to-/g,
+            ''
+          )})`,
+          background: `linear-gradient(to right, var(--tw-gradient-stops))`,
+          backgroundImage: `linear-gradient(to right, var(--tw-gradient-stops))`,
+        }}
+      />
     </motion.div>
   );
 }
@@ -116,7 +141,7 @@ export default function EcommercePage() {
               Have products to sell?<br />
               Let’s create a store that performs.
             </h3>
-            <button className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg">
+            <button className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg hover:shadow-xl">
               Book Free Store Strategy Call →
             </button>
           </motion.div>

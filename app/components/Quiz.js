@@ -99,7 +99,7 @@ export default function Quiz() {
   };
 
   return (
-    <div className="flex items-center justify-center  p-4 md:p-8 max-w-full bg-gradient-to-br from-gray-300 via-white to-gray-300 md:pt-[150px] md:pb-[150px]">
+    <div className="flex items-center justify-center  p-4 md:p-8 max-w-full bg-white md:pt-[150px] md:pb-[150px]">
       <div className="flex flex-col lg:flex-row w-full max-w-screen-xl">
         {/* Left Section: Engaging Content */}
         <div className="w-full lg:w-1/2 p-8 text-white flex flex-col justify-center space-y-8">

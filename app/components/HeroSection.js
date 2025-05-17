@@ -4,6 +4,7 @@ import Image from 'next/image';
 
 export const Header = () => {
   return (
+    
     <section className=" relative min-h-screen bg-gradient-animate bg-400 animate-gradient-flow text-white font-sans overflow-hidden">
 
       {/* Subtle Texture Background */}
@@ -72,7 +73,7 @@ export const Header = () => {
       </div>
 
       {/* Bottom SVG Wave */}
-      <div className="absolute bottom-0 left-0 w-full z-10 rotate-180">
+      <div className="absolute botton-[-5] md:bottom-0 left-0 w-full z-10 rotate-180">
         <svg viewBox="0 0 1440 320" className="fill-white">
           <path d="M0,96L48,106.7C96,117,192,139,288,144C384,149,480,139,576,133.3C672,128,768,128,864,117.3C960,107,1056,85,1152,74.7C1248,64,1344,64,1392,64L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
         </svg>

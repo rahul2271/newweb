@@ -100,11 +100,9 @@ export default function DigitalMarketingPage() {
                 <FaBullhorn className="text-yellow-400" />
                 <span className="text-white font-bold">4.8</span>
                 <span className="flex text-orange-400 text-xs">
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
-                  <FaStar />
+                  {[...Array(5)].map((_, i) => (
+                    <FaStar key={i} />
+                  ))}
                 </span>
                 <span className="text-white ml-1">100+ campaigns</span>
               </span>
@@ -128,7 +126,7 @@ export default function DigitalMarketingPage() {
               Let’s amplify your digital presence <br />
               through powerful strategy.
             </h3>
-            <button className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg">
+            <button className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg hover:shadow-xl">
               Get Free Marketing Audit →
             </button>
           </motion.div>
@@ -148,7 +146,7 @@ export default function DigitalMarketingPage() {
           </motion.h2>
 
           {isMobile ? (
-            <Swiper spaceBetween={20} slidesPerView={1.2} loop>
+            <Swiper spaceBetween={20} slidesPerView={1.1} loop className="px-2">
               {marketingServices.map((service, index) => (
                 <SwiperSlide key={index}>
                   <ServiceCard

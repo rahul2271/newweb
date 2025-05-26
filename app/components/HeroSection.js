@@ -45,7 +45,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative isolate overflow-hidden py-20 lg:py-44 bg-white bg-cover bg-center text-black">
+    <section className="relative isolate overflow-hidden  lg:py-44 bg-white bg-cover bg-center text-black">
       <div className="absolute inset-0 -z-10 bg-white/80 backdrop-blur-sm" />
 
       <div className="mx-auto flex max-w-7xl flex-col items-center px-4 lg:px-8">

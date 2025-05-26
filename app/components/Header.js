@@ -42,7 +42,7 @@ export default function AdvancedHeader() {
   <motion.img
     src="./rclogo.png"
     alt="RC Tech Solutions Logo"
-    className="w-16 sm:w-20"
+    className="w-[100px] sm:w-[100px]"
     animate={{ rotate: [0, 5, -5, 5, 0] }}
     transition={{ repeat: Infinity, duration: 6 }}
   />
@@ -114,12 +114,12 @@ export default function AdvancedHeader() {
         <FiX size={28} />
       </button>
 
-      <a href="#" className="text-2xl font-semibold mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Home</a>
-      <a href="#team" className="text-2xl font-semibold mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Team</a>
-      <a href="#" className="text-2xl font-semibold mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Feature</a>
-      <a href="#" className="text-2xl font-semibold mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Blog</a>
-      <a href="#" className="text-2xl font-semibold mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>About</a>
-      <a href="#" className="text-2xl font-semibold mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Contact</a>
+      <a href="#" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Home</a>
+      <a href="#team" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Team</a>
+      <a href="#" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Feature</a>
+      <a href="#" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Blog</a>
+      <a href="#" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>About</a>
+      <a href="#" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Contact</a>
 
       <div className="flex items-center bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-lg font-semibold animate-pulse select-none max-w-max mt-20">
         <FiCpu className="mr-2" />

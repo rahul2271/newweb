@@ -27,7 +27,7 @@ export default function AdvancedHeader() {
   }, [navbarOpen]);
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50 w-full">
+    <header className="bg-white  sticky top-0 z-50 w-full">
       <div className="container mx-auto px-4 sm:px-10 flex items-center justify-between py-4">
         {/* Animated Logo */}
          <motion.a

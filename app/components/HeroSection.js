@@ -171,7 +171,7 @@ export default function HeroSection() {
           x: relX * 20,
           y: relY * 20,
         }}
-        className="pointer-events-none fixed bottom-6 right-6 hidden select-none lg:block"
+        className="pointer-events-none fixed bottom-6 left-6 hidden select-none lg:block"
       >
         <div className="rounded-xl bg-white/80 px-4 py-2 text-xs font-medium text-gray-800 shadow-lg backdrop-blur-md">
           🚀 Trusted by 50+ global startups

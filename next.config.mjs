@@ -3,6 +3,8 @@ const nextConfig = {
     domains: [
       "images.pexels.com",
       "images.unsplash.com",
+      "source.unsplash.com",
+      "plus.unsplash.com",
       "api.uifaces.co",
       "randomuser.me",
       "avatars.githubusercontent.com",

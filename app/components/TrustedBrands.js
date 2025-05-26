@@ -20,7 +20,7 @@ export default function BrandsSection() {
   ];
 
   return (
-    <section className="relative bg-white py-24">
+    <section className="relative bg-white py-5">
       <div className="container mx-auto px-6 text-center ">
         {/* Fancy Subheading */}
         <motion.p

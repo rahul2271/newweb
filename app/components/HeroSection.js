@@ -15,13 +15,11 @@ import { motion, useViewportScroll, useTransform } from 'framer-motion';
  */
 
 export default function HeroSection() {
-  /* ───────────── Scroll-based parallax ───────────── */
   const { scrollYProgress } = useViewportScroll();
   const yImage1 = useTransform(scrollYProgress, [0, 1], ['0%', '25%']);
   const yImage2 = useTransform(scrollYProgress, [0, 1], ['0%', '-15%']);
   const yImage3 = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
 
-  /* ───────────── Mouse tracking state ───────────── */
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [viewport, setViewport] = useState({ w: 0, h: 0 });
 
@@ -38,11 +36,9 @@ export default function HeroSection() {
     };
   }, []);
 
-  /* Helper: normalised offset (-0.5 → 0.5) */
   const relX = viewport.w ? (mousePos.x - viewport.w / 2) / viewport.w : 0;
   const relY = viewport.h ? (mousePos.y - viewport.h / 2) / viewport.h : 0;
 
-  /* ───────────── Fade-in animation preset ───────────── */
   const fadeIn = {
     hidden: { opacity: 0, y: 40 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
@@ -50,11 +46,9 @@ export default function HeroSection() {
 
   return (
     <section className="relative isolate overflow-hidden py-20 lg:py-44 bg-white bg-cover bg-center text-black">
-      {/* Whitish veil for readability */}
       <div className="absolute inset-0 -z-10 bg-white/80 backdrop-blur-sm" />
 
       <div className="mx-auto flex max-w-7xl flex-col items-center px-4 lg:px-8">
-        {/* Headline & tagline */}
         <motion.div
           variants={fadeIn}
           initial="hidden"
@@ -68,18 +62,15 @@ export default function HeroSection() {
             That Ignite Digital&nbsp;Growth
           </h1>
           <p className="mx-auto pb-10 max-w-2xl text-lg font-light leading-relaxed text-gray-700">
-            We craft blazing-fast, <strong>SEO-optimised</strong>, mobile-responsive websites and SaaS dashboards that{' '}
+            We are <strong className='text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-indigo-600 to-blue-600 bg-clip-text font-bold'>RC Tech Solutions</strong> — creators of blazing-fast, SEO-optimised, mobile-responsive websites and SaaS dashboards that{' '}
             <strong>convert visitors into customers</strong>.
           </p>
 
-          {/* Email capture form */}
           <form
             onSubmit={(e) => e.preventDefault()}
             className="group relative mx-auto flex max-w-xl flex-col items-center gap-4 sm:flex-row sm:gap-0"
           >
-            <label htmlFor="email" className="sr-only">
-              Work Email
-            </label>
+            <label htmlFor="email" className="sr-only">Work Email</label>
             <motion.input
               id="email"
               type="email"
@@ -102,23 +93,18 @@ export default function HeroSection() {
           </form>
 
           <p className="mt-4 text-xs font-normal text-gray-500">
-            No spam, just strategy. Start your digital journey with RC Tech Solutions.
+            No spam, just strategy. Start your digital journey with <strong>RC Tech Solutions</strong>.
           </p>
         </motion.div>
 
-        {/* Three layered illustrations with scroll + mouse parallax */}
         <div className="relative flex w-full flex-col items-center gap-10 lg:flex-row lg:justify-between lg:gap-0">
           <motion.div
-            style={{
-              y: yImage1,
-              x: relX * 40, // mouse parallax strength
-              rotateZ: relX * 6,
-            }}
+            style={{ y: yImage1, x: relX * 40, rotateZ: relX * 6 }}
             className="hidden lg:flex flex-shrink-0"
           >
             <Image
               src="https://images.unsplash.com/photo-1634498507905-3a4f8d7ba9e1?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Technology Illustration 1"
+              alt="Tech Stack Visual"
               width={320}
               height={320}
               priority
@@ -127,16 +113,12 @@ export default function HeroSection() {
           </motion.div>
 
           <motion.div
-            style={{
-              y: yImage2,
-              x: relX * -20,
-              rotateZ: relX * -4,
-            }}
+            style={{ y: yImage2, x: relX * -20, rotateZ: relX * -4 }}
             className="hidden lg:flex flex-shrink-0"
           >
             <Image
               src="https://plus.unsplash.com/premium_photo-1683980578016-a1f980719ec2?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Web Design Illustration"
+              alt="Design System"
               width={260}
               height={260}
               className="rounded-xl object-cover shadow-lg"
@@ -144,37 +126,26 @@ export default function HeroSection() {
           </motion.div>
 
           <motion.div
-            style={{
-              y: yImage3,
-              x: relX * 30,
-              rotateZ: relX * 5,
-            }}
+            style={{ y: yImage3, x: relX * 30, rotateZ: relX * 5 }}
             className="hidden lg:flex flex-shrink-0"
           >
             <Image
               src="https://plus.unsplash.com/premium_photo-1680608979589-e9349ed066d5?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="Software Development Illustration"
+              alt="Software Development"
               width={320}
               height={320}
               className="rounded-xl object-cover shadow-lg"
             />
           </motion.div>
         </div>
-
-        {/* Scroll cue */}
-        
       </div>
 
-      {/* Floating trust badge that gently follows the cursor */}
       <motion.div
-        style={{
-          x: relX * 20,
-          y: relY * 20,
-        }}
+        style={{ x: relX * 20, y: relY * 20 }}
         className="pointer-events-none fixed bottom-6 left-6 hidden select-none lg:block"
       >
         <div className="rounded-xl bg-white/80 px-4 py-2 text-xs font-medium text-gray-800 shadow-lg backdrop-blur-md">
-          🚀 Trusted by 50+ global startups
+          🚀 Trusted by 50+ global startups<br />— Powered by RC Tech Solutions
         </div>
       </motion.div>
     </section>

@@ -30,38 +30,29 @@ export default function AdvancedHeader() {
     <header className="bg-white shadow-md sticky top-0 z-50 w-full">
       <div className="container mx-auto px-4 sm:px-10 flex items-center justify-between py-4">
         {/* Animated Logo */}
-        <motion.a
-          href="#"
-          className="flex items-center space-x-2"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          whileHover={{ scale: 1.1, rotate: 5 }}
-          whileTap={{ scale: 0.95, rotate: 0 }}
-        >
-          <motion.img
-            src="./rclogo.png"
-            alt="logo"
-            className="w-20 max-sm:w-16"
-            initial={{ rotate: 0 }}
-            animate={{
-              rotate: [0, 10, -10, 10, 0],
-            }}
-            transition={{
-              repeat: Infinity,
-              duration: 6,
-              ease: 'easeInOut',
-            }}
-          />
-          <motion.span
-            className="hidden sm:inline text-xl font-bold text-purple-700 select-none"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.5, duration: 0.8 }}
-          >
-            RC Tech Solutions
-          </motion.span>
-        </motion.a>
+         <motion.a
+  href="#"
+  className="flex flex-col items-center"
+  initial={{ opacity: 0, scale: 0.95 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.8 }}
+  whileHover={{ scale: 1.05 }}
+  style={{ fontFamily: "'Poppins', sans-serif" }}
+>
+  <motion.img
+    src="./rclogo.png"
+    alt="RC Tech Solutions Logo"
+    className="w-16 sm:w-20"
+    animate={{ rotate: [0, 5, -5, 5, 0] }}
+    transition={{ repeat: Infinity, duration: 6 }}
+  />
+  <span className="hidden sm:block text-xs font-medium text-gray-900 mt-1">
+    RC Tech Solutions
+  </span>
+</motion.a>
+
+
+ 
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center space-x-8 font-medium text-gray-800">
@@ -85,7 +76,7 @@ export default function AdvancedHeader() {
           </a>
 
           {/* AI Coming Soon Badge */}
-          <div className="flex items-center bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-sm font-semibold animate-pulse select-none">
+          <div className="flex items-center bg-purple-100 text-gray-900 px-3 py-1 rounded-full text-sm font-semibold animate-pulse select-none">
             <FiCpu className="mr-1" />
             AI Coming Soon
           </div>

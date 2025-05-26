@@ -1,83 +1,61 @@
 'use client';
-
 import Image from 'next/image';
 
-export const Header = () => {
+export default function Homepage() {
   return (
-    
-    <section className=" relative min-h-screen bg-gradient-animate bg-400 animate-gradient-flow text-white font-sans overflow-hidden">
-
-      {/* Subtle Texture Background */}
-      <div className="absolute inset-0 bg-[url('/bgt.jpg')] bg-cover opacity-50 z-0" />
-
-      {/* Top SVG Wave */}
-      <div className="absolute top-0 left-0 w-full z-10">
-        <svg viewBox="0 0 1440 320" className="fill-white">
-          <path d="M0,96L48,106.7C96,117,192,139,288,144C384,149,480,139,576,133.3C672,128,768,128,864,117.3C960,107,1056,85,1152,74.7C1248,64,1344,64,1392,64L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
-        </svg>
-      </div>
-
-      {/* Hero Content */}
-      <div className="relative z-20 max-w-7xl mx-auto px-6 pt-40 pb-20 flex flex-col md:flex-row items-center justify-between">
-        {/* Text Left */}
-        <div className="max-w-xl">
-          <h1 className="text-5xl md:text-6xl font-bold tracking-wide leading-tight text-white">
-            Engineering <br />
-            <span className="text-white/70">Digital Legacies</span>
+    <section className="relative py-14 lg:pt-44 lg:pb-24 bg-gray-100">
+      <div className="w-full max-w-7xl mx-auto px-4 lg:px-8">
+        <div className="w-full max-w-4xl mx-auto sm:px-12 mb-10 lg:mb-20">
+          <h1 className="font-manrope font-bold text-4xl leading-snug sm:text-5xl text-center mb-5 text-black">
+            Turning ideas into Digital reality
           </h1>
-          <p className="mt-6 text-gray-100 text-lg">
-            RC Tech Solutions builds future-ready, custom-coded, conversion-focused digital platforms. No templates. No compromise.
+          <p className="text-xl font-medium leading-8 text-gray-400 text-center mb-14 max-w-xl mx-auto">
+            where every expense becomes a brushstroke of intention, creating a masterpiece of financial well-being and wealth.
           </p>
-          <a
-            href="#contact"
-            className="mt-8 inline-block px-6 py-3 border border-white text-white hover:bg-white hover:text-black transition-all duration-300 rounded-lg uppercase tracking-wide text-sm"
-          >
-            Start Your Project
-          </a>
-        </div>
 
-        {/* Glassmorphic Form */}
-        <div className="w-full max-w-md mt-12 md:mt-0 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 shadow-xl">
-          <h3 className="text-xl font-semibold text-white text-center mb-4 tracking-wide">
-            Work With Us
-          </h3>
-          <form>
-            <input
-              type="text"
-              placeholder="Name"
-              className="w-full mb-4 px-4 py-3 rounded-md bg-white/30 placeholder-gray-300 text-white border border-white/10 focus:outline-none focus:ring-1 focus:ring-white"
-              required
-            />
+          {/* Email form */}
+          <div className="parent flex flex-col sm:flex-row items-center max-w-xl mx-auto justify-center gap-y-4 sm:justify-between pr-2 sm:pr-1 sm:bg-white rounded-full mb-5 relative group transition-all duration-500 border border-transparent hover:border-indigo-600 focus-within:border-indigo-600">
             <input
               type="email"
-              placeholder="Email"
-              className="w-full mb-4 px-4 py-3 rounded-md bg-white/30 placeholder-gray-300 text-white border border-white/10 focus:outline-none focus:ring-1 focus:ring-white"
               required
+              placeholder="What’s your work email?"
+              className="block w-full px-6 py-3.5 text-base max-sm:text-center font-normal shadow-xs max-sm:bg-white text-gray-900 bg-transparent border-none rounded-full placeholder-gray-400 focus:outline-none leading-normal"
             />
-            <textarea
-              placeholder="Project Brief"
-              rows={3}
-              className="w-full mb-4 px-4 py-3 rounded-md bg-white/30 placeholder-gray-300 text-white border border-white/10 focus:outline-none focus:ring-1 focus:ring-white"
-            ></textarea>
-            <button
-              type="submit"
-              className="w-full py-3 bg-white text-black font-bold rounded-md hover:bg-gray-300 transition-all"
-            >
-              Send Request →
+            <button className="py-3 px-6 max-sm:w-full rounded-full bg-indigo-600 text-white text-sm leading-4 font-medium whitespace-nowrap transition-all duration-300 hover:bg-indigo-700 sm:absolute top-1.5 right-3">
+              Get Started
             </button>
-            <p className="text-xs text-gray-200 text-center mt-2">
-              We reply within 24 hours.
-            </p>
-          </form>
-        </div>
-      </div>
+          </div>
 
-      {/* Bottom SVG Wave */}
-      <div className="absolute botton-[-5] md:bottom-0 left-0 w-full z-10 rotate-180">
-        <svg viewBox="0 0 1440 320" className="fill-white">
-          <path d="M0,96L48,106.7C96,117,192,139,288,144C384,149,480,139,576,133.3C672,128,768,128,864,117.3C960,107,1056,85,1152,74.7C1248,64,1344,64,1392,64L1440,64L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
-        </svg>
+          <p className="text-sm font-normal text-gray-500 text-center">
+            no personal credit checks or founder guarantee.
+          </p>
+        </div>
+
+        {/* Images row */}
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-4 lg:justify-between">
+          <Image
+            src="https://pagedone.io/asset/uploads/1709270640.png"
+            alt="Wallet Illustration 1"
+            width={300}
+            height={300}
+            className="object-cover"
+          />
+          <Image
+            src="https://pagedone.io/asset/uploads/1710391965.png"
+            alt="Wallet Illustration 2"
+            width={224}
+            height={224}
+            className="mx-auto object-cover"
+          />
+          <Image
+            src="https://pagedone.io/asset/uploads/1709270672.png"
+            alt="Wallet Illustration 3"
+            width={300}
+            height={300}
+            className="object-cover"
+          />
+        </div>
       </div>
     </section>
   );
-};
+}

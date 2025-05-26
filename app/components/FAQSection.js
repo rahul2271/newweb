@@ -34,7 +34,7 @@ const FaqSection = () => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#0f0f0f]  py-16 px-4 sm:px-6 lg:px-8">
+    <div className="bg-black  py-16 px-4 sm:px-6 lg:px-8">
       <h2 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-yellow-500 mb-12">Frequently Asked Questions</h2>
       
       <div className="max-w-2xl mx-auto space-y-6">

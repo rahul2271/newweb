@@ -36,7 +36,7 @@ export default function DownloadResourceSection() {
   };
 
   return (
-    <section className="relative w-full bg-gradient-to-br from-[#0f0c29] via-[#302b63] to-[#24243e] text-white py-20 px-6 md:px-16">
+    <section className="relative w-full bg-black text-white py-20 px-6 md:px-16">
       <div className="max-w-7xl mx-auto grid md:grid-cols-2 items-center gap-12">
         {/* Left Side */}
         <div className="space-y-6">

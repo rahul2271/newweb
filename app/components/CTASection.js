@@ -5,30 +5,51 @@ export default function CTASection() {
   return (
     <>
       {/* Main CTA Section */}
-      <section className="bg-white  py-20 text-white">
-        <div className="max-w-screen-xl mx-auto px-6 text-center">
-          <h2 className="text-3xl text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600 md:text-5xl font-extrabold text-center pb-12 text-gray-900">Let’s Create Digital Masterpieces Together</h2>
-          <p className="text-lg text-gray-900 md:text-xl mb-8">Don’t wait. Start building the future of your brand today.</p>
-
-          {/* CTA Button */}
-          <Link
-            href="#contact"
-            className="bg-gradient-to-r from-pink-500 to-yellow-500 text-black px-12 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-[#953ee2] hover:text-white hover:scale-105"
-          >
-            Contact Us
-          </Link>
-        </div>
-      </section>
-
-      {/* Sticky CTA Button */}
-      {/* <div className="fixed bottom-8 right-8">
-        <Link
-          href="#contact"
-          className="bg-[#953ee2] text-white px-6 py-3 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-white hover:text-[#953ee2] hover:scale-110"
+      <section className
+="py-16">
+      <div className
+="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div
+          className
+="lg:py-14 lg:px-20 p-10 rounded-2xl bg-gradient-to-r from-purple-700 via-indigo-600 to-blue-600 flex items-center justify-between flex-col lg:flex-row"
         >
-          Contact Us
-        </Link>
-      </div> */}
+          <div className
+="block text-center mb-5 lg:text-left lg:mb-0">
+            <h2
+              className
+="font-manrope text-4xl text-white font-semibold mb-5 lg:mb-2"
+            >
+              Connect with us
+            </h2>
+            <p className
+="text-xl text-indigo-100">
+              Contact us with any query or any idea.
+            </p>
+          </div>
+          <a
+            href="#"
+            className
+="flex items-center gap-2 bg-white rounded-full shadow-sm text-lg text-indigo-600 font-semibold py-4 px-8 transition-all duration-500"
+            >Get In Touch
+            <svg
+              width="19"
+              height="14"
+              viewBox="0 0 19 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1.75 7L16.4167 7M11.8333 12.5L16.6852 7.64818C16.9907 7.34263 17.1435 7.18985 17.1435 7C17.1435 6.81015 16.9907 6.65737 16.6852 6.35182L11.8333 1.5"
+                stroke="#4F46E5"
+                strokeWidth="2.4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
     </>
   );
 }

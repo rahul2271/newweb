@@ -1,83 +1,30 @@
-"use client";
-import { useEffect, useState } from "react";
+"use client"
 
-const CustomCursor = () => {
-  const [isMobile, setIsMobile] = useState(false);
+import { useEffect, useRef } from "react"
+
+export default function CustomCursor() {
+  const ringRef = useRef(null)
 
   useEffect(() => {
-    // Check if the device is mobile
-    const checkIsMobile = () => {
-      setIsMobile(window.innerWidth <= 768); // Adjust the width as per your requirement
-    };
+    const ring = ringRef.current
 
-    checkIsMobile(); // Initial check
-    window.addEventListener("resize", checkIsMobile); // Re-check on window resize
-
-    const cursor = document.querySelector(".custom-cursor");
-    const cursorRing = document.querySelector(".custom-cursor-ring");
-    const particles = document.querySelector(".custom-cursor-particles");
-
-    if (!isMobile) {
-      let mouseX = 0,
-        mouseY = 0;
-
-      const updateCursor = (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-
-        // Move the main cursor and ring
-        cursor.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-        cursorRing.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
-      };
-
-      const handleHoverStart = () => {
-        cursor.classList.add("hover");
-        cursorRing.classList.add("hover");
-        particles.classList.add("active");
-      };
-
-      const handleHoverEnd = () => {
-        cursor.classList.remove("hover");
-        cursorRing.classList.remove("hover");
-        particles.classList.remove("active");
-      };
-
-      // Mouse move and hover events
-      document.addEventListener("mousemove", updateCursor);
-      const clickableElements = document.querySelectorAll("a, button");
-      clickableElements.forEach((el) => {
-        el.addEventListener("mouseenter", handleHoverStart);
-        el.addEventListener("mouseleave", handleHoverEnd);
-      });
-
-      // Cleanup
-      return () => {
-        document.removeEventListener("mousemove", updateCursor);
-        clickableElements.forEach((el) => {
-          el.removeEventListener("mouseenter", handleHoverStart);
-          el.removeEventListener("mouseleave", handleHoverEnd);
-        });
-      };
-    } else {
-      // Remove any styles or effects if needed
-      if (cursor) cursor.style.display = "none";
-      if (cursorRing) cursorRing.style.display = "none";
-      if (particles) particles.style.display = "none";
+    const handleMouseMove = (e) => {
+      const x = e.clientX
+      const y = e.clientY
+      ring.style.transform = `translate(${x}px, ${y}px)`
     }
-  }, [isMobile]);
 
-  if (isMobile) {
-    // Do not render the cursor on mobile
-    return null;
-  }
+    document.addEventListener("mousemove", handleMouseMove)
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove)
+    }
+  }, [])
 
   return (
-    <>
-      <div className="custom-cursor"></div>
-      <div className="custom-cursor-ring"></div>
-      <div className="custom-cursor-particles"></div>
-    </>
-  );
-};
-
-export default CustomCursor;
+    <div
+      ref={ringRef}
+      className="fixed top-0 left-0 w-8 h-8 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-purple-500 shadow-[0_0_15px_rgba(149,62,226,0.4)] transition-transform duration-75 pointer-events-none z-[9999]"
+    />
+  )
+}

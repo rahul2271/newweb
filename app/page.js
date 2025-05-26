@@ -27,9 +27,9 @@ import Quiz from "./components/Quiz";
 import Capabilities from "./components/capabilities";
 import BrandsSection from "./components/TrustedBrands";
 
-import { Header } from "./components/HeroSection";
-
-
+// import HomePage from "./components/HeroSection";
+import Homepage from "./components/HeroSection";
+import TeamSection from "./components/Team";
 
 
 
@@ -42,11 +42,11 @@ export default function Home() {
 />
 {/* <CursorEffect/> */}
 {/* <HeroSection/> */}
-<Header/>
+<Homepage/>
 <BrandsSection/>
 <ProblemSolution/>
 
-<div className="bg-gradient-to-r from-purple-100 to-white"><Quiz /></div>
+<div className=""><Quiz /></div>
         
      
 {/* <SEO/> */}
@@ -64,12 +64,14 @@ export default function Home() {
 
 
 
-<BoldStats/>
+{/* <BoldStats/> */}
 
-<SuccessStories/>
+{/* <SuccessStories/> */}
 {/* <PortfolioItems/> */}
 <CTASection/>
 
+
+<TeamSection/>
 <FaqSection/>
 {/* <FAQSection/> */}
 {/* <BlogSection/> */}

@@ -34,18 +34,14 @@ body {
   background-color: #ffffff;
 }
 
-.bg-primary {
-  background-color: #953ee2; /* Your primary brand color */
-}
+
 
 button {
   cursor: pointer;
 }
 
 /* Hover effect on the CTA button */
-button:hover {
-  background-color: #7a2abf; /* Slightly darker shade of your primary color */
-}
+
 
 /* Sticky CTA button for mobile-first optimization */
 @media (max-width: 768px) {
@@ -169,8 +165,8 @@ p {
 
 
 /* Hide the default cursor */
-/* html, body {
+html, body {
   cursor: none;
-} */
+}
 
 

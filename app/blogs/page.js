@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from 'react';
-import { db } from '.././firebase'; 
+import { db } from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -14,20 +14,36 @@ const stripHtmlTags = (html) => {
 
 export default function BlogPage() {
   const [blogs, setBlogs] = useState([]);
+  const [filteredBlogs, setFilteredBlogs] = useState([]);
+  const [search, setSearch] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [categories, setCategories] = useState([]);
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
         const blogsCollection = collection(db, 'blogs');
-        const blogsSnapshot = await getDocs(blogsCollection);
-        const blogsList = blogsSnapshot.docs.map(doc => {
-          const data = doc.data();
-          return {
-            id: doc.id,
-            ...data,
-          };
-        });
-        setBlogs(blogsList);
+        const snapshot = await getDocs(blogsCollection);
+        const blogList = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setBlogs(blogList);
+        setFilteredBlogs(blogList);
+
+        // Sanitize and extract unique categories
+        const rawCategories = blogList
+          .map(blog => blog.category)
+          .filter(cat => typeof cat === 'string' && cat.trim() !== '');
+
+        const uniqueCategories = Array.from(new Set(rawCategories));
+
+        // Define desired sort order
+        const desiredOrder = [
+          "all", "student", "professional", "career", "freelance", "tech", "design", "marketing", "development", "seo", "life"
+        ];
+
+        // Sorted & filtered categories
+        const sortedCategories = desiredOrder.filter(cat => cat === "all" || uniqueCategories.includes(cat));
+
+        setCategories(sortedCategories);
       } catch (error) {
         console.error("Error fetching blogs: ", error);
       }
@@ -36,33 +52,86 @@ export default function BlogPage() {
     fetchBlogs();
   }, []);
 
+  useEffect(() => {
+    let result = blogs;
+
+    // Category filter
+    if (selectedCategory !== 'all') {
+      result = result.filter(blog => blog.category === selectedCategory);
+    }
+
+    // Search by title + content
+    if (search.trim() !== '') {
+      const searchTerm = search.toLowerCase();
+      result = result.filter(blog =>
+        blog.title.toLowerCase().includes(searchTerm) ||
+        stripHtmlTags(blog.content).toLowerCase().includes(searchTerm)
+      );
+    }
+
+    setFilteredBlogs(result);
+  }, [search, selectedCategory, blogs]);
+
   return (
-    <div className=" container mx-auto p-4 mt-10">
-      <div className="flex flex-wrap -mx-2 px-5">
-        {blogs.map((blog) => (
-          <div key={blog.id} className="w-full sm:w-1/2 md:w-1/4 px-2 mb-4 overflow-hidden">
-            <div className="bg-black p-4 shadow-mypurple shadow-md rounded-lg h-[400px] overflow-hidden">
-              <Link href={`/blogs/${blog.slug}`} >
-                
-                  <div className='max-h-[180px] h-[180px] rounded-lg'>
-                    <Image 
-                      className="rounded-t-lg object-cover max-h-[180px] h-[180px]" 
-                      src={blog.blogImageUrl} // Ensure the correct field name
-                      alt={blog.title} 
-                      width={600} 
-                      height={400} 
-                      layout="responsive" 
+    <div className="container mx-auto px-4 py-10">
+      {/* Filter Bar */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
+        {/* Search Input */}
+        <input
+          type="text"
+          placeholder="Search blogs..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full sm:w-1/2 px-4 py-2 rounded-md border border-gray-700 bg-black text-white focus:outline-none focus:ring-2 focus:ring-mypurple"
+        />
+
+        {/* Category Dropdown */}
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          className="w-full sm:w-1/4 px-4 py-2 rounded-md border border-gray-700 bg-black text-white focus:outline-none focus:ring-2 focus:ring-mypurple"
+        >
+          {categories.map((cat) => (
+            <option key={cat} value={cat}>
+              {typeof cat === 'string'
+                ? cat.charAt(0).toUpperCase() + cat.slice(1)
+                : ''}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {/* Blog Grid */}
+      <div className="flex flex-wrap -mx-2">
+        {filteredBlogs.length === 0 ? (
+          <div className="text-center text-white w-full py-10">No blogs found.</div>
+        ) : (
+          filteredBlogs.map((blog) => (
+            <div key={blog.id} className="w-full sm:w-1/2 md:w-1/4 px-2 mb-6">
+              <div className="bg-black p-4 shadow-mypurple shadow-md rounded-lg h-[430px] overflow-hidden">
+                <Link href={`/blogs/${blog.slug}`} className="block h-full">
+                  <div className="h-[180px] relative overflow-hidden rounded-lg mb-4">
+                    <Image
+                      src={blog.blogImageUrl}
+                      alt={blog.title}
+                      fill
+                      className="object-cover rounded-lg"
                     />
                   </div>
-                  <div className="p-4">
-                    <h2 className="px-2 bg-white rounded dark:bg-white text-xl font-extrabold mb-4 text-mypurple">{blog.title}</h2> 
-                    <p className="text-white font-light text-sm">{stripHtmlTags(blog.content).slice(0, 100)}...</p>
-                    <p className="text-white text-[10px] mt-3 mb-2">By {blog.author} on {blog.date}</p>
-                  </div>
-              </Link>
+                  <h2 className="bg-white text-mypurple font-bold text-lg rounded px-2 py-1 mb-2">
+                    {blog.title}
+                  </h2>
+                  <p className="text-white text-sm mb-2">
+                    {stripHtmlTags(blog.content).slice(0, 100)}...
+                  </p>
+                  <p className="text-white text-[10px] mt-auto">
+                    By {blog.author} on {blog.date}
+                  </p>
+                </Link>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );

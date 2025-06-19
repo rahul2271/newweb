@@ -1,42 +1,66 @@
 "use client";
-import { useEffect, useState } from "react";
-import { db } from "../../firebase/client";
-import { collection, getDocs } from "firebase/firestore";
-import Link from "next/link";
 
-export default function PublicBlogList() {
+import { useEffect, useState } from 'react';
+import { db } from '.././firebase'; 
+import { collection, getDocs } from 'firebase/firestore';
+import Image from 'next/image';
+import Link from 'next/link';
+
+const stripHtmlTags = (html) => {
+  const tmp = document.createElement("DIV");
+  tmp.innerHTML = html;
+  return tmp.textContent || tmp.innerText || "";
+};
+
+export default function BlogPage() {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
     const fetchBlogs = async () => {
-      const querySnapshot = await getDocs(collection(db, "blogs"));
-      const blogList = querySnapshot.docs
-        .map((doc) => ({ id: doc.id, ...doc.data() }))
-        .filter((b) => b.status === "published"); // ✅ match status field
-      setBlogs(blogList);
+      try {
+        const blogsCollection = collection(db, 'blogs');
+        const blogsSnapshot = await getDocs(blogsCollection);
+        const blogsList = blogsSnapshot.docs.map(doc => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            ...data,
+          };
+        });
+        setBlogs(blogsList);
+      } catch (error) {
+        console.error("Error fetching blogs: ", error);
+      }
     };
+
     fetchBlogs();
   }, []);
 
   return (
-    <div className="p-8 max-w-6xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6 text-purple-700">Latest Blogs</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {blogs.map((b) => (
-          <div key={b.id} className="p-4 border rounded-lg shadow bg-white">
-            <img
-              src={b.image || "/placeholder.jpg"}
-              className="h-48 w-full object-cover rounded"
-              alt={b.title}
-            />
-            <h2 className="text-xl font-semibold mt-2">{b.title}</h2>
-            <p className="text-sm text-gray-500 mt-1">{b.tags?.join(", ")}</p>
-            <Link
-              href={`/blogs/${b.id}`}
-              className="text-purple-600 mt-2 inline-block"
-            >
-              Read More →
-            </Link>
+    <div className=" container mx-auto p-4 mt-10">
+      <div className="flex flex-wrap -mx-2 px-5">
+        {blogs.map((blog) => (
+          <div key={blog.id} className="w-full sm:w-1/2 md:w-1/4 px-2 mb-4 overflow-hidden">
+            <div className="bg-black p-4 shadow-mypurple shadow-md rounded-lg h-[400px] overflow-hidden">
+              <Link href={`/blogs/${blog.slug}`} >
+                
+                  <div className='max-h-[180px] h-[180px] rounded-lg'>
+                    <Image 
+                      className="rounded-t-lg object-cover max-h-[180px] h-[180px]" 
+                      src={blog.blogImageUrl} // Ensure the correct field name
+                      alt={blog.title} 
+                      width={600} 
+                      height={400} 
+                      layout="responsive" 
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h2 className="px-2 bg-white rounded dark:bg-white text-xl font-extrabold mb-4 text-mypurple">{blog.title}</h2> 
+                    <p className="text-white font-light text-sm">{stripHtmlTags(blog.content).slice(0, 100)}...</p>
+                    <p className="text-white text-[10px] mt-3 mb-2">By {blog.author} on {blog.date}</p>
+                  </div>
+              </Link>
+            </div>
           </div>
         ))}
       </div>

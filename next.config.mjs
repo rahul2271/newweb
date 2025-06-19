@@ -8,9 +8,10 @@ const nextConfig = {
       "api.uifaces.co",
       "randomuser.me",
       "avatars.githubusercontent.com",
-      "pagedone.io", "avatars.githubusercontent.com",'cdn.pixabay.com','pagedone.io','miro.medium.com', 'www.investopedia.com', 'img.freepik.com'
+      "pagedone.io", "avatars.githubusercontent.com",'cdn.pixabay.com','pagedone.io','miro.medium.com', 'www.investopedia.com', 'img.freepik.com','firebasestorage.googleapis.com'
     ],
   },
 };
 
 export default nextConfig;
+

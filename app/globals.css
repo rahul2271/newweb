@@ -173,3 +173,39 @@ html, body {
 #services{
   scroll-behavior: smooth;
 }
+
+@layer utilities {
+  .blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(70px);
+    opacity: 0.2;
+    animation: blobMove 30s infinite ease-in-out alternate;
+    mix-blend-mode: screen;
+  }
+
+  @keyframes blobMove {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    100% {
+      transform: translate(200px, -150px) scale(1.2);
+    }
+  }
+
+  .animate-fadeInUp {
+    animation: fadeInUp 0.6s ease forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+}
+

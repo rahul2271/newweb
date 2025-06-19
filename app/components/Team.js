@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { FaTwitter, FaLinkedinIn } from 'react-icons/fa'
 import { motion } from "framer-motion";
 
-export default function TeamSection() {
+export default function Example() {
   return (
     <section 
       className="relative py-24 px-6 font-sans bg-cover bg-center bg-no-repeat text-gray-900"

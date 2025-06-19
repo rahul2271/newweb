@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { FiMenu, FiX, FiCpu } from 'react-icons/fi';
 import { motion } from 'framer-motion';
-
+import Link from 'next/link';
 export default function AdvancedHeader() {
   const [navbarOpen, setNavbarOpen] = useState(false);
   const menuRef = useRef(null);
@@ -40,7 +40,7 @@ export default function AdvancedHeader() {
   style={{ fontFamily: "'Poppins', sans-serif" }}
 >
   <motion.img
-    src="./rclogo.png"
+    src="/rclogo.png"
     alt="RC Tech Solutions Logo"
     className="w-[100px] sm:w-[100px]"
     animate={{ rotate: [0, 5, -5, 5, 0] }}
@@ -56,24 +56,24 @@ export default function AdvancedHeader() {
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center space-x-8 font-medium text-gray-800">
-          <a href="#" className="hover:text-blue-600 transition">
+          <Link href="/" className="hover:text-blue-600 transition">
             Home
-          </a>
-          <a href="#team" className="hover:text-blue-600 transition">
+          </Link>
+          <Link href="#team" className="hover:text-blue-600 transition">
             Team
-          </a>
-          <a href="#" className="hover:text-blue-600 transition">
-            Feature
-          </a>
-          <a href="#" className="hover:text-blue-600 transition">
+          </Link>
+          <Link href="#Services" id='service' className="smooth-scroll hover:text-blue-600 transition">
+            Services
+          </Link>
+          <Link href="/blogs" className="hover:text-blue-600 transition">
             Blog
-          </a>
-          <a href="#" className="hover:text-blue-600 transition">
+          </Link>
+          <Link href="/about" className="hover:text-blue-600 transition">
             About
-          </a>
-          <a href="#" className="hover:text-blue-600 transition">
+          </Link>
+          <Link href="/contact" className="hover:text-blue-600 transition">
             Contact
-          </a>
+          </Link>
 
           {/* AI Coming Soon Badge */}
           <div className="flex items-center bg-purple-100 text-gray-900 px-3 py-1 rounded-full text-sm font-semibold animate-pulse select-none">
@@ -114,12 +114,12 @@ export default function AdvancedHeader() {
         <FiX size={28} />
       </button>
 
-      <a href="#" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Home</a>
-      <a href="#team" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Team</a>
-      <a href="#" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Feature</a>
-      <a href="#" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Blog</a>
-      <a href="#" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>About</a>
-      <a href="#" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Contact</a>
+      <Link href="/" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Home</Link>
+      <Link href="#team" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Team</Link>
+      <Link href="#Services" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Services</Link>
+      <Link href="/blogs" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Blog</Link>
+      <Link href="/about" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>About</Link>
+      <Link href="/contact" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Contact</Link>
 
       <div className="flex items-center bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-lg font-semibold animate-pulse select-none max-w-max mt-20">
         <FiCpu className="mr-2" />

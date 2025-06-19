@@ -170,3 +170,6 @@ html, body {
 }
 
 
+#services{
+  scroll-behavior: smooth;
+}

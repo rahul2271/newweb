@@ -103,7 +103,7 @@ export default function ServicesCard() {
       : services.filter((service) => service.category === activeCategory);
 
   return (
-    <section className="relative py-20 px-6 bg-black text-black">
+    <section id="Services" className="relative py-20 px-6 bg-black text-black">
       {/* <div className="absolute top-[-100px] left-[50%] -translate-x-1/2 w-[600px] h-[600px] bg-purple-300 opacity-20 rounded-full blur-3xl z-0"></div> */}
 
       <div className="relative z-10 max-w-7xl mx-auto text-center">

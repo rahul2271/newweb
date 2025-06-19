@@ -46,26 +46,26 @@ export default function About() {
   return (
     <>
 
-    <section class="overflow-hidden bg-white pb-12 pt-20 lg:pb-[90px] lg:pt-[120px] dark:bg-dark">
-    <div class="container mx-auto">
-      <div class="-mx-4 flex flex-wrap items-center justify-between">
-        <div class="w-full px-4 lg:w-6/12">
-          <div class="-mx-3 flex items-center sm:-mx-4">
-            <div class="w-full px-3 sm:px-4 xl:w-1/2">
-              <div class="py-3 sm:py-4">
+    <section className="overflow-hidden bg-white pb-12 pt-20 lg:pb-[90px] lg:pt-[120px] dark:bg-dark">
+    <div className="container mx-auto">
+      <div className="-mx-4 flex flex-wrap items-center justify-between">
+        <div className="w-full px-4 lg:w-6/12">
+          <div className="-mx-3 flex items-center sm:-mx-4">
+            <div className="w-full px-3 sm:px-4 xl:w-1/2">
+              <div className="py-3 sm:py-4">
                 <img src="https://cdn.tailgrids.com/assets/images/marketing/about/about-01/image-1.jpg" alt=""
-                  class="w-full rounded-2xl" />
+                  className="w-full rounded-2xl" />
               </div>
-              <div class="py-3 sm:py-4">
+              <div className="py-3 sm:py-4">
                 <img src="https://cdn.tailgrids.com/assets/images/marketing/about/about-01/image-2.jpg" alt=""
-                  class="w-full rounded-2xl" />
+                  className="w-full rounded-2xl" />
               </div>
             </div>
-            <div class="w-full px-3 sm:px-4 xl:w-1/2">
-              <div class="relative z-10 my-4">
+            <div className="w-full px-3 sm:px-4 xl:w-1/2">
+              <div className="relative z-10 my-4">
                 <img src="https://cdn.tailgrids.com/assets/images/marketing/about/about-01/image-3.jpg" alt=""
-                  class="w-full rounded-2xl" />
-                <span class="absolute -bottom-7 -right-7 z-[-1]">
+                  className="w-full rounded-2xl" />
+                <span className="absolute -bottom-7 -right-7 z-[-1]">
                   <svg width="134" height="106" viewBox="0 0 134 106" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="1.66667" cy="104" r="1.66667" transform="rotate(-90 1.66667 104)" fill="#3056D3" />
                     <circle cx="16.3333" cy="104" r="1.66667" transform="rotate(-90 16.3333 104)" fill="#3056D3" />
@@ -202,26 +202,26 @@ export default function About() {
             </div>
           </div>
         </div>
-        <div class="w-full px-4 lg:w-1/2 xl:w-5/12">
-          <div class="mt-10 lg:mt-0">
-            <span class="mb-4 block text-lg font-semibold text-primary">
+        <div className="w-full px-4 lg:w-1/2 xl:w-5/12">
+          <div className="mt-10 lg:mt-0">
+            <span className="mb-4 block text-lg font-semibold text-primary">
               Why Choose Us
             </span>
-            <h2 class="mb-5 text-3xl font-bold text-black sm:text-[40px]/[48px]">
+            <h2 className="mb-5 text-3xl font-bold text-black sm:text-[40px]/[48px]">
               Make your customers happy by giving services.
             </h2>
-            <p class="mb-5 text-base text-body-color dark:text-dark-6">
+            <p className="mb-5 text-base text-body-color dark:text-dark-6">
               It is a long established fact that a reader will be distracted
               by the readable content of a page when looking at its layout.
               The point of using Lorem Ipsum is that it has a more-or-less.
             </p>
-            <p class="mb-8 text-base text-body-color dark:text-dark-6">
+            <p className="mb-8 text-base text-body-color dark:text-dark-6">
               A domain name is one of the first steps to establishing your
               brand. Secure a consistent brand image with a domain name that
               matches your business.
             </p>
             <a href="javascript:void(0)"
-              class="inline-flex items-center justify-center rounded-md border border-transparent bg-primary px-7 py-3 text-center text-base font-medium text-white hover:bg-primary/90">
+              className="inline-flex items-center justify-center rounded-md border border-transparent bg-primary px-7 py-3 text-center text-base font-medium text-white hover:bg-primary/90">
               Get Started
             </a>
           </div>
@@ -229,73 +229,73 @@ export default function About() {
       </div>
     </div>
   </section>
-     <section class="py-24 relative xl:mr-0 lg:mr-5 mr-0">
-        <div class="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
-            <div class="w-full justify-start items-center xl:gap-12 gap-10 grid lg:grid-cols-2 grid-cols-1">
-                <div class="w-full flex-col justify-center lg:items-start items-center gap-10 inline-flex">
-                    <div class="w-full flex-col justify-center items-start gap-8 flex">
-                        <div class="flex-col justify-start lg:items-start items-center gap-4 flex">
-                            <h6 class="text-gray-400 text-base font-normal leading-relaxed">About Us</h6>
-                            <div class="w-full flex-col justify-start lg:items-start items-center gap-3 flex">
+     <section className="py-24 relative xl:mr-0 lg:mr-5 mr-0">
+        <div className="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
+            <div className="w-full justify-start items-center xl:gap-12 gap-10 grid lg:grid-cols-2 grid-cols-1">
+                <div className="w-full flex-col justify-center lg:items-start items-center gap-10 inline-flex">
+                    <div className="w-full flex-col justify-center items-start gap-8 flex">
+                        <div className="flex-col justify-start lg:items-start items-center gap-4 flex">
+                            <h6 className="text-gray-400 text-base font-normal leading-relaxed">About Us</h6>
+                            <div className="w-full flex-col justify-start lg:items-start items-center gap-3 flex">
                                 <h2
-                                    class="text-indigo-700 text-4xl font-bold font-manrope leading-normal lg:text-start text-center">
+                                    className="text-indigo-700 text-4xl font-bold font-manrope leading-normal lg:text-start text-center">
                                     The Tale of Our Achievement Story</h2>
                                 <p
-                                    class="text-gray-500 text-base font-normal leading-relaxed lg:text-start text-center">
+                                    className="text-gray-500 text-base font-normal leading-relaxed lg:text-start text-center">
                                     Our achievement story is a testament to teamwork and perseverance. Together, we've
                                     overcome challenges, celebrated victories, and created a narrative of progress and
                                     success.</p>
                             </div>
                         </div>
-                        <div class="w-full flex-col justify-center items-start gap-6 flex">
-                            <div class="w-full justify-start items-center gap-8 grid md:grid-cols-2 grid-cols-1">
+                        <div className="w-full flex-col justify-center items-start gap-6 flex">
+                            <div className="w-full justify-start items-center gap-8 grid md:grid-cols-2 grid-cols-1">
                                 <div
-                                    class="w-full h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
-                                    <h4 class="text-gray-900 text-2xl font-bold font-manrope leading-9">33+ Years</h4>
-                                    <p class="text-gray-500 text-base font-normal leading-relaxed">Influencing Digital
+                                    className="w-full h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
+                                    <h4 className="text-gray-900 text-2xl font-bold font-manrope leading-9">33+ Years</h4>
+                                    <p className="text-gray-500 text-base font-normal leading-relaxed">Influencing Digital
                                         Landscapes Together</p>
                                 </div>
                                 <div
-                                    class="w-full h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
-                                    <h4 class="text-gray-900 text-2xl font-bold font-manrope leading-9">125+ Projects
+                                    className="w-full h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
+                                    <h4 className="text-gray-900 text-2xl font-bold font-manrope leading-9">125+ Projects
                                     </h4>
-                                    <p class="text-gray-500 text-base font-normal leading-relaxed">Excellence Achieved
+                                    <p className="text-gray-500 text-base font-normal leading-relaxed">Excellence Achieved
                                         Through Success</p>
                                 </div>
                             </div>
-                            <div class="w-full h-full justify-start items-center gap-8 grid md:grid-cols-2 grid-cols-1">
+                            <div className="w-full h-full justify-start items-center gap-8 grid md:grid-cols-2 grid-cols-1">
                                 <div
-                                    class="w-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
-                                    <h4 class="text-gray-900 text-2xl font-bold font-manrope leading-9">26+ Awards</h4>
-                                    <p class="text-gray-500 text-base font-normal leading-relaxed">Our Dedication to
+                                    className="w-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
+                                    <h4 className="text-gray-900 text-2xl font-bold font-manrope leading-9">26+ Awards</h4>
+                                    <p className="text-gray-500 text-base font-normal leading-relaxed">Our Dedication to
                                         Innovation Wins Understanding</p>
                                 </div>
                                 <div
-                                    class="w-full h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
-                                    <h4 class="text-gray-900 text-2xl font-bold font-manrope leading-9">99% Happy
+                                    className="w-full h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
+                                    <h4 className="text-gray-900 text-2xl font-bold font-manrope leading-9">99% Happy
                                         Clients</h4>
-                                    <p class="text-gray-500 text-base font-normal leading-relaxed">Mirrors our Focus on
+                                    <p className="text-gray-500 text-base font-normal leading-relaxed">Mirrors our Focus on
                                         Client Satisfaction.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <button
-                        class="sm:w-fit w-full group px-3.5 py-2 bg-indigo-50 hover:bg-indigo-100 rounded-lg shadow-[0px_1px_2px_0px_rgba(16,_24,_40,_0.05)] transition-all duration-700 ease-in-out justify-center items-center flex">
+                        className="sm:w-fit w-full group px-3.5 py-2 bg-indigo-50 hover:bg-indigo-100 rounded-lg shadow-[0px_1px_2px_0px_rgba(16,_24,_40,_0.05)] transition-all duration-700 ease-in-out justify-center items-center flex">
                         <span
-                            class="px-1.5 text-indigo-600 text-sm font-medium leading-6 group-hover:-translate-x-0.5 transition-all duration-700 ease-in-out">Read
+                            className="px-1.5 text-indigo-600 text-sm font-medium leading-6 group-hover:-translate-x-0.5 transition-all duration-700 ease-in-out">Read
                             More</span>
-                        <svg class="group-hover:translate-x-0.5 transition-all duration-700 ease-in-out"
+                        <svg className="group-hover:translate-x-0.5 transition-all duration-700 ease-in-out"
                             xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                            <path d="M6.75265 4.49658L11.2528 8.99677L6.75 13.4996" stroke="#4F46E5" stroke-width="1.6"
-                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M6.75265 4.49658L11.2528 8.99677L6.75 13.4996" stroke="#4F46E5" strokeWidth="1.6"
+                                strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </button>
                 </div>
-                <div class="w-full lg:justify-start justify-center items-start flex">
+                <div className="w-full lg:justify-start justify-center items-start flex">
                     <div
-                        class="sm:w-[564px] w-full sm:h-[646px] h-full sm:bg-gray-100 rounded-3xl sm:border border-gray-200 relative">
-                        <img class="sm:mt-5 sm:ml-5 w-full h-full rounded-3xl object-cover"
+                        className="sm:w-[564px] w-full sm:h-[646px] h-full sm:bg-gray-100 rounded-3xl sm:border border-gray-200 relative">
+                        <img className="sm:mt-5 sm:ml-5 w-full h-full rounded-3xl object-cover"
                             src="https://pagedone.io/asset/uploads/1717742431.png" alt="about Us image" />
                     </div>
                 </div>

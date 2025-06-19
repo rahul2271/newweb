@@ -76,3 +76,15 @@
 .blog-content .ql-align-justify {
   text-align: justify;
 }
+
+.blog-content h2,
+.blog-content h3 {
+  scroll-margin-top: 100px; /* adjust if your navbar height is different */
+  margin-top: 2rem;
+  font-weight: bold;
+  color: #111827; /* Tailwind's gray-900 */
+}
+
+html {
+  scroll-behavior: smooth;
+}

@@ -23,6 +23,7 @@ export default function BlogPostPage() {
   const [commentInput, setCommentInput] = useState('');
   const [nameInput, setNameInput] = useState('');
   const [commentLoading, setCommentLoading] = useState(false);
+  const [toc, setToc] = useState([]);
 
   // Fetch blog post
   useEffect(() => {
@@ -46,6 +47,32 @@ export default function BlogPostPage() {
 
     fetchBlogPost();
   }, [title]);
+
+  // Extract TOC
+  useEffect(() => {
+    if (!post?.content) return;
+
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = post.content;
+
+    const headings = [...tempDiv.querySelectorAll('h2, h3')];
+
+    const tocItems = headings.map((heading, index) => {
+      const id = `heading-${index}`;
+      heading.setAttribute('id', id);
+      return {
+        id,
+        text: heading.textContent,
+        level: heading.tagName,
+      };
+    });
+
+    setToc(tocItems);
+    setPost(prev => ({
+      ...prev,
+      content: tempDiv.innerHTML,
+    }));
+  }, [post?.content]);
 
   // Fetch comments
   useEffect(() => {
@@ -84,7 +111,6 @@ export default function BlogPostPage() {
       });
       setCommentInput('');
       setNameInput('');
-      // Refresh comment list
       const q = query(
         collection(db, 'blogs', post.id, 'comments'),
         orderBy('createdAt', 'desc')
@@ -107,6 +133,58 @@ export default function BlogPostPage() {
 
   return (
     <div className='mx-auto w-auto md:max-w-[800px] m-5 mt-20 bg-white p-5 rounded-lg shadow-sm'>
+      {/* Responsive Fixed Sidebar CTA */}
+<div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-50 hidden md:flex">
+  <div className="w-64 bg-white/90 backdrop-blur-lg border border-[#953ee2] rounded-2xl shadow-2xl p-5 flex flex-col items-center gap-4 transition-all duration-300 hover:scale-105">
+
+    {/* Logo */}
+    <img
+      src="../rclogo.png"
+      alt="RC Tech Logo"
+      className="w-12 h-12 rounded-full border-2 border-[#953ee2] shadow-lg"
+    />
+
+    {/* Your Photo */}
+    <img
+      src="../rahul.jpeg"
+      alt="Rahul Chauhan"
+      className="w-20 h-20 rounded-full border-4 border-white shadow-xl object-cover"
+    />
+
+    {/* Brand Title */}
+    <h3 className="text-lg font-semibold text-[#953ee2] text-center">
+      RC Tech Solutions
+    </h3>
+
+    {/* Short Desc */}
+    <p className="text-sm text-center text-gray-700 font-medium">
+      We build luxury-grade digital solutions — websites, branding & more.
+    </p>
+
+    {/* CTA Button */}
+    <a
+      href="https://www.rchauhan.in"
+      target="_blank"
+      className="bg-[#953ee2] text-white font-semibold px-4 py-2 rounded-full shadow hover:bg-[#7a2bd4] transition-all duration-300"
+    >
+      Let’s Work
+    </a>
+  </div>
+</div>
+
+{/* Mobile Floating CTA */}
+<div className="fixed bottom-5 right-5 z-50 md:hidden">
+  <a
+    href="https://www.rchauhan.in"
+    target="_blank"
+    className="flex items-center gap-2 bg-[#953ee2] text-white px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
+  >
+    <img src="/your-logo.png" alt="Logo" className="w-6 h-6 rounded-full" />
+    <span className="text-sm font-medium">Work with RC Tech</span>
+  </a>
+</div>
+
+
       {/* Blog Image */}
       <div className="relative w-full h-64 md:h-96">
         <Image
@@ -122,7 +200,26 @@ export default function BlogPostPage() {
       {/* Title */}
       <h1 className='text-black text-center my-10 text-3xl font-bold uppercase'>{post.title}</h1>
 
-      {/* Content */}
+      {/* Table of Contents */}
+      {toc.length > 0 && (
+        <div className="my-8 p-4 bg-gray-100 rounded shadow">
+          <h2 className="text-lg font-semibold text-black mb-2">Table of Contents</h2>
+          <ul className="list-disc pl-5 space-y-1 text-gray-800">
+            {toc.map((item) => (
+              <li
+                key={item.id}
+                className={`${item.level === 'H3' ? 'ml-4 text-sm' : 'text-base'}`}
+              >
+                <a href={`#${item.id}`} className="text-blue-600 hover:underline">
+                  {item.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {/* Blog Content */}
       <div
         className={`${styles['blog-content']} my-5 text-black`}
         dangerouslySetInnerHTML={{ __html: post.content }}

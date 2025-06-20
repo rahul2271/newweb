@@ -76,7 +76,7 @@ export default function BlogPage() {
   const itemListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "name": "RC Tech Blogs",
+    
     "itemListElement": filteredBlogs.map((blog, index) => ({
       "@type": "ListItem",
       "position": index + 1,
@@ -98,9 +98,10 @@ export default function BlogPage() {
     <div className="relative bg-white min-h-screen text-black font-sans overflow-x-hidden">
       {/* JSON-LD Structured Data */}
       <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
-      />
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+/>
+
 
       {/* Background animation */}
       <div className="fixed top-0 left-0 w-full h-full -z-10 bg-gradient-to-tr from-white via-[#f2e9fc] to-white animate-gradient-xy opacity-60"></div>

@@ -25,7 +25,6 @@ export default function BlogPostPage() {
   const [commentLoading, setCommentLoading] = useState(false);
   const [toc, setToc] = useState([]);
 
-  // Fetch blog post
   useEffect(() => {
     const fetchBlogPost = async () => {
       try {
@@ -48,15 +47,11 @@ export default function BlogPostPage() {
     fetchBlogPost();
   }, [title]);
 
-  // Extract TOC
   useEffect(() => {
     if (!post?.content) return;
-
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = post.content;
-
     const headings = [...tempDiv.querySelectorAll('h2, h3')];
-
     const tocItems = headings.map((heading, index) => {
       const id = `heading-${index}`;
       heading.setAttribute('id', id);
@@ -66,7 +61,6 @@ export default function BlogPostPage() {
         level: heading.tagName,
       };
     });
-
     setToc(tocItems);
     setPost(prev => ({
       ...prev,
@@ -74,7 +68,6 @@ export default function BlogPostPage() {
     }));
   }, [post?.content]);
 
-  // Fetch comments
   useEffect(() => {
     const fetchComments = async () => {
       if (!post?.id) return;
@@ -97,11 +90,9 @@ export default function BlogPostPage() {
     fetchComments();
   }, [post?.id]);
 
-  // Submit comment
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     if (!commentInput || !nameInput || !post?.id) return;
-
     setCommentLoading(true);
     try {
       await addDoc(collection(db, 'blogs', post.id, 'comments'), {
@@ -131,61 +122,62 @@ export default function BlogPostPage() {
   if (loading) return <div>Loading...</div>;
   if (!post) return <div>Blog post not found</div>;
 
+  const blogSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "image": post.blogImageUrl,
+    "editor": post.author,
+    "author": {
+      "@type": "Person",
+      "name": post.author
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "RC Tech Solutions",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.rchauhan.in/rclogo.png"
+      }
+    },
+    "url": `https://www.rchauhan.in/blog/${post.slug || title}`,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://www.rchauhan.in/blog/${post.slug || title}`
+    },
+    "datePublished": post.date,
+    "description": post.description || post.title,
+    "articleBody": post.content?.replace(/<[^>]+>/g, '')?.slice(0, 300)
+  };
+
   return (
     <div className='mx-auto w-auto md:max-w-[800px] m-5 mt-20 bg-white p-5 rounded-lg shadow-sm'>
-      {/* Responsive Fixed Sidebar CTA */}
-<div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-50 hidden md:flex">
-  <div className="w-64 bg-white/90 backdrop-blur-lg border border-[#953ee2] rounded-2xl shadow-2xl p-5 flex flex-col items-center gap-4 transition-all duration-300 hover:scale-105">
 
-    {/* Logo */}
-    <img
-      src="../rclogo.png"
-      alt="RC Tech Logo"
-      className="w-12 h-12 rounded-full border-2 border-[#953ee2] shadow-lg"
-    />
+      {/* JSON-LD Schema.org */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(blogSchema) }} />
 
-    {/* Your Photo */}
-    <img
-      src="../rahul.jpeg"
-      alt="Rahul Chauhan"
-      className="w-20 h-20 rounded-full border-4 border-white shadow-xl object-cover"
-    />
+      {/* Sidebar CTA (Desktop) */}
+      <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-50 hidden md:flex">
+        <div className="w-64 bg-white/90 backdrop-blur-lg border border-[#953ee2] rounded-2xl shadow-2xl p-5 flex flex-col items-center gap-4 transition-all duration-300 hover:scale-105">
+          <img src="/rclogo.png" alt="RC Tech Logo" className="w-12 h-12 rounded-full border-2 border-[#953ee2] shadow-lg" />
+          <img src="/rahul.jpeg" alt="Rahul Chauhan" className="w-20 h-20 rounded-full border-4 border-white shadow-xl object-cover" />
+          <h3 className="text-lg font-semibold text-[#953ee2] text-center">RC Tech Solutions</h3>
+          <p className="text-sm text-center text-gray-700 font-medium">
+            We build luxury-grade digital solutions — websites, branding & more.
+          </p>
+          <a href="https://www.rchauhan.in" target="_blank" className="bg-[#953ee2] text-white font-semibold px-4 py-2 rounded-full shadow hover:bg-[#7a2bd4] transition-all duration-300">Let’s Work</a>
+        </div>
+      </div>
 
-    {/* Brand Title */}
-    <h3 className="text-lg font-semibold text-[#953ee2] text-center">
-      RC Tech Solutions
-    </h3>
+      {/* CTA for Mobile */}
+      <div className="fixed bottom-5 right-5 z-50 md:hidden">
+        <a href="https://www.rchauhan.in" target="_blank" className="flex items-center gap-2 bg-[#953ee2] text-white px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-transform duration-300">
+          <img src="/rclogo.png" alt="Logo" className="w-6 h-6 rounded-full" />
+          <span className="text-sm font-medium">Work with RC Tech</span>
+        </a>
+      </div>
 
-    {/* Short Desc */}
-    <p className="text-sm text-center text-gray-700 font-medium">
-      We build luxury-grade digital solutions — websites, branding & more.
-    </p>
-
-    {/* CTA Button */}
-    <a
-      href="https://www.rchauhan.in"
-      target="_blank"
-      className="bg-[#953ee2] text-white font-semibold px-4 py-2 rounded-full shadow hover:bg-[#7a2bd4] transition-all duration-300"
-    >
-      Let’s Work
-    </a>
-  </div>
-</div>
-
-{/* Mobile Floating CTA */}
-<div className="fixed bottom-5 right-5 z-50 md:hidden">
-  <a
-    href="https://www.rchauhan.in"
-    target="_blank"
-    className="flex items-center gap-2 bg-[#953ee2] text-white px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
-  >
-    <img src="/your-logo.png" alt="Logo" className="w-6 h-6 rounded-full" />
-    <span className="text-sm font-medium">Work with RC Tech</span>
-  </a>
-</div>
-
-
-      {/* Blog Image */}
+      {/* Blog Header */}
       <div className="relative w-full h-64 md:h-96">
         <Image
           className="rounded-lg object-fill"
@@ -197,7 +189,6 @@ export default function BlogPostPage() {
         />
       </div>
 
-      {/* Title */}
       <h1 className='text-black text-center my-10 text-3xl font-bold uppercase'>{post.title}</h1>
 
       {/* Table of Contents */}
@@ -206,13 +197,8 @@ export default function BlogPostPage() {
           <h2 className="text-lg font-semibold text-black mb-2">Table of Contents</h2>
           <ul className="list-disc pl-5 space-y-1 text-gray-800">
             {toc.map((item) => (
-              <li
-                key={item.id}
-                className={`${item.level === 'H3' ? 'ml-4 text-sm' : 'text-base'}`}
-              >
-                <a href={`#${item.id}`} className="text-blue-600 hover:underline">
-                  {item.text}
-                </a>
+              <li key={item.id} className={`${item.level === 'H3' ? 'ml-4 text-sm' : 'text-base'}`}>
+                <a href={`#${item.id}`} className="text-blue-600 hover:underline">{item.text}</a>
               </li>
             ))}
           </ul>
@@ -220,42 +206,18 @@ export default function BlogPostPage() {
       )}
 
       {/* Blog Content */}
-      <div
-        className={`${styles['blog-content']} my-5 text-black`}
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      ></div>
+      <div className={`${styles['blog-content']} my-5 text-black`} dangerouslySetInnerHTML={{ __html: post.content }}></div>
 
-      {/* Author + Date */}
-      <p className='text-sm text-gray-400 mb-5 text-end pr-5'>
-        <em>By {post.author} on {post.date}</em>
-      </p>
+      <p className='text-sm text-gray-400 mb-5 text-end pr-5'><em>By {post.author} on {post.date}</em></p>
       <hr className='border border-gray-300 my-5' />
 
       {/* Comment Form */}
       <div className="mt-10">
         <h2 className="text-xl font-semibold mb-4 text-black">Leave a Comment</h2>
         <form onSubmit={handleCommentSubmit} className="flex flex-col gap-3">
-          <input
-            type="text"
-            placeholder="Your Name"
-            className="border border-gray-300 rounded px-4 py-2"
-            value={nameInput}
-            onChange={(e) => setNameInput(e.target.value)}
-            required
-          />
-          <textarea
-            placeholder="Your Comment"
-            className="border border-gray-300 rounded px-4 py-2"
-            rows="4"
-            value={commentInput}
-            onChange={(e) => setCommentInput(e.target.value)}
-            required
-          />
-          <button
-            type="submit"
-            className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
-            disabled={commentLoading}
-          >
+          <input type="text" placeholder="Your Name" className="border border-gray-300 rounded px-4 py-2" value={nameInput} onChange={(e) => setNameInput(e.target.value)} required />
+          <textarea placeholder="Your Comment" className="border border-gray-300 rounded px-4 py-2" rows="4" value={commentInput} onChange={(e) => setCommentInput(e.target.value)} required />
+          <button type="submit" className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800" disabled={commentLoading}>
             {commentLoading ? 'Posting...' : 'Post Comment'}
           </button>
         </form>
@@ -271,9 +233,7 @@ export default function BlogPostPage() {
             {comments.map((comment) => (
               <li key={comment.id} className="border border-gray-200 rounded p-3 bg-gray-50">
                 <p className="text-gray-800">{comment.text}</p>
-                <p className="text-sm text-gray-500 mt-2">
-                  – <strong>{comment.name}</strong>
-                </p>
+                <p className="text-sm text-gray-500 mt-2">– <strong>{comment.name}</strong></p>
               </li>
             ))}
           </ul>

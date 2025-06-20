@@ -16,6 +16,7 @@ import {
 } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import SeoSchema from '@/components/SeoSchema';
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -84,8 +85,53 @@ function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
 export default function DigitalBrandingPage() {
   const isMobile = useIsMobile();
 
+  const schemas = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      'mainEntity': [
+        {
+          '@type': 'Question',
+          'name': 'What is included in your digital branding services?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'We offer brand identity, social media, SEO, content creation, influencer marketing, and more.'
+          }
+        },
+        {
+          '@type': 'Question',
+          'name': 'Do you offer custom branding strategies?',
+          'acceptedAnswer': {
+            '@type': 'Answer',
+            'text': 'Yes, all our strategies are tailored to your business goals and audience.'
+          }
+        }
+      ]
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      'itemListElement': [
+        {
+          '@type': 'ListItem',
+          'position': 1,
+          'name': 'Home',
+          'item': 'https://yourdomain.com'
+        },
+        {
+          '@type': 'ListItem',
+          'position': 2,
+          'name': 'Digital Branding',
+          'item': 'https://yourdomain.com/digital-branding'
+        }
+      ]
+    }
+  ];
+
   return (
     <>
+      <SeoSchema schemas={schemas} />
+
       <section className="relative bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 text-white px-6 md:px-16 py-20 overflow-hidden md:pt-[180px]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 via-[#0c0e10] to-gray-900 z-0" />
         <div className="absolute inset-0 z-0 opacity-20 bg-[url('/grid-lines.svg')] bg-cover bg-center" />

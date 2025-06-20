@@ -82,6 +82,29 @@ function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
 export default function DevOpsCloudPage() {
   const isMobile = useIsMobile();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "RC Tech Solutions",
+    "url": "https://www.rctechsolutions.com/devops-cloud",
+    "image": "https://www.rctechsolutions.com/logo.png",
+    "description": "DevOps and cloud consulting services including CI/CD, infrastructure automation, monitoring, scaling, and compliance. Delivered by RC Tech Solutions.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Delhi",
+      "addressRegion": "Delhi",
+      "postalCode": "110001",
+      "addressCountry": "IN"
+    },
+    "telephone": "+91-XXXXXXXXXX",
+    "areaServed": ["IN", "US", "UK"],
+    "priceRange": "$$",
+    "sameAs": [
+      "https://www.instagram.com/rctechsolutions",
+      "https://www.linkedin.com/company/rctechsolutions"
+    ]
+  };
+
   return (
     <>
       {/* Hero Section */}
@@ -173,6 +196,12 @@ export default function DevOpsCloudPage() {
           )}
         </div>
       </section>
+
+      {/* JSON-LD Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </>
   );
 }

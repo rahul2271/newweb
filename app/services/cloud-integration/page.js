@@ -13,7 +13,6 @@ import { SiKubernetes } from 'react-icons/si';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
-// Hook to detect mobile screens
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -58,7 +57,6 @@ function FeatureCard({ icon: Icon, title, color, delay = 0 }) {
       viewport={{ once: true }}
       className="relative group p-6 border border-transparent bg-white rounded-xl shadow-md hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 ease-in-out overflow-hidden cursor-pointer"
     >
-      {/* Glowing cursor follower */}
       <motion.div
         className={`absolute left-0 top-0 w-2 h-2 bg-gradient-to-r ${color} rounded-full`}
         animate={{
@@ -73,7 +71,6 @@ function FeatureCard({ icon: Icon, title, color, delay = 0 }) {
         }}
         style={{ zIndex: 10 }}
       />
-      {/* Hover bar */}
       <div className={`absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r ${color} scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500`} />
 
       <div className="text-3xl mb-4 text-indigo-600 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
@@ -91,6 +88,29 @@ function FeatureCard({ icon: Icon, title, color, delay = 0 }) {
 export default function CloudIntegrationPage() {
   const isMobile = useIsMobile();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "RC Tech Solutions",
+    "url": "https://www.rctechsolutions.com/cloud-integration",
+    "image": "https://www.rctechsolutions.com/logo.png",
+    "description": "RC Tech Solutions offers enterprise-grade cloud integration services including AWS, Azure, Kubernetes, cloud security, and infrastructure optimization.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Delhi",
+      "addressRegion": "Delhi",
+      "postalCode": "110001",
+      "addressCountry": "IN"
+    },
+    "telephone": "+91-XXXXXXXXXX",
+    "areaServed": "IN",
+    "priceRange": "$$",
+    "sameAs": [
+      "https://www.instagram.com/rctechsolutions",
+      "https://www.linkedin.com/company/rctechsolutions"
+    ]
+  };
+
   return (
     <>
       {/* Hero Section */}
@@ -99,7 +119,6 @@ export default function CloudIntegrationPage() {
         <div className="absolute inset-0 z-0 opacity-20 bg-[url('/grid-lines.svg')] bg-cover bg-center" />
 
         <div className="relative z-10 max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
-          {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -120,7 +139,6 @@ export default function CloudIntegrationPage() {
             </p>
           </motion.div>
 
-          {/* Right Box */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -179,6 +197,12 @@ export default function CloudIntegrationPage() {
           )}
         </div>
       </section>
+
+      {/* Schema.org JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </>
   );
 }

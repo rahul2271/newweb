@@ -89,7 +89,7 @@ export default function AIPoweredSolutionsPage() {
     "@type": "ProfessionalService",
     "name": "RC Tech Solutions",
     "image": "https://www.rctechsolutions.com/rclogo.png",
-    "url": "https://www.rctechsolutions.com/services/ai-powered-solutions",
+    "url": "https://www.rctechsolutions.com/services/ai-powered",
     "telephone": "+91-7009646377",
     "address": {
       "@type": "PostalAddress",

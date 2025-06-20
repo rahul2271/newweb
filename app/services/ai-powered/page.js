@@ -1,22 +1,23 @@
 'use client';
-import { useEffect, useRef, useState, memo } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
-  FaCode,
-  FaPalette,
-  FaDatabase,
-  FaShoppingCart,
-  FaTools,
   FaLaptopCode,
   FaCogs,
+  FaPalette,
   FaTabletAlt,
+  FaDatabase,
+  FaCode,
   FaLayerGroup,
-  FaFacebookF,
-  FaStar,
+  FaTools,
+  FaShoppingCart,
   FaArrowRight,
+  FaFacebookF,
+  FaStar
 } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import SeoSchema from '../../components/SeoSchema';
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -38,10 +39,10 @@ const services = [
   { title: 'AI Integration for Web & Mobile', icon: FaCode, color: 'from-sky-500 to-blue-600' },
   { title: 'Machine Learning Models', icon: FaLayerGroup, color: 'from-amber-500 to-yellow-400' },
   { title: 'Voice Recognition Systems', icon: FaTools, color: 'from-indigo-400 to-violet-500' },
-  { title: 'AI-Based Recommendation Engines', icon: FaShoppingCart, color: 'from-teal-400 to-cyan-500' },
+  { title: 'AI-Based Recommendation Engines', icon: FaShoppingCart, color: 'from-teal-400 to-cyan-500' }
 ];
 
-const ServiceCard = memo(({ icon: Icon, title, color, delay = 0 }) => {
+function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
   const cardRef = useRef(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
 
@@ -79,36 +80,58 @@ const ServiceCard = memo(({ icon: Icon, title, color, delay = 0 }) => {
       </div>
     </motion.div>
   );
-});
+}
 
 export default function AIPoweredSolutionsPage() {
   const isMobile = useIsMobile();
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "RC Tech Solutions",
-    "image": "https://www.rctechsolutions.com/rclogo.png",
-    "url": "https://www.rctechsolutions.com/services/ai-powered",
-    "telephone": "+91-7009646377",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Chandigarh",
-      "addressRegion": "Chandigarh",
-      "postalCode": "160061",
-      "addressCountry": "IN"
+  const schemas = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ProfessionalService',
+      name: 'RC Tech Solutions',
+      image: 'https://www.rctechsolutions.com/rclogo.png',
+      url: 'https://www.rctechsolutions.com/services/ai-powered',
+      telephone: '+91-7009646377',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Chandigarh',
+        addressRegion: 'Chandigarh',
+        postalCode: '160061',
+        addressCountry: 'IN'
+      },
+      priceRange: '$$',
+      description: 'We provide AI-powered solutions like NLP, Computer Vision, Predictive Analytics, and more to drive digital transformation.',
+      areaServed: ['IN'],
+      sameAs: [
+        'https://www.instagram.com/rctechsolutions',
+        'https://www.linkedin.com/company/rctechsolutions'
+      ]
     },
-    "priceRange": "$$",
-    "description": "We provide AI-powered solutions like NLP, Computer Vision, Predictive Analytics, and more to drive digital transformation.",
-    "areaServed": "IN",
-    "sameAs": [
-      "https://www.instagram.com/rctechsolutions",
-      "https://www.linkedin.com/company/rctechsolutions"
-    ]
-  };
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.rctechsolutions.com'
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'AI Powered Solutions',
+          item: 'https://www.rctechsolutions.com/services/ai-powered'
+        }
+      ]
+    }
+  ];
 
   return (
     <>
+      <SeoSchema schemas={schemas} />
+      {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 text-white px-4 sm:px-6 md:px-16 py-20 overflow-hidden md:pt-[180px]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 via-[#0c0e10] to-gray-900 z-0"></div>
         <div className="absolute inset-0 z-0 opacity-20 bg-[url('/grid-lines.svg')] bg-cover bg-center" />
@@ -130,16 +153,14 @@ export default function AIPoweredSolutionsPage() {
                 <span className="text-white ml-1">50 reviews</span>
               </span>
             </div>
-
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
-              AI-Powered Solutions<br />That Drive&nbsp;
+              AI-Powered Solutions<br />That Drive{' '}
               <span className="bg-gradient-to-r from-[#3f83f8] to-[#a855f7] bg-clip-text text-transparent">Innovation</span>
             </h1>
             <p className="text-white/80 text-lg max-w-2xl">
               Empower your business with cutting-edge AI tools built to scale, adapt, and transform your operations.
             </p>
           </motion.div>
-
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -147,20 +168,16 @@ export default function AIPoweredSolutionsPage() {
             className="bg-[#151b55] border border-[#2d3473] px-6 py-8 md:px-8 md:py-10 rounded-xl text-left w-full max-w-md shadow-2xl"
           >
             <h3 className="text-xl font-semibold text-white leading-snug mb-6">
-              Get <span className="underline decoration-orange-400">Project-based</span><br />
-              solutions or hire<br />
+              Get <span className="underline decoration-orange-400">Project-based</span><br />solutions or hire<br />
               <span className="underline decoration-lime-300">dedicated AI teams</span>
             </h3>
-            <button
-              aria-label="Start a discussion about your AI project"
-              className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg"
-            >
+            <button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg">
               Discuss Your Requirements →
             </button>
           </motion.div>
         </div>
       </section>
-
+      {/* Services Section */}
       <section className="bg-[#f9f9f9] py-20 px-4 sm:px-6 md:px-12">
         <div className="max-w-6xl mx-auto text-center">
           <motion.h2
@@ -171,7 +188,6 @@ export default function AIPoweredSolutionsPage() {
           >
             AI-Powered Services
           </motion.h2>
-
           {isMobile ? (
             <Swiper spaceBetween={20} slidesPerView={1.2} loop>
               {services.map((service, index) => (
@@ -189,12 +205,6 @@ export default function AIPoweredSolutionsPage() {
           )}
         </div>
       </section>
-
-      {/* ✅ schema.org JSON-LD script */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
     </>
   );
 }

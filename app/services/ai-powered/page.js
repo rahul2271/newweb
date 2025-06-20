@@ -20,14 +20,12 @@ import 'swiper/css';
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
-
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
     window.addEventListener('resize', handleResize);
     handleResize();
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-
   return isMobile;
 }
 
@@ -86,12 +84,34 @@ const ServiceCard = memo(({ icon: Icon, title, color, delay = 0 }) => {
 export default function AIPoweredSolutionsPage() {
   const isMobile = useIsMobile();
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "RC Tech Solutions",
+    "image": "https://www.rctechsolutions.com/rclogo.png",
+    "url": "https://www.rctechsolutions.com/services/ai-powered-solutions",
+    "telephone": "+91-7009646377",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Chandigarh",
+      "addressRegion": "Chandigarh",
+      "postalCode": "160061",
+      "addressCountry": "IN"
+    },
+    "priceRange": "$$",
+    "description": "We provide AI-powered solutions like NLP, Computer Vision, Predictive Analytics, and more to drive digital transformation.",
+    "areaServed": "IN",
+    "sameAs": [
+      "https://www.instagram.com/rctechsolutions",
+      "https://www.linkedin.com/company/rctechsolutions"
+    ]
+  };
+
   return (
     <>
       <section className="relative bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 text-white px-4 sm:px-6 md:px-16 py-20 overflow-hidden md:pt-[180px]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 via-[#0c0e10] to-gray-900 z-0"></div>
         <div className="absolute inset-0 z-0 opacity-20 bg-[url('/grid-lines.svg')] bg-cover bg-center" />
-
         <div className="relative z-10 max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -169,6 +189,12 @@ export default function AIPoweredSolutionsPage() {
           )}
         </div>
       </section>
+
+      {/* ✅ schema.org JSON-LD script */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
     </>
   );
 }

@@ -72,15 +72,46 @@ export default function BlogPage() {
     setFilteredBlogs(result);
   }, [search, selectedCategory, blogs]);
 
+  // Schema.org ItemList structured data
+  const itemListSchema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "RC Tech Blogs",
+    "itemListElement": filteredBlogs.map((blog, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "url": `https://www.rctechsolutions.com/blogs/${blog.slug}`,
+      "item": {
+        "@type": "BlogPosting",
+        "headline": blog.title,
+        "author": {
+          "@type": "Person",
+          "name": blog.author
+        },
+        "image": blog.blogImageUrl,
+        "datePublished": blog.date
+      }
+    }))
+  };
+
   return (
     <div className="relative bg-white min-h-screen text-black font-sans overflow-x-hidden">
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
+
       {/* Background animation */}
       <div className="fixed top-0 left-0 w-full h-full -z-10 bg-gradient-to-tr from-white via-[#f2e9fc] to-white animate-gradient-xy opacity-60"></div>
 
       {/* Hero Section */}
       <section className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-10 text-center">
         <h1 className="text-5xl md:text-6xl font-extrabold text-[#111] leading-tight tracking-tight">
-          Elevate with <span className="text-[#953ee2] bg-gradient-to-r from-[#953ee2] to-[#b67dfd] bg-clip-text text-transparent">RC Tech Blogs</span>
+          Elevate with{" "}
+          <span className="text-[#953ee2] bg-gradient-to-r from-[#953ee2] to-[#b67dfd] bg-clip-text text-transparent">
+            RC Tech Blogs
+          </span>
         </h1>
         <p className="text-gray-500 mt-6 text-lg max-w-2xl mx-auto">
           Curated thoughts. Designed for impact. Built with intent. Discover insights, ideas, and innovations that lead the future.
@@ -109,7 +140,7 @@ export default function BlogPage() {
         </select>
       </div>
 
-      {/* Featured Section */}
+      {/* Featured Blogs */}
       {filteredBlogs.some((blog) => blog.featured) && (
         <section className="relative max-w-7xl mx-auto px-6 mb-24">
           <h2 className="text-3xl font-bold mb-8 border-l-4 pl-4 border-[#953ee2]">🚀 Featured Highlights</h2>
@@ -118,9 +149,7 @@ export default function BlogPage() {
             {filteredBlogs.filter(blog => blog.featured).map((blog) => (
               <Link key={blog.id} href={`/blogs/${blog.slug}`} className="group">
                 <article className="relative bg-[#0f0f0f] text-white rounded-3xl shadow-xl transition-transform hover:-translate-y-1 hover:scale-[1.02] overflow-hidden border border-[#953ee2]/10">
-                  <div className="absolute top-5 left-5 bg-[#953ee2] text-xs px-3 py-1 rounded-full z-10">
-                    Featured
-                  </div>
+                  <div className="absolute top-5 left-5 bg-[#953ee2] text-xs px-3 py-1 rounded-full z-10">Featured</div>
                   <div className="relative h-[240px] w-full overflow-hidden">
                     <Image
                       src={blog.blogImageUrl}

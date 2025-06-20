@@ -137,13 +137,13 @@ export default function BlogPostPage() {
       "name": "RC Tech Solutions",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.rchauhan.in/rclogo.png"
+        "url": "https://www.rctechsolutions.com/rclogo.png"
       }
     },
-    "url": `https://www.rchauhan.in/blog/${post.slug || title}`,
+    "url": `https://www.rctechsolutions.com/blog/${post.slug || title}`,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://www.rchauhan.in/blog/${post.slug || title}`
+      "@id": `www.rctechsolutions.com/blog/${post.slug || title}`
     },
     "datePublished": post.date,
     "description": post.description || post.title,
@@ -165,13 +165,13 @@ export default function BlogPostPage() {
           <p className="text-sm text-center text-gray-700 font-medium">
             We build luxury-grade digital solutions — websites, branding & more.
           </p>
-          <a href="https://www.rchauhan.in" target="_blank" className="bg-[#953ee2] text-white font-semibold px-4 py-2 rounded-full shadow hover:bg-[#7a2bd4] transition-all duration-300">Let’s Work</a>
+          <a href="https://www.rctechsolutions.com" target="_blank" className="bg-[#953ee2] text-white font-semibold px-4 py-2 rounded-full shadow hover:bg-[#7a2bd4] transition-all duration-300">Let’s Work</a>
         </div>
       </div>
 
       {/* CTA for Mobile */}
       <div className="fixed bottom-5 right-5 z-50 md:hidden">
-        <a href="https://www.rchauhan.in" target="_blank" className="flex items-center gap-2 bg-[#953ee2] text-white px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-transform duration-300">
+        <a href="https://www.rctechsolutions.com" target="_blank" className="flex items-center gap-2 bg-[#953ee2] text-white px-4 py-2 rounded-full shadow-lg hover:scale-105 transition-transform duration-300">
           <img src="/rclogo.png" alt="Logo" className="w-6 h-6 rounded-full" />
           <span className="text-sm font-medium">Work with RC Tech</span>
         </a>

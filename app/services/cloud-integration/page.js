@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
   FaAws,
@@ -12,14 +12,15 @@ import {
 import { SiKubernetes } from 'react-icons/si';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import SeoSchema from '@/components/SeoSchema';
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth <= 768);
-    window.addEventListener('resize', onResize);
-    onResize();
-    return () => window.removeEventListener('resize', onResize);
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
   return isMobile;
 }
@@ -40,10 +41,7 @@ function FeatureCard({ icon: Icon, title, color, delay = 0 }) {
   const handleMouseMove = (e) => {
     const rect = cardRef.current?.getBoundingClientRect();
     if (rect) {
-      setPosition({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      });
+      setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
     }
   };
 
@@ -59,20 +57,13 @@ function FeatureCard({ icon: Icon, title, color, delay = 0 }) {
     >
       <motion.div
         className={`absolute left-0 top-0 w-2 h-2 bg-gradient-to-r ${color} rounded-full`}
-        animate={{
-          x: position.x,
-          y: position.y,
-        }}
-        transition={{
-          type: 'spring',
-          damping: 40,
-          stiffness: 300,
-          mass: 0.5,
-        }}
+        animate={{ x: position.x, y: position.y }}
+        transition={{ type: 'spring', damping: 40, stiffness: 300, mass: 0.5 }}
         style={{ zIndex: 10 }}
       />
-      <div className={`absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r ${color} scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500`} />
-
+      <div
+        className={`absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r ${color} scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500`}
+      />
       <div className="text-3xl mb-4 text-indigo-600 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
         <Icon />
       </div>
@@ -88,31 +79,54 @@ function FeatureCard({ icon: Icon, title, color, delay = 0 }) {
 export default function CloudIntegrationPage() {
   const isMobile = useIsMobile();
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "RC Tech Solutions",
-    "url": "https://www.rctechsolutions.com/cloud-integration",
-    "image": "https://www.rctechsolutions.com/logo.png",
-    "description": "RC Tech Solutions offers enterprise-grade cloud integration services including AWS, Azure, Kubernetes, cloud security, and infrastructure optimization.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Delhi",
-      "addressRegion": "Delhi",
-      "postalCode": "110001",
-      "addressCountry": "IN"
+  const schemas = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ProfessionalService',
+      name: 'RC Tech Solutions',
+      url: 'https://www.rctechsolutions.com/cloud-integration',
+      image: 'https://www.rctechsolutions.com/logo.png',
+      description:
+        'RC Tech Solutions offers enterprise-grade cloud integration services including AWS, Azure, Kubernetes, cloud security, and infrastructure optimization.',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Delhi',
+        addressRegion: 'Delhi',
+        postalCode: '110001',
+        addressCountry: 'IN'
+      },
+      telephone: '+91-XXXXXXXXXX',
+      areaServed: ['IN'],
+      priceRange: '$$',
+      sameAs: [
+        'https://www.instagram.com/rctechsolutions',
+        'https://www.linkedin.com/company/rctechsolutions'
+      ]
     },
-    "telephone": "+91-XXXXXXXXXX",
-    "areaServed": "IN",
-    "priceRange": "$$",
-    "sameAs": [
-      "https://www.instagram.com/rctechsolutions",
-      "https://www.linkedin.com/company/rctechsolutions"
-    ]
-  };
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.rctechsolutions.com'
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Cloud Integration',
+          item: 'https://www.rctechsolutions.com/cloud-integration'
+        }
+      ]
+    }
+  ];
 
   return (
     <>
+      <SeoSchema schemas={schemas} />
+
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 text-white px-6 md:px-16 py-20 overflow-hidden md:pt-[180px]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 via-[#0c0e10] to-gray-900 z-0" />
@@ -131,7 +145,7 @@ export default function CloudIntegrationPage() {
 
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
               Cloud Integration Solutions<br />
-              That Accelerate Your&nbsp;
+              That Accelerate Your{' '}
               <span className="bg-gradient-to-r from-[#3f83f8] to-[#a855f7] bg-clip-text text-transparent">Business Growth</span>
             </h1>
             <p className="text-white/80 text-lg max-w-2xl">
@@ -197,12 +211,6 @@ export default function CloudIntegrationPage() {
           )}
         </div>
       </section>
-
-      {/* Schema.org JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
     </>
   );
 }

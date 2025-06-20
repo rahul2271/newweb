@@ -1,18 +1,19 @@
 'use client';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
+  FaSync,
   FaCloud,
   FaServer,
+  FaCodeBranch,
   FaTools,
   FaLock,
-  FaCodeBranch,
-  FaSync,
   FaRocket,
   FaArrowRight,
 } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import SeoSchema from '@/components/SeoSchema';
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -82,32 +83,53 @@ function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
 export default function DevOpsCloudPage() {
   const isMobile = useIsMobile();
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "RC Tech Solutions",
-    "url": "https://www.rctechsolutions.com/devops-cloud",
-    "image": "https://www.rctechsolutions.com/logo.png",
-    "description": "DevOps and cloud consulting services including CI/CD, infrastructure automation, monitoring, scaling, and compliance. Delivered by RC Tech Solutions.",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Delhi",
-      "addressRegion": "Delhi",
-      "postalCode": "110001",
-      "addressCountry": "IN"
+  const schemas = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ProfessionalService',
+      name: 'RC Tech Solutions',
+      url: 'https://www.rctechsolutions.com/devops-cloud',
+      image: 'https://www.rctechsolutions.com/logo.png',
+      description: 'DevOps and cloud consulting services including CI/CD, infrastructure automation, monitoring, scaling, and compliance. Delivered by RC Tech Solutions.',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Delhi',
+        addressRegion: 'Delhi',
+        postalCode: '110001',
+        addressCountry: 'IN'
+      },
+      telephone: '+91-XXXXXXXXXX',
+      areaServed: ['IN', 'US', 'UK'],
+      priceRange: '$$',
+      sameAs: [
+        'https://www.instagram.com/rctechsolutions',
+        'https://www.linkedin.com/company/rctechsolutions'
+      ]
     },
-    "telephone": "+91-XXXXXXXXXX",
-    "areaServed": ["IN", "US", "UK"],
-    "priceRange": "$$",
-    "sameAs": [
-      "https://www.instagram.com/rctechsolutions",
-      "https://www.linkedin.com/company/rctechsolutions"
-    ]
-  };
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.rctechsolutions.com'
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'DevOps & Cloud',
+          item: 'https://www.rctechsolutions.com/devops-cloud'
+        }
+      ]
+    }
+  ];
 
   return (
     <>
-      {/* Hero Section */}
+      <SeoSchema schemas={schemas} />
+
       <section className="relative bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 text-white px-6 md:px-16 py-20 overflow-hidden md:pt-[180px]">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 via-[#0c0e10] to-gray-900 z-0" />
         <div className="absolute inset-0 z-0 opacity-20 bg-[url('/grid-lines.svg')] bg-cover bg-center" />
@@ -156,7 +178,6 @@ export default function DevOpsCloudPage() {
         </div>
       </section>
 
-      {/* Services Section */}
       <section className="bg-[#f9f9f9] py-20 px-6 md:px-12">
         <div className="max-w-6xl mx-auto text-center">
           <motion.h2
@@ -196,12 +217,6 @@ export default function DevOpsCloudPage() {
           )}
         </div>
       </section>
-
-      {/* JSON-LD Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
     </>
   );
 }

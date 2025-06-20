@@ -13,6 +13,7 @@ import {
 } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import Head from 'next/head';
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -55,7 +56,6 @@ function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
       viewport={{ once: true }}
       className="relative group p-6 border border-transparent bg-white rounded-xl shadow-md hover:shadow-2xl hover:scale-[1.03] transition-transform duration-300 ease-in-out overflow-hidden"
     >
-      {/* Small moving dot */}
       <motion.div
         className={`absolute left-0 top-0 w-2 h-2 bg-gradient-to-r ${color} rounded-full`}
         animate={{ x: position.x, y: position.y }}
@@ -63,23 +63,16 @@ function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
         style={{ zIndex: 10 }}
       />
 
-      {/* Bottom border animation */}
       <div
         className={`absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r ${color} scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500`}
       />
 
-      {/* Icon with hover effect */}
-      <div
-        className="text-4xl mb-4 text-indigo-600 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300"
-        aria-hidden="true"
-      >
+      <div className="text-4xl mb-4 text-indigo-600 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
         <Icon />
       </div>
 
-      {/* Title */}
       <h3 className="text-lg font-semibold text-gray-800 mb-3">{title}</h3>
 
-      {/* Learn More Link */}
       <div className="flex items-center justify-between text-sm text-gray-500 group-hover:text-gray-900 font-medium cursor-pointer select-none">
         Learn More
         <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-2 group-hover:text-indigo-600" />
@@ -88,14 +81,56 @@ function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
   );
 }
 
+function SeoSchema() {
+  const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Mobile App Development Services | RC Tech Solutions",
+    "description": "We build Android, iOS, and cross-platform mobile apps with backend integration, UI/UX, and ASO support. Book your free consultation today!",
+    "url": "https://www.rchauhan.in/mobile-apps",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://www.rchauhan.in"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services",
+          "item": "https://www.rchauhan.in/services"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Mobile App Development",
+          "item": "https://www.rchauhan.in/mobile-apps"
+        }
+      ]
+    }
+  };
+
+  return (
+    <Head>
+      <title>Mobile App Development Services | RC Tech Solutions</title>
+      <meta name="description" content="We build Android, iOS, and cross-platform mobile apps with backend integration, UI/UX, and ASO support. Book your free consultation today!" />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }} />
+    </Head>
+  );
+}
+
 export default function MobileAppsPage() {
   const isMobile = useIsMobile();
 
   return (
     <>
+      <SeoSchema />
+
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 text-white px-6 md:px-16 py-20 overflow-hidden md:pt-[180px]">
-        {/* Background overlays */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 via-[#0c0e10] to-gray-900 z-0" />
         <div className="absolute inset-0 z-0 opacity-20 bg-[url('/grid-lines.svg')] bg-cover bg-center" />
 
@@ -106,6 +141,17 @@ export default function MobileAppsPage() {
             transition={{ duration: 0.6 }}
             className="text-center lg:text-left w-full lg:w-2/3"
           >
+            {/* Breadcrumbs */}
+            <nav className="text-sm text-white/60 mb-4">
+              <ol className="flex space-x-2">
+                <li><a href="/" className="hover:text-white">Home</a></li>
+                <li>/</li>
+                <li><a href="/services" className="hover:text-white">Services</a></li>
+                <li>/</li>
+                <li className="text-white font-semibold">Mobile App Development</li>
+              </ol>
+            </nav>
+
             <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-[#2d3473] rounded-full text-sm bg-[#151b55] text-white/80">
               From Idea to App Store
               <span className="text-blue-400 font-semibold ml-2">We Build & Launch</span>

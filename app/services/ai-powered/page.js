@@ -104,7 +104,7 @@ export default function AIPoweredSolutionsPage() {
       description: 'We provide AI-powered solutions like NLP, Computer Vision, Predictive Analytics, and more to drive digital transformation.',
       areaServed: ['IN'],
       sameAs: [
-        'https://www.instagram.com/rctechsolutions',
+        'https://www.instagram.com/rc_tech_solutions',
         'https://www.linkedin.com/company/rctechsolutions'
       ]
     },

@@ -1,17 +1,28 @@
+
+
+
+
+
+
+
 'use client';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
-  FaShopify,
-  FaWordpress,
-  FaMobileAlt,
-  FaLock,
-  FaBolt,
-  FaChartLine,
+  FaFacebookF,
+  FaGoogle,
+  FaEnvelopeOpenText,
+  FaInstagram,
+  FaVideo,
+  FaChartBar,
+  FaBullseye,
   FaArrowRight,
+  FaBullhorn,
+  FaStar
 } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import SeoSchema from '@/components/SeoSchema';
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -24,13 +35,14 @@ function useIsMobile() {
   return isMobile;
 }
 
-const ecommerceFeatures = [
-  { title: 'Shopify & WooCommerce', icon: FaShopify, color: 'from-green-400 to-green-600' },
-  { title: 'Custom Storefronts', icon: FaWordpress, color: 'from-blue-500 to-blue-700' },
-  { title: 'Mobile-first Stores', icon: FaMobileAlt, color: 'from-pink-500 to-purple-600' },
-  { title: 'Secure Payments', icon: FaLock, color: 'from-indigo-500 to-purple-500' },
-  { title: 'Blazing Speed & UX', icon: FaBolt, color: 'from-yellow-400 to-orange-500' },
-  { title: 'Conversion Optimization', icon: FaChartLine, color: 'from-rose-400 to-red-500' },
+const services = [
+  { title: 'Social Media Management', icon: FaFacebookF, color: 'from-pink-500 to-yellow-500' },
+  { title: 'Google Ads Campaigns', icon: FaGoogle, color: 'from-red-500 to-orange-500' },
+  { title: 'Email Marketing', icon: FaEnvelopeOpenText, color: 'from-sky-500 to-indigo-500' },
+  { title: 'Influencer Marketing', icon: FaInstagram, color: 'from-purple-500 to-pink-600' },
+  { title: 'Video Marketing', icon: FaVideo, color: 'from-amber-500 to-red-500' },
+  { title: 'Performance Tracking', icon: FaChartBar, color: 'from-teal-400 to-cyan-500' },
+  { title: 'Conversion Optimization', icon: FaBullseye, color: 'from-green-500 to-lime-500' }
 ];
 
 function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
@@ -46,6 +58,81 @@ function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
 
   return (
     <motion.div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay }}
+      viewport={{ once: true }}
+      className="relative group p-6 border border-transparent bg-white rounded-xl shadow-md hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 ease-in-out overflow-hidden"
+    >
+      <motion.div
+        className={`absolute left-0 top-0 w-2 h-2 bg-gradient-to-r ${color} rounded-full`}
+        animate={{ x: position.x, y: position.y }}
+        transition={{ type: 'spring', damping: 40, stiffness: 300, mass: 0.5 }}
+        style={{ zIndex: 10 }}
+      />
+      <div className={`absolute bottom-0 left-0 w-full h-[4px] bg-gradient-to-r ${color} scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-500`} />
+      <div className="text-3xl mb-4 text-indigo-500 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+        <Icon />
+      </div>
+      <h3 className="text-lg font-semibold text-gray-800 mb-2">{title}</h3>
+      <div className="flex items-center justify-between text-sm text-gray-500 group-hover:text-gray-800">
+        Learn More
+        <FaArrowRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:text-indigo-500" />
+      </div>
+    </motion.div>
+  );
+}
+
+export default function DigitalMarketingPage() {
+  const isMobile = useIsMobile();
+
+  const schemas = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ProfessionalService',
+      name: 'RC Tech Solutions',
+      image: 'https://www.rctechsolutions.com/rclogo.png',
+      url: 'https://www.rctechsolutions.com/services/digital-marketing',
+      telephone: '+91-7009646377',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Chandigarh',
+        addressRegion: 'Chandigarh',
+        postalCode: '160061',
+        addressCountry: 'IN'
+      },
+      priceRange: '$$',
+      description: 'We deliver strategic digital marketing services including SMM, Google Ads, email campaigns, influencer partnerships, and analytics optimization.',
+      areaServed: ['IN'],
+      sameAs: [
+        'https://www.instagram.com/rctechsolutions',
+        'https://www.linkedin.com/company/rctechsolutions'
+      ]
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://www.rctechsolutions.com'
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Digital Marketing Services',
+          item: 'https://www.rctechsolutions.com/services/digital-marketing'
+        }
+      ]
+    }
+  ];
+
+  return (
+     <motion.div
       ref={cardRef}
       onMouseMove={handleMouseMove}
       initial={{ opacity: 0, y: 40 }}

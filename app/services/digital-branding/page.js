@@ -116,13 +116,13 @@ export default function DigitalBrandingPage() {
           '@type': 'ListItem',
           'position': 1,
           'name': 'Home',
-          'item': 'https://yourdomain.com'
+          'item': 'https://rctechsolutions.com'
         },
         {
           '@type': 'ListItem',
           'position': 2,
           'name': 'Digital Branding',
-          'item': 'https://yourdomain.com/digital-branding'
+          'item': 'https://rctechsolutions.com/services/digital-branding'
         }
       ]
     }

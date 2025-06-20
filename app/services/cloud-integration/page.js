@@ -84,7 +84,7 @@ export default function CloudIntegrationPage() {
       '@context': 'https://schema.org',
       '@type': 'ProfessionalService',
       name: 'RC Tech Solutions',
-      url: 'https://www.rctechsolutions.com/cloud-integration',
+      url: 'https://www.rctechsolutions.com/services/cloud-integration',
       image: 'https://www.rctechsolutions.com/logo.png',
       description:
         'RC Tech Solutions offers enterprise-grade cloud integration services including AWS, Azure, Kubernetes, cloud security, and infrastructure optimization.',
@@ -99,7 +99,7 @@ export default function CloudIntegrationPage() {
       areaServed: ['IN'],
       priceRange: '$$',
       sameAs: [
-        'https://www.instagram.com/rctechsolutions',
+        'https://www.instagram.com/rc_tech_solutions',
         'https://www.linkedin.com/company/rctechsolutions'
       ]
     },
@@ -117,7 +117,7 @@ export default function CloudIntegrationPage() {
           '@type': 'ListItem',
           position: 2,
           name: 'Cloud Integration',
-          item: 'https://www.rctechsolutions.com/cloud-integration'
+          item: 'https://www.rctechsolutions.com/services/cloud-integration'
         }
       ]
     }

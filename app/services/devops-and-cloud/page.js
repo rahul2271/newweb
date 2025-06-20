@@ -88,7 +88,7 @@ export default function DevOpsCloudPage() {
       '@context': 'https://schema.org',
       '@type': 'ProfessionalService',
       name: 'RC Tech Solutions',
-      url: 'https://www.rctechsolutions.com/devops-cloud',
+      url: 'https://www.rctechsolutions.com/services/devops-cloud',
       image: 'https://www.rctechsolutions.com/logo.png',
       description: 'DevOps and cloud consulting services including CI/CD, infrastructure automation, monitoring, scaling, and compliance. Delivered by RC Tech Solutions.',
       address: {
@@ -102,7 +102,7 @@ export default function DevOpsCloudPage() {
       areaServed: ['IN', 'US', 'UK'],
       priceRange: '$$',
       sameAs: [
-        'https://www.instagram.com/rctechsolutions',
+        'https://www.instagram.com/rctechsolutions.com',
         'https://www.linkedin.com/company/rctechsolutions'
       ]
     },
@@ -120,7 +120,7 @@ export default function DevOpsCloudPage() {
           '@type': 'ListItem',
           position: 2,
           name: 'DevOps & Cloud',
-          item: 'https://www.rctechsolutions.com/devops-cloud'
+          item: 'https://www.rctechsolutions.com/services/devops-cloud'
         }
       ]
     }

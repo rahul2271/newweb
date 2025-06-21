@@ -87,7 +87,7 @@ function SeoSchema() {
     "@type": "WebPage",
     "name": "Mobile App Development Services | RC Tech Solutions",
     "description": "We build Android, iOS, and cross-platform mobile apps with backend integration, UI/UX, and ASO support. Book your free consultation today!",
-    "url": "https://www.rchauhan.in/mobile-apps",
+    "url": "https://www.rctechsolutions.com/services/mobile-apps",
     "breadcrumb": {
       "@type": "BreadcrumbList",
       "itemListElement": [
@@ -95,19 +95,19 @@ function SeoSchema() {
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://www.rchauhan.in"
+          "item": "https://www.rctechsolutions.com"
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "Services",
-          "item": "https://www.rchauhan.in/services"
+          "item": "https://www.rctechsolutions.com/services"
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": "Mobile App Development",
-          "item": "https://www.rchauhan.in/mobile-apps"
+          "item": "https://www.rctechsolutions.com/services/mobile-apps"
         }
       ]
     }

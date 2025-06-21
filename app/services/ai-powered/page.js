@@ -155,6 +155,57 @@ export default function AIPoweredSolutionsPage() {
         areaServed: "IN",
         availableLanguage: "English"
       }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      serviceType: "AI Powered Development Services",
+      provider: {
+        "@type": "Organization",
+        name: "RC Tech Solutions",
+        url: "https://www.rctechsolutions.com"
+      },
+      areaServed: {
+        "@type": "Country",
+        name: "India"
+      },
+      aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.8",
+        reviewCount: "50"
+      },
+      url: "https://www.rctechsolutions.com/services/ai-powered",
+      description: "Hire top-rated AI experts for solutions like NLP, Machine Learning, Computer Vision, and more. Project-based and dedicated teams available."
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "What types of AI solutions do you offer?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "We offer AI Chatbots, NLP, Computer Vision, ML Models, Predictive Analytics, and AI integration for web & mobile apps."
+          }
+        },
+        {
+          "@type": "Question",
+          name: "Can I hire a dedicated AI team?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes, we offer both project-based solutions and dedicated AI teams depending on your business needs."
+          }
+        },
+        {
+          "@type": "Question",
+          name: "Are your services available outside India?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes, our AI-powered services are available globally. You can contact us for international collaboration."
+          }
+        }
+      ]
     }
   ];
 

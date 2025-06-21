@@ -13,7 +13,7 @@ import {
   FaShoppingCart,
   FaArrowRight,
   FaFacebookF,
-  FaStar
+  FaStar,
 } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -39,7 +39,7 @@ const services = [
   { title: 'AI Integration for Web & Mobile', icon: FaCode, color: 'from-sky-500 to-blue-600' },
   { title: 'Machine Learning Models', icon: FaLayerGroup, color: 'from-amber-500 to-yellow-400' },
   { title: 'Voice Recognition Systems', icon: FaTools, color: 'from-indigo-400 to-violet-500' },
-  { title: 'AI-Based Recommendation Engines', icon: FaShoppingCart, color: 'from-teal-400 to-cyan-500' }
+  { title: 'AI-Based Recommendation Engines', icon: FaShoppingCart, color: 'from-teal-400 to-cyan-500' },
 ];
 
 function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
@@ -87,53 +87,84 @@ export default function AIPoweredSolutionsPage() {
 
   const schemas = [
     {
-      '@context': 'https://schema.org',
-      '@type': 'ProfessionalService',
-      name: 'RC Tech Solutions',
-      image: 'https://www.rctechsolutions.com/rclogo.png',
-      url: 'https://www.rctechsolutions.com/services/ai-powered',
-      telephone: '+91-7009646377',
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      name: "RC Tech Solutions",
+      image: "https://www.rctechsolutions.com/rclogo.png",
+      url: "https://www.rctechsolutions.com/services/ai-powered",
+      telephone: "+91-7009646377",
       address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Chandigarh',
-        addressRegion: 'Chandigarh',
-        postalCode: '160061',
-        addressCountry: 'IN'
+        "@type": "PostalAddress",
+        addressLocality: "Chandigarh",
+        addressRegion: "Chandigarh",
+        postalCode: "160061",
+        addressCountry: "IN"
       },
-      priceRange: '$$',
-      description: 'We provide AI-powered solutions like NLP, Computer Vision, Predictive Analytics, and more to drive digital transformation.',
-      areaServed: ['IN'],
+      priceRange: "$$",
+      description: "We provide AI-powered solutions like NLP, Computer Vision, Predictive Analytics, and more to drive digital transformation.",
+      areaServed: ["IN"],
       sameAs: [
-        'https://www.instagram.com/rc_tech_solutions',
-        'https://www.linkedin.com/company/rctechsolutions'
+        "https://www.instagram.com/rc_tech_solutions",
+        "https://www.linkedin.com/company/rctechsolutions"
       ]
     },
     {
-      '@context': 'https://schema.org',
-      '@type': 'BreadcrumbList',
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
       itemListElement: [
         {
-          '@type': 'ListItem',
+          "@type": "ListItem",
           position: 1,
-          name: 'Home',
-          item: 'https://www.rctechsolutions.com'
+          name: "Home",
+          item: "https://www.rctechsolutions.com"
         },
         {
-          '@type': 'ListItem',
+          "@type": "ListItem",
           position: 2,
-          name: 'AI Powered Solutions',
-          item: 'https://www.rctechsolutions.com/services/ai-powered'
+          name: "AI Powered Solutions",
+          item: "https://www.rctechsolutions.com/services/ai-powered"
         }
       ]
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      name: "AI Powered Solutions | RC Tech Solutions",
+      url: "https://www.rctechsolutions.com/services/ai-powered",
+      description: "AI-Powered services by RC Tech Solutions, including NLP, Computer Vision, ML, AI Chatbots & more. Hire expert AI teams or get tailored project-based solutions.",
+      inLanguage: "en",
+      isPartOf: {
+        "@type": "WebSite",
+        url: "https://www.rctechsolutions.com"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      name: "RC Tech Solutions",
+      url: "https://www.rctechsolutions.com",
+      logo: "https://www.rctechsolutions.com/rclogo.png",
+      sameAs: [
+        "https://www.instagram.com/rc_tech_solutions",
+        "https://www.linkedin.com/company/rctechsolutions"
+      ],
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: "+91-7009646377",
+        contactType: "Customer Support",
+        areaServed: "IN",
+        availableLanguage: "English"
+      }
     }
   ];
 
   return (
     <>
       <SeoSchema schemas={schemas} />
+
       {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 text-white px-4 sm:px-6 md:px-16 py-20 overflow-hidden md:pt-[180px]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 via-[#0c0e10] to-gray-900 z-0"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 via-[#0c0e10] to-gray-900 z-0" />
         <div className="absolute inset-0 z-0 opacity-20 bg-[url('/grid-lines.svg')] bg-cover bg-center" />
         <div className="relative z-10 max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
           <motion.div
@@ -147,9 +178,7 @@ export default function AIPoweredSolutionsPage() {
               <span className="flex items-center gap-1 px-2 border-l border-[#2d3473] ml-2">
                 <FaFacebookF className="text-blue-500" />
                 <span className="text-white font-bold">4.8</span>
-                <span className="flex text-orange-400 text-xs">
-                  {[...Array(5)].map((_, i) => <FaStar key={i} />)}
-                </span>
+                <span className="flex text-orange-400 text-xs">{[...Array(5)].map((_, i) => <FaStar key={i} />)}</span>
                 <span className="text-white ml-1">50 reviews</span>
               </span>
             </div>
@@ -161,6 +190,7 @@ export default function AIPoweredSolutionsPage() {
               Empower your business with cutting-edge AI tools built to scale, adapt, and transform your operations.
             </p>
           </motion.div>
+
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -177,6 +207,7 @@ export default function AIPoweredSolutionsPage() {
           </motion.div>
         </div>
       </section>
+
       {/* Services Section */}
       <section className="bg-[#f9f9f9] py-20 px-4 sm:px-6 md:px-12">
         <div className="max-w-6xl mx-auto text-center">
@@ -188,6 +219,7 @@ export default function AIPoweredSolutionsPage() {
           >
             AI-Powered Services
           </motion.h2>
+
           {isMobile ? (
             <Swiper spaceBetween={20} slidesPerView={1.2} loop>
               {services.map((service, index) => (

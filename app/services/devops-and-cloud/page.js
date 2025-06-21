@@ -89,7 +89,7 @@ export default function DevOpsCloudPage() {
       '@type': 'ProfessionalService',
       name: 'RC Tech Solutions',
       url: 'https://www.rctechsolutions.com/services/devops-cloud',
-      image: 'https://www.rctechsolutions.com/logo.png',
+      image: 'https://www.rctechsolutions.com/rclogo.png',
       description: 'DevOps and cloud consulting services including CI/CD, infrastructure automation, monitoring, scaling, and compliance. Delivered by RC Tech Solutions.',
       address: {
         '@type': 'PostalAddress',

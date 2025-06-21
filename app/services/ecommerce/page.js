@@ -2,13 +2,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import {
-  FaFacebookF,
-  FaGoogle,
-  FaEnvelopeOpenText,
-  FaInstagram,
-  FaVideo,
-  FaChartBar,
-  FaBullseye,
+  FaShoppingCart,
+  FaMobileAlt,
+  FaCreditCard,
+  FaChartLine,
+  FaWarehouse,
+  FaHeadset,
   FaArrowRight,
 } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -27,13 +26,12 @@ function useIsMobile() {
 }
 
 const services = [
-  { title: 'Social Media Management', icon: FaFacebookF, color: 'from-pink-500 to-yellow-500' },
-  { title: 'Google Ads Campaigns', icon: FaGoogle, color: 'from-red-500 to-orange-500' },
-  { title: 'Email Marketing', icon: FaEnvelopeOpenText, color: 'from-sky-500 to-indigo-500' },
-  { title: 'Influencer Marketing', icon: FaInstagram, color: 'from-purple-500 to-pink-600' },
-  { title: 'Video Marketing', icon: FaVideo, color: 'from-amber-500 to-red-500' },
-  { title: 'Performance Tracking', icon: FaChartBar, color: 'from-teal-400 to-cyan-500' },
-  { title: 'Conversion Optimization', icon: FaBullseye, color: 'from-green-500 to-lime-500' }
+  { title: 'Custom eCommerce Website', icon: FaShoppingCart, color: 'from-green-500 to-emerald-600' },
+  { title: 'Mobile Commerce Solutions', icon: FaMobileAlt, color: 'from-purple-500 to-indigo-600' },
+  { title: 'Payment Gateway Integration', icon: FaCreditCard, color: 'from-blue-500 to-cyan-500' },
+  { title: 'Sales Analytics & Reports', icon: FaChartLine, color: 'from-pink-500 to-red-500' },
+  { title: 'Inventory Management', icon: FaWarehouse, color: 'from-yellow-500 to-orange-600' },
+  { title: '24/7 Customer Support Setup', icon: FaHeadset, color: 'from-teal-500 to-blue-600' },
 ];
 
 function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
@@ -76,7 +74,7 @@ function ServiceCard({ icon: Icon, title, color, delay = 0 }) {
   );
 }
 
-export default function DigitalMarketingPage() {
+export default function EcommercePage() {
   const isMobile = useIsMobile();
 
   const schemas = [
@@ -85,7 +83,7 @@ export default function DigitalMarketingPage() {
       '@type': 'ProfessionalService',
       name: 'RC Tech Solutions',
       image: 'https://www.rctechsolutions.com/rclogo.png',
-      url: 'https://www.rctechsolutions.com/services/digital-marketing',
+      url: 'https://www.rctechsolutions.com/services/ecommerce',
       telephone: '+91-7009646377',
       address: {
         '@type': 'PostalAddress',
@@ -95,7 +93,7 @@ export default function DigitalMarketingPage() {
         addressCountry: 'IN'
       },
       priceRange: '$$',
-      description: 'We deliver strategic digital marketing services including SMM, Google Ads, email campaigns, influencer partnerships, and analytics optimization.',
+      description: 'We build powerful, scalable, and conversion-focused eCommerce solutions including website development, payment setup, inventory management, and analytics.',
       areaServed: ['IN'],
       sameAs: [
         'https://www.instagram.com/rctechsolutions',
@@ -115,8 +113,8 @@ export default function DigitalMarketingPage() {
         {
           '@type': 'ListItem',
           position: 2,
-          name: 'Digital Marketing Services',
-          item: 'https://www.rctechsolutions.com/services/digital-marketing'
+          name: 'eCommerce Services',
+          item: 'https://www.rctechsolutions.com/services/ecommerce'
         }
       ]
     }
@@ -125,12 +123,12 @@ export default function DigitalMarketingPage() {
   return (
     <>
       <SeoSchema
-        title="Digital Marketing Services | RC Tech Solutions"
-        description="We offer SMM, Google Ads, email marketing, influencer strategies & analytics to grow your brand digitally."
-        url="https://www.rctechsolutions.com/services/digital-marketing"
+        title="eCommerce Development Services | RC Tech Solutions"
+        description="We build high-converting, scalable online stores with secure payment integration, inventory solutions, and analytics tracking."
+        url="https://www.rctechsolutions.com/services/ecommerce"
         breadcrumbs={[
           { name: 'Home', url: 'https://www.rctechsolutions.com' },
-          { name: 'Digital Marketing', url: 'https://www.rctechsolutions.com/services/digital-marketing' }
+          { name: 'eCommerce', url: 'https://www.rctechsolutions.com/services/ecommerce' }
         ]}
         additionalSchemas={schemas}
       />
@@ -148,18 +146,18 @@ export default function DigitalMarketingPage() {
             className="text-center lg:text-left w-full lg:w-2/3"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 border border-[#2d3473] rounded-full text-sm bg-[#151b55] text-white/80">
-              Full Funnel Growth Marketing
-              <span className="text-green-400 font-semibold ml-2">That Drives Results</span>
+              Scalable Online Stores
+              <span className="text-green-400 font-semibold ml-2">for Next-Gen Businesses</span>
             </div>
 
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
               <span className="bg-gradient-to-r from-[#38bdf8] to-[#8b5cf6] bg-clip-text text-transparent">
-                Digital Marketing Services
+                eCommerce Development Services
               </span>{' '}
-              for Brands that Want to Scale
+              Built to Convert & Scale
             </h1>
             <p className="text-white/80 text-lg max-w-2xl">
-              We build and execute strategies for growth-focused businesses — across social media, paid ads, email & influencers.
+              We craft modern eCommerce experiences that drive sales — from custom design to secure payments, analytics & more.
             </p>
           </motion.div>
 
@@ -170,11 +168,11 @@ export default function DigitalMarketingPage() {
             className="bg-[#151b55] border border-[#2d3473] px-8 py-10 rounded-xl text-left w-full max-w-md shadow-2xl"
           >
             <h3 className="text-xl font-semibold text-white leading-snug mb-6">
-              Need help with your marketing?<br />
-              Let's strategize together.
+              Planning your online store?<br />
+              Let us build it right.
             </h3>
             <button className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg hover:shadow-xl">
-              Book Free Strategy Call →
+              Get Free Consultation →
             </button>
           </motion.div>
         </div>
@@ -189,12 +187,12 @@ export default function DigitalMarketingPage() {
             transition={{ duration: 0.6 }}
             className="text-3xl md:text-4xl font-extrabold leading-tight mb-12"
           >
-            Our Digital Marketing Services
+            Our eCommerce Solutions
           </motion.h2>
 
           {isMobile ? (
             <Swiper spaceBetween={20} slidesPerView={1.2} loop>
-              {services.map((service, index) => (
+              {(services || []).map((service, index) => (
                 <SwiperSlide key={index}>
                   <ServiceCard
                     icon={service.icon}
@@ -207,7 +205,7 @@ export default function DigitalMarketingPage() {
             </Swiper>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {services.map((service, index) => (
+              {(services || []).map((service, index) => (
                 <ServiceCard
                   key={index}
                   icon={service.icon}

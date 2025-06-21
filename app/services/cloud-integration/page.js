@@ -95,7 +95,7 @@ export default function CloudIntegrationPage() {
         postalCode: '110001',
         addressCountry: 'IN'
       },
-      telephone: '+91-XXXXXXXXXX',
+      telephone: '+91-7009646377',
       areaServed: ['IN'],
       priceRange: '$$',
       sameAs: [

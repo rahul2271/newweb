@@ -29,19 +29,19 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "RC Tech Solutions",
-    "url": "https://www.rctechsolutios.com",
+    "url": "https://www.rctechsolutions.com",
     "description": "We build luxury-grade digital solutions — websites, branding, SEO, and more.",
     "publisher": {
       "@type": "Organization",
       "name": "RC Tech Solutions",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://www.rctechsolutios.com/rclogo.png"
+        "url": "https://www.rctechsolutions.com/rclogo.png"
       }
     },
     "potentialAction": {
       "@type": "SearchAction",
-      "target": "https://www.rchauhan.in/search?q={search_term_string}",
+      "target": "https://www.rctechsolutions.com/search?q={search_term_string}",
       "query-input": "required name=search_term_string"
     }
   };
@@ -50,7 +50,7 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "RC Tech Solutions",
-    "url": "https://www.rctechsolutios.com",
+    "url": "https://www.rctechsolutions.com",
     "logo": "https://wwww.rctechsolutios.com/rclogo.png",
     "contactPoint": [{
       "@type": "ContactPoint",

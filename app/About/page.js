@@ -1,113 +1,158 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 
-export default function about() {
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "RC Tech Solutions",
-    "url": "https://www.rctechsolutions.com",
-    "logo": "https://www.rctechsolutions.com/rclogo.png",
-    "founder": "Rahul Chauhan",
-    "foundingDate": "2022",
-    "description": "RC Tech Solutions – Bold, results‑driven digital agency transforming ideas into digital reality.",
-    "sameAs": [
-      "https://www.instagram.com/rctechsolutions",
-      "https://www.linkedin.com/company/rctechsolutions"
-    ],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+91-7009646377",
-      "contactType": "Customer Support",
-      "areaServed": "IN",
-      "availableLanguage": ["English", "Hindi"]
-    },
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Chandigarh",
-      "addressRegion": "Chandigarh",
-      "postalCode": "160061",
-      "addressCountry": "IN"
-    }
-  };
+export default function About() {
+  const imageURL = "https://www.rctechsolutions.com/rahulchauhan.jpg"; // Replace with your image
+
+  const stats = [
+    { label: "Projects Completed", count: 125 },
+    { label: "Years Combined Experience", count: 33 },
+    { label: "Client Satisfaction", count: 99, suffix: "%" },
+    { label: "Recognitions & Awards", count: 26 },
+  ];
+
+  const [visibleStats, setVisibleStats] = useState(stats.map(() => 0));
+  const statsRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        stats.forEach((stat, index) => {
+          let start = 0;
+          const end = stat.count;
+          const duration = 800;
+          const increment = end / 100;
+
+          const timer = setInterval(() => {
+            start += increment;
+            setVisibleStats(prev => {
+              const updated = [...prev];
+              updated[index] = Math.min(Math.round(start), end);
+              return updated;
+            });
+            if (start >= end) clearInterval(timer);
+          }, duration / 100);
+        });
+      }
+    }, { threshold: 0.4 });
+
+    if (statsRef.current) observer.observe(statsRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <>
-      {/* ABOUT SECTION ONE */}
-      <section className="overflow-hidden bg-white pb-12 pt-20 lg:pb-[90px] lg:pt-[120px] dark:bg-dark">
-        <div className="container mx-auto">
-          {/* ... your existing content with images and text ... */}
-          {/* Keep your original about section content here */}
-        </div>
+      <Head>
+        <title>About Us | RC Tech Solutions</title>
+        <meta
+          name="description"
+          content="Minimalist web development and branding agency in India led by Rahul Chauhan. Learn about our journey and impact."
+        />
+        <meta
+          name="keywords"
+          content="RC Tech Solutions, Rahul Chauhan, web development India, branding agency Chandigarh, custom websites"
+        />
+      </Head>
+
+      {/* INTRO */}
+      <section className="bg-white text-center py-20 px-6">
+        <h1 className="text-3xl sm:text-4xl font-semibold text-gray-900 mb-4">About RC Tech Solutions</h1>
+        <p className="max-w-xl mx-auto text-gray-600 text-base leading-relaxed">
+          We’re a purpose-driven digital agency — minimal, mindful, and made to deliver. Focused on meaningful design, fast code, and digital clarity.
+        </p>
       </section>
 
-      {/* ABOUT SECTION TWO */}
-      <section className="py-24 relative xl:mr-0 lg:mr-5 mr-0">
-        <div className="w-full max-w-7xl px-4 md:px-5 lg:px-5 mx-auto">
-          <div className="w-full justify-start items-center xl:gap-12 gap-10 grid lg:grid-cols-2 grid-cols-1">
-            {/* TEXT CONTENT */}
-            <div className="w-full flex-col justify-center lg:items-start items-center gap-10 inline-flex">
-              <div className="w-full flex-col justify-center items-start gap-8 flex">
-                <div className="flex-col justify-start lg:items-start items-center gap-4 flex">
-                  <h6 className="text-gray-400 text-base font-normal leading-relaxed">About Us</h6>
-                  <div className="w-full flex-col justify-start lg:items-start items-center gap-3 flex">
-                    <h2 className="text-indigo-700 text-4xl font-bold font-manrope leading-normal lg:text-start text-center">
-                      The Tale of Our Achievement Story
-                    </h2>
-                    <p className="text-gray-500 text-base font-normal leading-relaxed lg:text-start text-center">
-                      Our achievement story is a testament to teamwork and perseverance. Together, we've overcome challenges, celebrated victories, and created a narrative of progress and success.
-                    </p>
-                  </div>
-                </div>
-                <div className="w-full flex-col justify-center items-start gap-6 flex">
-                  <div className="w-full justify-start items-center gap-8 grid md:grid-cols-2 grid-cols-1">
-                    <div className="w-full h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
-                      <h4 className="text-gray-900 text-2xl font-bold font-manrope leading-9">33+ Years</h4>
-                      <p className="text-gray-500 text-base font-normal leading-relaxed">Influencing Digital Landscapes Together</p>
-                    </div>
-                    <div className="w-full h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
-                      <h4 className="text-gray-900 text-2xl font-bold font-manrope leading-9">125+ Projects</h4>
-                      <p className="text-gray-500 text-base font-normal leading-relaxed">Excellence Achieved Through Success</p>
-                    </div>
-                  </div>
-                  <div className="w-full h-full justify-start items-center gap-8 grid md:grid-cols-2 grid-cols-1">
-                    <div className="w-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
-                      <h4 className="text-gray-900 text-2xl font-bold font-manrope leading-9">26+ Awards</h4>
-                      <p className="text-gray-500 text-base font-normal leading-relaxed">Our Dedication to Innovation Wins Understanding</p>
-                    </div>
-                    <div className="w-full h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
-                      <h4 className="text-gray-900 text-2xl font-bold font-manrope leading-9">99% Happy Clients</h4>
-                      <p className="text-gray-500 text-base font-normal leading-relaxed">Mirrors our Focus on Client Satisfaction.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button className="sm:w-fit w-full group px-3.5 py-2 bg-indigo-50 hover:bg-indigo-100 rounded-lg justify-center items-center flex">
-                <span className="px-1.5 text-indigo-600 text-sm font-medium leading-6 group-hover:-translate-x-0.5 transition-all duration-700 ease-in-out">
-                  Read More
-                </span>
-                <svg className="group-hover:translate-x-0.5 transition-all duration-700 ease-in-out" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none">
-                  <path d="M6.75265 4.49658L11.2528 8.99677L6.75 13.4996" stroke="#4F46E5" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
-            </div>
-
-            {/* IMAGE */}
-            <div className="w-full lg:justify-start justify-center items-start flex">
-              <div className="sm:w-[564px] w-full sm:h-[646px] h-full sm:bg-gray-100 rounded-3xl sm:border border-gray-200 relative">
-                <img className="sm:mt-5 sm:ml-5 w-full h-full rounded-3xl object-cover" src="https://pagedone.io/asset/uploads/1717742431.png" alt="about us image" />
-              </div>
-            </div>
+      {/* FOUNDER STORY */}
+      <section className="bg-gray-50 py-16 px-6">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+          <div>
+            <img
+              src={imageURL}
+              alt="Rahul Chauhan - Founder"
+              className="w-full h-auto rounded-xl object-cover shadow-sm"
+            />
+          </div>
+          <div>
+            <h2 className="text-xl font-semibold text-[#953ee2] mb-4">Rahul's Journey</h2>
+            <p className="text-gray-700 leading-relaxed text-[15px]">
+              I started RC Tech Solutions in 2022, not just to build websites — but to solve real business problems with design that matters and code that scales.
+              <br /><br />
+              From sleepless nights to live launches, every project has taught us one thing — clarity and consistency wins. We stay minimal so your brand speaks loud.
+              <br /><br />
+              We’re not here for short wins. We’re here to build digital foundations that last.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* SCHEMA.ORG JSON-LD */}
+      {/* ACHIEVEMENTS */}
+      <section className="bg-white py-20 px-6" ref={statsRef}>
+        <div className="max-w-5xl mx-auto text-center">
+          <h3 className="text-2xl font-semibold text-gray-900 mb-10">What We’ve Built So Far</h3>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+            {stats.map((item, idx) => (
+              <div key={idx} className="rounded-md p-4 border border-gray-100 shadow-sm bg-gray-50">
+                <p className="text-3xl font-bold text-[#953ee2]">
+                  {visibleStats[idx]}
+                  {item.suffix || ""}
+                </p>
+                <p className="text-sm text-gray-600 mt-1">{item.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-[#f9f6ff] py-16 px-6 text-center">
+        <h3 className="text-xl sm:text-2xl font-medium text-gray-900 mb-3">We’re a quiet force in digital.</h3>
+        <p className="text-gray-600 max-w-xl mx-auto mb-6 text-sm sm:text-base">
+          No noise. Just work that works. If you’re a startup, small business, or someone who values quality — let’s talk.
+        </p>
+        <a
+          href="/contact"
+          className="inline-block bg-[#953ee2] text-white px-5 py-2.5 rounded-md text-sm font-medium hover:bg-purple-700 transition"
+        >
+          Let's Work Together
+        </a>
+      </section>
+
+      {/* SCHEMA MARKUP */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "RC Tech Solutions",
+            url: "https://www.rctechsolutions.com",
+            logo: "https://www.rctechsolutions.com/rclogo.png",
+            founder: "Rahul Chauhan",
+            foundingDate: "2022",
+            description:
+              "RC Tech Solutions is a minimalist web development and branding agency in Chandigarh, led by founder Rahul Chauhan.",
+            sameAs: [
+              "https://www.instagram.com/rctechsolutions",
+              "https://www.linkedin.com/company/rctechsolutions"
+            ],
+            contactPoint: {
+              "@type": "ContactPoint",
+              telephone: "+91-7009646377",
+              contactType: "Customer Support",
+              areaServed: "IN",
+              availableLanguage: ["English", "Hindi"]
+            },
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Chandigarh",
+              addressRegion: "Chandigarh",
+              postalCode: "160061",
+              addressCountry: "IN"
+            }
+          }),
+        }}
       />
     </>
   );

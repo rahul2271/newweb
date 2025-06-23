@@ -68,7 +68,7 @@ export default function AdvancedHeader() {
           <Link href="/blogs" className="hover:text-blue-600 transition">
             Blog
           </Link>
-          <Link href="/About" className="hover:text-blue-600 transition">
+          <Link href="/about" className="hover:text-blue-600 transition">
             About
           </Link>
           <Link href="/contact" className="hover:text-blue-600 transition">
@@ -118,7 +118,7 @@ export default function AdvancedHeader() {
       <Link href="#team" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Team</Link>
       <Link href="#Services" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Services</Link>
       <Link href="/blogs" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Blog</Link>
-      <Link href="/About" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>About</Link>
+      <Link href="/about" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>About</Link>
       <Link href="/contact" className="text-2xl font-regular mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Contact</Link>
 
       <div className="flex items-center bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-lg font-semibold animate-pulse select-none max-w-max mt-20">

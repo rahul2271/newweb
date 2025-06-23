@@ -69,7 +69,7 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-medium text-[#111] mb-4">Explore</h4>
             <ul className="space-y-2 text-sm text-gray-600">
-              <li><a href="/About" className="hover:text-[#953ee2] transition">About</a></li>
+              <li><a href="/about" className="hover:text-[#953ee2] transition">About</a></li>
               <li><a href="#Services" className="hover:text-[#953ee2] transition">Services</a></li>
               <li><a href="/ai-tools" className="hover:text-[#953ee2] transition">AI Tools</a></li>
               <li><a href="/careers" className="hover:text-[#953ee2] transition">Careers</a></li>

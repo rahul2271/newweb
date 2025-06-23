@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Head from "next/head";
 
-export default function About() {
+export default function about() {
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",

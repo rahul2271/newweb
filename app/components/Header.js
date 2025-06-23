@@ -78,7 +78,7 @@ export default function AdvancedHeader() {
           {/* AI Coming Soon Badge */}
           <div className="flex items-center bg-purple-100 text-gray-900 px-3 py-1 rounded-full text-sm font-semibold animate-pulse select-none">
             <FiCpu className="mr-1" />
-            AI Coming Soon
+            AI is Coming Soon
           </div>
         </nav>
 

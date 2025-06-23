@@ -120,7 +120,7 @@ export default function Footer() {
             </button>
             <ul className="space-y-2 mt-4 text-sm text-gray-600">
               <li><a href="/privacy-policy" className="hover:text-[#953ee2]">Privacy Policy</a></li>
-              <li><a href="/terms-of-service" className="hover:text-[#953ee2]">Terms of Service</a></li>
+              <li><a href="/terms-of-services" className="hover:text-[#953ee2]">Terms of Service</a></li>
             </ul>
           </div>
         </div>

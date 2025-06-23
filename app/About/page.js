@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-export default function About() {
+export default function about() {
   const imageURL = "https://www.rctechsolutions.com/rahulchauhan.jpg";
 
   const stats = [

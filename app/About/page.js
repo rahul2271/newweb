@@ -1,14 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Head from "next/head";
+import { motion } from "framer-motion";
 
 export default function About() {
-  const imageURL = "https://www.rctechsolutions.com/rahulchauhan.jpg"; // Replace with your image
+  const imageURL = "https://www.rctechsolutions.com/rahulchauhan.jpg";
 
   const stats = [
-    { label: "Projects Completed", count: 125 },
-    { label: "Years Combined Experience", count: 33 },
+    { label: "Projects Completed", count: 96 },
+    { label: "Years of Combined Experience", count: 4 },
     { label: "Client Satisfaction", count: 99, suffix: "%" },
     { label: "Recognitions & Awards", count: 26 },
   ];
@@ -24,7 +24,6 @@ export default function About() {
           const end = stat.count;
           const duration = 800;
           const increment = end / 100;
-
           const timer = setInterval(() => {
             start += increment;
             setVisibleStats(prev => {
@@ -44,116 +43,100 @@ export default function About() {
 
   return (
     <>
-      <Head>
-        <title>About Us | RC Tech Solutions</title>
-        <meta
-          name="description"
-          content="Minimalist web development and branding agency in India led by Rahul Chauhan. Learn about our journey and impact."
-        />
-        <meta
-          name="keywords"
-          content="RC Tech Solutions, Rahul Chauhan, web development India, branding agency Chandigarh, custom websites"
-        />
-      </Head>
-
-      {/* INTRO */}
-      <section className="bg-white text-center py-20 px-6">
-        <h1 className="text-3xl sm:text-4xl font-semibold text-gray-900 mb-4">About RC Tech Solutions</h1>
-        <p className="max-w-xl mx-auto text-gray-600 text-base leading-relaxed">
-          We’re a purpose-driven digital agency — minimal, mindful, and made to deliver. Focused on meaningful design, fast code, and digital clarity.
-        </p>
+      {/* HERO */}
+      <section className="bg-gradient-to-b from-white via-[#f9f6ff] to-white text-center py-20 px-6">
+        <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">About RC Tech Solutions</h1>
+          <p className="max-w-xl mx-auto text-gray-600 text-base leading-relaxed">
+            We are a creative digital studio based in Chandigarh — turning ideas into scalable websites and bold brand experiences. Minimalist by design. Strategic by intent.
+          </p>
+        </motion.div>
       </section>
 
       {/* FOUNDER STORY */}
       <section className="bg-gray-50 py-16 px-6">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
             <img
               src={imageURL}
               alt="Rahul Chauhan - Founder"
-              className="w-full h-auto rounded-xl object-cover shadow-sm"
+              className="w-full h-auto rounded-xl object-cover shadow-md"
             />
-          </div>
-          <div>
-            <h2 className="text-xl font-semibold text-[#953ee2] mb-4">Rahul's Journey</h2>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-xl font-semibold text-[#953ee2] mb-4">How It All Started</h2>
             <p className="text-gray-700 leading-relaxed text-[15px]">
-              I started RC Tech Solutions in 2022, not just to build websites — but to solve real business problems with design that matters and code that scales.
+              In late 2021, I was just another tech enthusiast — no team, no budget — just belief. By early 2022, <strong>RC Tech Solutions</strong> launched with one free project and a vision to build brands through clean code and smart design.
               <br /><br />
-              From sleepless nights to live launches, every project has taught us one thing — clarity and consistency wins. We stay minimal so your brand speaks loud.
-              <br /><br />
-              We’re not here for short wins. We’re here to build digital foundations that last.
+              From broken builds to client wins, each challenge became fuel. I kept things small, focused, and honest — and that made us reliable. What started as one-person hustle is now a trusted name for startups and business owners looking for clarity in a noisy digital space.
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* ACHIEVEMENTS */}
+      {/* STATS */}
       <section className="bg-white py-20 px-6" ref={statsRef}>
         <div className="max-w-5xl mx-auto text-center">
-          <h3 className="text-2xl font-semibold text-gray-900 mb-10">What We’ve Built So Far</h3>
+          <motion.h3
+            className="text-2xl font-semibold text-gray-900 mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            Our Journey in Numbers
+          </motion.h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             {stats.map((item, idx) => (
-              <div key={idx} className="rounded-md p-4 border border-gray-100 shadow-sm bg-gray-50">
+              <motion.div
+                key={idx}
+                className="rounded-md p-4 border border-gray-100 shadow-sm bg-gray-50"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                viewport={{ once: true }}
+              >
                 <p className="text-3xl font-bold text-[#953ee2]">
                   {visibleStats[idx]}
                   {item.suffix || ""}
                 </p>
                 <p className="text-sm text-gray-600 mt-1">{item.label}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-[#f9f6ff] py-16 px-6 text-center">
-        <h3 className="text-xl sm:text-2xl font-medium text-gray-900 mb-3">We’re a quiet force in digital.</h3>
-        <p className="text-gray-600 max-w-xl mx-auto mb-6 text-sm sm:text-base">
-          No noise. Just work that works. If you’re a startup, small business, or someone who values quality — let’s talk.
-        </p>
-        <a
-          href="/contact"
-          className="inline-block bg-[#953ee2] text-white px-5 py-2.5 rounded-md text-sm font-medium hover:bg-purple-700 transition"
+      <section className="bg-gradient-to-r from-[#f9f6ff] via-white to-[#f9f6ff] py-16 px-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
         >
-          Let's Work Together
-        </a>
+          <h3 className="text-xl sm:text-2xl font-medium text-gray-900 mb-3">Let’s Build Your Digital Presence</h3>
+          <p className="text-gray-600 max-w-xl mx-auto mb-6 text-sm sm:text-base">
+            Whether you’re launching a brand, scaling a startup, or revamping your website — RC Tech Solutions is your digital partner.
+          </p>
+          <a
+            href="/contact"
+            className="inline-block bg-[#953ee2] text-white px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-purple-700 transition"
+          >
+            Get in Touch
+          </a>
+        </motion.div>
       </section>
-
-      {/* SCHEMA MARKUP */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            name: "RC Tech Solutions",
-            url: "https://www.rctechsolutions.com",
-            logo: "https://www.rctechsolutions.com/rclogo.png",
-            founder: "Rahul Chauhan",
-            foundingDate: "2022",
-            description:
-              "RC Tech Solutions is a minimalist web development and branding agency in Chandigarh, led by founder Rahul Chauhan.",
-            sameAs: [
-              "https://www.instagram.com/rctechsolutions",
-              "https://www.linkedin.com/company/rctechsolutions"
-            ],
-            contactPoint: {
-              "@type": "ContactPoint",
-              telephone: "+91-7009646377",
-              contactType: "Customer Support",
-              areaServed: "IN",
-              availableLanguage: ["English", "Hindi"]
-            },
-            address: {
-              "@type": "PostalAddress",
-              addressLocality: "Chandigarh",
-              addressRegion: "Chandigarh",
-              postalCode: "160061",
-              addressCountry: "IN"
-            }
-          }),
-        }}
-      />
     </>
   );
 }

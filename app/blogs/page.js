@@ -4,7 +4,6 @@ import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
-import Head from "next/head";
 
 
 const stripHtmlTags = (html) => {

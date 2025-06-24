@@ -1,3 +1,4 @@
+// app/blogs/metadata.js
 export const metadata = {
   title: "Blogs | RC Tech Solutions - Insights on Web, Tech, Career & Freelance",
   description:
@@ -27,7 +28,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "https://www.rctechsolutions.com/og/blogs-cover.jpg", // ✅ Replace with actual blog cover OG image
+        url: "https://www.rctechsolutions.com/og/blogs-cover.jpg",
         width: 1200,
         height: 630,
         alt: "RC Tech Blogs Cover"
@@ -39,7 +40,7 @@ export const metadata = {
     title: "Blogs by RC Tech Solutions",
     description:
       "Explore web development, SEO, freelancing & design tips from RC Tech Solutions.",
-    creator: "@rctechsolutions", // ✅ Update if you have Twitter handle
+    creator: "@rctechsolutions",
     images: ["https://www.rctechsolutions.com/og/blogs-cover.jpg"]
   },
   metadataBase: new URL("https://www.rctechsolutions.com")

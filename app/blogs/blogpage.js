@@ -1,15 +1,29 @@
-"use client"
+"use client";
 import { useEffect, useState } from "react";
-import { db } from "../firebase"
+import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
-
 
 const stripHtmlTags = (html) => {
   const tmp = document.createElement("DIV");
   tmp.innerHTML = html;
   return tmp.textContent || tmp.innerText || "";
+};
+
+const formatDate = (timestamp) => {
+  try {
+    if (timestamp?.toDate) {
+      return timestamp.toDate().toLocaleDateString("en-IN", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      });
+    }
+    return "";
+  } catch {
+    return "";
+  }
 };
 
 export default function BlogPage() {
@@ -28,7 +42,7 @@ export default function BlogPage() {
 
         blogList.sort((a, b) => {
           if (b.featured === a.featured) {
-            return new Date(b.date) - new Date(a.date);
+            return new Date(b.date?.toDate?.() || 0) - new Date(a.date?.toDate?.() || 0);
           }
           return b.featured ? 1 : -1;
         });
@@ -56,7 +70,9 @@ export default function BlogPage() {
 
     if (selectedCategory !== "all") {
       result = result.filter((blog) =>
-        Array.isArray(blog.category) ? blog.category.includes(selectedCategory) : blog.category === selectedCategory
+        Array.isArray(blog.category)
+          ? blog.category.includes(selectedCategory)
+          : blog.category === selectedCategory
       );
     }
 
@@ -72,151 +88,130 @@ export default function BlogPage() {
     setFilteredBlogs(result);
   }, [search, selectedCategory, blogs]);
 
-  // Schema.org ItemList structured data
   const itemListSchema = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    
     "itemListElement": filteredBlogs.map((blog, index) => ({
       "@type": "ListItem",
-      "position": index + 1,
-      "url": `https://www.rctechsolutions.com/blogs/${blog.slug}`,
-      "item": {
+      position: index + 1,
+      url: `https://www.rctechsolutions.com/blogs/${blog.slug}`,
+      item: {
         "@type": "BlogPosting",
-        "headline": blog.title,
-        "author": {
-          "@type": "Person",
-          "name": blog.author
-        },
-        "image": blog.blogImageUrl,
-        "datePublished": blog.date
-      }
-    }))
+        headline: blog.title,
+        author: { "@type": "Person", name: blog.author },
+        image: blog.blogImageUrl,
+        datePublished: formatDate(blog.date),
+      },
+    })),
   };
 
   return (
     <>
-     
-    <div className="relative bg-white min-h-screen text-black font-sans overflow-x-hidden">
-      
-      {/* JSON-LD Structured Data */}
-      
-      <script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
-/>
-
-
-      {/* Background animation */}
-      <div className="fixed top-0 left-0 w-full h-full -z-10 bg-gradient-to-tr from-white via-[#f2e9fc] to-white animate-gradient-xy opacity-60"></div>
-
-      {/* Hero Section */}
-      <section className="relative z-10 max-w-7xl mx-auto px-6 pt-20 pb-10 text-center">
-        <h1 className="text-5xl md:text-6xl font-extrabold text-[#111] leading-tight tracking-tight">
-          Elevate with{" "}
-          <span className="text-[#953ee2] bg-gradient-to-r from-[#953ee2] to-[#b67dfd] bg-clip-text text-transparent">
-            RC Tech Blogs
-          </span>
-        </h1>
-        <p className="text-gray-500 mt-6 text-lg max-w-2xl mx-auto">
-          Curated thoughts. Designed for impact. Built with intent. Discover insights, ideas, and innovations that lead the future.
-        </p>
-      </section>
-
-      {/* Filters */}
-      <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 mb-12">
-        <input
-          type="text"
-          placeholder="🔍 Search blogs..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full sm:w-2/3 px-5 py-3 rounded-xl border border-gray-300 bg-white text-black shadow-sm focus:ring-2 focus:ring-[#953ee2] transition-all"
+      <div className="relative bg-white text-black min-h-screen font-sans">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
         />
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-          className="w-full sm:w-1/3 px-5 py-3 rounded-xl border border-gray-300 bg-white text-black shadow-sm focus:ring-2 focus:ring-[#953ee2]"
-        >
-          {categories.map((cat) => (
-            <option key={cat} value={cat}>
-              {typeof cat === "string" ? cat.charAt(0).toUpperCase() + cat.slice(1) : ""}
-            </option>
-          ))}
-        </select>
-      </div>
 
-      {/* Featured Blogs */}
-      {filteredBlogs.some((blog) => blog.featured) && (
-        <section className="relative max-w-7xl mx-auto px-6 mb-24">
-          <h2 className="text-3xl font-bold mb-8 border-l-4 pl-4 border-[#953ee2]">🚀 Featured Highlights</h2>
+        <section className="max-w-6xl mx-auto px-6 pt-32 pb-16 text-center">
+          <h1 className="text-4xl md:text-6xl font-semibold tracking-tight">
+            The <span className="text-[#7b3fe4]">RC Tech</span> Journal
+          </h1>
+          <p className="text-gray-600 mt-4 text-base md:text-lg max-w-xl mx-auto">
+            Subtle, thoughtful, and inspired by tomorrow — explore curated digital narratives.
+          </p>
+        </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {filteredBlogs.filter(blog => blog.featured).map((blog) => (
-              <Link key={blog.id} href={`/blogs/${blog.slug}`} className="group">
-                <article className="relative bg-[#0f0f0f] text-white rounded-3xl shadow-xl transition-transform hover:-translate-y-1 hover:scale-[1.02] overflow-hidden border border-[#953ee2]/10">
-                  <div className="absolute top-5 left-5 bg-[#953ee2] text-xs px-3 py-1 rounded-full z-10">Featured</div>
-                  <div className="relative h-[240px] w-full overflow-hidden">
-                    <Image
-                      src={blog.blogImageUrl}
-                      alt={blog.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold group-hover:text-[#953ee2] mb-3 transition-colors">
-                      {blog.title}
-                    </h3>
-                    <p className="text-gray-300 text-sm line-clamp-3">
-                      {stripHtmlTags(blog.content).slice(0, 220)}...
-                    </p>
-                    <div className="mt-4 text-xs text-gray-400">
-                      By <span className="text-white font-semibold">{blog.author}</span> • {blog.date}
+        <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 mb-12">
+          <input
+            type="text"
+            placeholder="Search topics..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full sm:w-2/3 px-4 py-2 rounded-md border border-gray-300 bg-white text-black placeholder:text-gray-400 focus:ring-2 focus:ring-[#7b3fe4] focus:outline-none"
+          />
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            className="w-full sm:w-1/3 px-4 py-2 rounded-md border border-gray-300 bg-white text-black focus:ring-2 focus:ring-[#7b3fe4]"
+          >
+            {categories.map((cat) => (
+              <option key={cat} value={cat} className="bg-white text-black">
+                {typeof cat === "string" ? cat.charAt(0).toUpperCase() + cat.slice(1) : ""}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {filteredBlogs.some((blog) => blog.featured) && (
+          <section className="max-w-6xl mx-auto px-6 mb-20">
+            <h2 className="text-xl font-medium mb-8 text-[#7b3fe4]">Featured</h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
+              {filteredBlogs.filter(blog => blog.featured).map((blog) => (
+                <Link key={blog.id} href={`/blogs/${blog.slug}`} className="group block">
+                  <article className="shadow-2xl bg-white rounded-xl overflow-hidden border border-gray-200 transition-all hover:border-[#7b3fe4]">
+                    <div className="relative h-56 w-full">
+                      <Image
+                        src={blog.blogImageUrl}
+                        alt={blog.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                    </div>
+                    <div className="p-5">
+                      <h3 className="text-lg font-semibold mb-2 text-black group-hover:text-[#7b3fe4]">
+                        {blog.title}
+                      </h3>
+                      <p className="text-sm text-gray-600 line-clamp-3">
+                        {stripHtmlTags(blog.content).slice(0, 200)}...
+                      </p>
+                      <div className="mt-4 text-xs text-gray-500">
+                        {blog.author} • {formatDate(blog.date)}
+                      </div>
+                    </div>
+                  </article>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <section className="max-w-6xl mx-auto px-6 pb-20">
+          <h2 className="text-lg font-medium mb-6 text-gray-700">All Articles</h2>
+          {filteredBlogs.filter((blog) => !blog.featured).length === 0 ? (
+            <p className="text-center text-gray-500 py-10">No articles found.</p>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+              {filteredBlogs.filter(blog => !blog.featured).map((blog) => (
+                <Link key={blog.id} href={`/blogs/${blog.slug}`} className="group block">
+                  <div className="bg-white border border-gray-200 rounded-xl overflow-hidden transition hover:border-[#7b3fe4]">
+                    <div className="relative h-44 w-full">
+                      <Image
+                        src={blog.blogImageUrl}
+                        alt={blog.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <h3 className="text-base font-semibold text-black group-hover:text-[#7b3fe4] mb-2">
+                        {blog.title}
+                      </h3>
+                      <p className="text-sm text-gray-600">
+                        {stripHtmlTags(blog.content).slice(0, 100)}...
+                      </p>
+                      <div className="mt-3 text-xs text-gray-500">
+                        {blog.author} • {formatDate(blog.date)}
+                      </div>
                     </div>
                   </div>
-                </article>
-              </Link>
-            ))}
-          </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </section>
-      )}
-
-      {/* Latest Blogs */}
-      <section className="max-w-7xl mx-auto px-6">
-        <h2 className="text-2xl font-bold mb-8 text-[#111]">📝 Latest Blogs</h2>
-        {filteredBlogs.filter((blog) => !blog.featured).length === 0 ? (
-          <p className="text-center text-gray-500 py-10">No blogs found.</p>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10">
-            {filteredBlogs.filter(blog => !blog.featured).map((blog) => (
-              <Link key={blog.id} href={`/blogs/${blog.slug}`} className="group">
-                <div className="relative bg-[#111111] text-white border border-[#953ee2]/10 rounded-2xl shadow-lg hover:shadow-2xl transition-transform hover:-translate-y-1 hover:scale-105 overflow-hidden">
-                  <div className="relative h-[180px] w-full overflow-hidden">
-                    <Image
-                      src={blog.blogImageUrl}
-                      alt={blog.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="p-5 flex flex-col h-[280px]">
-                    <h2 className="text-white text-lg font-bold mb-2 group-hover:text-[#953ee2] transition-colors">
-                      {blog.title}
-                    </h2>
-                    <p className="text-gray-300 text-sm flex-grow">
-                      {stripHtmlTags(blog.content).slice(0, 100)}...
-                    </p>
-                    <p className="text-gray-400 text-xs mt-4">
-                      By <span className="text-white font-semibold">{blog.author}</span> • {blog.date}
-                    </p>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        )}
-      </section>
-    </div>
+      </div>
     </>
   );
 }

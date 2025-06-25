@@ -9,7 +9,7 @@ export async function GET() {
     '',
     '/blogs',
     '/about',
-    '/contact-us',
+    '/contact',
     '/services/ai-powered',
     '/services/cloud-integration',
     '/services/devops-and-cloud',

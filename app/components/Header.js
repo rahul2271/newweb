@@ -68,7 +68,7 @@ export default function AdvancedHeader() {
           <Link href="/blogs" className="hover:text-blue-600 transition">
             Blog
           </Link>
-          <Link href="/About" className="hover:text-blue-600 transition">
+          <Link href="/about" className="hover:text-blue-600 transition">
             About
           </Link>
           <Link href="/contact-us" className="hover:text-blue-600 transition">

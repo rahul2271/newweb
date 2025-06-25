@@ -8,7 +8,7 @@ import "swiper/css";
 
 
 
-export default function about() {
+export default function About() {
   const stats = [
     { label: "Projects Completed", count: 125 },
     { label: "Years of Combined Experience", count: 33 },

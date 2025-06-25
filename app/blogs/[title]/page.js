@@ -1,7 +1,7 @@
-// ✅ This is your SERVER COMPONENT — do NOT add "use client"
 import { db } from "../../firebase";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, getDocs, query, where, doc, updateDoc, increment } from "firebase/firestore";
 import BlogPostPage from "./blogpostpage";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({ params }) {
   const decodedSlug = decodeURIComponent(params.title);
@@ -19,40 +19,30 @@ export async function generateMetadata({ params }) {
 
   return {
     title: `${blog.title} | RC Tech Solutions`,
-    description: blog.description || blog.title,
-    keywords: [
-      "RC Tech Solutions Blog",
-      blog.title,
-      blog.category || "Tech",
-      "Web Development",
-      "Next.js",
-    ],
+    description: blog.metaDescription || blog.title,
     openGraph: {
-      title: `${blog.title} | RC Tech Solutions`,
-      description: blog.description || blog.title,
-      url: `https://www.rctechsolutions.com/blogs/${blog.slug}`,
-      siteName: "RC Tech Solutions",
-      images: [
-        {
-          url: blog.blogImageUrl,
-          width: 1200,
-          height: 630,
-          alt: blog.title,
-        },
-      ],
-      type: "article",
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: blog.title,
-      description: blog.description || blog.title,
       images: [blog.blogImageUrl],
     },
     metadataBase: new URL("https://www.rctechsolutions.com"),
   };
 }
 
-// Server-rendered wrapper
-export default function Page({ params }) {
-  return <BlogPostPage title={params.title} />;
+export default async function Page({ params }) {
+  const decodedSlug = decodeURIComponent(params.title);
+  const q = query(collection(db, "blogs"), where("slug", "==", decodedSlug));
+  const snapshot = await getDocs(q);
+
+  if (snapshot.empty) {
+    notFound();
+  }
+
+  const blog = snapshot.docs[0].data();
+  const blogId = snapshot.docs[0].id;
+
+  // ✅ Increment views
+  await updateDoc(doc(db, "blogs", blogId), {
+    views: increment(1),
+  });
+
+  return <BlogPostPage blog={{ ...blog, id: blogId }} />;
 }

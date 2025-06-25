@@ -35,7 +35,7 @@ export default function Contact() {
           name="keywords"
           content="RC Tech Solutions, Contact, Web Development India, Software Company, IT Consulting, Tech Support"
         />
-        <link rel="canonical" href="https://yourdomain.com/contact" />
+        <link rel="canonical" href="https://www.rctechsolutions.com/contact-us" />
         <script src={`https://www.google.com/recaptcha/api.js?render=6Lcr52srAAAAACzQwiz7d9thv8P6w0gC7emlomJd`} />
         <script
           type="application/ld+json"
@@ -46,10 +46,10 @@ export default function Contact() {
               "mainEntity": {
                 "@type": "Organization",
                 "name": "RC Tech Solutions",
-                "url": "https://yourdomain.com",
-                "logo": "https://yourdomain.com/logo.png",
-                "email": "support@rctechsolutions.com",
-                "telephone": "+91-9876543210",
+                "url": "https://rctechsolutions.com",
+                "logo": "https://rctechsolutions.com/logo.png",
+                "email": "business@rctechsolutions.com",
+                "telephone": "+91-7009646377",
                 "address": {
                   "@type": "PostalAddress",
                   "streetAddress": "654 Sycamore Avenue",

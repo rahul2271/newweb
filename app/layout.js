@@ -1,16 +1,14 @@
-// app/layout.js
-import { Playfair_Display } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import AdvancedHeader from "./components/Header";
-import Example from "./components/Header";
 import Footer from "./components/Footer";
 import Head from "next/head";
 import CustomCursor from "./components/CursorEffect";
 
-const playfairDisplay = Playfair_Display({
-  variable: "--font-playfair-display",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export default function RootLayout({ children }) {
@@ -30,7 +28,7 @@ export default function RootLayout({ children }) {
           }}
         />
 
-        {/* Meta Pixel (Facebook Pixel) */}
+        {/* Meta Pixel */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -52,8 +50,8 @@ export default function RootLayout({ children }) {
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
       </Head>
 
-      <body className={`${playfairDisplay.variable} antialiased`}>
-        {/* Google Tag Manager (noscript) */}
+      <body className={`${poppins.variable} antialiased`}>
+        {/* GTM NoScript */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-KQBSZ2Z9"
@@ -63,7 +61,7 @@ export default function RootLayout({ children }) {
           ></iframe>
         </noscript>
 
-        {/* Meta Pixel (noscript) */}
+        {/* Facebook Pixel NoScript */}
         <noscript>
           <img
             height="1"

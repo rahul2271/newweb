@@ -7,6 +7,7 @@ export default {
   ],
   theme: {
     extend: {
+      
       /* ---------------- KEYFRAMES ---------------- */
       keyframes: {
         /* smoother, slower diagonal gradient flow */

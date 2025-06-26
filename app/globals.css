@@ -36,9 +36,7 @@ body {
 
 
 
-button {
-  cursor: pointer;
-}
+
 
 /* Hover effect on the CTA button */
 
@@ -165,9 +163,7 @@ p {
 
 
 /* Hide the default cursor */
-html, body {
-  cursor: none;
-}
+
 
 
 #services{

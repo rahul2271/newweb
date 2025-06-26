@@ -1,4 +1,5 @@
-'use client';
+"use client";
+
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
@@ -33,16 +34,18 @@ export default function HeroSection() {
       <div className="absolute inset-0 -z-10 bg-white/80 backdrop-blur-sm" />
 
       <div className="mx-auto max-w-7xl">
-        {/* Headline and Copy */}
+        {/* Headline */}
         <div className="text-center max-w-4xl mx-auto mb-14">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-gray-900">
-            Scalable Web Solutions
-            <br className="hidden sm:inline" />
-            That Ignite Digital Growth
+            Websites That Perform. Design That Converts.
           </h1>
 
           <p className="mt-6 text-base sm:text-lg text-gray-700 max-w-2xl mx-auto">
-            We are <strong className="bg-gradient-to-r from-purple-700 via-indigo-600 to-blue-600 text-transparent bg-clip-text">RC Tech Solutions</strong> — creators of blazing-fast, SEO-optimised, mobile-responsive websites and SaaS dashboards that <strong>convert visitors into customers</strong>.
+            At <strong>RC Tech Solutions</strong>, we help businesses craft fast, user-friendly, and SEO-optimized websites that leave a lasting impression. From design to development, we focus on performance and results.
+          </p>
+
+          <p className="mt-4 text-base text-gray-600 max-w-xl mx-auto">
+            Whether you’re launching a startup or refreshing an existing brand, our team blends clean UI/UX design with smart development practices to help your site rank better and convert more visitors.
           </p>
 
           {/* Email Capture Form */}
@@ -50,9 +53,7 @@ export default function HeroSection() {
             onSubmit={(e) => e.preventDefault()}
             className="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
-            <label htmlFor="email" className="sr-only">Email</label>
             <input
-              id="email"
               type="email"
               required
               placeholder="Enter your business email"
@@ -62,21 +63,21 @@ export default function HeroSection() {
               type="submit"
               className="rounded-full bg-indigo-600 px-6 py-3 text-sm font-semibold text-white hover:bg-indigo-700 transition-all shadow-lg"
             >
-              Get a Free Consultation
+              Get Free Consultation
             </button>
           </form>
 
-          <p className="mt-4 text-xs text-gray-500">
-            No spam, just strategy. Start your digital journey with <strong>RC Tech Solutions</strong>.
+          <p className="mt-3 text-xs text-gray-500">
+            No spam. Just honest advice from <strong>RC Tech Solutions</strong>.
           </p>
         </div>
 
-        {/* Parallax Images – Desktop Only */}
+        {/* Parallax Images */}
         <div className="relative hidden lg:flex justify-between items-center gap-8 mt-12">
           <motion.div style={{ y: yImage1, x: relX * 40, rotateZ: relX * 6 }}>
             <Image
               src="https://images.unsplash.com/photo-1634498507905-3a4f8d7ba9e1?q=80&w=1935"
-              alt="Tech Stack Visual"
+              alt="Custom Website Design"
               width={300}
               height={300}
               className="rounded-xl shadow-lg object-cover"
@@ -87,7 +88,7 @@ export default function HeroSection() {
           <motion.div style={{ y: yImage2, x: relX * -20, rotateZ: relX * -4 }}>
             <Image
               src="https://plus.unsplash.com/premium_photo-1683980578016-a1f980719ec2?q=80&w=1935"
-              alt="Design System"
+              alt="UI UX Design Agency"
               width={260}
               height={260}
               className="rounded-xl shadow-lg object-cover"
@@ -98,7 +99,7 @@ export default function HeroSection() {
           <motion.div style={{ y: yImage3, x: relX * 30, rotateZ: relX * 5 }}>
             <Image
               src="https://plus.unsplash.com/premium_photo-1680608979589-e9349ed066d5?q=80&w=1964"
-              alt="Software Development"
+              alt="SEO Optimized Web Development"
               width={300}
               height={300}
               className="rounded-xl shadow-lg object-cover"
@@ -108,13 +109,13 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Floating Badge – Desktop Only */}
+      {/* Floating Badge */}
       <motion.div
         style={{ x: relX * 20, y: relY * 20 }}
         className="hidden lg:block fixed bottom-6 left-6 pointer-events-none select-none"
       >
         <div className="bg-white/80 backdrop-blur-md px-4 py-2 text-xs text-gray-800 rounded-xl shadow-lg">
-          🚀 Trusted by 50+ global startups<br />— Powered by RC Tech Solutions
+          🚀 Built with passion by RC Tech Solutions
         </div>
       </motion.div>
     </section>

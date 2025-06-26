@@ -1,44 +1,79 @@
 'use client'
 import { useState } from 'react';
-import { FaQuestionCircle, FaRegHandshake } from 'react-icons/fa';
+import { FaQuestionCircle } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 const faqs = [
   {
-    question: 'What services do you offer?',
+    question: 'What services does RC Tech Solutions offer?',
     answer:
-      'We offer web development, digital marketing, SEO, and custom video editing services. We work with you to build solutions tailored to your business.',
+      'We specialize in web development, SEO services, digital marketing, UI/UX design, cloud integration, and custom web app development under the leadership of Rahul Chauhan.',
   },
   {
-    question: 'How do I get started?',
+    question: 'How do I get started with a project?',
     answer:
-      'To start working with us, simply reach out through the contact form or book a consultation call. We’ll guide you through the planning process.',
+      'Simply fill out our contact form or book a consultation call. Our team at RC Tech Solutions will guide you step by step through the onboarding and project discovery process.',
   },
   {
-    question: 'What is your pricing?',
+    question: 'What is the typical website development timeline?',
     answer:
-      'Our pricing depends on the scope of the project. We offer customized solutions to suit your needs and budget. Contact us for a free consultation.',
+      'Depending on complexity, most website projects take between 3 to 8 weeks. Larger or more custom web apps may take several months. We always share a detailed project timeline upfront.',
   },
   {
-    question: 'How long does a project take?',
+    question: 'How much does a website or digital marketing project cost?',
     answer:
-      'The timeline varies based on the complexity of the project. Typically, it ranges from a few weeks to a few months. We’ll provide a more detailed timeline after understanding your requirements.',
+      'Our pricing is completely customized. After understanding your goals, scope, and requirements, we provide a tailored quote that suits your business and budget.',
+  },
+  {
+    question: 'Do you offer SEO services as part of website development?',
+    answer:
+      'Yes! All websites we build are SEO-optimized by default. We also offer advanced SEO packages including keyword research, on-page SEO, and content strategy to help you rank on Google.',
+  },
+  {
+    question: 'Do you provide ongoing support and website maintenance?',
+    answer:
+      'Absolutely! RC Tech Solutions offers website maintenance, performance monitoring, updates, and continuous technical support even after project delivery.',
+  },
+  {
+    question: 'Can you redesign an existing website?',
+    answer:
+      'Yes! Whether your site looks outdated or isn’t performing, our team specializes in website redesigns focused on better UI/UX, faster load times, and improved conversion rates.',
+  },
+  {
+    question: 'Do you work with startups and small businesses?',
+    answer:
+      'Of course. We love working with startups, entrepreneurs, and small businesses looking to scale online. Rahul Chauhan personally reviews small business digital growth plans.',
+  },
+  {
+    question: 'What industries do you work with?',
+    answer:
+      'We’ve worked with clients in eCommerce, healthcare, SaaS, education, finance, and many more. Our solutions are flexible and industry-agnostic.',
+  },
+  {
+    question: 'Do you offer content creation and copywriting services?',
+    answer:
+      'Yes, we have a dedicated content and copywriting team that creates SEO-focused website content, blog posts, product descriptions, and ad copy for your brand.',
   },
 ];
 
 const FaqSection = () => {
   const [activeIndex, setActiveIndex] = useState(null);
+  const [showAll, setShowAll] = useState(false);
 
   const toggleFAQ = (index) => {
-    setActiveIndex(activeIndex === index ? null : index); // Toggle open/close
+    setActiveIndex(activeIndex === index ? null : index);
   };
 
+  const displayedFaqs = showAll ? faqs : faqs.slice(0, 5);
+
   return (
-    <div className="bg-black  py-16 px-4 sm:px-6 lg:px-8">
-      <h2 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-yellow-500 mb-12">Frequently Asked Questions</h2>
-      
+    <div className="bg-black py-16 px-4 sm:px-6 lg:px-8">
+      <h2 className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-yellow-500 mb-12">
+        Frequently Asked Questions about RC Tech Solutions
+      </h2>
+
       <div className="max-w-2xl mx-auto space-y-6">
-        {faqs.map((faq, index) => (
+        {displayedFaqs.map((faq, index) => (
           <motion.div
             key={index}
             initial={{ opacity: 0 }}
@@ -47,7 +82,7 @@ const FaqSection = () => {
             className="border-b border-gray-300"
           >
             <div
-              className="flex justify-between items-center p-4 cursor-pointer  transition-all"
+              className="flex justify-between items-center p-4 cursor-pointer transition-all"
               onClick={() => toggleFAQ(index)}
             >
               <div className="flex items-center space-x-2">
@@ -88,17 +123,29 @@ const FaqSection = () => {
             </motion.div>
           </motion.div>
         ))}
+
+        {/* Show More / Show Less Button */}
+        {faqs.length > 5 && (
+          <div className="text-center mt-8">
+            <button
+              onClick={() => setShowAll(!showAll)}
+              className="px-6 py-2 text-sm font-semibold rounded-full bg-gradient-to-r from-pink-500 to-yellow-500 text-black hover:scale-105 transition-transform"
+            >
+              {showAll ? 'Show Less FAQs' : 'Show More FAQs'}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* CTA Section */}
-      <div className="text-center mt-10">
+      <div className="text-center mt-12">
         <p className="text-lg text-gray-200">
-          Didn’t find what you’re looking for?{' '}
+          Still have questions?{' '}
           <a
-            href="#"
-            className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-yellow-500 font-semibold "
+            href="/contact"
+            className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-yellow-500 font-semibold"
           >
-            Chat with Us
+            Contact RC Tech Solutions
           </a>
         </p>
       </div>

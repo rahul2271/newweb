@@ -9,49 +9,45 @@ export default function Example() {
     <section 
       className="relative py-24 px-6 font-sans bg-cover bg-center bg-no-repeat text-gray-900"
       style={{
-        backgroundImage: "url('./team.png')",
+        backgroundImage: "url('https://images.unsplash.com/photo-1600880292089-90a7e086ee7b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80')",
       }}
     >
-      {/* Overlay */}
-  
-
-      {/* Content Wrapper */}
       <div id='team' className="relative max-w-7xl mx-auto">
-        <div className="text-center pb-20 ">
+        {/* Section Heading */}
+        <div className="text-center pb-20">
           <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-4xl md:text-6xl font-light text-gray-900 tracking-tight leading-tight  text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-indigo-600 to-blue-600"
-        >
-          Brains behind <span className="font-semibold ">your Success</span>
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl md:text-6xl font-light text-gray-900 tracking-tight leading-tight text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-indigo-600 to-blue-600"
+          >
+            Meet the <span className="font-semibold">RC Tech Solutions Team</span>
+          </motion.h2>
           <p className="text-gray-600 text-xl leading-tight pt-8 max-w-xl mx-auto">
-            Not your average team. We don’t follow trends — we **set** them.
+            A powerhouse of <strong>Web Developers</strong>, <strong>SEO Experts</strong>, <strong>UI/UX Designers</strong>, and <strong>Digital Marketing Strategists</strong> – all driven by one goal: <em>Making your business grow online.</em>
           </p>
-        </motion.h2>
-          
         </div>
 
-        {/* Founder Highlighted */}
+        {/* Founder Highlight */}
         <div className="max-w-5xl mx-auto mb-24">
           <div className="bg-white shadow-xl rounded-3xl p-10 border border-gray-200 hover:shadow-2xl transition">
             <div className="flex flex-col md:flex-row items-center gap-8">
               <img
                 src="/rahul.jpeg"
-                alt="Rahul Chauhan"
+                alt="Rahul Chauhan - Founder of RC Tech Solutions"
                 className="w-40 h-40 rounded-full object-cover border-4 border-[#953ee2] shadow-md"
               />
               <div className="text-center md:text-left">
                 <h3 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-700 via-indigo-600 to-blue-600">
                   Rahul Chauhan
                 </h3>
-                <p className=" tracking-wide text-sm font-ligh text-[#953ee2] mt-1">
-                  Founder / Vision Architect
+                <p className="tracking-wide text-sm font-light text-[#953ee2] mt-1">
+                  Founder & Digital Strategy Expert
                 </p>
                 <p className="mt-4 text-gray-700 text-md leading-relaxed max-w-xl">
-                  I don’t just build — I redefine digital benchmarks. I create what others call “next level.”  
+                  At <strong>RC Tech Solutions</strong>, I don’t just build websites—I engineer <strong>digital growth strategies</strong> that turn clicks into customers.  
                   <span className="block mt-2 text-black font-semibold italic">
-                    This brand doesn’t follow rules. We write them.
+                    "We don’t follow market trends. We create them."
                   </span>
                 </p>
               </div>
@@ -64,27 +60,27 @@ export default function Example() {
           {[
             {
               name: 'Ananya Singh',
-              role: 'UI/UX Engineer',
+              role: 'UI/UX Engineer & Web Designer',
               img: 'https://i.pravatar.cc/150?img=12',
-              desc: 'Designs that aren’t just pretty—they convert.',
+              desc: 'Crafting user-focused designs that boost conversions and engagement. From Figma to final code—Ananya makes it flow.',
             },
             {
               name: 'Karan Mehta',
-              role: 'Full Stack Dev',
+              role: 'Full Stack Developer (Node.js / React / Next.js)',
               img: 'https://i.pravatar.cc/150?img=22',
-              desc: 'Code that scales, performs, and never breaks.',
+              desc: 'Specializing in high-performance, scalable web apps. Karan ensures our projects load fast and rank well on Google.',
             },
             {
               name: 'Simran Kaur',
-              role: 'Digital Strategist',
+              role: 'SEO & Digital Marketing Strategist',
               img: 'https://i.pravatar.cc/150?img=30',
-              desc: 'Strategy that gets noticed — and remembered.',
+              desc: 'From SEO audits to keyword-driven content plans, Simran helps clients dominate Google search and improve online visibility.',
             },
           ].map((member, i) => (
             <div key={i} className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition">
               <img
                 src={member.img}
-                alt={member.name}
+                alt={`${member.name} - ${member.role} at RC Tech Solutions`}
                 className="w-24 h-24 mx-auto rounded-full object-cover border border-gray-300"
               />
               <h3 className="mt-4 text-lg font-bold text-gray-900">{member.name}</h3>

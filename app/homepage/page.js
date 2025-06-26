@@ -87,6 +87,7 @@ export default function Home() {
       <div><Quiz /></div>
       <Capabilities />
       <ValueProposition />
+      
       <DownloadResourceSection />
       <CTASection />
       <TeamSection />

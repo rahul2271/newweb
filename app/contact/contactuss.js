@@ -1,27 +1,34 @@
-"use client"
+"use client";
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 export default function Contact() {
-  const [recaptchaToken, setRecaptchaToken] = useState('');
-
   useEffect(() => {
     const loadRecaptcha = () => {
       if (window.grecaptcha) {
         window.grecaptcha.ready(() => {
-          window.grecaptcha
-            .execute('6Lcr52srAAAAACzQwiz7d9thv8P6w0gC7emlomJd', { action: 'submit' })
-            .then((token) => {
-              setRecaptchaToken(token);
-            });
+          console.log('reCAPTCHA is ready');
         });
       } else {
-        setTimeout(loadRecaptcha, 500); // Retry if grecaptcha not ready
+        setTimeout(loadRecaptcha, 500);
       }
     };
 
     loadRecaptcha();
   }, []);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (window.grecaptcha) {
+      try {
+        const token = await window.grecaptcha.execute('6Lcr52srAAAAACzQwiz7d9thv8P6w0gC7emlomJd', { action: 'submit' });
+        document.getElementById('g-recaptcha-response').value = token;
+        e.target.submit();
+      } catch (error) {
+        console.error('reCAPTCHA execution error:', error);
+      }
+    }
+  };
 
   return (
     <>
@@ -36,7 +43,7 @@ export default function Contact() {
           content="RC Tech Solutions, Contact, Web Development India, Software Company, IT Consulting, Tech Support"
         />
         <link rel="canonical" href="https://www.rctechsolutions.com/contact-us" />
-        <script src={`https://www.google.com/recaptcha/api.js?render=6Lcr52srAAAAACzQwiz7d9thv8P6w0gC7emlomJd`} />
+        <script src="https://www.google.com/recaptcha/api.js?render=6Lcr52srAAAAACzQwiz7d9thv8P6w0gC7emlomJd" async defer></script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -104,12 +111,7 @@ export default function Contact() {
               method="POST"
               action="https://sheetdb.io/api/v1/nac4zyu6aoaoz"
               className="space-y-6"
-              onSubmit={(e) => {
-                const input = document.getElementById('g-recaptcha-response');
-                if (input && recaptchaToken) {
-                  input.value = recaptchaToken;
-                }
-              }}
+              onSubmit={handleSubmit}
             >
               <input
                 type="text"

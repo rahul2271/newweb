@@ -98,7 +98,7 @@ export default function DevOpsCloudPage() {
         postalCode: '110001',
         addressCountry: 'IN'
       },
-      telephone: '+91-XXXXXXXXXX',
+      telephone: '+91-7009646377',
       areaServed: ['IN', 'US', 'UK'],
       priceRange: '$$',
       sameAs: [
@@ -128,6 +128,7 @@ export default function DevOpsCloudPage() {
 
   return (
     <>
+    
       <SeoSchema schemas={schemas} />
 
       <section className="relative bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 text-white px-6 md:px-16 py-20 overflow-hidden md:pt-[180px]">

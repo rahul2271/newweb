@@ -14,6 +14,56 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import SeoSchema from '../../components/SeoSchema';
 
+const faqs = [
+  { question: 'What is cloud integration?', answer: 'Cloud integration connects multiple cloud-based systems and on-premises applications to function as a cohesive unit.' },
+  { question: 'Which cloud platforms do you support?', answer: 'We support AWS, Microsoft Azure, Google Cloud Platform, and more.' },
+  { question: 'What is Kubernetes orchestration?', answer: 'Kubernetes orchestrates the deployment, scaling, and management of containerized applications.' },
+  { question: 'How secure are your cloud integration solutions?', answer: 'We follow industry best practices with encryption, identity management, and threat detection for high-level cloud security.' },
+  { question: 'Do you provide disaster recovery solutions?', answer: 'Yes, we offer disaster recovery and backup solutions to minimize downtime and data loss.' },
+  { question: 'Can you help migrate our existing infrastructure to the cloud?', answer: 'Absolutely! We provide seamless cloud migration services with minimal business disruption.' },
+  { question: 'Do you offer cloud cost optimization services?', answer: 'Yes, we help optimize cloud resource usage and reduce operational costs.' },
+  { question: 'What industries do you serve for cloud integration?', answer: 'We serve industries like Healthcare, Finance, Retail, E-commerce, Education, and more.' },
+  { question: 'Do you offer 24/7 cloud support?', answer: 'Yes, we provide round-the-clock support and cloud infrastructure monitoring.' },
+  { question: 'How long does cloud migration usually take?', answer: 'Timelines depend on project complexity, typically ranging from a few weeks to a few months.' },
+  { question: 'Can you integrate legacy systems with modern cloud services?', answer: 'Yes, we specialize in hybrid integrations connecting legacy applications with modern cloud platforms.' },
+  { question: 'Do you offer DevOps and CI/CD integration in cloud projects?', answer: 'Yes, we help set up CI/CD pipelines and integrate DevOps practices within cloud environments.' },
+  { question: 'Is multi-cloud deployment possible?', answer: 'Absolutely! We design and manage multi-cloud architectures as per your business needs.' },
+  { question: 'Do you offer performance monitoring after deployment?', answer: 'Yes, we provide continuous performance tracking, logging, and analytics post-deployment.' },
+  { question: 'What is your pricing model for cloud services?', answer: 'We offer flexible engagement models including fixed price, hourly billing, and dedicated resource hiring.' }
+];
+
+function FAQItem({ question, answer }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="border-b border-gray-200 py-4">
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex justify-between items-center w-full text-left text-lg font-semibold text-gray-800 focus:outline-none"
+      >
+        {question}
+        <motion.span
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+          className="ml-2 text-indigo-500"
+        >
+          ▼
+        </motion.span>
+      </button>
+      {open && (
+        <motion.div
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.3 }}
+          className="mt-2 text-gray-600"
+        >
+          {answer}
+        </motion.div>
+      )}
+    </div>
+  );
+}
+
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -210,6 +260,45 @@ export default function CloudIntegrationPage() {
             </div>
           )}
         </div>
+      </section>
+
+      <section className="py-16 px-4 sm:px-6 md:px-12 bg-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.h2
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl md:text-4xl font-extrabold mb-8"
+          >
+            Frequently Asked Questions (FAQs)
+          </motion.h2>
+          <div className="text-left">
+            {faqs.map((faq, index) => (
+              <FAQItem key={index} {...faq} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="py-12 bg-gradient-to-r from-blue-600 to-purple-700 text-white text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl md:text-4xl font-bold mb-4"
+        >
+          Ready for Seamless Cloud Integration?
+        </motion.h2>
+        <p className="mb-6 text-lg">Let RC Tech Solutions handle your cloud migration, security, and optimization needs. Connect with us today!</p>
+        <motion.a
+          href="/contact"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="inline-block px-8 py-3 bg-orange-500 hover:bg-orange-600 rounded-full font-semibold text-white shadow-lg transition duration-300"
+        >
+          Get a Free Cloud Consultation →
+        </motion.a>
       </section>
     </>
   );

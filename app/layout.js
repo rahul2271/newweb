@@ -2,8 +2,12 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import AdvancedHeader from "./components/Header";
 import Footer from "./components/Footer";
-import Head from "next/head";
 import CustomCursor from "./components/CursorEffect";
+
+export const metadata = {
+  title: "Your Website Title",
+  description: "Your website description for SEO",
+};
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -11,10 +15,10 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
 });
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <Head>
+      <head>
         {/* Google Tag Manager */}
         <script
           dangerouslySetInnerHTML={{
@@ -28,7 +32,20 @@ export default function RootLayout({ children }) {
           }}
         />
 
-        {/* Meta Pixel */}
+        {/* Google Analytics (Gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-YLHN7WV840"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-YLHN7WV840');
+            `,
+          }}
+        />
+
+        {/* Facebook Meta Pixel */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -46,9 +63,9 @@ export default function RootLayout({ children }) {
           }}
         />
 
-        {/* Razorpay Script */}
+        {/* Razorpay Checkout Script */}
         <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-      </Head>
+      </head>
 
       <body className={`${poppins.variable} antialiased`}>
         {/* GTM NoScript */}
@@ -71,7 +88,7 @@ export default function RootLayout({ children }) {
           />
         </noscript>
 
-        {/* Cursor, Header, Content, Footer */}
+        {/* Custom Cursor, Header, Page Content, Footer */}
         <CustomCursor />
         <AdvancedHeader />
         {children}

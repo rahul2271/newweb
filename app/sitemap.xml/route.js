@@ -1,31 +1,31 @@
 import { NextResponse } from 'next/server';
 import { getDocs, collection } from 'firebase/firestore';
-import { db } from '../firebase'; // Adjust path if needed
+import { db } from '../firebase';
 
-// 🔥 This line is REQUIRED to prevent Next.js from caching this route
+// Prevent Next.js caching
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
   const baseUrl = 'https://www.rctechsolutions.com';
 
-  // ✅ Static site pages
+  // Static pages with custom priorities
   const staticRoutes = [
-    '',
-    '/blogs',
-    '/about',
-    '/contact',
-    '/services/ai-powered',
-    '/services/cloud-integration',
-    '/services/devops-and-cloud',
-    '/services/digital-branding',
-    '/services/digital-marketing',
-    '/services/mobile-apps',
-    '/services/seo',
-    '/services/web-development',
+    { path: '', priority: '1.0' }, // Homepage — highest priority
+    { path: '/about', priority: '0.9' },
+    { path: '/contact', priority: '0.9' },
+    { path: '/blogs', priority: '0.9' },
+    { path: '/services/ai-powered', priority: '0.9' },
+    { path: '/services/cloud-integration', priority: '0.9' },
+    { path: '/services/devops-and-cloud', priority: '0.9' },
+    { path: '/services/digital-branding', priority: '0.9' },
+    { path: '/services/digital-marketing', priority: '0.9' },
+    { path: '/services/mobile-apps', priority: '0.9' },
+    { path: '/services/seo', priority: '0.9' },
+    { path: '/services/web-development', priority: '0.9' },
   ];
 
   try {
-    // ✅ Fetch all blogs from Firestore
+    // Fetch blog posts from Firestore
     const blogSnapshot = await getDocs(collection(db, 'blogs'));
 
     const blogUrls = blogSnapshot.docs
@@ -33,26 +33,33 @@ export async function GET() {
         const data = doc.data();
         const slug = data.slug;
         if (!slug) return null;
-        return `${baseUrl}/blogs/${slug}`;
+        return {
+          url: `${baseUrl}/blogs/${slug}`,
+          priority: '0.9', // Blogs – slightly lower priority
+        };
       })
-      .filter(Boolean); // Remove nulls
+      .filter(Boolean);
 
-    // ✅ Merge static and dynamic URLs
-    const allUrls = [
-      ...staticRoutes.map((path) => `${baseUrl}${path}`),
-      ...blogUrls,
-    ];
-
-    // ✅ Build XML sitemap
+    // Build sitemap XML
     const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${allUrls
+${staticRoutes
   .map(
-    (url) => `
+    ({ path, priority }) => `
+  <url>
+    <loc>${baseUrl}${path}</loc>
+    <lastmod>${new Date().toISOString()}</lastmod>
+    <priority>${priority}</priority>
+  </url>`
+  )
+  .join('')}
+${blogUrls
+  .map(
+    ({ url, priority }) => `
   <url>
     <loc>${url}</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
-    <priority>0.8</priority>
+    <priority>${priority}</priority>
   </url>`
   )
   .join('')}

@@ -1,9 +1,18 @@
 import { db } from '../../firebase';
-import { collection, query, where, getDocs, doc, updateDoc, increment } from 'firebase/firestore';
+import {
+  collection,
+  query,
+  where,
+  getDocs,
+  doc,
+  updateDoc,
+  increment,
+} from 'firebase/firestore';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import React from 'react';
 import BlogContentWithToc from './BlogContentWithToc';
+import Head from 'next/head';
 
 export const dynamic = 'force-dynamic';
 
@@ -55,17 +64,59 @@ export default async function Page({ params }) {
     notFound();
   }
 
-  const blog = snapshot.docs[0].data();
-  const blogId = snapshot.docs[0].id;
+  const docSnap = snapshot.docs[0];
+  const blog = docSnap.data();
+  const blogId = docSnap.id;
 
   // Increment views (non-blocking)
   updateDoc(doc(db, 'blogs', blogId), {
     views: increment(1),
   });
 
+  // Format timestamps
+  const publishedDate = blog.createdAt.toDate().toISOString();
+  const modifiedDate = blog.updatedAt?.toDate().toISOString() || publishedDate;
+
   return (
     <>
-      {/* ✅ Centered Featured Image */}
+      {/* ✅ SEO JSON-LD Schema */}
+      <Head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BlogPosting",
+              "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": `https://www.rctechsolutions.com/blogs/${blog.slug}`,
+              },
+              "headline": blog.title,
+              "description": blog.metaDescription || blog.title,
+              "image": blog.blogImageUrl,
+              "author": {
+                "@type": "Organization",
+                "name": "RC Tech Solutions",
+                "url": "https://www.rctechsolutions.com",
+              },
+              "publisher": {
+                "@type": "Organization",
+                "name": "RC Tech Solutions",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://www.rctechsolutions.com/logo.png",
+                },
+              },
+              "datePublished": publishedDate,
+              "dateModified": modifiedDate,
+              "keywords": blog.keywords?.join(', ') || '',
+              "url": `https://www.rctechsolutions.com/blogs/${blog.slug}`,
+            }),
+          }}
+        />
+      </Head>
+
+      {/* ✅ Blog Featured Image */}
       <div className="flex justify-center mb-6">
         <Image
           src={blog.blogImageUrl}
@@ -76,7 +127,7 @@ export default async function Page({ params }) {
         />
       </div>
 
-      {/* ✅ Blog Content with TOC + Comments */}
+      {/* ✅ Blog Content + TOC + Comments */}
       <BlogContentWithToc blog={blog} blogId={blogId} />
     </>
   );

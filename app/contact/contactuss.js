@@ -42,7 +42,7 @@ export default function Contact() {
           name="keywords"
           content="RC Tech Solutions, Contact, Web Development India, Software Company, IT Consulting, Tech Support"
         />
-        <link rel="canonical" href="https://www.rctechsolutions.com/contact-us" />
+        <link rel="canonical" href="https://www.rctechsolutions.com/contact" />
         <script src="https://www.google.com/recaptcha/api.js?render=6Lcr52srAAAAACzQwiz7d9thv8P6w0gC7emlomJd" async defer></script>
         <script
           type="application/ld+json"
@@ -59,10 +59,10 @@ export default function Contact() {
                 "telephone": "+91-7009646377",
                 "address": {
                   "@type": "PostalAddress",
-                  "streetAddress": "654 Sycamore Avenue",
-                  "addressLocality": "New Delhi",
-                  "addressRegion": "DL",
-                  "postalCode": "110001",
+                  "streetAddress": "",
+                  "addressLocality": "Chandigarh",
+                  "addressRegion": "CH",
+                  
                   "addressCountry": "IN"
                 }
               }

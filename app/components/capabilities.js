@@ -111,7 +111,7 @@ export default function ServicesCard() {
       : services.filter((service) => service.category === activeCategory);
 
   return (
-    <section id="Services" className="relative py-20 px-6 bg-black text-black">
+    <section id="services" className="relative py-20 px-6 bg-black text-black">
       <div className="relative z-10 max-w-7xl mx-auto text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

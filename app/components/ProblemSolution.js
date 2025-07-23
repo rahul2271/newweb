@@ -49,6 +49,21 @@ export default function ProblemSolution() {
     },
   ];
 
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id.toLowerCase());
+    if (el) {
+      const yOffset = -80; // adjust for your sticky navbar height
+      const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+      window.scrollTo({
+        top: y,
+        behavior: 'smooth',
+      });
+
+      
+    }
+  };
+
   return (
     <section
       className="relative w-full py-32 bg-white overflow-hidden font-sans bg-[url('https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80')] bg-cover bg-center bg-no-repeat"
@@ -94,12 +109,12 @@ export default function ProblemSolution() {
             Whether it’s <strong>SEO-focused website design</strong> or <strong>modern UI/UX for business websites</strong>, we deliver results that matter.
           </p>
 
-          <a
+          <button onClick={() => scrollToSection('Services')} 
             href="#services"
             className="inline-block px-10 py-3 text-white text-sm font-semibold rounded-full bg-gradient-to-r from-[#8e2de2] to-[#4a00e0] shadow-lg hover:scale-105 hover:shadow-xl hover:rotate-[.5deg] transition-transform duration-300"
           >
             Let’s Optimize Your Brand Now
-          </a>
+          </button>
         </div>
       </div>
 
@@ -142,14 +157,7 @@ export default function ProblemSolution() {
   </div>
 
   {/* Optional CTA */}
-  <div className="mt-12">
-    <a
-      href="#case-studies"
-      className="inline-block px-8 py-3 text-white text-sm font-semibold rounded-full bg-gradient-to-r from-[#8e2de2] to-[#4a00e0] shadow-lg hover:scale-105 hover:shadow-xl transition-transform duration-300"
-    >
-      See Our Client Success Stories
-    </a>
-  </div>
+ 
 </div>
     </section>
   );

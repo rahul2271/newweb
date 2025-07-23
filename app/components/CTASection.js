@@ -27,7 +27,7 @@ export default function CTASection() {
             </p>
           </div>
           <a
-            href="#"
+            href="/contact"
             className
 ="flex items-center gap-2 bg-white rounded-full shadow-sm text-lg text-indigo-600 font-semibold py-4 px-8 transition-all duration-500"
             >Get In Touch

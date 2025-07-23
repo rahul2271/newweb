@@ -98,7 +98,7 @@ export default function ValueProposition() {
       {/* Call-to-Action Button */}
       <div className="text-center mt-16">
         <a
-          href="#why-us"
+          href="/contact"
           className="inline-block px-8 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-base md:text-lg font-semibold rounded-full shadow-lg hover:scale-105 transition-transform duration-300"
         >
           Talk to Rahul Chauhan’s Team – Let’s Build Growth Together

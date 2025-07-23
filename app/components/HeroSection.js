@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { motion, useViewportScroll, useTransform } from 'framer-motion';
+import ThankYouModal from './ThankYouModal';
 
 export default function HeroSection() {
   const { scrollYProgress } = useViewportScroll();
@@ -12,6 +13,7 @@ export default function HeroSection() {
 
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [viewport, setViewport] = useState({ w: 0, h: 0 });
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const updateVP = () => setViewport({ w: window.innerWidth, h: window.innerHeight });
@@ -29,8 +31,35 @@ export default function HeroSection() {
   const relX = viewport.w ? (mousePos.x - viewport.w / 2) / viewport.w : 0;
   const relY = viewport.h ? (mousePos.y - viewport.h / 2) / viewport.h : 0;
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+
+    try {
+      const res = await fetch('https://sheetdb.io/api/v1/0arxv3vf8lrsq', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data: { email } }),
+      });
+
+      if (res.ok) {
+        setShowModal(true);
+        form.reset();
+      } else {
+        alert('⚠️ Submission failed.');
+      }
+    } catch (error) {
+      console.error(error);
+      alert('⚠️ Something went wrong.');
+    }
+  };
+
   return (
     <section className="relative isolate overflow-hidden bg-white py-20 px-4 lg:px-8 text-black">
+      {/* Thank You Modal */}
+      <ThankYouModal isOpen={showModal} onClose={() => setShowModal(false)} />
+
       <div className="absolute inset-0 -z-10 bg-white/80 backdrop-blur-sm" />
 
       <div className="mx-auto max-w-7xl">
@@ -50,11 +79,12 @@ export default function HeroSection() {
 
           {/* Email Capture Form */}
           <form
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSubmit}
             className="mt-8 flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <input
               type="email"
+              name="email"
               required
               placeholder="Enter your business email"
               className="w-full sm:w-[300px] rounded-full border border-gray-300 px-5 py-3 text-sm text-gray-900 placeholder-gray-500 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"

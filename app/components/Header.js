@@ -74,7 +74,7 @@ export default function AdvancedHeader() {
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center space-x-8 font-medium text-gray-800">
           <button onClick={() => scrollToSection('home')} className="hover:text-blue-600 transition">Home</button>
-          <button onClick={() => scrollToSection('team')} className="hover:text-blue-600 transition">Team</button>
+          <button onClick={() => scrollToSection('teams')} className="hover:text-blue-600 transition">Brands Associated</button>
           <button onClick={() => scrollToSection('services')} className="hover:text-blue-600 transition">Services</button>
           <Link href="/blogs" className="hover:text-blue-600 transition">Blog</Link>
           <Link href="/about" className="hover:text-blue-600 transition">About</Link>

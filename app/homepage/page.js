@@ -5,15 +5,15 @@
 
 "use client";
 
-import ProblemSolution from '../components/ProblemSolution';
 
+import CtoSection from '../components/Result';
 import CTASection from '../components/CTASection';
 import ValueProposition from "../components/ValueProposition";
 import DownloadResourceSection from "../components/DownloadResourceSection";
 import FaqSection from "../components/FAQSection";
 
 import Chatbot from "../components/Chatbot";
-
+import ProductTeamSection from '../components/Timeline';
 import Quiz from "../components/Quiz";
 import Capabilities from "../components/capabilities";
 import BrandsSection from "../components/TrustedBrands";
@@ -83,14 +83,15 @@ export default function Home() {
       {/* Page Sections */}
       <Homepage />
       <BrandsSection />
-      <ProblemSolution />
+      <ProductTeamSection/>
+      {/* <ProblemSolution /> */}
       <div><Quiz /></div>
       <Capabilities />
       <ValueProposition />
-      
-      <DownloadResourceSection />
+      <CtoSection/>
+      {/* <DownloadResourceSection /> */}
       <CTASection />
-      <TeamSection />
+      {/* <TeamSection /> */}
       <FaqSection />
       <Chatbot />
     </>

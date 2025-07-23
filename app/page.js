@@ -1,11 +1,13 @@
 import Home from "./homepage/page";
 
 export const metadata = {
-  title: "RC Tech Solutions | Turing ideas into digital reality",
-  description: "We build luxury-grade digital solutions — websites, branding, SEO, and more. Join India's most trusted digital agency for premium business growth.",
+  title: "RC Tech Solutions | Turning Ideas into Digital Reality",
+  description:
+    "We build luxury-grade digital solutions — websites, branding, SEO, and more. Join India's most trusted digital agency for premium business growth.",
   openGraph: {
-    title: "RC Tech Solutions | Turing ideas into digital reality",
-    description: "Custom websites, SEO, branding, and marketing solutions tailored to your business. Experience premium digital transformation with RC Tech Solutions.",
+    title: "RC Tech Solutions | Turning Ideas into Digital Reality",
+    description:
+      "Custom websites, SEO, branding, and marketing solutions tailored to your business. Experience premium digital transformation with RC Tech Solutions.",
     url: "https://www.rctechsolutions.com",
     siteName: "RC Tech Solutions",
     images: [
@@ -21,11 +23,12 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "RC Tech Solutions",
-    description: "Luxury-grade web development and branding by RC Tech Solutions.",
+    description:
+      "Luxury-grade web development and branding by RC Tech Solutions.",
     images: ["https://www.rctechsolutions.com/rclogo.png"],
   },
 };
 
 export default function Page() {
-  return <Home/>;
+  return <Home />;
 }

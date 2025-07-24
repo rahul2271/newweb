@@ -48,14 +48,14 @@ ${staticRoutes.map(({ path, priority, changefreq }) => `
   <url>
     <loc>${baseUrl}${path}</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
-    <changefreq>${changefreq}</changefreq>
+    
     <priority>${priority}</priority>
   </url>`).join('')}
 ${blogUrls.map(({ url, priority, changefreq, lastmod }) => `
   <url>
     <loc>${url}</loc>
     <lastmod>${lastmod}</lastmod>
-    <changefreq>${changefreq}</changefreq>
+   
     <priority>${priority}</priority>
   </url>`).join('')}
 </urlset>`;

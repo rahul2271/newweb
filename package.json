@@ -37,6 +37,7 @@
     "lucide-react": "^0.488.0",
     "motions": "^0.0.1",
     "next": "^15.4.4",
+    "next-seo": "^6.8.0",
     "openai": "^4.77.0",
     "prisma": "^6.1.0",
     "razorpay": "^2.9.5",

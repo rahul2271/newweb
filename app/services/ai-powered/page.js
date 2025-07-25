@@ -19,6 +19,19 @@ import {
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import SeoSchema from '../../components/SeoSchema';
+import { NextSeo } from 'next-seo';
+<NextSeo
+  title="AI Powered Solutions | RC Tech Solutions"
+  description="Hire top-rated AI development company for NLP, AI Chatbots, Computer Vision, Machine Learning, and Predictive Analytics."
+  canonical="https://www.rctechsolutions.com/services/ai-powered"
+  openGraph={{
+    url: 'https://www.rctechsolutions.com/services/ai-powered',
+    title: 'AI Powered Solutions | RC Tech Solutions',
+    description:
+      'Hire top-rated AI development company for NLP, AI Chatbots, Computer Vision, Machine Learning, and Predictive Analytics.',
+    site_name: 'RC Tech Solutions',
+  }}
+/>
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -268,12 +281,7 @@ function ServiceCard({ icon: Icon, title, description, color, delay = 0 }) {
     <>
     
       <SeoSchema schemas={schemas} />
-      <Head>
-    <title>AI Powered Solutions | RC Tech Solutions</title>
-    <meta name="description" content="Hire top-rated AI development company for NLP, AI Chatbots, Computer Vision, Machine Learning, and Predictive Analytics." />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://www.rctechsolutions.com/services/ai-powered" />
-  </Head>
+      
       <section className="relative bg-gradient-to-r from-gray-900 via-[#0c0e10] to-gray-900 text-white px-4 sm:px-6 md:px-16 py-20 overflow-hidden md:pt-[180px]">
         <div className="relative z-10 max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12">
           <motion.div initial={{ opacity: 0, x: -40 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} className="text-center lg:text-left w-full lg:w-2/3">

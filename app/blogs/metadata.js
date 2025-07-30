@@ -1,5 +1,5 @@
-// app/blogs/metadata.js
 export const metadata = {
+  metadataBase: new URL("https://www.rctechsolutions.com"),
   title: "Blogs | RC Tech Solutions - Insights on Web, Tech, Career & Freelance",
   description:
     "Explore trending blogs by RC Tech Solutions on web development, freelancing, design, tech, SEO, and career growth. Stay informed and elevate your digital game.",
@@ -18,6 +18,11 @@ export const metadata = {
   authors: [{ name: "Rahul Chauhan", url: "https://www.rctechsolutions.com" }],
   creator: "RC Tech Solutions",
   publisher: "RC Tech Solutions",
+
+  alternates: {
+    canonical: "/blogs"
+  },
+
   openGraph: {
     title: "RC Tech Solutions Blogs | Insights that Matter",
     description:
@@ -35,6 +40,7 @@ export const metadata = {
       }
     ]
   },
+
   twitter: {
     card: "summary_large_image",
     title: "Blogs by RC Tech Solutions",
@@ -42,6 +48,5 @@ export const metadata = {
       "Explore web development, SEO, freelancing & design tips from RC Tech Solutions.",
     creator: "@rctechsolutions",
     images: ["https://www.rctechsolutions.com/og/blogs-cover.jpg"]
-  },
-  metadataBase: new URL("https://www.rctechsolutions.com")
+  }
 };

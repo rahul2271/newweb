@@ -1,13 +1,13 @@
-import Homepage from "@/components/HeroSection";
-import BrandsSection from "@/components/TrustedBrands";
-import ProductTeamSection from "@/components/Timeline";
-import Quiz from "@/components/Quiz";
+import Homepage from "../components/HeroSection";
+import BrandsSection from "../components/TrustedBrands";
+import ProductTeamSection from "../components/Timeline";
+import Quiz from "../components/Quiz";
 import ServicesCard from "@/components/capabilities";
-import ValueProposition from "@/components/ValueProposition";
-import CtoSection from "@/components/Result";
-import CTASection from "@/components/CTASection";
-import FaqSection from "@/components/FAQSection";
-import Chatbot from "@/components/Chatbot";
+import ValueProposition from "../components/ValueProposition";
+import CtoSection from "../components/Result";
+import CTASection from "../components/CTASection";
+import FaqSection from "../components/FAQSection";
+import Chatbot from "../components/Chatbot";
 
 // ✅ Metadata for SEO
 export const metadata = {

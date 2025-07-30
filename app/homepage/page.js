@@ -2,7 +2,7 @@ import Homepage from "../components/HeroSection";
 import BrandsSection from "../components/TrustedBrands";
 import ProductTeamSection from "../components/Timeline";
 import Quiz from "../components/Quiz";
-import ServicesCard from "@/components/capabilities";
+import ServicesCard from "../components/capabilities";
 import ValueProposition from "../components/ValueProposition";
 import CtoSection from "../components/Result";
 import CTASection from "../components/CTASection";

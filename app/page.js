@@ -4,11 +4,15 @@ export const metadata = {
   title: "RC Tech Solutions | Turning Ideas into Digital Reality",
   description:
     "We build luxury-grade digital solutions — websites, branding, SEO, and more. Join India's most trusted digital agency for premium business growth.",
+  metadataBase: new URL("https://www.rctechsolutions.com"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "RC Tech Solutions | Turning Ideas into Digital Reality",
     description:
       "Custom websites, SEO, branding, and marketing solutions tailored to your business. Experience premium digital transformation with RC Tech Solutions.",
-    url: "https://rctechsolutions.com",
+    url: "https://www.rctechsolutions.com",
     siteName: "RC Tech Solutions",
     images: [
       {

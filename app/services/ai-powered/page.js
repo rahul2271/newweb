@@ -199,11 +199,7 @@ export default function AIPoweredSolutionsPage() {
   {
     "@context": "https://schema.org",
     "@type": "Review",
-    "reviewRating": {
-      "@type": "Rating",
-      "ratingValue": "4.8",
-      "bestRating": "5"
-    },
+    
     "author": {
       "@type": "Organization",
       "name": "RC Tech Solutions"

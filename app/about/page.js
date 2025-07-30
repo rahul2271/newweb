@@ -29,7 +29,7 @@ export const metadata = {
     images: ["https://www.rctechsolutions.com/rahulchauhan.jpg"],
   },
   alternates: {
-    canonical: "https://www.rctechsolutions.com/aboutus",
+    canonical: "https://www.rctechsolutions.com/about",
   },
 };
 

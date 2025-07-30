@@ -204,21 +204,7 @@ export default function AIPoweredSolutionsPage() {
       "@type": "Organization",
       "name": "RC Tech Solutions"
     },
-    "itemReviewed": {
-      "@type": "Service",
-      "name": "AI Development Services",
-      "url": "https://www.rctechsolutions.com/services/ai-powered",
-      "description": "Custom AI software development, AI consulting, and dedicated AI teams for businesses worldwide.",
-      "provider": {
-        "@type": "Organization",
-        "name": "RC Tech Solutions",
-        "url": "https://www.rctechsolutions.com"
-      },
-      "areaServed": {
-        "@type": "Country",
-        "name": "India"
-      }
-    }
+
   },
   {
     "@context": "https://schema.org",

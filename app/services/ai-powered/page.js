@@ -198,24 +198,31 @@ export default function AIPoweredSolutionsPage() {
   },
   {
     "@context": "https://schema.org",
-    "@type": "Service",
-    "serviceType": "AI Development Services",
-    "provider": {
-      "@type": "Organization",
-      "name": "RC Tech Solutions",
-      "url": "https://www.rctechsolutions.com"
-    },
-    "areaServed": {
-      "@type": "Country",
-      "name": "India"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
+    "@type": "Review",
+    "reviewRating": {
+      "@type": "Rating",
       "ratingValue": "4.8",
-      "reviewCount": "50"
+      "bestRating": "5"
     },
-    "url": "https://www.rctechsolutions.com/services/ai-powered",
-    "description": "Custom AI software development, AI consulting, and dedicated AI teams for businesses worldwide."
+    "author": {
+      "@type": "Organization",
+      "name": "RC Tech Solutions"
+    },
+    "itemReviewed": {
+      "@type": "Service",
+      "name": "AI Development Services",
+      "url": "https://www.rctechsolutions.com/services/ai-powered",
+      "description": "Custom AI software development, AI consulting, and dedicated AI teams for businesses worldwide.",
+      "provider": {
+        "@type": "Organization",
+        "name": "RC Tech Solutions",
+        "url": "https://www.rctechsolutions.com"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "India"
+      }
+    }
   },
   {
     "@context": "https://schema.org",
@@ -236,6 +243,7 @@ export default function AIPoweredSolutionsPage() {
     ]
   }
 ];
+
 
 function ServiceCard({ icon: Icon, title, description, color, delay = 0 }) {
   const cardRef = useRef(null);

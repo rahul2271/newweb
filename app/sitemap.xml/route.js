@@ -5,7 +5,7 @@ import { db } from '../firebase';
 export const dynamic = 'force-dynamic';
 
 export async function GET() {
-  const baseUrl = 'https://rctechsolutions.com';
+  const baseUrl = 'https://www.rctechsolutions.com';
 
   // Static pages
   const staticRoutes = [

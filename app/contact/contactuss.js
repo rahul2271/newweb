@@ -1,32 +1,14 @@
 "use client";
 import Head from 'next/head';
-import { useEffect } from 'react';
+import { useRef } from 'react';
 
 export default function Contact() {
-  useEffect(() => {
-    const loadRecaptcha = () => {
-      if (window.grecaptcha) {
-        window.grecaptcha.ready(() => {
-          console.log('reCAPTCHA is ready');
-        });
-      } else {
-        setTimeout(loadRecaptcha, 500);
-      }
-    };
+  const formRef = useRef(null);
 
-    loadRecaptcha();
-  }, []);
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (window.grecaptcha) {
-      try {
-        const token = await window.grecaptcha.execute('6Lcr52srAAAAACzQwiz7d9thv8P6w0gC7emlomJd', { action: 'submit' });
-        document.getElementById('g-recaptcha-response').value = token;
-        e.target.submit();
-      } catch (error) {
-        console.error('reCAPTCHA execution error:', error);
-      }
+    if (formRef.current) {
+      formRef.current.submit();
     }
   };
 
@@ -43,7 +25,6 @@ export default function Contact() {
           content="RC Tech Solutions, Contact, Web Development India, Software Company, IT Consulting, Tech Support"
         />
         <link rel="canonical" href="https://www.rctechsolutions.com/contact" />
-        <script src="https://www.google.com/recaptcha/api.js?render=6Lcr52srAAAAACzQwiz7d9thv8P6w0gC7emlomJd" async defer></script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -59,10 +40,8 @@ export default function Contact() {
                 "telephone": "+91-7009646377",
                 "address": {
                   "@type": "PostalAddress",
-                  "streetAddress": "",
                   "addressLocality": "Chandigarh",
                   "addressRegion": "CH",
-                  
                   "addressCountry": "IN"
                 }
               }
@@ -108,6 +87,7 @@ export default function Contact() {
             </p>
 
             <form
+              ref={formRef}
               method="POST"
               action="https://sheetdb.io/api/v1/nac4zyu6aoaoz"
               className="space-y-6"
@@ -153,9 +133,6 @@ export default function Contact() {
                 rows="4"
                 className="w-full border border-gray-200 rounded-lg px-4 py-2 text-gray-700 placeholder-gray-400 focus:outline-none resize-none"
               ></textarea>
-
-              {/* Hidden reCAPTCHA token field */}
-              <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response" />
 
               <button
                 type="submit"

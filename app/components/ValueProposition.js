@@ -33,7 +33,12 @@ export default function ValueProposition() {
           </motion.h2>
 
           <p className="text-md md:text-lg leading-relaxed text-gray-700">
-            At RC Tech Solutions, led by Rahul Chauhan, we go beyond delivering projects—we create lasting digital growth partnerships. Every website, app, and campaign is designed with precision, ensuring performance, conversions, and measurable business impact. As a provider of the Best AI Powered Solutions, we integrate innovation into every step, helping businesses stay ahead in the digital era.
+            At RC Tech Solutions, led by Rahul Chauhan, we go beyond delivering projects—we create lasting digital growth partnerships. Every website, app, and campaign is designed with precision, ensuring performance, conversions, and measurable business impact. As a provider of the <a 
+    href="/services/ai-powered" 
+    className="text-purple-400 hover:underline" target="_blank"
+  >
+    Best AI Powered Solutions
+  </a>, we integrate innovation into every step, helping businesses stay ahead in the digital era.
 
           </p>
 

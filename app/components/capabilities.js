@@ -123,7 +123,12 @@ export default function ServicesCard() {
         </motion.h2>
 
         <p className="text-gray-100 pb-4  max-w-7xl mx-auto">
-          Driven by innovation and guided by Rahul Chauhan, IT solutions company in India offers a complete range of Digital Marketing Services to help businesses succeed. Our capabilities cover web development for functional, responsive websites, SEO strategies to boost visibility, and digital marketing campaigns to expand reach. We excel in cloud infrastructure consulting, ensuring systems are secure, efficient, and ready to scale. Our AI automation tools streamline processes, enhance productivity, and reduce costs. To ensure maximum engagement, we provide creative UI/UX design services that merge aesthetic appeal with usability. Each solution we craft is customized to your business objectives, ensuring measurable impact. From startups looking to make their mark to enterprises seeking digital transformation, we combine technology and strategy to deliver results. At RC Tech Solutions, we don’t just offer services — we provide partnerships that turn ideas into innovative digital solutions, keeping your business ahead of the curve.
+          Driven by innovation and guided by Rahul Chauhan, IT solutions company in India offers a complete range of <a 
+    href="/services/digital-marketing" 
+    className="text-purple-400 hover:underline" target="_blank"
+  >
+    Digital Marketing Services
+  </a>  to help businesses succeed. Our capabilities cover web development for functional, responsive websites, SEO strategies to boost visibility, and digital marketing campaigns to expand reach. We excel in cloud infrastructure consulting, ensuring systems are secure, efficient, and ready to scale. Our AI automation tools streamline processes, enhance productivity, and reduce costs. To ensure maximum engagement, we provide creative UI/UX design services that merge aesthetic appeal with usability. Each solution we craft is customized to your business objectives, ensuring measurable impact. From startups looking to make their mark to enterprises seeking digital transformation, we combine technology and strategy to deliver results. At RC Tech Solutions, we don’t just offer services — we provide partnerships that turn ideas into innovative digital solutions, keeping your business ahead of the curve.
 
         </p>
 
@@ -185,7 +190,12 @@ export default function ServicesCard() {
           </motion.h3>
 
           <p className="text-gray-200 max-w-7xl text-md md:text-lg leading-relaxed">
-           We get it—you’ve scrolled past endless agency websites, all promising big results. But RC Tech Solutions, led by Rahul Chauhan, isn’t here to blend in; we’re here to stand out for you. Our work is rooted in passion, meticulous attention to detail, and an authentic commitment to your business growth. When we take on a project, it’s more than a task—it’s a mission. From brainstorming over late-night calls to intense design sprints powered by caffeine and creativity, we aim for nothing less than excellence. Our expertise spans across digital solutions that deliver tangible results, including Top Branding Services designed to make your business unforgettable. We’re not about empty promises—we’re about building meaningful partnerships, crafting strategies that work, and creating designs that resonate. At RC Tech Solutions, every project is a chance to prove that care, skill, and innovation are the true hallmarks of success.
+           We get it—you’ve scrolled past endless agency websites, all promising big results. But RC Tech Solutions, led by Rahul Chauhan, isn’t here to blend in; we’re here to stand out for you. Our work is rooted in passion, meticulous attention to detail, and an authentic commitment to your business growth. When we take on a project, it’s more than a task—it’s a mission. From brainstorming over late-night calls to intense design sprints powered by caffeine and creativity, we aim for nothing less than excellence. Our expertise spans across digital solutions that deliver tangible results, including <a 
+    href="/services/digital-branding" 
+    className="text-purple-400 hover:underline" target="_blank"
+  >
+    Top Branding Services
+  </a> designed to make your business unforgettable. We’re not about empty promises—we’re about building meaningful partnerships, crafting strategies that work, and creating designs that resonate. At RC Tech Solutions, every project is a chance to prove that care, skill, and innovation are the true hallmarks of success.
 
           </p>
 

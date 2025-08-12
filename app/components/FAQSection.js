@@ -1,13 +1,38 @@
 'use client'
 import { useState } from 'react';
+import Link from 'next/link';
 import { FaQuestionCircle } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 const faqs = [
   {
     question: 'What services does RC Tech Solutions offer?',
-    answer:
-      'We specialize in web development, SEO services, digital marketing, UI/UX design, cloud integration, and Custom web development services under the leadership of Rahul Chauhan.',
+    answer: (
+      <>
+        We specialize in{' '}
+        <Link target='_blank' href="/services/web-development" className="text-purple-400 hover:underline">
+          web development
+        </Link>
+        ,{' '}
+        <Link target='_blank' href="/services/seo" className="text-purple-400 hover:underline">
+          SEO services
+        </Link>
+        ,{' '}
+        <Link target='_blank' href="/services/digital-marketing" className="text-purple-400 hover:underline">
+          digital marketing
+        </Link>
+        ,
+        ,{' '}
+        <Link target='_blank' href="/services/cloud-integration" className="text-purple-400 hover:underline">
+          cloud integration
+        </Link>{' '}
+        and{' '}
+        <Link target='_blank' href="/services/web-development" className="text-purple-400 hover:underline">
+          custom web development
+        </Link>{' '}
+        under the leadership of Rahul Chauhan.
+      </>
+    ),
   },
   {
     question: 'How do I get started with a project?',
@@ -124,7 +149,6 @@ const FaqSection = () => {
           </motion.div>
         ))}
 
-        {/* Show More / Show Less Button */}
         {faqs.length > 5 && (
           <div className="text-center mt-8">
             <button
@@ -137,7 +161,6 @@ const FaqSection = () => {
         )}
       </div>
 
-      {/* CTA Section */}
       <div className="text-center mt-12">
         <p className="text-lg text-gray-200">
           Still have questions?{' '}

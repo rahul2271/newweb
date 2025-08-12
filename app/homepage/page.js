@@ -11,15 +11,15 @@ import Chatbot from "../components/Chatbot";
 
 // ✅ Metadata for SEO
 export const metadata = {
-  title: "RC Tech Solutions",
-  description: "We build luxury-grade digital solutions — websites, branding, SEO, and more.",
+  title: "Best Software Development Company for Digital Success | RC tech Solutions",
+  description: "Your vision, our expertise. As the best software development company, we design and develop custom software that enhances productivity and maximizes business efficiency.",
   metadataBase: new URL("https://www.rctechsolutions.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "RC Tech Solutions",
-    description: "We build luxury-grade digital solutions — websites, branding, SEO, and more.",
+    title: "Best Software Development Company for Digital Success | RC tech Solutions",
+    description: "Your vision, our expertise. As the best software development company, we design and develop custom software that enhances productivity and maximizes business efficiency.",
     url: "https://www.rctechsolutions.com",
     siteName: "RC Tech Solutions",
     images: [
@@ -46,7 +46,7 @@ const schemaWebsite = {
   "@type": "WebSite",
   name: "RC Tech Solutions",
   url: "https://www.rctechsolutions.com",
-  description: "We build luxury-grade digital solutions — websites, branding, SEO, and more.",
+  description: "Your vision, our expertise. As the best software development company, we design and develop custom software that enhances productivity and maximizes business efficiency.",
   publisher: {
     "@type": "Organization",
     name: "RC Tech Solutions",

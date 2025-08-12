@@ -148,12 +148,13 @@ export default function DigitalMarketingPage() {
                 </span>
                 <span className="text-white ml-1">100+ campaigns</span>
               </span>
-            </div>
+            </div> 
+
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6">
-              Strategic <span className="bg-gradient-to-r from-[#3b82f6] to-[#9333ea] bg-clip-text text-transparent">Digital Marketing</span> for Modern Brands
+              Boosting Brand Growth through <span className="bg-gradient-to-r from-[#3b82f6] to-[#9333ea] bg-clip-text text-transparent">Expert Digital Marketing </span> Services.
             </h1>
             <p className="text-white/80 text-lg max-w-2xl">
-              Drive engagement, generate leads, and scale revenue with result-driven campaigns tailored to your brand voice and goals.
+Enhance engagement, attract more leads, and accelerate revenue with data-driven Digital Marketing Services crafted to match your brand’s vision and goals.
             </p>
           </motion.div>
           <motion.div
@@ -182,6 +183,11 @@ export default function DigitalMarketingPage() {
           >
             Full-Spectrum Digital Marketing Services
           </motion.h2>
+          <p className="text-gray-800 max-w-7xl pb-8 text-md md:text-lg leading-relaxed">
+Full-Spectrum Digital Marketing Services empower modern brands with strategies that truly convert. From Social Media Management and Google Ads Campaigns to Email and Influencer Marketing, RC Tech Solutions delivers holistic solutions that scale engagement, generate leads, and drive revenue. As an IT solutions company in India, we blend powerful tactics like Video Marketing, Performance Tracking, and Conversion Optimization into campaigns tailored to your brand voice and goals. Based in Mohali, our team ensures every digital touchpoint contributes to measurable growth.
+
+
+          </p>
           {isMobile ? (
             <Swiper spaceBetween={20} slidesPerView={1.1} loop className="px-2">
               {services.map((service, index) => (

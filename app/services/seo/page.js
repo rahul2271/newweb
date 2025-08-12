@@ -120,7 +120,8 @@ export default function SEODominationPage() {
               </span>
             </h1>
             <p className="text-white/80 text-lg max-w-2xl">
-              We don't just optimize — we strategize, analyze, and conquer search rankings so you get traffic that converts.
+              Boost your rankings and attract more customers with our advanced SEO services for small businesses, designed to help you dominate Google search results.
+
             </p>
           </motion.div>
 
@@ -152,7 +153,11 @@ export default function SEODominationPage() {
           >
             Our SEO Domination Services
           </motion.h2>
+<p className="text-gray-800 max-w-7xl pb-8 text-md md:text-lg leading-relaxed">
+Gain searchable dominance with RC Tech Solutions—your partner in SEO services for small businesses and recognized as the Best IT company for startups. Our SEO Domination Services start with rigorous Technical SEO Audits and Keyword Research, progress through sophisticated On-Page Optimization, Content Strategy, and Backlink Building, and are reinforced by insightful Analytics & Reporting and precise Local SEO. We don’t just boost rankings; we drive relevant, conversion-ready traffic to fuel your growth. It’s SEO engineered to scale your startup.
 
+
+          </p>
           {isMobile ? (
             <Swiper spaceBetween={20} slidesPerView={1.2} loop>
               {seoServices.map((service, index) => (

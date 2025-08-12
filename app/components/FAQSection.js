@@ -7,7 +7,7 @@ const faqs = [
   {
     question: 'What services does RC Tech Solutions offer?',
     answer:
-      'We specialize in web development, SEO services, digital marketing, UI/UX design, cloud integration, and custom web app development under the leadership of Rahul Chauhan.',
+      'We specialize in web development, SEO services, digital marketing, UI/UX design, cloud integration, and Custom web development services under the leadership of Rahul Chauhan.',
   },
   {
     question: 'How do I get started with a project?',

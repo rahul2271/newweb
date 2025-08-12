@@ -49,7 +49,7 @@ export default function BrandsSection() {
           transition={{ duration: 0.9 }}
           className="mt-6 text-lg text-gray-500 max-w-2xl mx-auto"
         >
-          We partner with premium companies who value aesthetics, trust, and performance.
+We partner with Affordable IT services India who value aesthetics, trust, and performance.
         </motion.p>
 
         {/* Mobile Swiper */}

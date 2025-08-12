@@ -104,7 +104,8 @@ export default function Quiz() {
         {/* Left Section: Engaging Content */}
         <div className="w-full lg:w-1/2 p-8 text-white flex flex-col justify-center space-y-8">
           <h2 className="text-3xl lg:text-5xl font-light tracking-tight bg-gradient-to-r from-pink-500 to-yellow-500  text-transparent bg-clip-text">Take Your Business to <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">New Heights</span> </h2>
-          <p className="text-lg lg:text-xl text-gray-900">We specialize in delivering premium solutions tailored to help your business grow, succeed, and stand out in the digital world. Answer a few questions, and we’ll suggest the best solutions for your unique needs.</p>
+          <p className="text-lg lg:text-xl text-gray-900">We provide Best IT company for startups, delivering high-quality solutions designed to help your business grow, thrive, and shine in the digital landscape. Simply answer a few quick questions, and we’ll recommend the most effective solutions tailored to your unique requirements.
+</p>
           <ul className="list-disc space-y-4 text-gray-900 lg:text-lg">
             <li>Custom Web Development</li>
             <li>Branding & Logo Design</li>

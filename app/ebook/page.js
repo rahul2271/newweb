@@ -1,16 +1,14 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import {
-  Star, Lock, Zap, BookOpen, Shield, Gift, Users, ThumbsUp,
-  CheckCircle, Award, Clock, TrendingUp
+  Star, Lock, Zap, BookOpen, Shield, Gift, Users, Award, CheckCircle
 } from "lucide-react";
 
 export default function EbookPage() {
-  const basePrice = 19900; // ₹199.00
-  const gstAmount = basePrice * 0.18;
-  const totalPrice = basePrice + gstAmount;
+  const [basePrice, setBasePrice] = useState(100); // default ₹199.00
+  const [gstAmount, setGstAmount] = useState(basePrice * 0.18);
+  const [finalPrice, setFinalPrice] = useState(basePrice + gstAmount);
 
-  const [finalPrice, setFinalPrice] = useState(totalPrice);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -20,6 +18,13 @@ export default function EbookPage() {
   const [copiesLeft, setCopiesLeft] = useState(47);
 
   const formRef = useRef(null);
+
+  // Update GST & final price when base price changes
+  useEffect(() => {
+    const gst = basePrice * 0.18;
+    setGstAmount(gst);
+    setFinalPrice(basePrice + gst);
+  }, [basePrice]);
 
   // Countdown timer
   useEffect(() => {
@@ -37,7 +42,9 @@ export default function EbookPage() {
 
   const applyDiscount = () => {
     if (discountCode.trim().toUpperCase() === "FIRST10") {
+      setBasePrice(0);
       setFinalPrice(0);
+      setGstAmount(0);
       alert("🎉 Coupon applied! You get this for free.");
     } else {
       alert("❌ Invalid coupon code");
@@ -64,6 +71,10 @@ export default function EbookPage() {
   const handlePayment = () => {
     if (!name || !email) {
       alert("Please fill in your name and email.");
+      return;
+    }
+    if (finalPrice < 100 && finalPrice !== 0) {
+      alert("Minimum payable amount is ₹1 (before GST).");
       return;
     }
     if (finalPrice === 0) {
@@ -112,21 +123,37 @@ export default function EbookPage() {
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white flex flex-col items-center p-6 relative">
       
       {/* Sticky urgency banner */}
-      
+      <div className="top-0 w-full text-purple-900 text-center py-3 px-4 text-sm font-medium z-50 flex flex-col sm:flex-row sm:items-center sm:justify-center gap-3 shadow-sm bg-white rounded-xl">
+        <span className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full">
+          🚀 Free for limited period of time
+        </span>
+        <span className="bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full">
+          🎯 {copiesLeft} left — Once it’s gone, it’s gone forever
+        </span>
+        <span className="bg-pink-100 text-pink-800 px-3 py-1 rounded-full">
+          ⏳ {formatTime(countdown)}
+        </span>
+        <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full">
+          💡 Pay what you can — even ₹1 — learning for all
+        </span>
+      </div>
 
       {/* Hero */}
       <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-3xl w-full mt-16 relative overflow-hidden">
-        
-        {/* Glow gradient overlay */}
         <div className="absolute -top-20 -right-20 w-64 h-64 bg-purple-200 blur-3xl rounded-full opacity-50"></div>
-<div className="flex flex-wrap gap-3 mb-4">
+
+        <div className="flex flex-wrap gap-3 mt-5 mb-4">
           <span className="bg-green-600/20 text-green-900 px-3 py-1 rounded-full text-xs flex items-center gap-1">
             <Users className="w-4 h-4" /> Trusted by 30+ coding clubs
           </span>
           <span className="bg-yellow-600/20 text-yellow-900 px-3 py-1 rounded-full text-xs flex items-center gap-1">
             <Award className="w-4 h-4" /> Endorsed by top developers
           </span>
+          <span className="bg-red-600/20 text-red-900 px-3 py-1 rounded-full text-xs flex items-center gap-1">
+            <Award className="w-4 h-4" /> Students Centric
+          </span>
         </div>
+
         <div className="flex flex-col sm:flex-row items-center gap-6 relative z-10">
           <img
             src="/ebookpdf.jpg"
@@ -145,13 +172,13 @@ export default function EbookPage() {
                 (200+ Verified Student Reviews)
               </span>
             </div>
+            
             <h1 className="text-3xl font-extrabold text-purple-700 leading-snug">
-              Learn to Code, Earn from Code 🚀
+              Learn to Code, Earn from Code 
             </h1>
             <p className="text-gray-700 mb-4 leading-relaxed">
               Exclusive for students who want to master coding skills and
-              convert them into real income through internships, freelancing,
-              and high-paying jobs — without wasting years guessing what works.
+              convert them into real income — without wasting years guessing what works.
             </p>
             <div className="flex flex-wrap gap-3 text-sm">
               <span className="flex items-center gap-1">
@@ -180,7 +207,7 @@ export default function EbookPage() {
               ₹{(finalPrice / 100).toFixed(2)}
             </span>
             <span className="text-xs text-gray-500">
-              *Support fee for hosting & delivery only
+              *Support fee only — you set your own price so everyone can afford it 💜
             </span>
           </div>
           <button
@@ -194,56 +221,6 @@ export default function EbookPage() {
         <p className="text-xs text-gray-500 flex items-center gap-1 mt-2">
           <Lock className="w-3 h-3" /> Secure checkout • Instant email delivery
         </p>
-
-        {/* Bonuses value stack */}
-        <div className="mt-8 border-t pt-6">
-          <h3 className="text-lg font-bold mb-3 text-purple-700">
-            🎁 Total Value ₹4,999 — Yours Today for ₹0
-          </h3>
-          <ul className="space-y-2 text-gray-700">
-            <li className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-green-500" /> Resume &
-              Portfolio Template Pack
-            </li>
-            <li className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-green-500" /> Freelance
-              Contract & Pricing Guide
-            </li>
-            <li className="flex items-center gap-2">
-              <CheckCircle className="w-5 h-5 text-green-500" /> Lifetime
-              Updates to the eBook
-            </li>
-          </ul>
-        </div>
-
-        {/* Testimonials */}
-        <div className="mt-8 border-t pt-6">
-          <h3 className="text-lg font-bold mb-3 text-purple-700">
-            What Students Are Saying
-          </h3>
-          <div className="grid sm:grid-cols-2 gap-4">
-            {[
-              {
-                name: "Aman Verma",
-                text: "This ebook got me my first freelance project in 2 weeks!",
-              },
-              {
-                name: "Priya S.",
-                text: "Practical, to the point, and super valuable for a beginner.",
-              },
-            ].map((t, i) => (
-              <div
-                key={i}
-                className="bg-gray-50 p-4 rounded-lg shadow-sm border border-gray-100"
-              >
-                <p className="text-gray-700 italic">"{t.text}"</p>
-                <p className="mt-2 font-semibold text-sm text-purple-700">
-                  - {t.name}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
 
       {/* Checkout Form */}
@@ -254,6 +231,12 @@ export default function EbookPage() {
         >
           <div className="bg-white rounded-t-2xl sm:rounded-2xl shadow-xl w-full sm:w-[450px] p-6 animate-slideUp">
             <h2 className="text-lg font-bold mb-4">Complete Your Access</h2>
+            <p className="text-sm text-gray-600 mb-4 bg-purple-50 border border-purple-200 rounded-lg p-3">
+              💡 <strong>Note:</strong> This eBook is <strong>not for profit</strong>.  
+              You can choose any amount you’re comfortable with — even ₹1 — so that
+              every student can afford it. Our goal is to make sure
+              <strong> everyone has access</strong>, regardless of financial situation.
+            </p>
             <input
               type="text"
               placeholder="Your Full Name"
@@ -267,6 +250,20 @@ export default function EbookPage() {
               className="border rounded-lg p-3 w-full mb-3"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+              type="number"
+              placeholder="Enter Your Price (₹)"
+              className="border rounded-lg p-3 w-full mb-3"
+              min="1"
+              onChange={(e) => {
+                const val = parseFloat(e.target.value);
+                if (!isNaN(val) && val >= 1) {
+                  setBasePrice(val * 100);
+                } else {
+                  setBasePrice(100);
+                }
+              }}
             />
             <div className="flex gap-2 mb-3">
               <input
@@ -293,7 +290,7 @@ export default function EbookPage() {
             <button
               onClick={handlePayment}
               disabled={loading}
-              className="bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 text-white px-4 py-3 rounded-lg w-full font-semibold"
+              className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white px-4 py-3 rounded-lg w-full font-semibold"
             >
               {loading
                 ? "Processing..."

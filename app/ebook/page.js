@@ -1,8 +1,10 @@
 "use client";
+import Head from "next/head";
 import { useState, useEffect, useRef } from "react";
 import {
   Star, Lock, Zap, BookOpen, Shield, Gift, Users, Award, CheckCircle
 } from "lucide-react";
+import { Imprima } from "next/font/google";
 
 export default function EbookPage() {
   const [basePrice, setBasePrice] = useState(100); // default ₹199.00
@@ -18,6 +20,28 @@ export default function EbookPage() {
   const [copiesLeft, setCopiesLeft] = useState(47);
 
   const formRef = useRef(null);
+
+const schemaData = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: "Learn to Code, Earn from Code - Student Developer eBook",
+    image: "https://yourdomain.com/ebookpdf.jpg",
+    description:
+      "A complete guide for students to learn coding and earn from their skills. Includes 120+ pages, earning strategies, and bonus resources.",
+    brand: {
+      "@type": "Brand",
+      name: "RC Tech Solutions",
+    },
+    offers: {
+      "@type": "Offer",
+      url: "https://yourdomain.com/ebook",
+      priceCurrency: "INR",
+      price: "1",
+      priceValidUntil: "2025-12-31",
+      itemCondition: "https://schema.org/NewCondition",
+      availability: "https://schema.org/InStock",
+    },
+  };
 
   // Update GST & final price when base price changes
   useEffect(() => {
@@ -120,6 +144,23 @@ export default function EbookPage() {
   };
 
   return (
+    <>
+     <Head>
+        <title>Learn to Code, Earn from Code | Student Developer eBook</title>
+        <meta
+          name="description"
+          content="Master coding and start earning — A complete student guide with 120+ pages, bonus resources, and practical earning tips."
+        />
+        <meta
+          name="keywords"
+          content="learn coding, earn from coding, student developer ebook, programming for students, coding guide, web development ebook"
+        />
+        <link rel="canonical" href="https://yourdomain.com/ebook" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
+        />
+      </Head>
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white flex flex-col items-center p-6 relative">
       
       {/* Sticky urgency banner */}
@@ -326,5 +367,6 @@ export default function EbookPage() {
 
       <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     </div>
+    </>
   );
 }

@@ -119,7 +119,14 @@ export default function EbookPage() {
         
         {/* Glow gradient overlay */}
         <div className="absolute -top-20 -right-20 w-64 h-64 bg-purple-200 blur-3xl rounded-full opacity-50"></div>
-
+<div className="flex flex-wrap gap-3 mb-4">
+          <span className="bg-green-600/20 text-green-900 px-3 py-1 rounded-full text-xs flex items-center gap-1">
+            <Users className="w-4 h-4" /> Trusted by 30+ coding clubs
+          </span>
+          <span className="bg-yellow-600/20 text-yellow-900 px-3 py-1 rounded-full text-xs flex items-center gap-1">
+            <Award className="w-4 h-4" /> Endorsed by top developers
+          </span>
+        </div>
         <div className="flex flex-col sm:flex-row items-center gap-6 relative z-10">
           <img
             src="/ebookpdf.jpg"

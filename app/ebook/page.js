@@ -112,42 +112,14 @@ export default function EbookPage() {
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white flex flex-col items-center p-6 relative">
       
       {/* Sticky urgency banner */}
-      <div className="fixed top-0 w-full bg-purple-800 text-white text-center py-2 text-sm font-semibold shadow-md z-50 flex flex-col sm:flex-row sm:justify-center sm:items-center gap-2">
-        🎯 Only {copiesLeft} student copies left • ⏳ Offer ends in{" "}
-        {formatTime(countdown)}
-        <div className="w-full sm:w-48 h-2 bg-purple-300 rounded-full overflow-hidden">
-          <div
-            className="h-full bg-green-400"
-            style={{ width: `${(copiesLeft / 50) * 100}%` }}
-          ></div>
-        </div>
-      </div>
+      
 
       {/* Hero */}
       <div className="bg-white rounded-2xl shadow-2xl p-6 max-w-3xl w-full mt-16 relative overflow-hidden">
         
         {/* Glow gradient overlay */}
         <div className="absolute -top-20 -right-20 w-64 h-64 bg-purple-200 blur-3xl rounded-full opacity-50"></div>
-{/* Badges */}
-<div className="fixed top-0 w-full bg-gradient-to-r from-purple-800 to-indigo-800 text-white text-center py-2 text-sm font-semibold shadow-md z-50 flex flex-col sm:flex-row sm:justify-center sm:items-center gap-2">
-        🚀 Free for first 100 students • 🎯 {copiesLeft} copies left
-        <span className="text-yellow-300">Once it’s gone, it’s gone forever</span>
-        <div className="w-full sm:w-48 h-2 bg-purple-300 rounded-full overflow-hidden">
-          <div
-            className="h-full bg-green-400"
-            style={{ width: `${((100 - copiesLeft) / 100) * 100}%` }}
-          ></div>
-        </div>
-        ⏳ {formatTime(countdown)}
-      </div>
-        <div className="flex flex-wrap gap-3 mb-4">
-          <span className="bg-green-600/20 text-green-900 px-3 py-1 rounded-full text-xs flex items-center gap-1">
-            <Users className="w-4 h-4" /> Trusted by 30+ coding clubs
-          </span>
-          <span className="bg-yellow-600/20 text-yellow-900 px-3 py-1 rounded-full text-xs flex items-center gap-1">
-            <Award className="w-4 h-4" /> Endorsed by top developers
-          </span>
-        </div>
+
         <div className="flex flex-col sm:flex-row items-center gap-6 relative z-10">
           <img
             src="/ebookpdf.jpg"
@@ -167,7 +139,7 @@ export default function EbookPage() {
               </span>
             </div>
             <h1 className="text-3xl font-extrabold text-purple-700 leading-snug">
-              Learn to Code, Earn from Code 
+              Learn to Code, Earn from Code 🚀
             </h1>
             <p className="text-gray-700 mb-4 leading-relaxed">
               Exclusive for students who want to master coding skills and

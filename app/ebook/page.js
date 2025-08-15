@@ -173,7 +173,7 @@ const schemaData = {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
         />
       </Head>
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white flex flex-col items-center p-6 pt-2 relative">
+    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white flex flex-col items-center p-6 relative">
       
       {/* Sticky urgency banner */}
       {/* <div className="top-0 w-full text-purple-900 text-center py-3 px-4 text-sm font-medium z-50 flex flex-col sm:flex-row sm:items-center sm:justify-center gap-3 shadow-sm bg-white rounded-xl">

@@ -25,7 +25,7 @@ const schemaData = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: "Learn to Code, Earn from Code - Student Developer eBook",
-    image: "https://yourdomain.com/ebookpdf.jpg",
+    image: "https://www.rctechsolutions.com/ebookpdf.jpg",
     description:
       "A complete guide for students to learn coding and earn from their skills. Includes 120+ pages, earning strategies, and bonus resources.",
     brand: {
@@ -34,7 +34,7 @@ const schemaData = {
     },
     offers: {
       "@type": "Offer",
-      url: "https://yourdomain.com/ebook",
+      url: "https://www.rctechsolutions.com/ebook",
       priceCurrency: "INR",
       price: "1",
       priceValidUntil: "2025-12-31",

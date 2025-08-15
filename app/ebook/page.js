@@ -259,7 +259,7 @@ const schemaData = {
             <span className="text-green-600 text-3xl">
               ₹{(finalPrice / 100).toFixed(2)}
             </span>
-            <span className="text-xs text-gray-500">
+            <span className="text-sm text-gray-900 animate-pulse">
               *Support fee only — you set your own price so everyone can afford it 💜
             </span>
           </div>

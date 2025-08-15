@@ -155,7 +155,7 @@ const schemaData = {
           name="keywords"
           content="learn coding, earn from coding, student developer ebook, programming for students, coding guide, web development ebook"
         />
-        <link rel="canonical" href="https://yourdomain.com/ebook" />
+        <link rel="canonical" href="https://www.rctechsolutions.com/ebook" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}

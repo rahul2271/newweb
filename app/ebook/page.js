@@ -278,88 +278,93 @@ const schemaData = {
 
       {/* Checkout Form */}
       {checkoutOpen && (
-        <div
-          ref={formRef}
-          className="inset-0 pt-20 flex items-end sm:items-center justify-center z-50"
-        >
-          <div className="bg-white rounded-t-2xl sm:rounded-2xl shadow-xl w-auto  p-6 animate-slideUp">
-            <h2 className="text-lg font-bold mb-4">Complete Your Access</h2>
-            <p className="text-sm text-gray-600 mb-4 bg-purple-50 border border-purple-200 rounded-lg p-3">
-              💡 <strong>Note:</strong> This eBook is <strong>not for profit</strong>.  
-              You can choose any amount you’re comfortable with — even ₹1 — so that
-              every student can afford it. Our goal is to make sure
-              <strong> everyone has access</strong>, regardless of financial situation.
-            </p>
-            <input
-              type="text"
-              placeholder="Your Full Name"
-              className="border rounded-lg p-3 w-full mb-3"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-            <input
-              type="email"
-              placeholder="Your Email"
-              className="border rounded-lg p-3 w-full mb-3"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="number"
-              placeholder="Enter Your Price (₹)"
-              className="border rounded-lg p-3 w-full mb-3"
-              min="1"
-              onChange={(e) => {
-                const val = parseFloat(e.target.value);
-                if (!isNaN(val) && val >= 1) {
-                  setBasePrice(val * 100);
-                } else {
-                  setBasePrice(100);
-                }
-              }}
-            />
-            <div className="flex gap-2 mb-3">
-              <input
-                type="text"
-                placeholder="Discount Code"
-                className="border rounded-lg p-3 flex-grow"
-                value={discountCode}
-                onChange={(e) => setDiscountCode(e.target.value)}
-              />
-              <button
-                onClick={applyDiscount}
-                className="bg-gray-800 text-white px-4 py-3 rounded-lg hover:bg-gray-900"
-              >
-                Apply
-              </button>
-            </div>
-            <div className="bg-gray-100 p-4 rounded-lg mb-4">
-              <p>Base Price: ₹{(basePrice / 100).toFixed(2)}</p>
-              <p>GST (18%): ₹{(gstAmount / 100).toFixed(2)}</p>
-              <h2 className="text-lg font-bold mt-2">
-                Total: ₹{(finalPrice / 100).toFixed(2)}
-              </h2>
-            </div>
-            <button
-              onClick={handlePayment}
-              disabled={loading}
-              className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white px-4 py-3 rounded-lg w-full font-semibold"
-            >
-              {loading
-                ? "Processing..."
-                : finalPrice === 0
-                ? "Get for Free"
-                : "Proceed to Payment"}
-            </button>
-            <button
-              onClick={() => setCheckoutOpen(false)}
-              className="w-full mt-2 text-gray-500 hover:text-gray-700"
-            >
-              Cancel
-            </button>
-          </div>
-        </div>
-      )}
+  <div
+  ref={formRef}
+  className="w-full flex justify-center px-4 sm:px-6 lg:px-8 py-8"
+>
+  <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 sm:p-8">
+    <h2 className="text-lg font-bold mb-4 text-center">Complete Your Access</h2>
+    <p className="text-sm text-gray-600 mb-4 bg-purple-50 border border-purple-200 rounded-lg p-3">
+      💡 <strong>Note:</strong> This eBook is <strong>not for profit</strong>.  
+      You can choose any amount you’re comfortable with — even ₹1 — so that
+      every student can afford it. Our goal is to make sure
+      <strong> everyone has access</strong>, regardless of financial situation.
+    </p>
+
+    <input
+      type="text"
+      placeholder="Your Full Name"
+      className="border rounded-lg p-3 w-full mb-3"
+      value={name}
+      onChange={(e) => setName(e.target.value)}
+    />
+    <input
+      type="email"
+      placeholder="Your Email"
+      className="border rounded-lg p-3 w-full mb-3"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+    />
+    <input
+      type="number"
+      placeholder="Enter Your Price (₹)"
+      className="border rounded-lg p-3 w-full mb-3"
+      min="1"
+      onChange={(e) => {
+        const val = parseFloat(e.target.value);
+        if (!isNaN(val) && val >= 1) {
+          setBasePrice(val * 100);
+        } else {
+          setBasePrice(100);
+        }
+      }}
+    />
+
+    <div className="flex gap-2 mb-3 flex-col sm:flex-row">
+      <input
+        type="text"
+        placeholder="Discount Code"
+        className="border rounded-lg p-3 flex-grow"
+        value={discountCode}
+        onChange={(e) => setDiscountCode(e.target.value)}
+      />
+      <button
+        onClick={applyDiscount}
+        className="bg-gray-800 text-white px-4 py-3 rounded-lg hover:bg-gray-900 w-full sm:w-auto"
+      >
+        Apply
+      </button>
+    </div>
+
+    <div className="bg-gray-100 p-4 rounded-lg mb-4">
+      <p>Base Price: ₹{(basePrice / 100).toFixed(2)}</p>
+      <p>GST (18%): ₹{(gstAmount / 100).toFixed(2)}</p>
+      <h2 className="text-lg font-bold mt-2">
+        Total: ₹{(finalPrice / 100).toFixed(2)}
+      </h2>
+    </div>
+
+    <button
+      onClick={handlePayment}
+      disabled={loading}
+      className="bg-gradient-to-r from-purple-500 to-indigo-600 text-white px-4 py-3 rounded-lg w-full font-semibold"
+    >
+      {loading
+        ? "Processing..."
+        : finalPrice === 0
+        ? "Get for Free"
+        : "Proceed to Payment"}
+    </button>
+    <button
+      onClick={() => setCheckoutOpen(false)}
+      className="w-full mt-2 text-gray-500 hover:text-gray-700"
+    >
+      Cancel
+    </button>
+  </div>
+</div>
+)}
+
 
       <style jsx>{`
         @keyframes slideUp {

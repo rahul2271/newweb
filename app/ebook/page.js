@@ -282,7 +282,7 @@ const schemaData = {
           ref={formRef}
           className="inset-0 pt-20 flex items-end sm:items-center justify-center z-50"
         >
-          <div className="bg-white rounded-t-2xl sm:rounded-2xl shadow-xl w-auto sm:w-[450px] p-6 animate-slideUp">
+          <div className="bg-white rounded-t-2xl sm:rounded-2xl shadow-xl w-auto  p-6 animate-slideUp">
             <h2 className="text-lg font-bold mb-4">Complete Your Access</h2>
             <p className="text-sm text-gray-600 mb-4 bg-purple-50 border border-purple-200 rounded-lg p-3">
               💡 <strong>Note:</strong> This eBook is <strong>not for profit</strong>.  

@@ -17,6 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+        
         {/* Razorpay external script (safe here as it's src based) */}
         <Script src="https://checkout.razorpay.com/v1/checkout.js" strategy="afterInteractive" />
       </head>

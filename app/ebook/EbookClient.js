@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { Star, Lock, Zap, BookOpen, Shield, Gift, Users, Award } from "lucide-react";
 
 export default function EbookClient() {
-  const [basePrice, setBasePrice] = useState(10000); // ₹100
+  const [basePrice, setBasePrice] = useState(9900); // ₹100
   const [gstAmount, setGstAmount] = useState(basePrice * 0.18);
   const [finalPrice, setFinalPrice] = useState(basePrice + gstAmount);
 
@@ -210,7 +210,7 @@ export default function EbookClient() {
               Student Price ₹499.00
             </span>
             <span className="text-green-600 text-3xl">
-              ₹{(finalPrice / 100).toFixed(2)}
+              ₹{(basePrice / 100).toFixed(2)}
             </span>
             <span className="text-sm text-gray-900 animate-pulse">
               *Support fee only — you set your own price so everyone can afford it 💜

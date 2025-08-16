@@ -239,7 +239,7 @@ export default function EbookClient() {
     <h2 className="text-lg font-bold mb-4 text-center">Complete Your Access</h2>
     <p className="text-sm text-gray-600 mb-4 bg-purple-50 border border-purple-200 rounded-lg p-3">
       💡 <strong>Note:</strong> This eBook is <strong>not for profit</strong>.  
-      You can choose any amount you’re comfortable with — even ₹99 — so that
+      You can choose any amount you’re comfortable with — even ₹1 — so that
       every student can afford it. Our goal is to make sure
       <strong> everyone has access</strong>, regardless of financial situation.
     </p>

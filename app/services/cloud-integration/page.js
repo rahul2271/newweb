@@ -199,7 +199,12 @@ export default function CloudIntegrationPage() {
               <span className="bg-gradient-to-r from-[#3f83f8] to-[#a855f7] bg-clip-text text-transparent">Business Growth</span>
             </h1>
             <p className="text-white/80 text-lg max-w-2xl">
-             Our Business automation services India help connect and unify your cloud platforms with integration that’s secure, scalable, and built for optimal performance.
+             Our <a 
+    href="/" 
+    className="text-purple-400 hover:underline" target="_blank"
+  >
+    Business automation services India
+  </a> help connect and unify your cloud platforms with integration that’s secure, scalable, and built for optimal performance.
 
             </p>
           </motion.div>
@@ -234,7 +239,12 @@ export default function CloudIntegrationPage() {
             Cloud Integration Features
           </motion.h2>
 <p className="text-gray-800 max-w-7xl pb-8 text-md md:text-lg leading-relaxed">
-Elevate your IT strategy with RC Tech Solutions' advanced Cloud Integration offerings. Through their Cloud Infrastructure Services, they design scalable, secure systems optimized for public cloud platforms like AWS, Azure, and Google Cloud. As leaders in Affordable IT services India, they combine technical prowess with cost efficiency—delivering integration solutions that support innovation while respecting financial constraints. Whether for startups or enterprises, their cloud-native workflows help streamline deployments, enhance uptime, and foster long-term resilience.
+Elevate your IT strategy with RC Tech Solutions' advanced Cloud Integration offerings. Through their Cloud Infrastructure Services, they design scalable, secure systems optimized for public cloud platforms like AWS, Azure, and Google Cloud. As leaders in <a 
+    href="/" 
+    className="text-purple-400 hover:underline" target="_blank"
+  >
+    Affordable IT services India
+  </a>, they combine technical prowess with cost efficiency—delivering integration solutions that support innovation while respecting financial constraints. Whether for startups or enterprises, their cloud-native workflows help streamline deployments, enhance uptime, and foster long-term resilience.
 
 
           </p>

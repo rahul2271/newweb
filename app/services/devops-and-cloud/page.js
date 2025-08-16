@@ -158,7 +158,12 @@ export default function DevOpsCloudPage() {
               that Scale Seamlessly
             </h1>
             <p className="text-white/80 text-lg max-w-2xl">
-             Leverage our Business automation services India to automate deployments, track system health, and scale effortlessly with expert DevOps and cloud practices.
+             Leverage our <a 
+    href="/" 
+    className="text-purple-400 hover:underline" target="_blank"
+  >
+    Business automation services India
+  </a> to automate deployments, track system health, and scale effortlessly with expert DevOps and cloud practices.
 
             </p>
           </motion.div>
@@ -191,7 +196,12 @@ export default function DevOpsCloudPage() {
             DevOps & Cloud Services We Provide
           </motion.h2>
 <p className="text-gray-800 max-w-7xl pb-8 text-md md:text-lg leading-relaxed">
-Unlock seamless scalability with cutting-edge Cloud Infrastructure Services tailored to evolving business needs. Our expert team at Cloud solutions for businesses RC Tech Solutions delivers CI/CD pipeline setup, server management, infrastructure as code, monitoring & logging, and security & compliance—all designed for reliability and efficiency. Auto-scaling and automated deployments ensure your systems perform optimally under any load. As leaders in Affordable IT services India, we blend top-tier cloud infrastructure with cost-effectiveness, providing modern, resilient, and agile solutions that empower your digital transformation journey.
+Unlock seamless scalability with cutting-edge Cloud Infrastructure Services tailored to evolving business needs. Our expert team at Cloud solutions for businesses RC Tech Solutions delivers CI/CD pipeline setup, server management, infrastructure as code, monitoring & logging, and security & compliance—all designed for reliability and efficiency. Auto-scaling and automated deployments ensure your systems perform optimally under any load. As leaders in <a 
+    href="/" 
+    className="text-purple-400 hover:underline" target="_blank"
+  >
+    Affordable IT services India
+  </a>, we blend top-tier cloud infrastructure with cost-effectiveness, providing modern, resilient, and agile solutions that empower your digital transformation journey.
 
 
           </p>

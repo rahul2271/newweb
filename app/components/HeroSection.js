@@ -60,7 +60,7 @@ export default function DataAnalytics() {
                   <span>v3.1 released. <a href="/">Learn more</a></span>
                 </div>
                 <h1 className="hero-heading">
-                  <span className='text-sm'> Transform Your Vision with </span><br></br>the Best Software Development Company
+                  <span className='text-sm'> Transform Your Vision with </span><br></br>The Best Software Development Company
 
                 </h1>
                 <p className="hero-description">

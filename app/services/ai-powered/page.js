@@ -315,7 +315,12 @@ function ServiceCard({ icon: Icon, title, description, color, delay = 0 }) {
               AI-Powered Solutions<br />That Drive <span className="bg-gradient-to-r from-[#3f83f8] to-[#a855f7] bg-clip-text text-transparent">Innovation</span>
             </h1>
             <p className="text-white/80 text-lg max-w-2xl">
-              Transform your business with our AI Chatbots, NLP Solutions, Predictive Analytics, and expert services in Custom Software Development India.
+              Transform your business with our AI Chatbots, NLP Solutions, Predictive Analytics, and expert services in <a 
+    href="/" 
+    className="text-purple-400 hover:underline" target="_blank"
+  >
+    Custom Software Development India.
+  </a>
 
             </p>
           </motion.div>
@@ -333,7 +338,12 @@ function ServiceCard({ icon: Icon, title, description, color, delay = 0 }) {
             AI-Powered Services
           </motion.h2>
           <p className="text-gray-800 max-w-7xl pb-8 text-md md:text-lg leading-relaxed">
-          RC Tech Solutions, a leading IT solutions company in India, empowers businesses through its AI-Powered Services that drive innovation. From intelligent AI chatbot development for seamless customer support to bespoke Custom AI Solutions tailored to your unique requirements, they cover the spectrum. Leverage their advanced Natural Language Processing (NLP) for text insights, cutting-edge Computer Vision Applications for image and video intelligence, and Predictive Analytics to forecast trends. Their expertise includes integrating AI into web and mobile platforms, crafting robust Machine Learning Models, enabling Voice Recognition Systems, and deploying AI-Based Recommendation Engines—all engineered to elevate growth. 
+          RC Tech Solutions, a leading <a 
+    href="/" 
+    className="text-purple-400 hover:underline" target="_blank"
+  >
+    IT solutions company in India
+  </a>, empowers businesses through its AI-Powered Services that drive innovation. From intelligent AI chatbot development for seamless customer support to bespoke Custom AI Solutions tailored to your unique requirements, they cover the spectrum. Leverage their advanced Natural Language Processing (NLP) for text insights, cutting-edge Computer Vision Applications for image and video intelligence, and Predictive Analytics to forecast trends. Their expertise includes integrating AI into web and mobile platforms, crafting robust Machine Learning Models, enabling Voice Recognition Systems, and deploying AI-Based Recommendation Engines—all engineered to elevate growth. 
 
 
           </p>

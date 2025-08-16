@@ -164,7 +164,12 @@ export default function DigitalBrandingPage() {
               Consistent Digital Presence
             </h1>
             <p className="text-white/80 text-lg max-w-2xl">
-              We deliver Top Digital Branding Services that blend strategy and storytelling to keep your business unforgettable online.
+              We deliver <a 
+    href="/" 
+    className="text-purple-400 hover:underline" target="_blank"
+  >
+    Top Digital Branding Services
+  </a> that blend strategy and storytelling to keep your business unforgettable online.
 
             </p>
           </motion.div>
@@ -197,7 +202,12 @@ export default function DigitalBrandingPage() {
             Our Digital Branding Services
           </motion.h2>
 <p className="text-gray-800 max-w-7xl pb-8 text-md md:text-lg leading-relaxed">
-Looking for Top Branding Services from a trusted IT solutions company in India? At RC Tech Solutions, we design your brand’s voice with finesse. Whether it’s Logo & Visual Design, impactful Content Creation, or dynamic Social Media Management, our approach blends strategy and creativity. We boost your visibility through SEO & Digital Presence and amplify reach via Influencer Marketing. Coupled with targeted Campaign Strategy and cohesive Website Branding, our services help your business stand out and connect authentically with its audience.
+Looking for Top Branding Services from a trusted <a 
+    href="/" 
+    className="text-purple-400 hover:underline" target="_blank"
+  >
+    IT solutions company in India?
+  </a> At RC Tech Solutions, we design your brand’s voice with finesse. Whether it’s Logo & Visual Design, impactful Content Creation, or dynamic Social Media Management, our approach blends strategy and creativity. We boost your visibility through SEO & Digital Presence and amplify reach via Influencer Marketing. Coupled with targeted Campaign Strategy and cohesive Website Branding, our services help your business stand out and connect authentically with its audience.
 
 
           </p>

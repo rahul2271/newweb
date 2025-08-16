@@ -154,7 +154,12 @@ export default function DigitalMarketingPage() {
               Boosting Brand Growth through <span className="bg-gradient-to-r from-[#3b82f6] to-[#9333ea] bg-clip-text text-transparent">Expert Digital Marketing </span> Services.
             </h1>
             <p className="text-white/80 text-lg max-w-2xl">
-Enhance engagement, attract more leads, and accelerate revenue with data-driven Digital Marketing Services crafted to match your brand’s vision and goals.
+Enhance engagement, attract more leads, and accelerate revenue with data-driven <a 
+    href="/" 
+    className="text-purple-400 hover:underline" target="_blank"
+  >
+    Digital Marketing Services
+  </a> crafted to match your brand’s vision and goals.
             </p>
           </motion.div>
           <motion.div
@@ -184,7 +189,12 @@ Enhance engagement, attract more leads, and accelerate revenue with data-driven 
             Full-Spectrum Digital Marketing Services
           </motion.h2>
           <p className="text-gray-800 max-w-7xl pb-8 text-md md:text-lg leading-relaxed">
-Full-Spectrum Digital Marketing Services empower modern brands with strategies that truly convert. From Social Media Management and Google Ads Campaigns to Email and Influencer Marketing, RC Tech Solutions delivers holistic solutions that scale engagement, generate leads, and drive revenue. As an IT solutions company in India, we blend powerful tactics like Video Marketing, Performance Tracking, and Conversion Optimization into campaigns tailored to your brand voice and goals. Based in Mohali, our team ensures every digital touchpoint contributes to measurable growth.
+Full-Spectrum Digital Marketing Services empower modern brands with strategies that truly convert. From Social Media Management and Google Ads Campaigns to Email and Influencer Marketing, RC Tech Solutions delivers holistic solutions that scale engagement, generate leads, and drive revenue. As an <a 
+    href="/" 
+    className="text-purple-400 hover:underline" target="_blank"
+  >
+    IT solutions company in India
+  </a>, we blend powerful tactics like Video Marketing, Performance Tracking, and Conversion Optimization into campaigns tailored to your brand voice and goals. Based in Mohali, our team ensures every digital touchpoint contributes to measurable growth.
 
 
           </p>

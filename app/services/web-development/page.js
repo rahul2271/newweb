@@ -137,7 +137,12 @@ export default function WebDevelopmentPage() {
               </span>
             </h1>
             <p className="text-white/80 text-lg max-w-2xl leading-relaxed">
-              Achieve your business goals with our custom web development services, building powerful websites and applications tailored to your needs.
+              Achieve your business goals with our <a 
+    href="/" 
+    className="text-purple-400 hover:underline" target="_blank"
+  >
+    custom web development services
+  </a>, building powerful websites and applications tailored to your needs.
 
             </p>
           </motion.div>
@@ -181,7 +186,12 @@ export default function WebDevelopmentPage() {
             Our Services
           </motion.h2>
 <p className="text-gray-800 max-w-7xl pb-8 text-md md:text-lg leading-relaxed">
-When it comes to selecting the Best Software development company for your next project, RC Tech Solutions sets the standard. Our Custom web development services encompass everything from user-first front-end design to robust back-end systems and seamless content management solutions. We don’t do one-size-fits-all—we do what works for you. Whether you need a progressive web app, an e-commerce store, or a corporate portal, our bespoke approach ensures your digital solution is as unique as your business. Let us craft a website that performs visually, functionally, and strategically.
+When it comes to selecting the <a 
+    href="/" 
+    className="text-purple-400 hover:underline" target="_blank"
+  >
+    Best Software development company
+  </a> for your next project, RC Tech Solutions sets the standard. Our Custom web development services encompass everything from user-first front-end design to robust back-end systems and seamless content management solutions. We don’t do one-size-fits-all—we do what works for you. Whether you need a progressive web app, an e-commerce store, or a corporate portal, our bespoke approach ensures your digital solution is as unique as your business. Let us craft a website that performs visually, functionally, and strategically.
 
 
           </p>

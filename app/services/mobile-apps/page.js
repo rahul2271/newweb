@@ -168,7 +168,12 @@ export default function MobileAppsPage() {
               that Drives Engagement
             </h1>
             <p className="text-white/80 text-lg max-w-2xl">
-              Providing top-notch Mobile app development services, we design and build fast, intuitive, and scalable apps tailored for iOS, Android, and cross-platform use.
+              Providing top-notch <a 
+    href="/" 
+    className="text-purple-400 hover:underline" target="_blank"
+  >
+    Mobile app development services
+  </a>, we design and build fast, intuitive, and scalable apps tailored for iOS, Android, and cross-platform use.
 
             </p>
           </motion.div>
@@ -202,7 +207,12 @@ export default function MobileAppsPage() {
             Our Mobile App Services
           </motion.h2>
 <p className="text-gray-800 max-w-7xl pb-8 text-md md:text-lg leading-relaxed">
-Partner with the Best IT company for startups—RC Tech Solutions—offering premier Mobile app development Services. We specialize in crafting high-performing, user-centric apps across iOS, Android, and cross-platform environments like React Native. Our services include UI/UX prototyping via Figma, seamless backend integration, and App Store Optimization (ASO) for maximum visibility. Launch confidently with our strategic approach, designed to elevate your startup’s mobile presence from concept to successful deployment.
+Partner with the <a 
+    href="/" 
+    className="text-purple-400 hover:underline" target="_blank"
+  >
+    Best IT company for startups
+  </a>—RC Tech Solutions—offering premier Mobile app development Services. We specialize in crafting high-performing, user-centric apps across iOS, Android, and cross-platform environments like React Native. Our services include UI/UX prototyping via Figma, seamless backend integration, and App Store Optimization (ASO) for maximum visibility. Launch confidently with our strategic approach, designed to elevate your startup’s mobile presence from concept to successful deployment.
 
 
           </p>

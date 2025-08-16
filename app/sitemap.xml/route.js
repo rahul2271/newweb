@@ -12,6 +12,7 @@ export async function GET() {
     { path: '', priority: '1.0', changefreq: 'monthly' },
     { path: '/about', priority: '0.9', changefreq: 'monthly' },
     { path: '/contact', priority: '0.9', changefreq: 'monthly' },
+    { path: '/ebook', priority: '0.9', changefreq: 'monthly' },
     { path: '/blogs', priority: '0.9', changefreq: 'weekly' },
     { path: '/services/ai-powered', priority: '0.9', changefreq: 'monthly' },
     { path: '/services/cloud-integration', priority: '0.9', changefreq: 'monthly' },

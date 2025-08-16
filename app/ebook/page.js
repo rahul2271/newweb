@@ -158,21 +158,75 @@ const schemaData = {
   return (
     <>
      <Head>
-        <title>Learn to Code, Earn from Code | Student Developer eBook</title>
-        <meta
-          name="description"
-          content="Master coding and start earning — A complete student guide with 120+ pages, bonus resources, and practical earning tips."
-        />
-        <meta
-          name="keywords"
-          content="learn coding, earn from coding, student developer ebook, programming for students, coding guide, web development ebook"
-        />
-        <link rel="canonical" href="https://www.rctechsolutions.com/ebook" />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-        />
-      </Head>
+  <title>Learn to Code, Earn from Code | Student Developer eBook</title>
+  <meta
+    name="description"
+    content="Master coding and start earning — A complete student guide with 120+ pages, bonus resources, and practical earning tips."
+  />
+  <meta
+    name="keywords"
+    content="learn coding, earn from coding, student developer ebook, programming for students, coding guide, web development ebook"
+  />
+  <meta name="author" content="RC Tech Solutions" />
+  <link rel="canonical" href="https://www.rctechsolutions.com/ebook" />
+
+  {/* Open Graph / Facebook */}
+  <meta property="og:title" content="Learn to Code, Earn from Code | Student Developer eBook" />
+  <meta property="og:description" content="Master coding and start earning — A complete student guide with 120+ pages, bonus resources, and practical earning tips." />
+  <meta property="og:url" content="https://www.rctechsolutions.com/ebook" />
+  <meta property="og:type" content="product" />
+  <meta property="og:image" content="https://www.rctechsolutions.com/ebookpdf.jpg" />
+  <meta property="og:site_name" content="RC Tech Solutions" />
+
+  {/* Twitter Card */}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Learn to Code, Earn from Code | Student Developer eBook" />
+  <meta name="twitter:description" content="Master coding and start earning — A complete student guide with 120+ pages, bonus resources, and practical earning tips." />
+  <meta name="twitter:image" content="https://www.rctechsolutions.com/ebookpdf.jpg" />
+  <meta name="twitter:site" content="@RCTechSolutions" />
+
+  {/* JSON-LD Product Schema */}
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        name: "Learn to Code, Earn from Code - Student Developer eBook",
+        image: "https://www.rctechsolutions.com/ebookpdf.jpg",
+        description: "A complete guide for students to learn coding and earn from their skills. Includes 120+ pages, earning strategies, and bonus resources.",
+        brand: {
+          "@type": "Brand",
+          name: "RC Tech Solutions"
+        },
+        offers: {
+          "@type": "Offer",
+          url: "https://www.rctechsolutions.com/ebook",
+          priceCurrency: "INR",
+          price: finalPrice === 0 ? "0" : (finalPrice / 100).toFixed(2),
+          priceValidUntil: "2025-12-31",
+          itemCondition: "https://schema.org/NewCondition",
+          availability: "https://schema.org/InStock"
+        }
+      })
+    }}
+  />
+
+  {/* Optional: WebPage Schema */}
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{
+      __html: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: "Learn to Code, Earn from Code | Student Developer eBook",
+        description: "A complete guide for students to learn coding and earn from their skills. Includes 120+ pages, earning strategies, and bonus resources.",
+        url: "https://www.rctechsolutions.com/ebook",
+      })
+    }}
+  />
+</Head>
+
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white flex flex-col items-center p-6 relative">
       
       {/* Sticky urgency banner */}

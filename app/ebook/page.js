@@ -133,11 +133,10 @@ export default function EbookPage() {
         description="Master coding and start earning — A complete student guide with 120+ pages, bonus resources, and practical earning tips."
         canonical="https://www.rctechsolutions.com/ebook"
         openGraph={{
-          url: "https://www.rctechsolutions.com/ebook",
-          title: "Learn to Code, Earn from Code | Student Developer eBook",
-          description:
-            "Master coding and start earning — A complete student guide with 120+ pages, bonus resources, and practical earning tips.",
-          site_name: "RC Tech Solutions",
+          url: 'https://www.rctechsolutions.com/ebook',
+          title: 'Learn to Code, Earn from Code | Student Developer eBook',
+          description: 'Master coding and start earning — A complete student guide with 120+ pages, bonus resources, and practical earning tips.',
+          site_name: 'RC Tech Solutions',
         }}
       />
 

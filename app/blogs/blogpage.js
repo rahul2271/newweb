@@ -4,7 +4,7 @@ import { db } from "../firebase";
 import { collection, getDocs } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
-
+import Script from "next/script";
 const stripHtmlTags = (html) => {
   const tmp = document.createElement("DIV");
   tmp.innerHTML = html;

@@ -99,6 +99,36 @@ export default function BlogPage() {
 
   return (
     <div className="relative bg-white text-black min-h-screen font-sans">
+      <Script
+        id="blogs-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            "@id": "https://www.rctechsolutions.com/blogs",
+            "url": "https://www.rctechsolutions.com/blogs",
+            "name": "RC Tech Solutions Blogs",
+            "description":
+              "Explore trending blogs by RC Tech Solutions on web development, freelancing, design, tech, SEO, and career growth.",
+            "publisher": {
+              "@type": "Organization",
+              "name": "RC Tech Solutions",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.rctechsolutions.com/logo.png"
+              }
+            },
+            "author": {
+              "@type": "Person",
+              "name": "Rahul Chauhan",
+              "url": "https://www.rctechsolutions.com"
+            },
+            "image": "https://www.rctechsolutions.com/og/blogs-cover.jpg",
+            "inLanguage": "en-IN"
+          })
+        }}
+      />
       {/* Header */}
       <section className="max-w-6xl mx-auto px-6 pt-32 pb-16 text-center">
         <h1 className="text-4xl md:text-6xl font-semibold tracking-tight">

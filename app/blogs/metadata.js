@@ -1,3 +1,5 @@
+import Script from "next/script";
+
 export const metadata = {
   metadataBase: new URL("https://www.rctechsolutions.com"),
   title: "Blogs | RC Tech Solutions - Insights on Web, Tech, Career & Freelance",
@@ -50,3 +52,43 @@ export const metadata = {
     images: ["https://www.rctechsolutions.com/og/blogs-cover.jpg"]
   }
 };
+
+export default function BlogsPage() {
+  return (
+    <>
+      {/* Your Blogs Page Content */}
+
+      {/* Schema Markup */}
+      <Script
+        id="blogs-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            "@id": "https://www.rctechsolutions.com/blogs",
+            "url": "https://www.rctechsolutions.com/blogs",
+            "name": "RC Tech Solutions Blogs",
+            "description":
+              "Explore trending blogs by RC Tech Solutions on web development, freelancing, design, tech, SEO, and career growth.",
+            "publisher": {
+              "@type": "Organization",
+              "name": "RC Tech Solutions",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.rctechsolutions.com/logo.png"
+              }
+            },
+            "author": {
+              "@type": "Person",
+              "name": "Rahul Chauhan",
+              "url": "https://www.rctechsolutions.com"
+            },
+            "image": "https://www.rctechsolutions.com/og/blogs-cover.jpg",
+            "inLanguage": "en-IN"
+          })
+        }}
+      />
+    </>
+  );
+}

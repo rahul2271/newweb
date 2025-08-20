@@ -79,6 +79,8 @@ export default function AdvancedHeader() {
           <Link href="/blogs" className="hover:text-blue-600 transition">Blog</Link>
           <Link href="/about" className="hover:text-blue-600 transition">About</Link>
           <Link href="/contact" className="hover:text-blue-600 transition">Contact</Link>
+          <Link href="/ebook" className="hover:text-blue-600 transition">E-Book</Link>
+
 
           <div className="flex items-center bg-purple-100 text-gray-900 px-3 py-1 rounded-full text-sm font-semibold animate-pulse select-none">
             <FiCpu className="mr-1" />
@@ -123,6 +125,8 @@ export default function AdvancedHeader() {
             <Link href="/blogs" className="text-2xl mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Blog</Link>
             <Link href="/about" className="text-2xl mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>About</Link>
             <Link href="/contact" className="text-2xl mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>Contact</Link>
+            <Link href="/ebook" className="text-2xl mb-4 hover:text-blue-600" onClick={() => setNavbarOpen(false)}>E-Book</Link>
+
 
             <div className="flex items-center bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-lg font-semibold animate-pulse select-none max-w-max mt-20">
               <FiCpu className="mr-2" />

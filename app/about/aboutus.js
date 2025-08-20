@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-
+import Link from "next/link";
 
 
 export default function About() {
@@ -57,7 +57,7 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-10 items-center">
           <div className="w-full h-full">
             <img
-              src="https://www.rctechsolutions.com/rahulchauhan.jpg"
+              src="/rahul.jpeg"
               alt="Rahul Chauhan - Founder of RC Tech Solutions"
               className="w-full h-full object-cover rounded-3xl border border-gray-200 shadow-md"
             />
@@ -109,32 +109,37 @@ export default function About() {
                 <div className="w-full flex-col justify-center items-start gap-6 flex">
                   <div className="w-full justify-start items-center gap-8 grid md:grid-cols-2 grid-cols-1">
                     <div className="w-full h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
-                      <h4 className="text-gray-900 text-2xl font-bold leading-9">33+ Years</h4>
+                      <h4 className="text-gray-900 text-2xl font-bold leading-9">3+ Years</h4>
                       <p className="text-gray-500 text-base font-normal leading-relaxed">Influencing Digital Landscapes Together</p>
                     </div>
                     <div className="w-full h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
-                      <h4 className="text-gray-900 text-2xl font-bold leading-9">125+ Projects</h4>
+                      <h4 className="text-gray-900 text-2xl font-bold leading-9">25+ Projects</h4>
                       <p className="text-gray-500 text-base font-normal leading-relaxed">Excellence Achieved Through Success</p>
                     </div>
                   </div>
                   <div className="w-full h-full justify-start items-center gap-8 grid md:grid-cols-2 grid-cols-1">
                     <div className="w-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
-                      <h4 className="text-gray-900 text-2xl font-bold leading-9">26+ Awards</h4>
+                      <h4 className="text-gray-900 text-2xl font-bold leading-9">10+ Awards</h4>
                       <p className="text-gray-500 text-base font-normal leading-relaxed">Our Dedication to Innovation Wins Understanding</p>
                     </div>
                     <div className="w-full h-full p-3.5 rounded-xl border border-gray-200 hover:border-gray-400 transition-all duration-700 ease-in-out flex-col justify-start items-start gap-2.5 inline-flex">
-                      <h4 className="text-gray-900 text-2xl font-bold leading-9">99% Happy Clients</h4>
+                      <h4 className="text-gray-900 text-2xl font-bold leading-9">99.9% Happy Clients</h4>
                       <p className="text-gray-500 text-base font-normal leading-relaxed">Mirrors our Focus on Client Satisfaction.</p>
                     </div>
                   </div>
                 </div>
               </div>
-              <button className="sm:w-fit w-full group px-3.5 py-2 bg-indigo-50 hover:bg-indigo-100 rounded-lg shadow transition-all duration-700 ease-in-out justify-center items-center flex">
-                <span className="px-1.5 text-indigo-600 text-sm font-medium leading-6 group-hover:-translate-x-0.5 transition-all duration-700 ease-in-out">Read More</span>
-                <svg className="group-hover:translate-x-0.5 transition-all duration-700 ease-in-out" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <path d="M6.75265 4.49658L11.2528 8.99677L6.75 13.4996" stroke="#4F46E5" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </button>
+              <Link 
+  href="/contact" 
+  className="sm:w-fit w-full group px-3.5 py-2 bg-indigo-50 hover:bg-indigo-100 rounded-lg shadow transition-all duration-700 ease-in-out justify-center items-center flex"
+>
+  <span className="px-1.5 text-indigo-600 text-sm font-medium leading-6 group-hover:-translate-x-0.5 transition-all duration-700 ease-in-out">
+    Contact Us
+  </span>
+  <svg className="group-hover:translate-x-0.5 transition-all duration-700 ease-in-out" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+    <path d="M6.75265 4.49658L11.2528 8.99677L6.75 13.4996" stroke="#4F46E5" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+</Link>
             </div>
             <div className="w-full lg:justify-start justify-center items-start flex">
               <div className="sm:w-[564px] w-full sm:h-[646px] h-full sm:bg-gray-100 rounded-3xl sm:border border-gray-200 relative">

@@ -80,7 +80,7 @@ export default function EbookClient() {
   };
 
   const applyDiscount = () => {
-    if (discountCode.trim().toUpperCase() === "FIRST10") {
+    if (discountCode.trim().toUpperCase() === "FREEME") {
       setBasePrice(0);
       setFinalPrice(0);
       setGstAmount(0);
@@ -349,7 +349,7 @@ export default function EbookClient() {
 <CommentsSection/>
         
         {/* ---------- What’s Inside (Advanced Cards) ---------- */}
-        <ChapterList/>
+        
 
         {/* ---------- Live Comments / Testimonials ---------- */}
         

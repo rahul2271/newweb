@@ -74,6 +74,8 @@ export default function Footer() {
               
               
               <li><a href="/blogs" className="hover:text-[#953ee2] transition">Blogs</a></li>
+              <li><a href="/ebook" className="hover:text-[#953ee2] transition">E-Book</a></li>
+
             </ul>
           </div>
 

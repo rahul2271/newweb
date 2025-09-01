@@ -4,111 +4,198 @@ import Comments from './Comments';
 
 export default function BlogContentWithToc({ blog, blogId }) {
   const [toc, setToc] = useState([]);
+  const [activeId, setActiveId] = useState(null);
+  const [readingProgress, setReadingProgress] = useState(0);
+  const [processedContent, setProcessedContent] = useState(blog.content);
+  const [showMobileToc, setShowMobileToc] = useState(false);
 
+  // Process blog content → inject IDs
   useEffect(() => {
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = blog.content;
-    const headings = [...tempDiv.querySelectorAll('h2, h3')].map((heading, index) => ({
-      id: `heading-${index}`,
-      text: heading.textContent,
-      level: heading.tagName,
-    }));
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(blog.content, 'text/html');
+
+    const headings = [...doc.querySelectorAll('h2, h3')].map((heading, index) => {
+      const id = `heading-${index}`;
+      heading.setAttribute('id', id);
+      return {
+        id,
+        text: heading.textContent,
+        level: heading.tagName,
+      };
+    });
+
     setToc(headings);
+    setProcessedContent(doc.body.innerHTML);
   }, [blog.content]);
 
-  return (
-    <article className="max-w-5xl mx-auto px-6 py-12 bg-white shadow-xl rounded-lg border border-gray-100">
-      {/* ✅ Table of Contents */}
-      {toc.length > 0 && (
-        <nav className="bg-gray-50 p-5 rounded mb-8 border border-gray-200">
-          <h2 className="text-xl font-bold mb-3 text-gray-800">📑 Table of Contents</h2>
-          <ul className="space-y-2">
-            {toc.map((item) => (
-              <li key={item.id} className={item.level === 'H3' ? 'ml-4 text-sm' : 'text-base'}>
-                <a href={`#${item.id}`} className="text-blue-700 hover:underline">
-                  {item.text}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )}
+  // Reading Progress + Active Section
+  useEffect(() => {
+    const headings = toc.map((t) => document.getElementById(t.id));
+    if (!headings.length) return;
 
-      {/* ✅ Blog Content */}
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.find((e) => e.isIntersecting);
+        if (visible) setActiveId(visible.target.id);
+      },
+      { rootMargin: '-50% 0px -50% 0px', threshold: 0 }
+    );
+
+    headings.forEach((h) => h && observer.observe(h));
+    return () => observer.disconnect();
+  }, [toc]);
+
+  // Reading Progress Bar
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const docHeight = document.body.scrollHeight - window.innerHeight;
+      setReadingProgress((scrollY / docHeight) * 100);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Reading time
+  const words = blog.content.replace(/<[^>]+>/g, '').split(/\s+/).length;
+  const readingTime = Math.ceil(words / 200);
+
+  return (
+    <div className="relative max-w-6xl mx-auto px-6 py-12">
+      {/* ✅ Progress Bar */}
       <div
-        className="prose prose-lg max-w-none text-gray-900"
-        dangerouslySetInnerHTML={{ __html: blog.content }}
+        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-purple-500 to-pink-500 z-50 transition-all duration-150"
+        style={{ width: `${readingProgress}%` }}
       />
 
-      {/* ✅ Author Info */}
-      <p className="mt-8 text-sm text-gray-500 text-right italic">By {blog.author}</p>
+      <div className="lg:grid lg:grid-cols-12 lg:gap-10">
+        {/* ✅ Blog Content */}
+        <article className="lg:col-span-9 bg-white text-gray-900 shadow-2xl rounded-2xl border border-gray-800 p-8">
+          <h1 className="text-4xl font-extrabold mb-4">{blog.title}</h1>
 
-      {/* ✅ Comments Section */}
-      <section className="mt-16">
-        <h2 className="text-2xl font-semibold mb-4 text-gray-900">💬 Leave a Comment</h2>
-        <Comments blogId={blogId} />
-      </section>
+          <div className="flex items-center gap-4 text-sm text-gray-400 mb-8">
+            <span>✍️ {blog.author}</span>
+            <span>📅 {new Date(blog.date).toLocaleDateString()}</span>
+            <span>⏱️ {readingTime} min read</span>
+          </div>
 
-      {/* ✅ Global Typography + Smooth Scroll */}
+          <div
+  className="prose prose-invert prose-lg max-w-none !transition-none text-gray-900 !animate-none"
+  dangerouslySetInnerHTML={{ __html: processedContent }}
+/>
+
+          <section className="mt-16">
+            <h2 className="text-2xl font-semibold mb-4">💬 Leave a Comment</h2>
+            <Comments blogId={blogId} />
+          </section>
+        </article>
+
+        {/* ✅ Desktop TOC */}
+        {toc.length > 0 && (
+          <aside className="hidden lg:block lg:col-span-3">
+            <nav className="sticky top-24 bg-gray-900 p-5 rounded-xl border border-gray-700 shadow-xl">
+              <h2 className="text-lg font-bold mb-4 text-white">📑 On this page</h2>
+              <ul className="space-y-2 text-sm">
+                {toc.map((item) => (
+                  <li key={item.id}>
+                    <a
+                      href={`#${item.id}`}
+                      className={`block px-3 py-2 rounded transition-all  ${
+                        activeId === item.id
+                          ? 'text-purple-400 bg-gray-800 border-l-4 border-purple-500 shadow-md'
+                          : 'text-gray-300 hover:text-purple-300 hover:bg-gray-800'
+                      } ${item.level === 'H3' ? 'ml-4 text-sm' : 'text-base'}`}
+                    >
+                      {item.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </aside>
+        )}
+      </div>
+
+      {/* ✅ Mobile TOC Button */}
+      {toc.length > 0 && (
+        <button
+          onClick={() => setShowMobileToc(true)}
+          className="fixed bottom-20 right-6 lg:hidden bg-purple-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-purple-700"
+        >
+          📑 TOC
+        </button>
+      )}
+
+      {/* ✅ Mobile TOC Drawer */}
+      {showMobileToc && (
+        <div className="fixed inset-0 z-50 bg-black/70 flex">
+          <div className="w-72 bg-gray-900 h-full p-6 shadow-2xl overflow-y-auto">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-lg font-bold text-white">📑 On this page</h2>
+              <button
+                onClick={() => setShowMobileToc(false)}
+                className="text-gray-400 hover:text-white"
+              >
+                ✖
+              </button>
+            </div>
+            <ul className="space-y-2 text-sm">
+              {toc.map((item) => (
+                <li key={item.id}>
+                  <a
+                    href={`#${item.id}`}
+                    onClick={() => setShowMobileToc(false)}
+                    className={`block px-3 py-2 rounded ${
+                      activeId === item.id
+                        ? 'text-purple-400 bg-gray-800 border-l-4 border-purple-500'
+                        : 'text-gray-300 hover:text-purple-300 hover:bg-gray-800'
+                    } ${item.level === 'H3' ? 'ml-4 text-sm' : 'text-base'}`}
+                  >
+                    {item.text}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
+
+      {/* ✅ Back to Top */}
+      {readingProgress > 10 && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="fixed bottom-6 right-6 bg-gradient-to-r from-purple-600 to-pink-500 text-white p-3 rounded-full shadow-lg hover:scale-110 transition-transform"
+        >
+          ⬆️
+        </button>
+      )}
+
+      {/* ✅ Global Styles */}
       <style jsx global>{`
-        html {
-          scroll-behavior: smooth;
-        }
-        body {
-          font-family: 'Poppins', sans-serif;
-        }
-        .prose h1 {
-          font-size: 2.75rem;
-          font-weight: 700;
-          color: #111827;
-          margin-bottom: 1rem;
-        }
-        .prose h2 {
-          font-size: 2rem;
-          font-weight: 700;
-          color: #1f2937;
-          margin-bottom: 0.75rem;
-        }
-        .prose h3 {
-          font-size: 1.5rem;
-          font-weight: 600;
-          color: #374151;
-          margin-bottom: 0.5rem;
-        }
-        .prose p {
-          font-size: 1.1rem;
-          line-height: 1.8;
-          color: #374151;
-          margin-bottom: 1.25rem;
-        }
-        .prose ul,
-        .prose ol {
-          margin-left: 1.5rem;
-          margin-bottom: 1.25rem;
-        }
-        .prose a {
-          color: #2563eb;
-          text-decoration: underline;
-          transition: color 0.2s ease;
-        }
-        .prose a:hover {
-          color: #1d4ed8;
-        }
-        .prose blockquote {
-          border-left: 4px solid #7c3aed;
-          background-color: #f9fafb;
-          padding: 0.75rem 1rem;
-          font-style: italic;
-          color: #4b5563;
-          margin: 1.5rem 0;
-        }
-        .prose img {
-          max-width: 100%;
-          height: auto;
-          border-radius: 8px;
-          margin: 1rem 0;
-        }
-      `}</style>
-    </article>
+  html {
+    scroll-behavior: smooth;
+  }
+  .prose * {
+    transition: none !important;
+    animation: none !important;
+  }
+  .prose h2,
+  .prose h3 {
+    scroll-margin-top: 100px;
+  }
+  .prose p {
+    color: black !important;
+    line-height: 1.8;
+    font-size: 1.125rem;
+  }
+  .prose a {
+    color: #a78bfa;
+    text-decoration: underline;
+  }
+  .prose a:hover {
+    color: #c4b5fd;
+  }
+`}</style>
+    </div>
   );
 }

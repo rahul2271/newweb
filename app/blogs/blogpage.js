@@ -81,9 +81,7 @@ const computeReadingTime = (html) => {
 };
 
 /**
- * Very light keyword extraction fallback (client-side):
- * - Uses simple frequency of words > 4 chars, minus a small stoplist.
- * - In production, prefer to store keywords in Firestore when creating the blog.
+ * Very light keyword extraction fallback (client-side)
  */
 const fallbackExtractKeywords = (html = "", limit = 8) => {
   const text = stripHtmlTags(html).toLowerCase();
@@ -102,17 +100,17 @@ const fallbackExtractKeywords = (html = "", limit = 8) => {
 };
 
 /** =====================
- *  Main Page
+ *  Main Blogs Page
  *  ===================== */
-export default function BlogPage() {
+export default function BloogPage() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
 
   // Filters & UI state
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [selectedTags, setSelectedTags] = useState([]); // multi-select tags
-  const [sortMode, setSortMode] = useState("newest"); // newest | oldest | popular
+  const [selectedTags, setSelectedTags] = useState([]);
+  const [sortMode, setSortMode] = useState("newest");
   const [currentPage, setCurrentPage] = useState(1);
   const articlesPerPage = 6;
 
@@ -121,13 +119,11 @@ export default function BlogPage() {
     const fetchBlogs = async () => {
       try {
         setLoading(true);
-        // Prefer ordering by date desc for initial fetch (if index exists). Fallback to getDocs.
         const col = collection(db, "blogs");
         let q = query(col, orderBy("date", "desc"));
         const snapshot = await getDocs(q);
         let list = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 
-        // Normalize optional fields
         list = list.map((b) => ({
           ...b,
           category: Array.isArray(b.category)
@@ -151,17 +147,16 @@ export default function BlogPage() {
     fetchBlogs();
   }, []);
 
-  /** Derived data: categories & tags (systematic) */
+  /** Categories & tags */
   const { orderedCategories, allTags } = useMemo(() => {
     const rawCats = new Set();
     const tagSet = new Set();
 
     blogs.forEach((b) => {
-      // Prefer categoryPath > category
-      if (b.categoryPath?.length) rawCats.add(b.categoryPath[0]); // top-level only for filter
+      if (b.categoryPath?.length) rawCats.add(b.categoryPath[0]);
       else if (b.category?.length) rawCats.add(b.category[0]);
 
-      (b.tags || []).forEach((t) => t && tagSet.add(String(t).toLowerCase()))
+      (b.tags || []).forEach((t) => t && tagSet.add(String(t).toLowerCase()));
     });
 
     const desiredOrder = [
@@ -213,12 +208,11 @@ export default function BlogPage() {
       });
     }
 
-    // Sorting
     result.sort((a, b) => {
       if (sortMode === "popular") return (b.views || 0) - (a.views || 0);
       const da = a.date?.toDate ? a.date.toDate() : new Date(0);
       const db = b.date?.toDate ? b.date.toDate() : new Date(0);
-      return sortMode === "oldest" ? da - db : db - da; // default newest
+      return sortMode === "oldest" ? da - db : db - da;
     });
 
     return result;
@@ -229,7 +223,7 @@ export default function BlogPage() {
   const start = (currentPage - 1) * articlesPerPage;
   const current = filtered.slice(start, start + articlesPerPage);
 
-  // Debounce search input for smoother UX
+  // Debounce search
   const [debounced, setDebounced] = useState("");
   useEffect(() => {
     const t = setTimeout(() => setDebounced(search), 250);
@@ -237,7 +231,6 @@ export default function BlogPage() {
   }, [search]);
 
   useEffect(() => {
-    // Reset to first page whenever filters change (use debounced search)
     setCurrentPage(1);
   }, [debounced, selectedCategory, selectedTags, sortMode]);
 
@@ -246,7 +239,7 @@ export default function BlogPage() {
    *  ===================== */
   return (
     <div className="relative bg-white text-black min-h-screen font-sans">
-      {/* Global Blog Schema (collection) */}
+      {/* Schema.org for Blogs */}
       <Script
         id="blogs-schema"
         type="application/ld+json"
@@ -278,7 +271,7 @@ export default function BlogPage() {
         }}
       />
 
-      {/* Header */}
+      {/* HEADER */}
       <section className="max-w-6xl mx-auto px-6 pt-28 pb-10 text-center">
         <h1 className="text-4xl md:text-6xl font-semibold tracking-tight">
           The <span className="text-[#7b3fe4]">RC Tech</span> Journal

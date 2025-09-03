@@ -53,7 +53,7 @@ export const metadata = {
   }
 };
 
-export default function BlogsPage() {
+export default function BloogPage() {
   return (
     <>
       {/* Your Blogs Page Content */}

@@ -349,7 +349,7 @@ export default function BloogPage() {
       )}
 
       {/* Featured */}
-      {filtered.some((b) => b.featured) && (
+      {/* {filtered.some((b) => b.featured) && (
         <section className="max-w-6xl mx-auto px-6 mt-6 mb-12">
           <h2 className="text-xl font-medium mb-5 text-[#7b3fe4]">Featured</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -399,7 +399,7 @@ export default function BloogPage() {
               ))}
           </div>
         </section>
-      )}
+      )} */}
 
       {/* All Articles */}
       <section className="max-w-6xl mx-auto px-6 pb-16">

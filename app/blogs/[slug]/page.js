@@ -1,4 +1,4 @@
-import { db } from '../../firebase';
+import { db } from "../../firebase";
 import {
   collection,
   query,
@@ -7,29 +7,48 @@ import {
   doc,
   updateDoc,
   increment,
-} from 'firebase/firestore';
-import Image from 'next/image';
-import { notFound } from 'next/navigation';
-import BlogContentWithToc from './BlogContentWithToc'; // This can be a client component if needed
-import React from 'react';
+} from "firebase/firestore";
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import BlogContentWithToc from "./BlogContentWithToc";
+import React from "react";
 
-export const dynamic = 'force-dynamic';
+// ✅ Enable ISR (regenerate every 60s)
+export const revalidate = 60;
 
-// ✅ Server-side metadata generation for SEO
+// ✅ Helper to serialize Firestore data
+function serializeBlogData(data) {
+  return {
+    ...data,
+    createdAt: data.createdAt?.toDate?.().toISOString() || null,
+    updatedAt: data.updatedAt?.toDate?.().toISOString() || null,
+    date: data.date?.toDate?.().toISOString() || null,
+  };
+}
+
+// ✅ Pre-generate slugs at build time
+export async function generateStaticParams() {
+  const snapshot = await getDocs(collection(db, "blogs"));
+  return snapshot.docs.map((doc) => ({
+    slug: doc.data().slug,
+  }));
+}
+
+// ✅ Metadata for SEO
 export async function generateMetadata({ params }) {
   const decodedSlug = decodeURIComponent(params.slug);
-  const q = query(collection(db, 'blogs'), where('slug', '==', decodedSlug));
+  const q = query(collection(db, "blogs"), where("slug", "==", decodedSlug));
   const snapshot = await getDocs(q);
 
   if (snapshot.empty) {
     return {
-      title: 'Blog Not Found | RC Tech Solutions',
-      description: 'This blog could not be found.',
+      title: "Blog Not Found | RC Tech Solutions",
+      description: "This blog could not be found.",
       robots: { index: false, follow: false },
     };
   }
 
-  const blog = snapshot.docs[0].data();
+  const blog = serializeBlogData(snapshot.docs[0].data());
 
   return {
     title: `${blog.title} | RC Tech Solutions`,
@@ -41,7 +60,7 @@ export async function generateMetadata({ params }) {
       url: `https://www.rctechsolutions.com/blogs/${blog.slug}`,
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: blog.title,
       description: blog.metaDescription || blog.title,
       images: [blog.blogImageUrl],
@@ -49,15 +68,15 @@ export async function generateMetadata({ params }) {
     alternates: {
       canonical: `https://www.rctechsolutions.com/blogs/${blog.slug}`,
     },
-    metadataBase: new URL('https://www.rctechsolutions.com'),
+    metadataBase: new URL("https://www.rctechsolutions.com"),
     robots: { index: true, follow: true },
   };
 }
 
-// ✅ Server-rendered blog page
+// ✅ Blog Page
 export default async function Page({ params }) {
   const decodedSlug = decodeURIComponent(params.slug);
-  const q = query(collection(db, 'blogs'), where('slug', '==', decodedSlug));
+  const q = query(collection(db, "blogs"), where("slug", "==", decodedSlug));
   const snapshot = await getDocs(q);
 
   if (snapshot.empty) {
@@ -65,20 +84,13 @@ export default async function Page({ params }) {
   }
 
   const docSnap = snapshot.docs[0];
-  const blog = docSnap.data();
+  const blog = serializeBlogData(docSnap.data());
   const blogId = docSnap.id;
 
-  // ✅ Increment views non-blocking (optional error catch)
-  updateDoc(doc(db, 'blogs', blogId), {
-    views: increment(1),
-  }).catch((err) => console.error('Failed to update views:', err));
-
-  // ✅ Safely parse created/updated timestamps
-  const createdAt = blog.createdAt?.toDate?.() || new Date();
-  const updatedAt = blog.updatedAt?.toDate?.() || createdAt;
-
-  const publishedDate = createdAt.toISOString();
-  const modifiedDate = updatedAt.toISOString();
+  // ✅ Increment views (non-blocking)
+  updateDoc(doc(db, "blogs", blogId), { views: increment(1) }).catch((err) =>
+    console.error("Failed to update views:", err)
+  );
 
   return (
     <>
@@ -93,26 +105,26 @@ export default async function Page({ params }) {
               "@type": "WebPage",
               "@id": `https://www.rctechsolutions.com/blogs/${blog.slug}`,
             },
-            "headline": blog.title,
-            "description": blog.metaDescription || blog.title,
-            "image": blog.blogImageUrl,
-            "author": {
+            headline: blog.title,
+            description: blog.metaDescription || blog.title,
+            image: blog.blogImageUrl,
+            author: {
               "@type": "Organization",
-              "name": "RC Tech Solutions",
-              "url": "https://www.rctechsolutions.com",
+              name: "RC Tech Solutions",
+              url: "https://www.rctechsolutions.com",
             },
-            "publisher": {
+            publisher: {
               "@type": "Organization",
-              "name": "RC Tech Solutions",
-              "logo": {
+              name: "RC Tech Solutions",
+              logo: {
                 "@type": "ImageObject",
-                "url": "https://www.rctechsolutions.com/logo.png",
+                url: "https://www.rctechsolutions.com/logo.png",
               },
             },
-            "datePublished": publishedDate,
-            "dateModified": modifiedDate,
-            "keywords": blog.keywords?.join(', ') || '',
-            "url": `https://www.rctechsolutions.com/blogs/${blog.slug}`,
+            datePublished: blog.createdAt,
+            dateModified: blog.updatedAt || blog.createdAt,
+            keywords: blog.keywords?.join(", ") || "",
+            url: `https://www.rctechsolutions.com/blogs/${blog.slug}`,
           }),
         }}
       />
@@ -128,7 +140,7 @@ export default async function Page({ params }) {
         />
       </div>
 
-      {/* ✅ Main Blog Content */}
+      {/* ✅ Blog Content */}
       <BlogContentWithToc blog={blog} blogId={blogId} />
     </>
   );

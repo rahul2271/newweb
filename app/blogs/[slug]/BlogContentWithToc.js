@@ -6,11 +6,20 @@ export default function BlogContentWithToc({ blog, blogId }) {
   const [toc, setToc] = useState([]);
   const [activeId, setActiveId] = useState(null);
   const [readingProgress, setReadingProgress] = useState(0);
-  const [processedContent, setProcessedContent] = useState(blog.content);
+  const [processedContent, setProcessedContent] = useState(blog.content || "");
   const [showMobileToc, setShowMobileToc] = useState(false);
+
+  // ✅ Normalize blog.date to a string
+  const blogDate = blog?.date?.toDate
+    ? blog.date.toDate().toISOString()
+    : typeof blog.date === "string"
+    ? blog.date
+    : null;
 
   // Process blog content → inject IDs
   useEffect(() => {
+    if (!blog.content) return;
+
     const parser = new DOMParser();
     const doc = parser.parseFromString(blog.content, 'text/html');
 
@@ -28,7 +37,7 @@ export default function BlogContentWithToc({ blog, blogId }) {
     setProcessedContent(doc.body.innerHTML);
   }, [blog.content]);
 
-  // Reading Progress + Active Section
+  // Active Section detection
   useEffect(() => {
     const headings = toc.map((t) => document.getElementById(t.id));
     if (!headings.length) return;
@@ -45,7 +54,7 @@ export default function BlogContentWithToc({ blog, blogId }) {
     return () => observer.disconnect();
   }, [toc]);
 
-  // Reading Progress Bar
+  // Reading Progress
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -57,7 +66,9 @@ export default function BlogContentWithToc({ blog, blogId }) {
   }, []);
 
   // Reading time
-  const words = blog.content.replace(/<[^>]+>/g, '').split(/\s+/).length;
+  const words = blog.content
+    ? blog.content.replace(/<[^>]+>/g, '').split(/\s+/).length
+    : 0;
   const readingTime = Math.ceil(words / 200);
 
   return (
@@ -75,14 +86,16 @@ export default function BlogContentWithToc({ blog, blogId }) {
 
           <div className="flex items-center gap-4 text-sm text-gray-400 mb-8">
             <span>✍️ {blog.author}</span>
-            <span>📅 {new Date(blog.date).toLocaleDateString()}</span>
+            {blogDate && (
+              <span>📅 {new Date(blogDate).toLocaleDateString()}</span>
+            )}
             <span>⏱️ {readingTime} min read</span>
           </div>
 
           <div
-  className="prose prose-invert prose-lg max-w-none !transition-none text-gray-900 !animate-none"
-  dangerouslySetInnerHTML={{ __html: processedContent }}
-/>
+            className="prose prose-invert prose-lg max-w-none !transition-none text-gray-900 !animate-none"
+            dangerouslySetInnerHTML={{ __html: processedContent }}
+          />
 
           <section className="mt-16">
             <h2 className="text-2xl font-semibold mb-4">💬 Leave a Comment</h2>
@@ -172,30 +185,30 @@ export default function BlogContentWithToc({ blog, blogId }) {
 
       {/* ✅ Global Styles */}
       <style jsx global>{`
-  html {
-    scroll-behavior: smooth;
-  }
-  .prose * {
-    transition: none !important;
-    animation: none !important;
-  }
-  .prose h2,
-  .prose h3 {
-    scroll-margin-top: 100px;
-  }
-  .prose p {
-    color: black !important;
-    line-height: 1.8;
-    font-size: 1.125rem;
-  }
-  .prose a {
-    color: #a78bfa;
-    text-decoration: underline;
-  }
-  .prose a:hover {
-    color: #c4b5fd;
-  }
-`}</style>
+        html {
+          scroll-behavior: smooth;
+        }
+        .prose * {
+          transition: none !important;
+          animation: none !important;
+        }
+        .prose h2,
+        .prose h3 {
+          scroll-margin-top: 100px;
+        }
+        .prose p {
+          color: black !important;
+          line-height: 1.8;
+          font-size: 1.125rem;
+        }
+        .prose a {
+          color: #a78bfa;
+          text-decoration: underline;
+        }
+        .prose a:hover {
+          color: #c4b5fd;
+        }
+      `}</style>
     </div>
   );
 }

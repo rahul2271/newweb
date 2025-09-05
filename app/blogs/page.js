@@ -149,12 +149,12 @@ export default async function BlogsPage({ searchParams }) {
             name="search"
             defaultValue={search}
             placeholder="Search articles..."
-            className="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-xl dark:bg-gray-800 dark:border-gray-600"
+            className="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-xl "
           />
           <select
             name="category"
             defaultValue={category}
-            className="px-4 py-2 rounded-xl border dark:bg-gray-800 dark:border-gray-600"
+            className="px-4 py-2 rounded-xl border "
           >
             {categories.map((cat) => (
               <option key={cat}>{cat}</option>
@@ -178,7 +178,7 @@ export default async function BlogsPage({ searchParams }) {
               <Link
                 key={blog.id}
                 href={`/blogs/${blog.slug}`}
-                className="group rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-gray-800 hover:shadow-2xl transition"
+                className="group rounded-2xl overflow-hidden shadow-lg bg-white  hover:shadow-2xl transition"
               >
                 <div className="relative h-60">
                   {blog.blogImageUrl && (
@@ -194,7 +194,7 @@ export default async function BlogsPage({ searchParams }) {
                   <h3 className="text-2xl font-bold mb-2 group-hover:text-[#7b3fe4]">
                     {blog.title}
                   </h3>
-                  <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-3">
+                  <p className="text-sm text-gray-600  line-clamp-3">
                     {stripHtmlTags(blog.content).slice(0, 150)}...
                   </p>
                   <div className="mt-3 text-xs text-gray-500 flex gap-2">
@@ -231,7 +231,7 @@ export default async function BlogsPage({ searchParams }) {
           <div key={blog.id}>
             <Link
               href={`/blogs/${blog.slug}`}
-              className="group block rounded-2xl overflow-hidden shadow-md bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition"
+              className="group block rounded-2xl overflow-hidden shadow-md bg-white  border border-gray-200 dark:border-gray-700 hover:shadow-lg transition"
             >
               <div className="relative h-40">
                 {blog.blogImageUrl && (
@@ -247,7 +247,7 @@ export default async function BlogsPage({ searchParams }) {
                 <h3 className="text-lg font-semibold line-clamp-2 group-hover:text-[#7b3fe4]">
                   {blog.title}
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-3">
+                <p className="text-sm text-gray-600  line-clamp-3">
                   {stripHtmlTags(blog.content).slice(0, 120)}...
                 </p>
                 <div className="mt-2 text-xs text-gray-500 flex gap-2">
@@ -278,7 +278,7 @@ export default async function BlogsPage({ searchParams }) {
             className={`px-4 py-2 rounded-lg ${
               page === i + 1
                 ? "bg-[#7b3fe4] text-white"
-                : "bg-gray-100 dark:bg-gray-700"
+                : "bg-gray-100 "
             }`}
           >
             {i + 1}
@@ -288,21 +288,21 @@ export default async function BlogsPage({ searchParams }) {
 
       {/* 🎯 Persona Section */}
       <section className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-6 text-center">
-        <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-2xl shadow hover:shadow-lg">
+        <div className="p-6 bg-gray-100  rounded-2xl shadow hover:shadow-lg">
           <h3 className="text-xl font-bold mb-3">🚀 Start a Business</h3>
           <p className="mb-4">Get step-by-step guidance to launch and scale your idea.</p>
           <Link href="/contact" className="text-[#7b3fe4] font-medium hover:underline">
             Book a Call →
           </Link>
         </div>
-        <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-2xl shadow hover:shadow-lg">
+        <div className="p-6 bg-gray-100  rounded-2xl shadow hover:shadow-lg">
           <h3 className="text-xl font-bold mb-3">💻 Become a Developer</h3>
           <p className="mb-4">Learn coding, freelancing & job-ready skills with us.</p>
           <Link href="/contact" className="text-[#7b3fe4] font-medium hover:underline">
             Get Mentorship →
           </Link>
         </div>
-        <div className="p-6 bg-gray-100 dark:bg-gray-800 rounded-2xl shadow hover:shadow-lg">
+        <div className="p-6 bg-gray-100  rounded-2xl shadow hover:shadow-lg">
           <h3 className="text-xl font-bold mb-3">🎓 Student Growth</h3>
           <p className="mb-4">Earn while you learn with freelancing & digital skills.</p>
           <Link href="/contact" className="text-[#7b3fe4] font-medium hover:underline">

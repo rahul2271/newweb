@@ -102,7 +102,7 @@ export default async function BlogsPage({ searchParams }) {
   const totalPages = Math.ceil(total / 6);
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 text-black dark:text-gray-100">
+    <div className="min-h-screen bg-white text-black ">
       {/* ✅ SEO JSON-LD */}
       <Script
         id="blogs-schema"

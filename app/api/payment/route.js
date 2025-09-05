@@ -1,8 +1,8 @@
 import Razorpay from 'razorpay';
 
 const razorpay = new Razorpay({
-  key_id: "rzp_live_M4zgcJI8tvu0sm",
-  key_secret: "c5wVth8uugD9XtkRkLUkb5EM",
+  key_id: "rzp_live_R5X3mt2251rX6I",
+  key_secret: "byfJut8krJr56bBq4DwcXT3i",
 });
 
 export async function POST(request) {

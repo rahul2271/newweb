@@ -83,7 +83,7 @@ export default async function LatestBlogs() {
           <Link
             key={blog.id}
             href={`/blogs/${blog.slug}`}
-            className="group block rounded-2xl overflow-hidden shadow-md bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition"
+            className="group block rounded-2xl overflow-hidden shadow-md bg-white  border border-gray-200 dark:border-gray-700 hover:shadow-lg transition"
           >
             <div className="relative h-44">
               {blog.blogImageUrl && (
@@ -99,7 +99,7 @@ export default async function LatestBlogs() {
               <h3 className="text-lg font-semibold mb-2 group-hover:text-[#7b3fe4] line-clamp-2">
                 {blog.title}
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-3">
+              <p className="text-sm text-gray-600  line-clamp-3">
                 {stripHtmlTags(blog.content).slice(0, 120)}...
               </p>
               <div className="mt-2 text-xs text-gray-500 flex gap-2">

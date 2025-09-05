@@ -8,6 +8,7 @@ import CtoSection from "../components/Result";
 import CTASection from "../components/CTASection";
 import FaqSection from "../components/FAQSection";
 import Chatbot from "../components/Chatbot";
+import LatestBlogs from "../components/LatestBlogs";
 
 // ✅ Metadata for SEO
 export const metadata = {
@@ -108,8 +109,10 @@ export default function HomePage() {
       </div>
       <ServicesCard />
       <ValueProposition />
+      <LatestBlogs/>
       <CtoSection />
       <CTASection />
+      
       <FaqSection />
       <Chatbot />
     </>

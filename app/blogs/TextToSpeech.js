@@ -172,50 +172,66 @@
 
 
 
+'use client';
+
 import { useState } from 'react';
-import axios from 'axios';
 
 export default function TextToSpeech({ text }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioUrl, setAudioUrl] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handlePlay = async () => {
+    if (isPlaying || !text) return;
+    setIsLoading(true);
+
     try {
-      const response = await axios.post(
-        'https://api.speechify.com/v1/tts',
-        {
-          text,
-          voice: 'en_us_male', // Choose the desired voice
-          ssml: true, // Enable SSML for advanced control
-        },
-        {
-          headers: {
-            'Authorization': `Bearer YOUR_API_KEY`,
-            'Content-Type': 'application/json',
-          },
-        }
-      );
-      setAudioUrl(response.data.audioUrl);
+      const response = await fetch('/api/tts', {
+        method: 'POST',
+        body: JSON.stringify({ text }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      if (!response.ok) throw new Error('TTS request failed');
+
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      setAudioUrl(url);
       setIsPlaying(true);
     } catch (error) {
       console.error('Error fetching audio:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleStop = () => {
-    setIsPlaying(false);
+    if (audioUrl) URL.revokeObjectURL(audioUrl);
     setAudioUrl('');
+    setIsPlaying(false);
   };
 
   return (
-    <div>
-      <button onClick={handlePlay} disabled={isPlaying}>
-        {isPlaying ? 'Playing...' : 'Play'}
-      </button>
-      <button onClick={handleStop} disabled={!isPlaying}>
-        Stop
-      </button>
-      {audioUrl && <audio src={audioUrl} controls autoPlay />}
+    <div className="flex flex-col gap-2">
+      <div className="flex gap-2">
+        <button
+          onClick={handlePlay}
+          disabled={isPlaying || isLoading}
+          className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700"
+        >
+          {isLoading ? 'Loading...' : isPlaying ? 'Playing...' : 'Play'}
+        </button>
+
+        <button
+          onClick={handleStop}
+          disabled={!isPlaying}
+          className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+        >
+          Stop
+        </button>
+      </div>
+
+      {audioUrl && <audio src={audioUrl} controls autoPlay className="mt-2 w-full" />}
     </div>
   );
 }

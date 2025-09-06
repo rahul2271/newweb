@@ -7,15 +7,44 @@ export default function TextToSpeech({ text }) {
   const [isPaused, setIsPaused] = useState(false);
   const [utterance, setUtterance] = useState(null);
   const [supported, setSupported] = useState(true);
+  const [voice, setVoice] = useState(null);
 
   useEffect(() => {
     if (!("speechSynthesis" in window)) {
       setSupported(false);
       return;
     }
-    const u = new SpeechSynthesisUtterance(text);
-    u.lang = "en-IN";
-    setUtterance(u);
+
+    const synth = window.speechSynthesis;
+    let voices = synth.getVoices();
+
+    if (!voices.length) {
+      // Some browsers load voices asynchronously
+      synth.onvoiceschanged = () => {
+        voices = synth.getVoices();
+        selectVoice(voices);
+      };
+    } else {
+      selectVoice(voices);
+    }
+
+    function selectVoice(voicesList) {
+      // Try to find a female voice, prioritize soft, clear sounding voices
+      const femaleVoice = voicesList.find(
+        (v) =>
+          v.lang.includes("en") &&
+          /female|woman|FEMALE|WOMAN/i.test(v.name + v.voiceURI)
+      );
+      const defaultVoice = voicesList.find((v) => v.lang.includes("en"));
+      setVoice(femaleVoice || defaultVoice || voicesList[0]);
+
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = "en-IN";
+      if (femaleVoice || defaultVoice) {
+        u.voice = femaleVoice || defaultVoice;
+      }
+      setUtterance(u);
+    }
 
     return () => {
       window.speechSynthesis.cancel();

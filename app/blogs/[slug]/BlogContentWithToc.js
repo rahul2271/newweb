@@ -89,7 +89,7 @@ export default function BlogContentWithToc({ blog, blogId }) {
         </speak>
       `;
       const response = await axios.post(
-        'https://api.elevenlabs.io/v1/text-to-speech/YOUR_VOICE_ID/stream', // Example endpoint
+        'https://api.elevenlabs.io/v1/text-to-speech/ogSj7jM4rppgY9TgZMqW/stream', // Example endpoint
         { text: stripHtmlTags(blog.content).slice(0, 3000) }, // Use SSML if API supports
         {
           headers: {

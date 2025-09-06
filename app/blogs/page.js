@@ -11,7 +11,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
-import TextToSpeech from "./TextToSpeech";
+
 
 // --- Utils ---
 const stripHtmlTags = (html = "") => html.replace(/<[^>]+>/g, "");
@@ -303,7 +303,7 @@ export default async function BlogsPage({ searchParams }) {
               >
                 💡 Want expert guidance? Book a 1:1 consultation →
               </Link>
-              <TextToSpeech text={stripHtmlTags(blog.content).slice(0, 1000)} />
+             
             </div>
           </div>
         ))}

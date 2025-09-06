@@ -1,7 +1,8 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import Comments from './Comments';
-
+import TextToSpeech from '../TextToSpeech';
+const stripHtmlTags = (html = "") => html.replace(/<[^>]+>/g, "");
 export default function BlogContentWithToc({ blog, blogId }) {
   const [toc, setToc] = useState([]);
   const [activeId, setActiveId] = useState(null);
@@ -82,8 +83,10 @@ export default function BlogContentWithToc({ blog, blogId }) {
       <div className="lg:grid lg:grid-cols-12 lg:gap-10">
         {/* ✅ Blog Content */}
         <article className="lg:col-span-9 bg-white text-gray-900 shadow-2xl rounded-2xl border border-gray-800 p-8">
+                
+          
           <h1 className="text-4xl font-extrabold mb-4">{blog.title}</h1>
-
+<TextToSpeech text={stripHtmlTags(blog.content).slice(0, 1000)} />
           <div className="flex items-center gap-4 text-sm text-gray-400 mb-8">
             <span>✍️ {blog.author}</span>
             {blogDate && (

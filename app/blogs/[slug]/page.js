@@ -11,12 +11,12 @@ import {
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import BlogContentWithToc from "./BlogContentWithToc";
+import { parse } from "node-html-parser";
 import React from "react";
 
-// ✅ Enable ISR (regenerate every 60s)
-export const revalidate = 60;
+export const revalidate = 60; // ISR: regenerate every 60s
 
-// ✅ Helper to serialize Firestore data
+// ✅ Serialize Firestore data for server rendering
 function serializeBlogData(data) {
   return {
     ...data,
@@ -26,7 +26,7 @@ function serializeBlogData(data) {
   };
 }
 
-// ✅ Pre-generate slugs at build time
+// ✅ Pre-generate blog slugs for static generation
 export async function generateStaticParams() {
   const snapshot = await getDocs(collection(db, "blogs"));
   return snapshot.docs.map((doc) => ({
@@ -36,7 +36,9 @@ export async function generateStaticParams() {
 
 // ✅ Metadata for SEO
 export async function generateMetadata({ params }) {
-  const decodedSlug = decodeURIComponent(params.slug);
+  const resolvedParams = await params; // ✅ await in App Router
+  const decodedSlug = decodeURIComponent(resolvedParams.slug);
+
   const q = query(collection(db, "blogs"), where("slug", "==", decodedSlug));
   const snapshot = await getDocs(q);
 
@@ -73,35 +75,48 @@ export async function generateMetadata({ params }) {
   };
 }
 
-// ✅ Blog Page
+// ✅ Main Blog Page
 export default async function Page({ params }) {
   const decodedSlug = decodeURIComponent(params.slug);
   const q = query(collection(db, "blogs"), where("slug", "==", decodedSlug));
   const snapshot = await getDocs(q);
 
-  if (snapshot.empty) {
-    notFound();
-  }
+  if (snapshot.empty) notFound();
 
   const docSnap = snapshot.docs[0];
   const blog = serializeBlogData(docSnap.data());
   const blogId = docSnap.id;
 
   // ✅ Increment views (non-blocking)
-  updateDoc(doc(db, "blogs", blogId), { views: increment(1) }).catch((err) =>
-    console.error("Failed to update views:", err)
-  );
+  updateDoc(doc(db, "blogs", blogId), { views: increment(1) }).catch(console.error);
+
+  // ✅ Server-side TOC generation using node-html-parser
+  let toc = [];
+  let processedContent = blog.content || "";
+
+  if (blog.content) {
+    const root = parse(blog.content);
+    const headings = root.querySelectorAll("h2, h3");
+
+    toc = headings.map((heading, index) => {
+      const id = `heading-${index}`;
+      heading.setAttribute("id", id);
+      return { id, text: heading.textContent, level: heading.tagName };
+    });
+
+    processedContent = root.toString(); // HTML with IDs injected
+  }
 
   return (
     <>
-      {/* ✅ JSON-LD Schema */}
+      {/* JSON-LD Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BlogPosting",
-            "mainEntityOfPage": {
+            mainEntityOfPage: {
               "@type": "WebPage",
               "@id": `https://www.rctechsolutions.com/blogs/${blog.slug}`,
             },
@@ -129,7 +144,7 @@ export default async function Page({ params }) {
         }}
       />
 
-      {/* ✅ Blog Image */}
+      {/* Blog Image */}
       <div className="flex justify-center mb-6">
         <Image
           src={blog.blogImageUrl}
@@ -140,9 +155,13 @@ export default async function Page({ params }) {
         />
       </div>
 
-      {/* ✅ Blog Content */}
-      
-      <BlogContentWithToc blog={blog} blogId={blogId} />
+      {/* Blog Content with server-side TOC */}
+      <BlogContentWithToc
+        blog={blog}
+        blogId={blogId}
+        toc={toc}
+        processedContent={processedContent}
+      />
     </>
   );
 }

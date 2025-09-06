@@ -38,6 +38,7 @@
     "motions": "^0.0.1",
     "next": "^15.5.2",
     "next-seo": "^6.8.0",
+    "node-html-parser": "^7.0.1",
     "nodemailer": "^7.0.5",
     "openai": "^4.77.0",
     "prisma": "^6.1.0",

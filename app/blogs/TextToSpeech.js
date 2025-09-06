@@ -1,25 +1,30 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 export default function TextToSpeech({ text }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const [utterance, setUtterance] = useState(null);
   const [supported, setSupported] = useState(true);
   const [voice, setVoice] = useState(null);
 
+  const synthRef = useRef(null);
+  const indexRef = useRef(0);
+  const chunksRef = useRef([]);
+  const utteranceRef = useRef(null);
+
   useEffect(() => {
-    if (!("speechSynthesis" in window)) {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) {
       setSupported(false);
       return;
     }
 
     const synth = window.speechSynthesis;
+    synthRef.current = synth;
+
     let voices = synth.getVoices();
 
     if (!voices.length) {
-      // Some browsers load voices asynchronously
       synth.onvoiceschanged = () => {
         voices = synth.getVoices();
         selectVoice(voices);
@@ -29,7 +34,6 @@ export default function TextToSpeech({ text }) {
     }
 
     function selectVoice(voicesList) {
-      // Try to find a female voice, prioritize soft, clear sounding voices
       const femaleVoice = voicesList.find(
         (v) =>
           v.lang.includes("en") &&
@@ -37,47 +41,78 @@ export default function TextToSpeech({ text }) {
       );
       const defaultVoice = voicesList.find((v) => v.lang.includes("en"));
       setVoice(femaleVoice || defaultVoice || voicesList[0]);
-
-      const u = new SpeechSynthesisUtterance(text);
-      u.lang = "en-IN";
-      if (femaleVoice || defaultVoice) {
-        u.voice = femaleVoice || defaultVoice;
-      }
-      setUtterance(u);
     }
 
+    // Split text into chunks of ~200 words
+    const words = text.split(/\s+/);
+    const chunks = [];
+    let i = 0;
+    while (i < words.length) {
+      chunks.push(words.slice(i, i + 200).join(" "));
+      i += 200;
+    }
+    chunksRef.current = chunks;
+    indexRef.current = 0;
+
     return () => {
-      window.speechSynthesis.cancel();
+      synth.cancel();
     };
   }, [text]);
 
-  const handlePlay = () => {
-    if (utterance && supported) {
-      window.speechSynthesis.cancel();
-      window.speechSynthesis.speak(utterance);
-      setIsPlaying(true);
+  const speakChunk = () => {
+    const synth = synthRef.current;
+    if (!synth || indexRef.current >= chunksRef.current.length) {
+      setIsPlaying(false);
       setIsPaused(false);
-      utterance.onend = () => {
-        setIsPlaying(false);
-        setIsPaused(false);
-      };
+      return;
     }
+
+    const chunk = chunksRef.current[indexRef.current];
+    const utterance = new SpeechSynthesisUtterance(chunk);
+    utterance.lang = "en-IN";
+    if (voice) {
+      utterance.voice = voice;
+    }
+
+    utterance.onend = () => {
+      indexRef.current += 1;
+      speakChunk();
+    };
+
+    utteranceRef.current = utterance;
+    synth.speak(utterance);
+  };
+
+  const handlePlay = () => {
+    const synth = synthRef.current;
+    if (!synth) return;
+    synth.cancel();
+    indexRef.current = 0;
+    setIsPlaying(true);
+    setIsPaused(false);
+    speakChunk();
   };
 
   const handlePause = () => {
-    window.speechSynthesis.pause();
+    const synth = synthRef.current;
+    if (!synth) return;
+    synth.pause();
     setIsPlaying(false);
     setIsPaused(true);
   };
 
   const handleResume = () => {
-    window.speechSynthesis.resume();
+    const synth = synthRef.current;
+    if (!synth) return;
+    synth.resume();
     setIsPlaying(true);
     setIsPaused(false);
   };
 
   const handleStop = () => {
-    window.speechSynthesis.cancel();
+    const synth = synthRef.current;
+    if (!synth) return;
+    synth.cancel();
     setIsPlaying(false);
     setIsPaused(false);
   };

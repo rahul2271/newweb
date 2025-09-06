@@ -43,14 +43,9 @@ export default function TextToSpeech({ text }) {
       setVoice(femaleVoice || defaultVoice || voicesList[0]);
     }
 
-    // Split text into chunks of ~200 words
-    const words = text.split(/\s+/);
-    const chunks = [];
-    let i = 0;
-    while (i < words.length) {
-      chunks.push(words.slice(i, i + 200).join(" "));
-      i += 200;
-    }
+    // Split text by punctuation into chunks
+    const sentences = text.match(/[^\.!\?]+[\.!\?]+|\s*[^\.!\?]+$/g) || [];
+    const chunks = sentences.map((s) => s.trim()).filter(Boolean);
     chunksRef.current = chunks;
     indexRef.current = 0;
 
@@ -70,13 +65,20 @@ export default function TextToSpeech({ text }) {
     const chunk = chunksRef.current[indexRef.current];
     const utterance = new SpeechSynthesisUtterance(chunk);
     utterance.lang = "en-IN";
+
     if (voice) {
       utterance.voice = voice;
     }
 
+    // Add small variations to pitch and rate for more expressiveness
+    utterance.rate = 1 + (Math.random() - 0.5) * 0.1; // Slight variation
+    utterance.pitch = 1 + (Math.random() - 0.5) * 0.2;
+
     utterance.onend = () => {
       indexRef.current += 1;
-      speakChunk();
+      setTimeout(() => {
+        speakChunk();
+      }, 200); // small pause between sentences
     };
 
     utteranceRef.current = utterance;

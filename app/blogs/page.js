@@ -11,6 +11,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
+import TextToSpeech from "./TextToSpeech";
 
 // --- Utils ---
 const stripHtmlTags = (html = "") => html.replace(/<[^>]+>/g, "");
@@ -51,7 +52,7 @@ const computeReadingTime = (html) => {
   return Math.max(1, Math.ceil(words / 200));
 };
 
-// --- Fetch Blogs (SSR) ---
+// --- Fetch Blogs ---
 async function fetchBlogs({ search = "", category = "All", page = 1 }) {
   const blogs = [];
   const PAGE_SIZE = 6;
@@ -62,7 +63,7 @@ async function fetchBlogs({ search = "", category = "All", page = 1 }) {
     snapshot.forEach((doc) => blogs.push({ id: doc.id, ...doc.data() }));
   } catch (e) {
     console.error("Error fetching blogs:", e);
-    return [];
+    return { blogs: [], total: 0 };
   }
 
   // Filtering
@@ -86,10 +87,54 @@ async function fetchBlogs({ search = "", category = "All", page = 1 }) {
   return { blogs: paginated, total: filtered.length };
 }
 
-export default async function BlogsPage({ searchParams }) {
-  // ✅ Await searchParams since it's a Promise
-  const params = await searchParams;
+// --- Fetch Blogs for Metadata ---
+async function fetchBlogsForMeta() {
+  const blogs = [];
+  try {
+    const q = query(collection(db, "blogs"), orderBy("date", "desc"), limit(5));
+    const snapshot = await getDocs(q);
+    snapshot.forEach((doc) => blogs.push({ id: doc.id, ...doc.data() }));
+  } catch (e) {
+    console.error("Error fetching blogs for metadata:", e);
+  }
+  return blogs;
+}
 
+// ✅ Generate Metadata
+export async function generateMetadata() {
+  const blogs = await fetchBlogsForMeta();
+
+  const titles = blogs.map((b) => b.title).join(", ").slice(0, 150);
+  const descriptions = blogs
+    .map((b) => (b.content ? b.content.slice(0, 100) : ""))
+    .join(" | ")
+    .slice(0, 250);
+
+  return {
+    title: "RC Tech Journal – Explore All Articles",
+    description:
+      descriptions ||
+      "Explore trending blogs on technology, career growth, freelancing, and web development.",
+    openGraph: {
+      title: "RC Tech Journal",
+      description:
+        descriptions ||
+        "Explore trending blogs on technology, career growth, freelancing, and web development.",
+      url: "https://www.rctechsolutions.com/blogs",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "RC Tech Journal",
+      description:
+        descriptions ||
+        "Explore trending blogs on technology, career growth, freelancing, and web development.",
+    },
+  };
+}
+
+// ✅ Blogs Page Component
+export default async function BlogsPage({ searchParams }) {
+  const params = await searchParams;
   const search = params?.search || "";
   const category = params?.category || "All";
   const page = parseInt(params?.page || "1", 10);
@@ -103,7 +148,6 @@ export default async function BlogsPage({ searchParams }) {
 
   return (
     <div className="min-h-screen bg-white text-black ">
-      {/* ✅ SEO JSON-LD */}
       <Script
         id="blogs-schema"
         type="application/ld+json"
@@ -133,7 +177,6 @@ export default async function BlogsPage({ searchParams }) {
         }}
       />
 
-      {/* 🌟 Hero */}
       <section className="text-center py-20 px-6 bg-gradient-to-r from-[#7b3fe4] to-indigo-500 text-white">
         <h1 className="text-5xl font-bold">RC Tech Journal</h1>
         <p className="mt-3 text-lg opacity-90">
@@ -141,7 +184,6 @@ export default async function BlogsPage({ searchParams }) {
         </p>
       </section>
 
-      {/* 🔎 Search + Category */}
       <section className="max-w-7xl mx-auto px-6 py-8">
         <form className="flex flex-col md:flex-row justify-between items-center gap-4">
           <input
@@ -169,7 +211,6 @@ export default async function BlogsPage({ searchParams }) {
         </form>
       </section>
 
-      {/* 🌟 Featured Blogs */}
       {featured.length > 0 && (
         <section className="max-w-7xl mx-auto px-6 py-12">
           <h2 className="text-xl font-semibold mb-6">🌟 Featured Articles</h2>
@@ -178,7 +219,7 @@ export default async function BlogsPage({ searchParams }) {
               <Link
                 key={blog.id}
                 href={`/blogs/${blog.slug}`}
-                className="group rounded-2xl overflow-hidden shadow-lg bg-white  hover:shadow-2xl transition"
+                className="group rounded-2xl overflow-hidden shadow-lg bg-white hover:shadow-2xl transition"
               >
                 <div className="relative h-60">
                   {blog.blogImageUrl && (
@@ -194,7 +235,7 @@ export default async function BlogsPage({ searchParams }) {
                   <h3 className="text-2xl font-bold mb-2 group-hover:text-[#7b3fe4]">
                     {blog.title}
                   </h3>
-                  <p className="text-sm text-gray-600  line-clamp-3">
+                  <p className="text-sm text-gray-600 line-clamp-3">
                     {stripHtmlTags(blog.content).slice(0, 150)}...
                   </p>
                   <div className="mt-3 text-xs text-gray-500 flex gap-2">
@@ -209,7 +250,6 @@ export default async function BlogsPage({ searchParams }) {
         </section>
       )}
 
-      {/* 🚀 CTA Banner */}
       <section className="max-w-6xl mx-auto px-6 py-12 text-center bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-3xl my-12">
         <h2 className="text-3xl font-bold mb-4">Want to Grow Your Business or Career?</h2>
         <p className="text-lg mb-6">
@@ -225,13 +265,12 @@ export default async function BlogsPage({ searchParams }) {
         </div>
       </section>
 
-      {/* 📄 Blogs Grid */}
       <section className="max-w-7xl mx-auto px-6 py-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {blogs.map((blog) => (
           <div key={blog.id}>
             <Link
               href={`/blogs/${blog.slug}`}
-              className="group block rounded-2xl overflow-hidden shadow-md bg-white  border border-gray-200 dark:border-gray-700 hover:shadow-lg transition"
+              className="group block rounded-2xl overflow-hidden shadow-md bg-white border border-gray-200 hover:shadow-lg transition"
             >
               <div className="relative h-40">
                 {blog.blogImageUrl && (
@@ -247,7 +286,7 @@ export default async function BlogsPage({ searchParams }) {
                 <h3 className="text-lg font-semibold line-clamp-2 group-hover:text-[#7b3fe4]">
                   {blog.title}
                 </h3>
-                <p className="text-sm text-gray-600  line-clamp-3">
+                <p className="text-sm text-gray-600 line-clamp-3">
                   {stripHtmlTags(blog.content).slice(0, 120)}...
                 </p>
                 <div className="mt-2 text-xs text-gray-500 flex gap-2">
@@ -264,12 +303,12 @@ export default async function BlogsPage({ searchParams }) {
               >
                 💡 Want expert guidance? Book a 1:1 consultation →
               </Link>
+              <TextToSpeech text={stripHtmlTags(blog.content).slice(0, 1000)} />
             </div>
           </div>
         ))}
       </section>
 
-      {/* 📄 Pagination */}
       <div className="text-center my-8 flex justify-center gap-4">
         {Array.from({ length: totalPages }, (_, i) => (
           <Link
@@ -278,7 +317,7 @@ export default async function BlogsPage({ searchParams }) {
             className={`px-4 py-2 rounded-lg ${
               page === i + 1
                 ? "bg-[#7b3fe4] text-white"
-                : "bg-gray-100 "
+                : "bg-gray-100"
             }`}
           >
             {i + 1}
@@ -286,23 +325,22 @@ export default async function BlogsPage({ searchParams }) {
         ))}
       </div>
 
-      {/* 🎯 Persona Section */}
       <section className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-6 text-center">
-        <div className="p-6 bg-gray-100  rounded-2xl shadow hover:shadow-lg">
+        <div className="p-6 bg-gray-100 rounded-2xl shadow hover:shadow-lg">
           <h3 className="text-xl font-bold mb-3">🚀 Start a Business</h3>
           <p className="mb-4">Get step-by-step guidance to launch and scale your idea.</p>
           <Link href="/contact" className="text-[#7b3fe4] font-medium hover:underline">
             Book a Call →
           </Link>
         </div>
-        <div className="p-6 bg-gray-100  rounded-2xl shadow hover:shadow-lg">
+        <div className="p-6 bg-gray-100 rounded-2xl shadow hover:shadow-lg">
           <h3 className="text-xl font-bold mb-3">💻 Become a Developer</h3>
           <p className="mb-4">Learn coding, freelancing & job-ready skills with us.</p>
           <Link href="/contact" className="text-[#7b3fe4] font-medium hover:underline">
             Get Mentorship →
           </Link>
         </div>
-        <div className="p-6 bg-gray-100  rounded-2xl shadow hover:shadow-lg">
+        <div className="p-6 bg-gray-100 rounded-2xl shadow hover:shadow-lg">
           <h3 className="text-xl font-bold mb-3">🎓 Student Growth</h3>
           <p className="mb-4">Earn while you learn with freelancing & digital skills.</p>
           <Link href="/contact" className="text-[#7b3fe4] font-medium hover:underline">
@@ -311,35 +349,6 @@ export default async function BlogsPage({ searchParams }) {
         </div>
       </section>
 
-      {/* 📬 Newsletter */}
-      {/* <section className="mt-20 max-w-4xl mx-auto bg-gradient-to-r from-[#7b3fe4] to-indigo-500 text-white py-12 rounded-3xl px-6 text-center">
-        <h3 className="text-2xl font-semibold mb-2">
-          Subscribe to RC Tech Journal
-        </h3>
-        <p className="text-white/90 mb-6">
-          Get the latest blogs on tech, design, freelancing, and growth.
-        </p>
-        <form
-          action="#"
-          method="POST"
-          className="flex flex-col sm:flex-row items-center gap-3"
-        >
-          <input
-            type="email"
-            placeholder="Enter your email"
-            required
-            className="flex-1 px-4 py-3 rounded-xl text-black outline-none focus:ring-2 focus:ring-white"
-          />
-          <button
-            type="submit"
-            className="px-6 py-3 rounded-xl bg-white text-[#7b3fe4] font-semibold hover:bg-gray-100 transition"
-          >
-            Subscribe
-          </button>
-        </form>
-      </section> */}
-
-      {/* 📌 Sticky Consultation Button */}
       <Link
         href="/contact"
         className="fixed bottom-6 right-6 bg-[#7b3fe4] text-white px-5 py-3 rounded-full shadow-lg hover:bg-[#6a32c9] transition z-50"

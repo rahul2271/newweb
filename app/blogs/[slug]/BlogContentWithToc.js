@@ -1,8 +1,12 @@
 'use client';
+
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Comments from './Comments';
-import TextToSpeech from '../TextToSpeech';
+
+// ✅ Utility function to strip HTML tags
 const stripHtmlTags = (html = "") => html.replace(/<[^>]+>/g, "");
+
 export default function BlogContentWithToc({ blog, blogId }) {
   const [toc, setToc] = useState([]);
   const [activeId, setActiveId] = useState(null);
@@ -10,20 +14,22 @@ export default function BlogContentWithToc({ blog, blogId }) {
   const [processedContent, setProcessedContent] = useState(blog.content || "");
   const [showMobileToc, setShowMobileToc] = useState(false);
 
-  // ✅ Normalize blog.date to a string
+  // ✅ Text to Speech state
+  const [audioUrl, setAudioUrl] = useState('');
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  // ✅ Normalize blog date
   const blogDate = blog?.date?.toDate
     ? blog.date.toDate().toISOString()
     : typeof blog.date === "string"
     ? blog.date
     : null;
 
-  // Process blog content → inject IDs
+  // ✅ Process blog content → inject IDs for headings
   useEffect(() => {
     if (!blog.content) return;
-
     const parser = new DOMParser();
     const doc = parser.parseFromString(blog.content, 'text/html');
-
     const headings = [...doc.querySelectorAll('h2, h3')].map((heading, index) => {
       const id = `heading-${index}`;
       heading.setAttribute('id', id);
@@ -33,16 +39,14 @@ export default function BlogContentWithToc({ blog, blogId }) {
         level: heading.tagName,
       };
     });
-
     setToc(headings);
     setProcessedContent(doc.body.innerHTML);
   }, [blog.content]);
 
-  // Active Section detection
+  // ✅ Detect active heading using IntersectionObserver
   useEffect(() => {
     const headings = toc.map((t) => document.getElementById(t.id));
     if (!headings.length) return;
-
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries.find((e) => e.isIntersecting);
@@ -50,12 +54,11 @@ export default function BlogContentWithToc({ blog, blogId }) {
       },
       { rootMargin: '-50% 0px -50% 0px', threshold: 0 }
     );
-
     headings.forEach((h) => h && observer.observe(h));
     return () => observer.disconnect();
   }, [toc]);
 
-  // Reading Progress
+  // ✅ Update reading progress
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
@@ -66,11 +69,51 @@ export default function BlogContentWithToc({ blog, blogId }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Reading time
+  // ✅ Calculate reading time
   const words = blog.content
     ? blog.content.replace(/<[^>]+>/g, '').split(/\s+/).length
     : 0;
   const readingTime = Math.ceil(words / 200);
+
+  // ✅ Handle Text-to-Speech functionality
+  const handlePlay = async () => {
+    if (isPlaying) return;
+    try {
+      const ssmlText = `
+        <speak>
+          <voice name="en_us_female">
+            <prosody rate="1.0" pitch="0">
+              ${stripHtmlTags(blog.content).slice(0, 3000)}
+            </prosody>
+          </voice>
+        </speak>
+      `;
+      const response = await axios.post(
+        'https://api.elevenlabs.io/v1/text-to-speech/YOUR_VOICE_ID/stream', // Example endpoint
+        { text: stripHtmlTags(blog.content).slice(0, 3000) }, // Use SSML if API supports
+        {
+          headers: {
+            'xi-api-key': 'sk_d4b7d16087eb8a0af0edcd445b372087e5fb93934b36a3e0', // Replace with your API key
+            'Content-Type': 'application/json',
+          },
+          responseType: 'blob', // Important for audio files
+        }
+      );
+      const url = URL.createObjectURL(response.data);
+      setAudioUrl(url);
+      setIsPlaying(true);
+    } catch (error) {
+      console.error('Error fetching audio:', error);
+    }
+  };
+
+  const handleStop = () => {
+    if (audioUrl) {
+      URL.revokeObjectURL(audioUrl);
+    }
+    setAudioUrl('');
+    setIsPlaying(false);
+  };
 
   return (
     <div className="relative max-w-6xl mx-auto px-6 py-12">
@@ -83,12 +126,31 @@ export default function BlogContentWithToc({ blog, blogId }) {
       <div className="lg:grid lg:grid-cols-12 lg:gap-10">
         {/* ✅ Blog Content */}
         <article className="lg:col-span-9 bg-white text-gray-900 shadow-2xl rounded-2xl border border-gray-800 p-8">
-                
-          
           <h1 className="text-4xl font-extrabold mb-4">{blog.title}</h1>
-<TextToSpeech text={stripHtmlTags(blog.content).slice(0, 1000)} />
+
+          {/* ✅ Listen Button */}
+          <div className="mb-6">
+            <button
+              onClick={handlePlay}
+              disabled={isPlaying}
+              className="px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-500 text-white rounded-full shadow hover:scale-105 transition-transform"
+            >
+              ▶ Listen to this article
+            </button>
+            <button
+              onClick={handleStop}
+              disabled={!isPlaying}
+              className="px-4 py-2 ml-3 bg-gray-300 text-black rounded hover:bg-gray-400"
+            >
+              ⏹ Stop
+            </button>
+            {audioUrl && (
+              <audio src={audioUrl} controls autoPlay className="mt-4 w-full rounded-lg" />
+            )}
+          </div>
+
           <div className="flex items-center gap-4 text-sm text-gray-400 mb-8">
-            <span>✍️ {blog.author}</span>
+            <span>✍️ {blog.author || "RC Tech Team"}</span>
             {blogDate && (
               <span>📅 {new Date(blogDate).toLocaleDateString()}</span>
             )}
@@ -116,7 +178,7 @@ export default function BlogContentWithToc({ blog, blogId }) {
                   <li key={item.id}>
                     <a
                       href={`#${item.id}`}
-                      className={`block px-3 py-2 rounded transition-all  ${
+                      className={`block px-3 py-2 rounded transition-all ${
                         activeId === item.id
                           ? 'text-purple-400 bg-gray-800 border-l-4 border-purple-500 shadow-md'
                           : 'text-gray-300 hover:text-purple-300 hover:bg-gray-800'

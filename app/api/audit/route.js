@@ -12,7 +12,7 @@ export async function POST(req) {
     const apiKey = "AIzaSyDRiBdOvuXxWzF2P2QoXmI7Qlbbe_fB_CQ";
     const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(
       url
-    )}&strategy=mobile&key=${apiKey}`;
+    )}&strategy=mobile&key=AIzaSyDRiBdOvuXxWzF2P2QoXmI7Qlbbe_fB_CQ`;
 
     const response = await fetch(apiUrl);
     const data = await response.json();

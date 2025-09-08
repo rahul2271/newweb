@@ -2,8 +2,12 @@ export async function POST(req) {
   try {
     const { url } = await req.json();
 
-    console.log("🔍 Incoming URL:", url);
-    console.log("🔑 API Key loaded?", !!process.env.PAGESPEED_API_KEY);
+    if (!process.env.PAGESPEED_API_KEY) {
+      return Response.json(
+        { error: "❌ API Key not found in server environment." },
+        { status: 500 }
+      );
+    }
 
     const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(
       url
@@ -14,20 +18,27 @@ export async function POST(req) {
     const res = await fetch(apiUrl);
     const data = await res.json();
 
-    console.log("✅ API Response:", data);
-
     if (!res.ok) {
-      return Response.json({ error: data.error?.message || "API Error" }, { status: 400 });
+      console.error("❌ Google API Error:", data);
+      return Response.json(
+        { error: data.error?.message || "Google API returned an error." },
+        { status: 400 }
+      );
     }
 
     return Response.json({
       performance: Math.round(data.lighthouseResult.categories.performance.score * 100),
       accessibility: Math.round(data.lighthouseResult.categories.accessibility.score * 100),
-      bestPractices: Math.round(data.lighthouseResult.categories["best-practices"].score * 100),
+      bestPractices: Math.round(
+        data.lighthouseResult.categories["best-practices"].score * 100
+      ),
       seo: Math.round(data.lighthouseResult.categories.seo.score * 100),
     });
   } catch (err) {
-    console.error("❌ Server Error:", err);
-    return Response.json({ error: "Failed to fetch audit results." }, { status: 500 });
+    console.error("❌ Server Crash:", err);
+    return Response.json(
+      { error: "⚠️ Server crashed before completing request." },
+      { status: 500 }
+    );
   }
 }

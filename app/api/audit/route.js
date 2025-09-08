@@ -9,7 +9,7 @@ export async function POST(req) {
       return NextResponse.json({ error: "URL is required" }, { status: 400 });
     }
 
-    const apiKey = process.env.PAGESPEED_API_KEY;
+    const apiKey = "AIzaSyDRiBdOvuXxWzF2P2QoXmI7Qlbbe_fB_CQ";
     const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(
       url
     )}&strategy=mobile&key=${apiKey}`;

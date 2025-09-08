@@ -1,56 +1,37 @@
-export const runtime = "nodejs"; // ✅ avoid Edge timeout
+// pages/api/audit.js
 
-export async function POST(req) {
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: "Method not allowed" });
+  }
+
   try {
-    const { url } = await req.json();
+    const { url } = req.body;
 
     if (!url) {
-      return Response.json({ error: "Missing URL." }, { status: 400 });
+      return res.status(400).json({ error: "Missing URL" });
     }
 
-    if (!process.env.PAGESPEED_API_KEY) {
-      return Response.json(
-        { error: "❌ API Key not found in server environment." },
-        { status: 500 }
-      );
-    }
-
-    const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(
+    // Example: Using Google PageSpeed Insights API
+    const apiKey = process.env.PAGESPEED_API_KEY; // Add in Vercel → Environment Variables
+    const auditUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(
       url
-    )}&strategy=mobile&key=${process.env.PAGESPEED_API_KEY}`;
+    )}&key=${apiKey}`;
 
-    console.log("📡 Fetching from Google:", apiUrl);
+    console.log("Calling external audit service:", auditUrl);
 
-    const res = await fetch(apiUrl, { cache: "no-store" });
-    const data = await res.json();
+    const response = await fetch(auditUrl);
 
-    if (!res.ok) {
-      console.error("❌ Google API Error:", data);
-      return Response.json(
-        { error: data.error?.message || "Google API returned an error." },
-        { status: 400 }
-      );
+    if (!response.ok) {
+      const errorText = await response.text();
+      return res.status(response.status).json({ error: errorText });
     }
 
-    const lighthouse = data.lighthouseResult?.categories;
-    if (!lighthouse) {
-      return Response.json(
-        { error: "No audit results returned from Google." },
-        { status: 500 }
-      );
-    }
+    const data = await response.json();
 
-    return Response.json({
-      performance: Math.round(lighthouse.performance.score * 100),
-      accessibility: Math.round(lighthouse.accessibility.score * 100),
-      bestPractices: Math.round(lighthouse["best-practices"].score * 100),
-      seo: Math.round(lighthouse.seo.score * 100),
-    });
-  } catch (err) {
-    console.error("❌ Server Crash:", err);
-    return Response.json(
-      { error: "⚠️ Server crashed before completing request." },
-      { status: 500 }
-    );
+    return res.status(200).json(data);
+  } catch (error) {
+    console.error("Audit API error:", error);
+    return res.status(500).json({ error: "Internal server error" });
   }
 }

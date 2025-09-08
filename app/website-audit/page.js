@@ -8,6 +8,9 @@ export default function WebsiteAuditPage() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
 
+  // ⚠️ Replace with your actual Google API Key
+  const API_KEY = "AIzaSyDRiBdOvuXxWzF2P2QoXmI7Qlbbe_fB_CQ";
+
   const handleAudit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -15,20 +18,27 @@ export default function WebsiteAuditPage() {
     setResult(null);
 
     try {
-      const res = await fetch("/api/audit", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url }),
-      });
+      const auditUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(
+        url
+      )}&key=${API_KEY}`;
 
+      const res = await fetch(auditUrl);
       const data = await res.json();
 
       if (res.ok) {
-        setResult(data);
+        const lighthouse = data.lighthouseResult?.categories;
+        const results = {
+          performance: lighthouse?.performance?.score * 100 || 0,
+          accessibility: lighthouse?.accessibility?.score * 100 || 0,
+          bestPractices: lighthouse?.["best-practices"]?.score * 100 || 0,
+          seo: lighthouse?.seo?.score * 100 || 0,
+        };
+        setResult(results);
       } else {
-        setError(data.error || "Something went wrong.");
+        setError(data.error?.message || "Something went wrong.");
       }
     } catch (err) {
+      console.error(err);
       setError("Error connecting to audit service.");
     } finally {
       setLoading(false);

@@ -80,7 +80,7 @@ export default function WebsiteAuditPage() {
             <h2 className="text-xl font-semibold text-purple-300 mb-4 text-center">
               ✅ Audit Results
             </h2>
-            <ul className="space-y-2">
+            <ul className="space-y-2 text-center">
               <li>Performance: {result.performance}%</li>
               <li>Accessibility: {result.accessibility}%</li>
               <li>Best Practices: {result.bestPractices}%</li>

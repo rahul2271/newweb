@@ -12,7 +12,6 @@ import Link from "next/link";
 import Script from "next/script";
 import { notFound } from "next/navigation";
 
-
 // --- Utils ---
 const stripHtmlTags = (html = "") => html.replace(/<[^>]+>/g, "");
 
@@ -79,6 +78,13 @@ async function fetchBlogs({ search = "", category = "All", page = 1 }) {
     filtered = filtered.filter((b) => b.category === category);
   }
 
+  // ✅ Sort by date after filtering
+  filtered = filtered.sort((a, b) => {
+    const dateA = a.date?.toDate?.() || (a.date ? new Date(a.date) : new Date(0));
+    const dateB = b.date?.toDate?.() || (b.date ? new Date(b.date) : new Date(0));
+    return dateB - dateA; // newest first
+  });
+
   // Pagination
   const start = (page - 1) * PAGE_SIZE;
   const end = start + PAGE_SIZE;
@@ -142,6 +148,7 @@ export default async function BlogsPage({ searchParams }) {
   const { blogs, total } = await fetchBlogs({ search, category, page });
   if (!blogs) return notFound();
 
+  // ✅ Featured always shows latest 2 blogs
   const featured = blogs.slice(0, 2);
   const categories = ["All", ...new Set(blogs.map((b) => b.category))];
   const totalPages = Math.ceil(total / 6);
@@ -250,21 +257,6 @@ export default async function BlogsPage({ searchParams }) {
         </section>
       )}
 
-      <section className="max-w-6xl mx-auto px-6 py-12 text-center bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-3xl my-12">
-        <h2 className="text-3xl font-bold mb-4">Want to Grow Your Business or Career?</h2>
-        <p className="text-lg mb-6">
-          Whether you’re starting a business, want to become a developer, or looking to earn as a student—our experts can guide you.
-        </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <Link href="/contact" className="px-6 py-3 bg-white text-indigo-600 rounded-xl font-semibold hover:bg-gray-100">
-            Book Free 1:1 Consultation
-          </Link>
-          <Link href="/" className="px-6 py-3 bg-indigo-800 rounded-xl font-semibold hover:bg-indigo-700">
-            Explore Services
-          </Link>
-        </div>
-      </section>
-
       <section className="max-w-7xl mx-auto px-6 py-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {blogs.map((blog) => (
           <div key={blog.id}>
@@ -296,15 +288,6 @@ export default async function BlogsPage({ searchParams }) {
                 </div>
               </div>
             </Link>
-            <div className="mt-2">
-              <Link
-                href="/contact"
-                className="text-[#7b3fe4] text-sm font-medium hover:underline"
-              >
-                💡 Want expert guidance? Book a 1:1 consultation →
-              </Link>
-             
-            </div>
           </div>
         ))}
       </section>
@@ -315,46 +298,13 @@ export default async function BlogsPage({ searchParams }) {
             key={i}
             href={`/blogs?search=${search}&category=${category}&page=${i + 1}`}
             className={`px-4 py-2 rounded-lg ${
-              page === i + 1
-                ? "bg-[#7b3fe4] text-white"
-                : "bg-gray-100"
+              page === i + 1 ? "bg-[#7b3fe4] text-white" : "bg-gray-100"
             }`}
           >
             {i + 1}
           </Link>
         ))}
       </div>
-
-      <section className="max-w-6xl mx-auto px-6 py-16 grid md:grid-cols-3 gap-6 text-center">
-        <div className="p-6 bg-gray-100 rounded-2xl shadow hover:shadow-lg">
-          <h3 className="text-xl font-bold mb-3">🚀 Start a Business</h3>
-          <p className="mb-4">Get step-by-step guidance to launch and scale your idea.</p>
-          <Link href="/contact" className="text-[#7b3fe4] font-medium hover:underline">
-            Book a Call →
-          </Link>
-        </div>
-        <div className="p-6 bg-gray-100 rounded-2xl shadow hover:shadow-lg">
-          <h3 className="text-xl font-bold mb-3">💻 Become a Developer</h3>
-          <p className="mb-4">Learn coding, freelancing & job-ready skills with us.</p>
-          <Link href="/contact" className="text-[#7b3fe4] font-medium hover:underline">
-            Get Mentorship →
-          </Link>
-        </div>
-        <div className="p-6 bg-gray-100 rounded-2xl shadow hover:shadow-lg">
-          <h3 className="text-xl font-bold mb-3">🎓 Student Growth</h3>
-          <p className="mb-4">Earn while you learn with freelancing & digital skills.</p>
-          <Link href="/contact" className="text-[#7b3fe4] font-medium hover:underline">
-            Start Earning →
-          </Link>
-        </div>
-      </section>
-
-      <Link
-        href="/contact"
-        className="fixed bottom-6 right-6 bg-[#7b3fe4] text-white px-5 py-3 rounded-full shadow-lg hover:bg-[#6a32c9] transition z-50"
-      >
-        💬 Free 1:1 Consultation
-      </Link>
     </div>
   );
 }

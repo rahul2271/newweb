@@ -116,11 +116,22 @@ export async function generateMetadata() {
     .join(" | ")
     .slice(0, 250);
 
+  // ✅ Collect metaKeywords from Firestore
+  const keywords = blogs
+    .flatMap((b) =>
+      Array.isArray(b.metaKeywords)
+        ? b.metaKeywords
+        : (b.metaKeywords || "").split(",")
+    )
+    .map((kw) => kw.trim())
+    .filter(Boolean);
+
   return {
     title: "RC Tech Journal – Explore All Articles",
     description:
       descriptions ||
       "Explore trending blogs on technology, career growth, freelancing, and web development.",
+    keywords, // 👈 will generate <meta name="keywords">
     openGraph: {
       title: "RC Tech Journal",
       description:
@@ -184,6 +195,7 @@ export default async function BlogsPage({ searchParams }) {
         }}
       />
 
+      {/* Hero Section */}
       <section className="text-center py-20 px-6 bg-gradient-to-r from-[#7b3fe4] to-indigo-500 text-white">
         <h1 className="text-5xl font-bold">RC Tech Journal</h1>
         <p className="mt-3 text-lg opacity-90">
@@ -191,6 +203,7 @@ export default async function BlogsPage({ searchParams }) {
         </p>
       </section>
 
+      {/* Search + Filter */}
       <section className="max-w-7xl mx-auto px-6 py-8">
         <form className="flex flex-col md:flex-row justify-between items-center gap-4">
           <input
@@ -218,6 +231,7 @@ export default async function BlogsPage({ searchParams }) {
         </form>
       </section>
 
+      {/* Featured Articles */}
       {featured.length > 0 && (
         <section className="max-w-7xl mx-auto px-6 py-12">
           <h2 className="text-xl font-semibold mb-6">🌟 Featured Articles</h2>
@@ -257,6 +271,7 @@ export default async function BlogsPage({ searchParams }) {
         </section>
       )}
 
+      {/* Blog Grid */}
       <section className="max-w-7xl mx-auto px-6 py-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {blogs.map((blog) => (
           <div key={blog.id}>
@@ -292,6 +307,7 @@ export default async function BlogsPage({ searchParams }) {
         ))}
       </section>
 
+      {/* Pagination */}
       <div className="text-center my-8 flex justify-center gap-4">
         {Array.from({ length: totalPages }, (_, i) => (
           <Link

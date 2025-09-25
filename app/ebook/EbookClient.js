@@ -80,7 +80,7 @@ export default function EbookClient() {
   };
 
   const applyDiscount = () => {
-    if (discountCode.trim().toUpperCase() === "FREEME") {
+    if (discountCode.trim().toUpperCase() === "FLIPLTCEFC") {
       setBasePrice(0);
       setFinalPrice(0);
       setGstAmount(0);

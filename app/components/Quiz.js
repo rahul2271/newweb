@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect } from "react";
 import { FaRegEdit, FaCog, FaLaptop, FaUsers, FaRocket, FaStore, FaSignInAlt, FaChartLine, FaBox, FaRegLightbulb } from "react-icons/fa";
-
+import { useRouter } from "next/navigation";
 export default function Quiz() {
   const [step, setStep] = useState("form");
   const [formData, setFormData] = useState({
@@ -97,14 +97,16 @@ export default function Quiz() {
 
     return recommendations;
   };
-
+ const router = useRouter();
   return (
     <div className="flex items-center justify-center  p-4 md:p-8 max-w-full bg-white md:pt-[150px] md:pb-[150px]">
       <div className="flex flex-col lg:flex-row w-full max-w-screen-xl">
         {/* Left Section: Engaging Content */}
         <div className="w-full lg:w-1/2 p-8 text-white flex flex-col justify-center space-y-8">
           <h2 className="text-3xl lg:text-5xl font-light tracking-tight bg-gradient-to-r from-pink-500 to-yellow-500  text-transparent bg-clip-text">Take Your Business to <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">New Heights</span> </h2>
-          <p className="text-lg lg:text-xl text-gray-900">We provide Best IT company for startups, delivering high-quality solutions designed to help your business grow, thrive, and shine in the digital landscape. Simply answer a few quick questions, and we’ll recommend the most effective solutions tailored to your unique requirements.
+          <p className="text-lg lg:text-xl text-gray-900">As one of the top application development companies, we provide tailored solutions that
+help startups and enterprises succeed in the digital era. Simply answer a few questions, and
+we’ll recommend the most effective services for your goals.
 </p>
           <ul className="list-disc space-y-4 text-gray-900 lg:text-lg">
             <li>Custom Web Development</li>
@@ -114,11 +116,11 @@ export default function Quiz() {
             <li>Lead Generation Strategies</li>
           </ul>
           <button
-            onClick={() => setStep("form")}
-            className="w-full py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold text-lg rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105"
-          >
-            Get Started Now
-          </button>
+      onClick={() => router.push("/contact")}
+      className="w-full py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold text-lg rounded-lg shadow-lg transform transition-all duration-300 hover:scale-105"
+    >
+      Get Started Now
+    </button>
         </div>
 
         {/* Right Section: Form */}

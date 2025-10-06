@@ -33,12 +33,13 @@ export default function ValueProposition() {
           </motion.h2>
 
           <p className="text-md md:text-lg leading-relaxed text-gray-700">
-            At RC Tech Solutions, led by Rahul Chauhan, we go beyond delivering projects—we create lasting digital growth partnerships. Every website, app, and campaign is designed with precision, ensuring performance, conversions, and measurable business impact. As a provider of the <a 
-    href="/services/ai-powered" 
+            As one of   <a 
+    href="/contact" 
     className="text-purple-400 hover:underline" target="_blank"
   >
-    Best AI Powered Solutions
-  </a>, we integrate innovation into every step, helping businesses stay ahead in the digital era.
+    the top software development companies,
+  </a>we go beyond project delivery — we
+create digital success stories.
 
           </p>
 
@@ -48,7 +49,7 @@ export default function ValueProposition() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
               </svg>
               <span>
-                <strong>Custom Web Development</strong> tailored to your brand vision and business objectives—no templates, no shortcuts.
+                <strong>Custom Web Development</strong>  tailored to your business vision.
               </span>
             </li>
             <li className="flex items-start">
@@ -56,7 +57,14 @@ export default function ValueProposition() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
               </svg>
               <span>
-                <strong>SEO-Optimized Development</strong> that helps you rank higher and reach more of your target audience organically.
+                <strong>SEO-Optimized Development</strong> to rank higher on Google.</span>
+            </li>
+            <li className="flex items-start">
+              <svg className="w-6 h-6 text-purple-600 mr-3 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>
+                <strong>Full-Service Digital Strategy</strong> from design to marketing.
               </span>
             </li>
             <li className="flex items-start">
@@ -64,15 +72,8 @@ export default function ValueProposition() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
               </svg>
               <span>
-                <strong>Full-Service Digital Strategy</strong> covering everything from UI/UX design to cloud deployment and performance marketing.
-              </span>
-            </li>
-            <li className="flex items-start">
-              <svg className="w-6 h-6 text-purple-600 mr-3 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-              </svg>
-              <span>
-                <strong>Conversion-Driven Design</strong> that doesn’t just look good—but converts visitors into leads, customers, and fans.
+                <strong>Conversion-Driven Design</strong> that attract and retain customers.
+
               </span>
             </li>
             <li className="flex items-start">

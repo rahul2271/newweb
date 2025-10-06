@@ -64,7 +64,10 @@ export default function DataAnalytics() {
 
                 </h1>
                 <p className="hero-description">
-                  <span>Modern, scalable, and SEO-optimized websites for businesses of every size.</span>
+                  <span>We create modern, scalable, and SEO-optimized websites and applications for businesses of
+every size. <span className='font-semibold'>As a trusted IT solutions company in India</span>, we combine innovation with
+technology to bring your digital ideas to life.
+</span>
                 </p>
                 <form
             onSubmit={handleSubmit}

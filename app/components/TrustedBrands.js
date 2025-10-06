@@ -47,9 +47,12 @@ export default function BrandsSection() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.9 }}
-          className="mt-6 text-lg text-gray-500 max-w-2xl mx-auto"
+          className="mt-6 text-lg text-gray-500 max-w-5xl mx-auto"
         >
-We partner with Affordable IT services India who value aesthetics, trust, and performance.
+We collaborate with forward-thinking businesses that value performance, design, and
+measurable growth. Trusted by startups and enterprises, our partnerships reflect why we’re
+among the top software development companies in the industry.
+
         </motion.p>
 
         {/* Mobile Swiper */}

@@ -24,8 +24,9 @@ export default function ProductTeamSection() {
           </h2>
 
           <p className="text-gray-600 text-base sm:text-lg leading-relaxed">
-            Clear B2B message, data-focused, solution-driven.
-            Designed to empower growing brands through modern technology.
+            We help businesses grow with a clear B2B message, data-driven strategies, and future-ready
+solutions. Whether you need mobile apps, websites, or automation tools, our team delivers
+results that empower brands.
           </p>
         </div>
 

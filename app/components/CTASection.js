@@ -17,13 +17,16 @@ export default function CTASection() {
 ="block text-center mb-5 lg:text-left lg:mb-0">
             <h2
               className
-="font-manrope text-4xl text-white font-semibold mb-5 lg:mb-2"
+="font-manrope text-2xl text-white font-semibold mb-5 lg:mb-2"
             >
-              Connect with us
+              Let’s create something extraordinary together.
+
             </h2>
             <p className
-="text-xl text-indigo-100">
-              Contact us with any query or any idea.
+="text-md text-indigo-100">
+              Work with one of the top application development companies that blends technology with
+creativity to deliver results.
+
             </p>
           </div>
           <a

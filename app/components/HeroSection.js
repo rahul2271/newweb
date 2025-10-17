@@ -10,7 +10,7 @@ import { useState } from 'react';
     const email = form.email.value;
 
     try {
-      const res = await fetch('https://sheetdb.io/api/v1/0arxv3vf8lrsq', {
+      const res = await fetch('https://sheetdb.io/api/v1/7tneevoxn7zax', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ data: { email } }),

@@ -16,6 +16,7 @@ import {
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import SeoSchema from '../../components/SeoSchema';
+import Link from 'next/link';
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -171,9 +172,9 @@ Enhance engagement, attract more leads, and accelerate revenue with data-driven 
             <h3 className="text-xl font-semibold text-white leading-snug mb-6">
               Let’s amplify your digital presence <br />through powerful strategy.
             </h3>
-            <button className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg hover:shadow-xl">
+            <Link target='_blank' href="/contact" className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg hover:shadow-xl">
               Get Free Marketing Audit →
-            </button>
+            </Link>
           </motion.div>
         </div>
       </section>

@@ -20,6 +20,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import SeoSchema from '../../components/SeoSchema';
 import { NextSeo } from 'next-seo';
+import Link from 'next/link';
+
 <NextSeo
   title="AI Powered Solutions | RC Tech Solutions"
   description="Hire top-rated AI development company for NLP, AI Chatbots, Computer Vision, Machine Learning, and Predictive Analytics."
@@ -326,9 +328,9 @@ function ServiceCard({ icon: Icon, title, description, color, delay = 0 }) {
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 40 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6, delay: 0.2 }} className="bg-[#151b55] border border-[#2d3473] px-6 py-8 md:px-8 md:py-10 rounded-xl text-left w-full max-w-md shadow-2xl">
             <h3 className="text-xl font-semibold text-white leading-snug mb-6">Hire Dedicated AI Teams or Get Project-Based AI Consulting</h3>
-            <button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg">
+            <Link target='_blank' href="/contact" className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg">
               Contact Our AI Experts →
-            </button>
+            </Link>
           </motion.div>
         </div>
       </section>

@@ -17,6 +17,7 @@ import {
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import SeoSchema from '../../components/SeoSchema';
+import Link from 'next/link';
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -184,9 +185,9 @@ export default function DigitalBrandingPage() {
               Craft your <span className="underline decoration-pink-400">brand story</span> with<br />
               digital-first strategies.
             </h3>
-            <button className="bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg">
+            <Link target='_blank' href="/contact" className="bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg">
               Let's Build Your Brand →
-            </button>
+            </Link>
           </motion.div>
         </div>
       </section>

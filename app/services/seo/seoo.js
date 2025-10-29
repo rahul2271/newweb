@@ -15,6 +15,7 @@ import {
 } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import Link from 'next/link';
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -140,9 +141,12 @@ export default function SEODominationPage() {
               Let your business be found <br />
               when customers need it the most.
             </h3>
-            <button className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg">
-              Book a Free SEO Consultation →
-            </button>
+            <Link target="_blank"
+  href="/contact"
+  className="block bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full text-center shadow-lg"
+>
+  Book a Free SEO Consultation →
+</Link>
           </motion.div>
         </div>
       </section>

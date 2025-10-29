@@ -13,6 +13,7 @@ import { SiKubernetes } from 'react-icons/si';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import SeoSchema from '../../components/SeoSchema';
+import Link from 'next/link';
 
 const faqs = [
   { question: 'What is cloud integration?', answer: 'Cloud integration connects multiple cloud-based systems and on-premises applications to function as a cohesive unit.' },
@@ -220,9 +221,9 @@ export default function CloudIntegrationPage() {
               migrate data &<br />
               <span className="underline decoration-lime-300">secure your cloud</span>
             </h3>
-            <button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg">
+            <Link target='_blank' href="/contact" className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg">
               Talk to Our Experts →
-            </button>
+            </Link>
           </motion.div>
         </div>
       </section>

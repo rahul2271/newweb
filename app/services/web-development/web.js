@@ -17,6 +17,7 @@ import {
 } from 'react-icons/fa';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import Link from 'next/link';
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -165,12 +166,12 @@ export default function WebDevelopmentPage() {
                 dedicated teams
               </span>
             </h3>
-            <button
+            <Link target="_blank" href="/contact"
               className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg"
               aria-label="Discuss your requirements"
             >
               Discuss Your Requirements →
-            </button>
+            </Link>
           </motion.div>
         </div>
       </section>

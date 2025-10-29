@@ -14,6 +14,7 @@ import {
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import SeoSchema from '../../components/SeoSchema';
+import Link from 'next/link';
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -178,9 +179,9 @@ export default function DevOpsCloudPage() {
               Let’s optimize and deploy your cloud infrastructure <br />
               the modern way.
             </h3>
-            <button className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg">
+            <Link target='_blank' href="/contact" className="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white py-3 px-6 rounded-full font-semibold transition duration-300 w-full shadow-lg">
               Request Cloud Audit →
-            </button>
+            </Link>
           </motion.div>
         </div>
       </section>

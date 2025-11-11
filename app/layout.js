@@ -145,7 +145,7 @@ export const metadata = {
     type: "website",
   },
   alternates: {
-    canonical: "https://www.rctechsolutions.com",
+    canonical: "https://www.rctechsolutions.com/",
   },
 };
 

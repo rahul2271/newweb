@@ -6,7 +6,7 @@ export const metadata = {
   description: "Contact RC Tech Solutions for expert web development, software consulting, IT services, and digital transformation. Let’s build your next big idea together.",
   keywords: ["RC Tech Solutions", "Contact", "Web Development India", "Software Company", "IT Consulting", "Tech Support"],
   alternates: {
-    canonical: "https://rctechsolutions.com/contact",
+    canonical: "https://www.rctechsolutions.com/contact",
   },
   openGraph: {
     title: "Contact Us | RC Tech Solutions",

@@ -14,10 +14,10 @@ import LatestBlogs from "../components/LatestBlogs";
 export const metadata = {
   title: "Best Software Development Company for Digital Success | RC tech Solutions",
   description: "Your vision, our expertise. As the best software development company, we design and develop custom software that enhances productivity and maximizes business efficiency.",
-  metadataBase: new URL("https://www.rctechsolutions.com/"),
-  // alternates: {
-  //   canonical: "/",
-  // },
+  metadataBase: new URL("https://www.rctechsolutions.com"),
+  alternates: {
+    canonical: "https://www.rctechsolutions.com",
+  },
   openGraph: {
     title: "Best Software Development Company for Digital Success | RC tech Solutions",
     description: "Your vision, our expertise. As the best software development company, we design and develop custom software that enhances productivity and maximizes business efficiency.",

@@ -27,7 +27,7 @@ const nextConfig = {
       {
         source: "/:path*",
         has: [{ type: "host", value: "www.rctechsolutions.com" }],
-        destination: "https://rctechsolutions.com/:path*",
+        destination: "https://www.rctechsolutions.com/:path*",
         permanent: true,
       },
     ];

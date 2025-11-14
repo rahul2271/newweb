@@ -1,14 +1,14 @@
-import Homepage from "@/components/HeroSection";
-import BrandsSection from "@/components/TrustedBrands";
-import ProductTeamSection from "@/components/Timeline";
-import Quiz from "@/components/Quiz";
-import ServicesCard from "@/components/capabilities";
-import ValueProposition from "@/components/ValueProposition";
-import CtoSection from "@/components/Result";
-import CTASection from "@/components/CTASection";
-import FaqSection from "@/components/FAQSection";
-import Chatbot from "@/components/Chatbot";
-import LatestBlogs from "@/components/LatestBlogs";
+import DataAnalytics from "./components/HeroSection";
+import BrandsSection from "./components/TrustedBrands";
+import ProductTeamSection from "./components/Timeline";
+import Quiz from "./components/Quiz";
+import ServicesCard from "./components/capabilities";
+import ValueProposition from "./components/ValueProposition";
+import CtoSection from "./components/Result";
+import CTASection from "./components/CTASection";
+import FaqSection from "./components/FAQSection";
+import Chatbot from "./components/Chatbot";
+import LatestBlogs from "./components/LatestBlogs";
 
 // -----------------------
 // ✅ Metadata for SEO
@@ -113,7 +113,7 @@ export default function Page() {
       />
 
       {/* Page Sections */}
-      <Homepage />
+      <DataAnalytics />
       <BrandsSection />
       <ProductTeamSection />
       <Quiz />

@@ -17,15 +17,15 @@ export const metadata = {
   title: "Best Software Development Company for Digital Success | RC Tech Solutions",
   description:
     "Your vision, our expertise. As the best software development company, we design and develop custom software that enhance productivity and maximize business efficiency.",
-  metadataBase: new URL("https://www.rctechsolutions.com"),
+  metadataBase: new URL("https://www.rctechsolutions.com/"),
   alternates: {
-    canonical: "https://www.rctechsolutions.com",
+    canonical: "https://www.rctechsolutions.com/",
   },
   openGraph: {
     title: "Best Software Development Company for Digital Success | RC Tech Solutions",
     description:
       "Your vision, our expertise. As the best software development company, we design and develop custom software that enhance productivity and maximize business efficiency.",
-    url: "https://www.rctechsolutions.com",
+    url: "https://www.rctechsolutions.com/",
     siteName: "RC Tech Solutions",
     images: [
       {
@@ -53,7 +53,7 @@ const schemaWebsite = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   name: "RC Tech Solutions",
-  url: "https://www.rctechsolutions.com",
+  url: "https://www.rctechsolutions.com/",
   description:
     "Your vision, our expertise. As the best software development company, we design and develop custom software that enhances productivity and maximizes business efficiency.",
   publisher: {
@@ -76,7 +76,7 @@ const schemaOrganization = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "RC Tech Solutions",
-  url: "https://www.rctechsolutions.com",
+  url: "https://www.rctechsolutions.com/",
   logo: "https://www.rctechsolutions.com/rclogo.png",
   contactPoint: [
     {

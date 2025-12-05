@@ -54,7 +54,19 @@ export default function Footer() {
 
           {/* Brand Info */}
           <div>
-            <h3 className="text-3xl font-semibold text-[#953ee2] mb-4">RC Tech Solutions</h3>
+           <div className=" flex items-center ">
+  <a
+    href="https://www.rctechsolutions.com"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img
+      src="/rclogo.png"
+      alt="Crunchbase Verified"
+      className="h-[150px] w-auto opacity-100 hover:opacity-100 transition"
+    />
+  </a>
+</div>
             <p className="text-gray-700 text-sm leading-relaxed">
               3126, Sector 82,<br />
               JLPL Industrial Area,<br />
@@ -128,10 +140,25 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="text-center text-sm text-gray-500 border-t pt-6">
+        <div className="flex flex-col sm:flex-row sm:justify-between items-center border-t border-gray-200 pt-6">
+               <a
+  href="https://www.crunchbase.com/organization/rc-tech-solutions" 
+  target="_blank" 
+  rel="noopener noreferrer"
+>
+  <img
+    src="/crunchbase verified.png"
+    alt="Crunchbase Verified"
+    className="h-6 w-auto opacity-90 hover:opacity-100 transition"
+  />
+</a>
+        <div className="text-center text-sm text-gray-500  pt-6">
           &copy; {new Date().getFullYear()} <span className="text-[#111] font-semibold">RC Tech Solutions</span> — Elevating Innovation ⚡
         </div>
+      
       </div>
+      </div>
+   
     </footer>
   );
 }

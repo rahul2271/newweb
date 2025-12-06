@@ -147,7 +147,7 @@ export default function Footer() {
   rel="noopener noreferrer"
 >
   <img
-    src="/crunchbase verified.png"
+    src="/crush verified.png"
     alt="Crunchbase Verified"
     className="h-6 w-auto opacity-90 hover:opacity-100 transition"
   />

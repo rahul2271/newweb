@@ -514,7 +514,7 @@ export default async function Page({ params }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className=" mx-auto px-4 py-8">
         <div className="flex justify-center mb-6">
           <Image
             src={blog.blogImageUrl}

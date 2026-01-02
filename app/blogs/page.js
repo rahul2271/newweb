@@ -582,65 +582,39 @@
 // }
 
 
+import { getBlogs, getFeaturedBlogs } from "../lib/blogs.js";
+
 export const dynamic = "force-dynamic";
-export const revalidate = 0;
-
-import { db } from "../firebase";
-import {
-  collection,
-  getDocs,
-  query,
-  orderBy,
-  limit,
-  where,
-} from "firebase/firestore";
-import InfiniteBlogs from "./InfiniteBlogs";
-
-async function fetchInitialBlogs(category = "All") {
-  const PAGE_SIZE = 6;
-  let q = query(
-    collection(db, "blogs"),
-    orderBy("date", "desc"),
-    limit(PAGE_SIZE)
-  );
-
-  if (category !== "All") {
-    q = query(
-      collection(db, "blogs"),
-      where("category", "==", category),
-      orderBy("date", "desc"),
-      limit(PAGE_SIZE)
-    );
-  }
-
-  const snapshot = await getDocs(q);
-
-  const blogs = snapshot.docs.map((doc) => {
-    const data = doc.data();
-    return {
-      id: doc.id,
-      ...data,
-      date: data.date?.toMillis?.() || null, // ensure serializable
-    };
-  });
-
-  return {
-    blogs,
-    cursor: snapshot.docs[snapshot.docs.length - 1]?.id || null,
-  };
-}
 
 export default async function BlogsPage({ searchParams }) {
-  const category = searchParams?.category || "All";
-  const { blogs, cursor } = await fetchInitialBlogs(category);
+  const page = Number(searchParams.page || 1);
+  const category = searchParams.category;
+
+  const [blogs, featured] = await Promise.all([
+    getBlogs({ page, limit: 6, category }),
+    getFeaturedBlogs(),
+  ]);
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
-      <InfiniteBlogs
-        initialBlogs={blogs}
-        initialCursor={cursor}
-        category={category}
-      />
+      {page === 1 && (
+        <section className="mb-12">
+          <h2 className="text-2xl font-bold mb-4">Featured</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            {featured.map((b) => (
+              <FeaturedBlogCard key={b.id} blog={b} />
+            ))}
+          </div>
+        </section>
+      )}
+
+      <section className="grid md:grid-cols-3 gap-6">
+        {blogs.map((blog) => (
+          <BlogCard key={blog.id} blog={blog} />
+        ))}
+      </section>
+
+      <Pagination page={page} />
     </div>
   );
 }

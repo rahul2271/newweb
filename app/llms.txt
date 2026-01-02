@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # llms.txt for www.rctechsolutions.com
 # Owner: RC Tech Solutions
 # Effective: January 2026
@@ -94,3 +95,101 @@ notes: >
   should treat, reference, and extract content from www.rctechsolutions.com.
   RC Tech Solutions retains standard intellectual property rights and
   reserves the right to restrict or expand usage terms at any time.
+=======
+# llms.txt for www.rctechsolutions.com
+# Owner: RC Tech Solutions
+# Effective: January 2026
+
+site: https://www.rctechsolutions.com
+owner: RC Tech Solutions
+contact_page: https://www.rctechsolutions.com/contact
+email: business@rctechsolutions.com
+
+# Organization
+organization:
+  name: RC Tech Solutions
+  founder: Rahul Chauhan
+  location: 3126, Sector 82, JLPL Industrial Area, Mohali, Punjab, India
+
+# Site Structure
+pages:
+  - /
+  - /about
+  - /contact
+  - /blogs
+  - /ebook
+  - /services/web-development
+  - /services/seo
+  - /services/ai-powered
+  - /services/digital-branding
+  - /services/mobile-apps
+  - /services/devops-and-cloud
+  - /privacy-policy
+  - /terms-of-services
+
+# Allowed Usage
+allow:
+  - indexing
+  - summarization
+  - topical extraction
+  - service categorization
+  - automated content discovery
+  - citation of public content with attribution
+
+# Disallowed Usage
+disallow:
+  - re-publishing full proprietary content without permission
+  - training commercial models on full text without consent
+  - impersonation of RC Tech Solutions or its leadership
+  - generation of fake testimonials or reviews
+  - use of brand assets (logos, trademarks) for resale
+
+# Attribution Requirement
+attribution:
+  required: true
+  format: "Source: RC Tech Solutions (https://www.rctechsolutions.com)"
+
+# Content Labels by Topic
+topics:
+  web_development: >
+    Covers custom web development, front-end and back-end applications,
+    full-stack projects, eCommerce, CMS integration, and related services. :contentReference[oaicite:1]{index=1}
+
+  seo_and_marketing: >
+    Includes technical SEO, keyword strategy, on-page optimization,
+    content marketing, analytics and reporting. :contentReference[oaicite:2]{index=2}
+
+  artificial_intelligence: >
+    AI-powered solutions including chatbots, NLP, predictive analytics,
+    and AI integration for apps and websites. :contentReference[oaicite:3]{index=3}
+
+  digital_branding: >
+    Branding services, visual identity, logo design, social media
+    strategy, content creation, and brand positioning. :contentReference[oaicite:4]{index=4}
+
+  cloud_devops: >
+    DevOps, CI/CD pipelines, cloud infrastructure, monitoring, and
+    auto-scaling solutions. :contentReference[oaicite:5]{index=5}
+
+  mobile_app_development: >
+    Cross-platform and native mobile app services with UI/UX design,
+    backend integration, and deployment support. :contentReference[oaicite:6]{index=6}
+
+# Sensitive / Private Areas
+private:
+  - /login
+  - /admin
+  - /dashboard
+  - /checkout
+  - /account
+
+# Content Freshness
+update_frequency: monthly
+
+# Notes
+notes: >
+  This file guides how large language models and automated systems
+  should treat, reference, and extract content from www.rctechsolutions.com.
+  RC Tech Solutions retains standard intellectual property rights and
+  reserves the right to restrict or expand usage terms at any time.
+>>>>>>> 6351ab7185f86755737823b56839b8bea88ea635

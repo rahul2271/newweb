@@ -582,6 +582,9 @@
 // }
 
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 import { db } from "../firebase";
 import {
   collection,
@@ -592,8 +595,6 @@ import {
   where,
 } from "firebase/firestore";
 import InfiniteBlogs from "./InfiniteBlogs";
-
-export const revalidate = 60;
 
 async function fetchInitialBlogs(category = "All") {
   const PAGE_SIZE = 6;
@@ -614,9 +615,18 @@ async function fetchInitialBlogs(category = "All") {
 
   const snapshot = await getDocs(q);
 
+  const blogs = snapshot.docs.map((doc) => {
+    const data = doc.data();
+    return {
+      id: doc.id,
+      ...data,
+      date: data.date?.toMillis?.() || null, // ensure serializable
+    };
+  });
+
   return {
-    blogs: snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })),
-    cursor: snapshot.docs[snapshot.docs.length - 1] || null,
+    blogs,
+    cursor: snapshot.docs[snapshot.docs.length - 1]?.id || null,
   };
 }
 
@@ -634,3 +644,4 @@ export default async function BlogsPage({ searchParams }) {
     </div>
   );
 }
+

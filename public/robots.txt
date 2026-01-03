@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# Disallow sensitive routes
+Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
+
+# Sitemap for better crawling
+Sitemap: https://www.rctechsolutions.com/sitemap.xml

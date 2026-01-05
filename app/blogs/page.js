@@ -317,7 +317,7 @@ export default async function BlogsPage({ searchParams }) {
               {search && <span className="text-gray-300">•</span>}
               {search && <span>Search: "{search}"</span>}
               {category !== "All" && <span className="text-gray-300">•</span>}
-              {category !== "All" && <span>Category: {category}</span>}
+              {category !== "All" && <span>Category : {category}</span>}
             </div>
           )}
         </div>

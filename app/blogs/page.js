@@ -2434,13 +2434,240 @@
 
 // app/blogs/page.jsx
 // app/blogs/page.jsx
+// import { db } from "../firebase";
+// import { collection, getDocs, query, orderBy } from "firebase/firestore";
+// import Image from "next/image";
+// import Link from "next/link";
+
+// export const revalidate = 300;
+
+// const PAGE_SIZE = 6;
+
+// const stripHtml = (s = "") => s.replace(/<[^>]+>/g, "");
+// const formatDate = (value) => {
+//   if (!value) return "";
+//   const d = value.toDate ? value.toDate() : new Date(value);
+//   return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+// };
+
+// const getExcerpt = (blog) => blog.excerpt || stripHtml(blog.content || "");
+
+// const getInitials = (name = "") =>
+//   name
+//     .split(" ")
+//     .map((n) => n[0])
+//     .join("")
+//     .slice(0, 2)
+//     .toUpperCase();
+
+// async function fetchAll() {
+//   const snap = await getDocs(query(collection(db, "blogs"), orderBy("date", "desc")));
+//   return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+// }
+
+// export default async function BlogsPage({ searchParams }) {
+//   const page = Math.max(1, Number(searchParams?.page || 1));
+//   const search = (searchParams?.search || "").toLowerCase();
+//   const category = searchParams?.category || "All";
+
+//   const allBlogs = await fetchAll();
+
+//   const categories = ["All", ...new Set(allBlogs.map((b) => b.category).filter(Boolean))];
+
+//   let filtered = allBlogs;
+//   if (category !== "All") filtered = filtered.filter((b) => b.category === category);
+//   if (search) {
+//     filtered = filtered.filter((b) =>
+//       b.title?.toLowerCase().includes(search) ||
+//       stripHtml(b.content || "").toLowerCase().includes(search)
+//     );
+//   }
+
+//   const start = (page - 1) * PAGE_SIZE;
+//   const blogs = filtered.slice(start, start + PAGE_SIZE);
+//   const hasNext = start + PAGE_SIZE < filtered.length;
+
+//   return (
+//     <main className="bg-white py-16 sm:py-20 px-4 sm:px-6">
+//       <div className="max-w-7xl mx-auto">
+
+//         {/* Header */}
+//         <div className="text-center mb-10 sm:mb-14">
+//           <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">
+//             RC Journal
+//           </h1>
+//           <p className="mt-3 sm:mt-4 text-base sm:text-lg text-gray-500 max-w-2xl mx-auto">
+//             Learn how to grow your business with our expert advice.
+//           </p>
+//         </div>
+
+//         {/* Filters */}
+//         <div className="sticky top-0 z-30 bg-white/95 backdrop-blur border-b mb-10">
+//           <div className="max-w-7xl mx-auto py-3 flex flex-col gap-3">
+
+//             {/* Search */}
+//             <form className="w-full sm:max-w-sm">
+//               <input type="hidden" name="category" value={category} />
+//               <input
+//                 name="search"
+//                 defaultValue={search}
+//                 placeholder="Search articles..."
+//                 className="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:ring-2 focus:ring-indigo-200 focus:outline-none"
+//               />
+//             </form>
+
+//             {/* Category Scroll */}
+//             <div className="relative">
+
+//               <div className="pointer-events-none absolute left-0 top-0 h-full w-8 bg-gradient-to-r from-white to-transparent" />
+//               <div className="pointer-events-none absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-white to-transparent" />
+
+//               <div className="flex items-center gap-2">
+
+//                 <a href="#cat-start" className="hidden md:flex p-2 rounded-full border hover:bg-gray-100">
+//                   ←
+//                 </a>
+
+//                 <div
+//                   id="cat-start"
+//                   className="flex gap-2 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar px-1"
+//                 >
+//                   {categories.map((cat, i) => (
+//                     <Link
+//                       key={cat}
+//                       id={i === categories.length - 1 ? "cat-end" : undefined}
+//                       href={`/blogs?category=${encodeURIComponent(cat)}&search=${encodeURIComponent(search)}`}
+//                       className={`snap-start px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition ${
+//                         cat === category
+//                           ? "bg-indigo-600 text-white"
+//                           : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+//                       }`}
+//                     >
+//                       {cat}
+//                     </Link>
+//                   ))}
+//                 </div>
+
+//                 <a href="#cat-end" className="hidden md:flex p-2 rounded-full border hover:bg-gray-100">
+//                   →
+//                 </a>
+
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+
+//         {/* Blog Grid */}
+//         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
+//           {blogs.map((blog) => (
+//             <article key={blog.id} className="group flex flex-col w-full h-full">
+
+//               <Link href={`/blogs/${blog.slug}`} className="block overflow-hidden rounded-2xl">
+//                 {blog.blogImageUrl && (
+//                   <Image
+//                     src={blog.blogImageUrl}
+//                     alt={blog.title}
+//                     width={600}
+//                     height={400}
+//                     className="object-cover w-full h-48 sm:h-56 lg:h-64 group-hover:scale-105 transition"
+//                   />
+//                 )}
+//               </Link>
+
+//               <div className="flex flex-col flex-1 px-1 sm:px-0">
+
+//                 <div className="mt-4 sm:mt-6 flex items-center gap-3 text-xs sm:text-sm text-gray-500">
+//                   <time>{formatDate(blog.date)}</time>
+//                   {blog.category && (
+//                     <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-[10px] sm:text-xs font-medium text-gray-700">
+//                       {blog.category}
+//                     </span>
+//                   )}
+//                 </div>
+
+//                 <h3 className="mt-3 sm:mt-4 text-base sm:text-lg lg:text-xl font-bold text-gray-900 leading-snug line-clamp-2">
+//                   <Link href={`/blogs/${blog.slug}`} className="hover:text-indigo-600">
+//                     {blog.title}
+//                   </Link>
+//                 </h3>
+
+//                 <p className="mt-2 text-sm text-gray-600 leading-relaxed line-clamp-3">
+//                   {getExcerpt(blog)}
+//                 </p>
+
+//                 <div className="mt-auto pt-4 sm:pt-6 flex items-center gap-3">
+
+//                  {true ? (
+//   <Image
+//     src="/rahul.jpeg"
+//     alt={blog.author || "Author"}
+//     width={40}
+//     height={40}
+//     className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border"
+//   />
+// ) : (
+//   <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-sm">
+//     {getInitials(blog.author || "RC")}
+//   </div>
+// )}
+
+
+//                   <div className="text-sm leading-tight">
+//                     <p className="font-semibold text-gray-900 text-sm">
+//                       {blog.author || "RC Team"}
+//                     </p>
+//                     <p className="text-gray-500 text-xs">
+//                       {blog.authorRole || "Founder & CEO"}
+//                     </p>
+//                   </div>
+//                 </div>
+
+//               </div>
+
+//             </article>
+//           ))}
+//         </div>
+
+//         {/* Pagination */}
+//         <div className="flex justify-center gap-3 sm:gap-4 mt-14 sm:mt-20">
+//           {page > 1 && (
+//             <Link
+//               href={`/blogs?page=${page - 1}&category=${category}&search=${search}`}
+//               className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl border border-gray-300 hover:bg-gray-50 text-sm font-medium"
+//             >
+//               ← Previous
+//             </Link>
+//           )}
+
+//           <span className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-indigo-600 text-white font-bold text-sm">
+//             {page}
+//           </span>
+
+//           {hasNext && (
+//             <Link
+//               href={`/blogs?page=${page + 1}&category=${category}&search=${search}`}
+//               className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl border border-gray-300 hover:bg-gray-50 text-sm font-medium"
+//             >
+//               Next →
+//             </Link>
+//           )}
+//         </div>
+
+//       </div>
+//     </main>
+//   );
+// }
+
+
+
+// app/blogs/page.jsx
 import { db } from "../firebase";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
+import InfiniteScroll from "./InfinityScroll";
 
 export const revalidate = 300;
-
 const PAGE_SIZE = 6;
 
 const stripHtml = (s = "") => s.replace(/<[^>]+>/g, "");
@@ -2449,16 +2676,7 @@ const formatDate = (value) => {
   const d = value.toDate ? value.toDate() : new Date(value);
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 };
-
 const getExcerpt = (blog) => blog.excerpt || stripHtml(blog.content || "");
-
-const getInitials = (name = "") =>
-  name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
 
 async function fetchAll() {
   const snap = await getDocs(query(collection(db, "blogs"), orderBy("date", "desc")));
@@ -2472,8 +2690,6 @@ export default async function BlogsPage({ searchParams }) {
 
   const allBlogs = await fetchAll();
 
-  const categories = ["All", ...new Set(allBlogs.map((b) => b.category).filter(Boolean))];
-
   let filtered = allBlogs;
   if (category !== "All") filtered = filtered.filter((b) => b.category === category);
   if (search) {
@@ -2483,175 +2699,75 @@ export default async function BlogsPage({ searchParams }) {
     );
   }
 
-  const start = (page - 1) * PAGE_SIZE;
-  const blogs = filtered.slice(start, start + PAGE_SIZE);
-  const hasNext = start + PAGE_SIZE < filtered.length;
+  const blogs = filtered.slice(0, page * PAGE_SIZE);
+  const hasNext = blogs.length < filtered.length;
 
   return (
     <main className="bg-white py-16 sm:py-20 px-4 sm:px-6">
       <div className="max-w-7xl mx-auto">
 
-        {/* Header */}
-        <div className="text-center mb-10 sm:mb-14">
+        <div className="text-center mb-12">
           <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">
             RC Journal
           </h1>
-          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-gray-500 max-w-2xl mx-auto">
-            Learn how to grow your business with our expert advice.
+          <p className="mt-3 text-gray-500">
+            Learn how to grow your business with expert insights.
           </p>
         </div>
 
-        {/* Filters */}
-        <div className="sticky top-0 z-30 bg-white/95 backdrop-blur border-b mb-10">
-          <div className="max-w-7xl mx-auto py-3 flex flex-col gap-3">
-
-            {/* Search */}
-            <form className="w-full sm:max-w-sm">
-              <input type="hidden" name="category" value={category} />
-              <input
-                name="search"
-                defaultValue={search}
-                placeholder="Search articles..."
-                className="w-full rounded-xl border border-gray-300 px-4 py-2.5 text-sm focus:ring-2 focus:ring-indigo-200 focus:outline-none"
-              />
-            </form>
-
-            {/* Category Scroll */}
-            <div className="relative">
-
-              <div className="pointer-events-none absolute left-0 top-0 h-full w-8 bg-gradient-to-r from-white to-transparent" />
-              <div className="pointer-events-none absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-white to-transparent" />
-
-              <div className="flex items-center gap-2">
-
-                <a href="#cat-start" className="hidden md:flex p-2 rounded-full border hover:bg-gray-100">
-                  ←
-                </a>
-
-                <div
-                  id="cat-start"
-                  className="flex gap-2 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar px-1"
-                >
-                  {categories.map((cat, i) => (
-                    <Link
-                      key={cat}
-                      id={i === categories.length - 1 ? "cat-end" : undefined}
-                      href={`/blogs?category=${encodeURIComponent(cat)}&search=${encodeURIComponent(search)}`}
-                      className={`snap-start px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap transition ${
-                        cat === category
-                          ? "bg-indigo-600 text-white"
-                          : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                      }`}
-                    >
-                      {cat}
-                    </Link>
-                  ))}
-                </div>
-
-                <a href="#cat-end" className="hidden md:flex p-2 rounded-full border hover:bg-gray-100">
-                  →
-                </a>
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Blog Grid */}
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {blogs.map((blog) => (
-            <article key={blog.id} className="group flex flex-col w-full h-full">
-
-              <Link href={`/blogs/${blog.slug}`} className="block overflow-hidden rounded-2xl">
+            <article
+              key={blog.id}
+              className="group flex flex-col h-full rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
+            >
+              <Link href={`/blogs/${blog.slug}`} className="block overflow-hidden rounded-t-2xl">
                 {blog.blogImageUrl && (
                   <Image
                     src={blog.blogImageUrl}
                     alt={blog.title}
                     width={600}
                     height={400}
-                    className="object-cover w-full h-48 sm:h-56 lg:h-64 group-hover:scale-105 transition"
+                    className="object-cover w-full h-52 group-hover:scale-105 transition-transform duration-500"
                   />
                 )}
               </Link>
 
-              <div className="flex flex-col flex-1 px-1 sm:px-0">
+              <div className="flex flex-col flex-1 p-5">
+                <time className="text-xs text-gray-500">{formatDate(blog.date)}</time>
 
-                <div className="mt-4 sm:mt-6 flex items-center gap-3 text-xs sm:text-sm text-gray-500">
-                  <time>{formatDate(blog.date)}</time>
-                  {blog.category && (
-                    <span className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-[10px] sm:text-xs font-medium text-gray-700">
-                      {blog.category}
-                    </span>
-                  )}
-                </div>
-
-                <h3 className="mt-3 sm:mt-4 text-base sm:text-lg lg:text-xl font-bold text-gray-900 leading-snug line-clamp-2">
+                <h3 className="mt-2 font-bold text-lg leading-snug line-clamp-2">
                   <Link href={`/blogs/${blog.slug}`} className="hover:text-indigo-600">
                     {blog.title}
                   </Link>
                 </h3>
 
-                <p className="mt-2 text-sm text-gray-600 leading-relaxed line-clamp-3">
+                <p className="mt-2 text-sm text-gray-600 line-clamp-3">
                   {getExcerpt(blog)}
                 </p>
 
-                <div className="mt-auto pt-4 sm:pt-6 flex items-center gap-3">
-
-                 {true ? (
-  <Image
-    src="/rahul.jpeg"
-    alt={blog.author || "Author"}
-    width={40}
-    height={40}
-    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border"
-  />
-) : (
-  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-sm">
-    {getInitials(blog.author || "RC")}
-  </div>
-)}
-
-
-                  <div className="text-sm leading-tight">
-                    <p className="font-semibold text-gray-900 text-sm">
-                      {blog.author || "RC Team"}
-                    </p>
-                    <p className="text-gray-500 text-xs">
-                      {blog.authorRole || "Founder & CEO"}
-                    </p>
+                <div className="mt-auto pt-4 flex items-center gap-3">
+                  <Image
+                    src="/rahul.jpeg"
+                    alt={blog.author || "Author"}
+                    width={40}
+                    height={40}
+                    className="w-9 h-9 rounded-full object-cover border"
+                  />
+                  <div className="text-sm">
+                    <p className="font-semibold text-gray-900">{blog.author || "RC Team"}</p>
+                    <p className="text-xs text-gray-500">{blog.authorRole || "Founder & CEO"}</p>
                   </div>
                 </div>
-
               </div>
-
             </article>
           ))}
         </div>
 
-        {/* Pagination */}
-        <div className="flex justify-center gap-3 sm:gap-4 mt-14 sm:mt-20">
-          {page > 1 && (
-            <Link
-              href={`/blogs?page=${page - 1}&category=${category}&search=${search}`}
-              className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl border border-gray-300 hover:bg-gray-50 text-sm font-medium"
-            >
-              ← Previous
-            </Link>
-          )}
-
-          <span className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl bg-indigo-600 text-white font-bold text-sm">
-            {page}
-          </span>
-
-          {hasNext && (
-            <Link
-              href={`/blogs?page=${page + 1}&category=${category}&search=${search}`}
-              className="px-5 sm:px-6 py-2.5 sm:py-3 rounded-xl border border-gray-300 hover:bg-gray-50 text-sm font-medium"
-            >
-              Next →
-            </Link>
-          )}
-        </div>
+        <InfiniteScroll
+          hasNext={hasNext}
+          nextHref={`/blogs?page=${page + 1}&category=${category}&search=${search}`}
+        />
 
       </div>
     </main>

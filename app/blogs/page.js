@@ -2433,6 +2433,7 @@
 
 
 // app/blogs/page.jsx
+// app/blogs/page.jsx
 import { db } from "../firebase";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import Image from "next/image";
@@ -2450,6 +2451,14 @@ const formatDate = (value) => {
 };
 
 const getExcerpt = (blog) => blog.excerpt || stripHtml(blog.content || "");
+
+const getInitials = (name = "") =>
+  name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
 
 async function fetchAll() {
   const snap = await getDocs(query(collection(db, "blogs"), orderBy("date", "desc")));
@@ -2549,23 +2558,19 @@ export default async function BlogsPage({ searchParams }) {
         </div>
 
         {/* Blog Grid */}
-        {/* Blog Grid */}
-<div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
-
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 items-stretch">
           {blogs.map((blog) => (
             <article key={blog.id} className="group flex flex-col w-full h-full">
-
 
               <Link href={`/blogs/${blog.slug}`} className="block overflow-hidden rounded-2xl">
                 {blog.blogImageUrl && (
                   <Image
-  src={blog.blogImageUrl}
-  alt={blog.title}
-  width={600}
-  height={400}
-  className="object-cover w-full h-48 sm:h-56 lg:h-64 group-hover:scale-105 transition"
-/>
-
+                    src={blog.blogImageUrl}
+                    alt={blog.title}
+                    width={600}
+                    height={400}
+                    className="object-cover w-full h-48 sm:h-56 lg:h-64 group-hover:scale-105 transition"
+                  />
                 )}
               </Link>
 
@@ -2581,31 +2586,42 @@ export default async function BlogsPage({ searchParams }) {
                 </div>
 
                 <h3 className="mt-3 sm:mt-4 text-base sm:text-lg lg:text-xl font-bold text-gray-900 leading-snug line-clamp-2">
-
                   <Link href={`/blogs/${blog.slug}`} className="hover:text-indigo-600">
                     {blog.title}
                   </Link>
                 </h3>
 
                 <p className="mt-2 text-sm text-gray-600 leading-relaxed line-clamp-3">
-
                   {getExcerpt(blog)}
                 </p>
 
                 <div className="mt-auto pt-4 sm:pt-6 flex items-center gap-3">
 
-                  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-sm">
-                    {(blog.author || "R").slice(0, 1)}
-                  </div>
-                  <div className="text-sm">
+                 {true ? (
+  <Image
+    src="/rahul.jpeg"
+    alt={blog.author || "Author"}
+    width={40}
+    height={40}
+    className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border"
+  />
+) : (
+  <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-sm">
+    {getInitials(blog.author || "RC")}
+  </div>
+)}
+
+
+                  <div className="text-sm leading-tight">
                     <p className="font-semibold text-gray-900 text-sm">
                       {blog.author || "RC Team"}
                     </p>
                     <p className="text-gray-500 text-xs">
-                      {blog.authorRole || "Contributor"}
+                      {blog.authorRole || "Founder & CEO"}
                     </p>
                   </div>
                 </div>
+
               </div>
 
             </article>
@@ -2641,3 +2657,4 @@ export default async function BlogsPage({ searchParams }) {
     </main>
   );
 }
+

@@ -2665,7 +2665,7 @@ import { db } from "../firebase";
 import { collection, getDocs, query, orderBy } from "firebase/firestore";
 import Image from "next/image";
 import Link from "next/link";
-import InfiniteScroll from "./InfinityBlogs";
+import InfiniteScroll from "./InfiniteBlogs";
 
 export const revalidate = 300;
 const PAGE_SIZE = 6;

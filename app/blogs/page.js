@@ -1,329 +1,329 @@
-// // // app/blogs/page.jsx
-// // import { db } from "../firebase";
-// // import {
-// //   collection,
-// //   getDocs,
-// //   query,
-// //   orderBy,
-// //   limit,
-// // } from "firebase/firestore";
-// // import Image from "next/image";
-// // import Link from "next/link";
-// // import Script from "next/script";
-// // import { notFound } from "next/navigation";
+// app/blogs/page.jsx
+import { db } from "../firebase";
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy,
+  limit,
+} from "firebase/firestore";
+import Image from "next/image";
+import Link from "next/link";
+import Script from "next/script";
+import { notFound } from "next/navigation";
 
-// // // --- Utils ---
-// // const stripHtmlTags = (html = "") => html.replace(/<[^>]+>/g, "");
+// --- Utils ---
+const stripHtmlTags = (html = "") => html.replace(/<[^>]+>/g, "");
 
-// // const formatDate = (dateValue) => {
-// //   try {
-// //     if (!dateValue) return "Unpublished";
-// //     if (typeof dateValue.toDate === "function") {
-// //       return dateValue.toDate().toLocaleDateString("en-IN", {
-// //         day: "numeric",
-// //         month: "short",
-// //         year: "numeric",
-// //       });
-// //     }
-// //     if (dateValue instanceof Date) {
-// //       return dateValue.toLocaleDateString("en-IN", {
-// //         day: "numeric",
-// //         month: "short",
-// //         year: "numeric",
-// //       });
-// //     }
-// //     const parsed = new Date(dateValue);
-// //     if (!isNaN(parsed)) {
-// //       return parsed.toLocaleDateString("en-IN", {
-// //         day: "numeric",
-// //         month: "short",
-// //         year: "numeric",
-// //       });
-// //     }
-// //     return "Unpublished";
-// //   } catch {
-// //     return "Unpublished";
-// //   }
-// // };
+const formatDate = (dateValue) => {
+  try {
+    if (!dateValue) return "Unpublished";
+    if (typeof dateValue.toDate === "function") {
+      return dateValue.toDate().toLocaleDateString("en-IN", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      });
+    }
+    if (dateValue instanceof Date) {
+      return dateValue.toLocaleDateString("en-IN", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      });
+    }
+    const parsed = new Date(dateValue);
+    if (!isNaN(parsed)) {
+      return parsed.toLocaleDateString("en-IN", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      });
+    }
+    return "Unpublished";
+  } catch {
+    return "Unpublished";
+  }
+};
 
-// // const computeReadingTime = (html) => {
-// //   const words = stripHtmlTags(html).trim().split(/\s+/).filter(Boolean).length;
-// //   return Math.max(1, Math.ceil(words / 200));
-// // };
+const computeReadingTime = (html) => {
+  const words = stripHtmlTags(html).trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(words / 200));
+};
 
-// // // --- Fetch Blogs ---
-// // async function fetchBlogs({ search = "", category = "All", page = 1 }) {
-// //   const blogs = [];
-// //   const PAGE_SIZE = 6;
+// --- Fetch Blogs ---
+async function fetchBlogs({ search = "", category = "All", page = 1 }) {
+  const blogs = [];
+  const PAGE_SIZE = 6;
 
-// //   try {
-// //     const q = query(collection(db, "blogs"), orderBy("date", "desc"), limit(30));
-// //     const snapshot = await getDocs(q);
-// //     snapshot.forEach((doc) => blogs.push({ id: doc.id, ...doc.data() }));
-// //   } catch (e) {
-// //     console.error("Error fetching blogs:", e);
-// //     return { blogs: [], total: 0 };
-// //   }
+  try {
+    const q = query(collection(db, "blogs"), orderBy("date", "desc"), limit(30));
+    const snapshot = await getDocs(q);
+    snapshot.forEach((doc) => blogs.push({ id: doc.id, ...doc.data() }));
+  } catch (e) {
+    console.error("Error fetching blogs:", e);
+    return { blogs: [], total: 0 };
+  }
 
-// //   // Filtering
-// //   let filtered = blogs;
-// //   if (search) {
-// //     filtered = filtered.filter(
-// //       (b) =>
-// //         b.title.toLowerCase().includes(search.toLowerCase()) ||
-// //         stripHtmlTags(b.content).toLowerCase().includes(search.toLowerCase())
-// //     );
-// //   }
-// //   if (category !== "All") {
-// //     filtered = filtered.filter((b) => b.category === category);
-// //   }
+  // Filtering
+  let filtered = blogs;
+  if (search) {
+    filtered = filtered.filter(
+      (b) =>
+        b.title.toLowerCase().includes(search.toLowerCase()) ||
+        stripHtmlTags(b.content).toLowerCase().includes(search.toLowerCase())
+    );
+  }
+  if (category !== "All") {
+    filtered = filtered.filter((b) => b.category === category);
+  }
 
-// //   // ✅ Sort by date after filtering
-// //   filtered = filtered.sort((a, b) => {
-// //     const dateA = a.date?.toDate?.() || (a.date ? new Date(a.date) : new Date(0));
-// //     const dateB = b.date?.toDate?.() || (b.date ? new Date(b.date) : new Date(0));
-// //     return dateB - dateA; // newest first
-// //   });
+  // ✅ Sort by date after filtering
+  filtered = filtered.sort((a, b) => {
+    const dateA = a.date?.toDate?.() || (a.date ? new Date(a.date) : new Date(0));
+    const dateB = b.date?.toDate?.() || (b.date ? new Date(b.date) : new Date(0));
+    return dateB - dateA; // newest first
+  });
 
-// //   // Pagination
-// //   const start = (page - 1) * PAGE_SIZE;
-// //   const end = start + PAGE_SIZE;
-// //   const paginated = filtered.slice(start, end);
+  // Pagination
+  const start = (page - 1) * PAGE_SIZE;
+  const end = start + PAGE_SIZE;
+  const paginated = filtered.slice(start, end);
 
-// //   return { blogs: paginated, total: filtered.length };
-// // }
+  return { blogs: paginated, total: filtered.length };
+}
 
-// // // --- Fetch Blogs for Metadata ---
-// // async function fetchBlogsForMeta() {
-// //   const blogs = [];
-// //   try {
-// //     const q = query(collection(db, "blogs"), orderBy("date", "desc"), limit(5));
-// //     const snapshot = await getDocs(q);
-// //     snapshot.forEach((doc) => blogs.push({ id: doc.id, ...doc.data() }));
-// //   } catch (e) {
-// //     console.error("Error fetching blogs for metadata:", e);
-// //   }
-// //   return blogs;
-// // }
+// --- Fetch Blogs for Metadata ---
+async function fetchBlogsForMeta() {
+  const blogs = [];
+  try {
+    const q = query(collection(db, "blogs"), orderBy("date", "desc"), limit(5));
+    const snapshot = await getDocs(q);
+    snapshot.forEach((doc) => blogs.push({ id: doc.id, ...doc.data() }));
+  } catch (e) {
+    console.error("Error fetching blogs for metadata:", e);
+  }
+  return blogs;
+}
 
-// // // ✅ Generate Metadata
-// // export async function generateMetadata() {
-// //   const blogs = await fetchBlogsForMeta();
+// ✅ Generate Metadata
+export async function generateMetadata() {
+  const blogs = await fetchBlogsForMeta();
 
-// //   const titles = blogs.map((b) => b.title).join(", ").slice(0, 150);
-// //   const descriptions = blogs
-// //     .map((b) => (b.content ? b.content.slice(0, 100) : ""))
-// //     .join(" | ")
-// //     .slice(0, 250);
+  const titles = blogs.map((b) => b.title).join(", ").slice(0, 150);
+  const descriptions = blogs
+    .map((b) => (b.content ? b.content.slice(0, 100) : ""))
+    .join(" | ")
+    .slice(0, 250);
 
-// //   // ✅ Collect metaKeywords from Firestore
-// //   const keywords = blogs
-// //     .flatMap((b) =>
-// //       Array.isArray(b.metaKeywords)
-// //         ? b.metaKeywords
-// //         : (b.metaKeywords || "").split(",")
-// //     )
-// //     .map((kw) => kw.trim())
-// //     .filter(Boolean);
+  // ✅ Collect metaKeywords from Firestore
+  const keywords = blogs
+    .flatMap((b) =>
+      Array.isArray(b.metaKeywords)
+        ? b.metaKeywords
+        : (b.metaKeywords || "").split(",")
+    )
+    .map((kw) => kw.trim())
+    .filter(Boolean);
 
-// //   return {
-// //     title: "RC Tech Journal – Explore All Articles",
-// //     description:
-// //       descriptions ||
-// //       "Explore trending blogs on technology, career growth, freelancing, and web development.",
-// //     keywords, // 👈 will generate <meta name="keywords">
-// //     openGraph: {
-// //       title: "RC Tech Journal",
-// //       description:
-// //         descriptions ||
-// //         "Explore trending blogs on technology, career growth, freelancing, and web development.",
-// //       url: "https://www.rctechsolutions.com/blogs",
-// //     },
-// //     twitter: {
-// //       card: "summary_large_image",
-// //       title: "RC Tech Journal",
-// //       description:
-// //         descriptions ||
-// //         "Explore trending blogs on technology, career growth, freelancing, and web development.",
-// //     },
-// //   };
-// // }
+  return {
+    title: "RC Tech Journal – Explore All Articles",
+    description:
+      descriptions ||
+      "Explore trending blogs on technology, career growth, freelancing, and web development.",
+    keywords, // 👈 will generate <meta name="keywords">
+    openGraph: {
+      title: "RC Tech Journal",
+      description:
+        descriptions ||
+        "Explore trending blogs on technology, career growth, freelancing, and web development.",
+      url: "https://www.rctechsolutions.com/blogs",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "RC Tech Journal",
+      description:
+        descriptions ||
+        "Explore trending blogs on technology, career growth, freelancing, and web development.",
+    },
+  };
+}
 
-// // // ✅ Blogs Page Component
-// // export default async function BlogsPage({ searchParams }) {
-// //   const params = await searchParams;
-// //   const search = params?.search || "";
-// //   const category = params?.category || "All";
-// //   const page = parseInt(params?.page || "1", 10);
+// ✅ Blogs Page Component
+export default async function BlogsPage({ searchParams }) {
+  const params = await searchParams;
+  const search = params?.search || "";
+  const category = params?.category || "All";
+  const page = parseInt(params?.page || "1", 10);
 
-// //   const { blogs, total } = await fetchBlogs({ search, category, page });
-// //   if (!blogs) return notFound();
+  const { blogs, total } = await fetchBlogs({ search, category, page });
+  if (!blogs) return notFound();
 
-// //   // ✅ Featured always shows latest 2 blogs
-// //   const featured = blogs.slice(0, 2);
-// //   const categories = ["All", ...new Set(blogs.map((b) => b.category))];
-// //   const totalPages = Math.ceil(total / 6);
+  // ✅ Featured always shows latest 2 blogs
+  const featured = blogs.slice(0, 2);
+  const categories = ["All", ...new Set(blogs.map((b) => b.category))];
+  const totalPages = Math.ceil(total / 6);
 
-// //   return (
-// //     <div className="min-h-screen bg-white text-black ">
-// //       <Script
-// //         id="blogs-schema"
-// //         type="application/ld+json"
-// //         dangerouslySetInnerHTML={{
-// //           __html: JSON.stringify({
-// //             "@context": "https://schema.org",
-// //             "@type": "Blog",
-// //             url: "https://www.rctechsolutions.com/blogs",
-// //             name: "RC Tech Solutions Blogs",
-// //             description:
-// //               "Explore trending blogs by RC Tech Solutions on web development, freelancing, design, tech, SEO, and career growth.",
-// //             publisher: {
-// //               "@type": "Organization",
-// //               name: "RC Tech Solutions",
-// //               logo: {
-// //                 "@type": "ImageObject",
-// //                 url: "https://www.rctechsolutions.com/logo.png",
-// //               },
-// //             },
-// //             potentialAction: {
-// //               "@type": "ContactAction",
-// //               target: "https://www.rctechsolutions.com/contact",
-// //               name: "Book Free 1:1 Consultation",
-// //             },
-// //             inLanguage: "en-IN",
-// //           }),
-// //         }}
-// //       />
+  return (
+    <div className="min-h-screen bg-white text-black ">
+      <Script
+        id="blogs-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            url: "https://www.rctechsolutions.com/blogs",
+            name: "RC Tech Solutions Blogs",
+            description:
+              "Explore trending blogs by RC Tech Solutions on web development, freelancing, design, tech, SEO, and career growth.",
+            publisher: {
+              "@type": "Organization",
+              name: "RC Tech Solutions",
+              logo: {
+                "@type": "ImageObject",
+                url: "https://www.rctechsolutions.com/logo.png",
+              },
+            },
+            potentialAction: {
+              "@type": "ContactAction",
+              target: "https://www.rctechsolutions.com/contact",
+              name: "Book Free 1:1 Consultation",
+            },
+            inLanguage: "en-IN",
+          }),
+        }}
+      />
 
-// //       {/* Hero Section */}
-// //       <section className="text-center py-20 px-6 bg-gradient-to-r from-[#7b3fe4] to-indigo-500 text-white">
-// //         <h1 className="text-5xl font-bold">RC Tech Journal</h1>
-// //         <p className="mt-3 text-lg opacity-90">
-// //           Fresh perspectives on tech, freelancing, design & growth.
-// //         </p>
-// //       </section>
+      {/* Hero Section */}
+      <section className="text-center py-20 px-6 bg-gradient-to-r from-[#7b3fe4] to-indigo-500 text-white">
+        <h1 className="text-5xl font-bold">RC Tech Journal</h1>
+        <p className="mt-3 text-lg opacity-90">
+          Fresh perspectives on tech, freelancing, design & growth.
+        </p>
+      </section>
 
-// //       {/* Search + Filter */}
-// //       <section className="max-w-7xl mx-auto px-6 py-8">
-// //         <form className="flex flex-col md:flex-row justify-between items-center gap-4">
-// //           <input
-// //             type="text"
-// //             name="search"
-// //             defaultValue={search}
-// //             placeholder="Search articles..."
-// //             className="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-xl "
-// //           />
-// //           <select
-// //             name="category"
-// //             defaultValue={category}
-// //             className="px-4 py-2 rounded-xl border "
-// //           >
-// //             {categories.map((cat) => (
-// //               <option key={cat}>{cat}</option>
-// //             ))}
-// //           </select>
-// //           <button
-// //             type="submit"
-// //             className="px-6 py-2 rounded-xl bg-[#7b3fe4] text-white hover:bg-[#6a32c9]"
-// //           >
-// //             Apply
-// //           </button>
-// //         </form>
-// //       </section>
+      {/* Search + Filter */}
+      <section className="max-w-7xl mx-auto px-6 py-8">
+        <form className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <input
+            type="text"
+            name="search"
+            defaultValue={search}
+            placeholder="Search articles..."
+            className="w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded-xl "
+          />
+          <select
+            name="category"
+            defaultValue={category}
+            className="px-4 py-2 rounded-xl border "
+          >
+            {categories.map((cat) => (
+              <option key={cat}>{cat}</option>
+            ))}
+          </select>
+          <button
+            type="submit"
+            className="px-6 py-2 rounded-xl bg-[#7b3fe4] text-white hover:bg-[#6a32c9]"
+          >
+            Apply
+          </button>
+        </form>
+      </section>
 
-// //       {/* Featured Articles */}
-// //       {featured.length > 0 && (
-// //         <section className="max-w-7xl mx-auto px-6 py-12">
-// //           <h2 className="text-xl font-semibold mb-6">🌟 Featured Articles</h2>
-// //           <div className="grid md:grid-cols-2 gap-6">
-// //             {featured.map((blog) => (
-// //               <Link
-// //                 key={blog.id}
-// //                 href={`/blogs/${blog.slug}`}
-// //                 className="group rounded-2xl overflow-hidden shadow-lg bg-white hover:shadow-2xl transition"
-// //               >
-// //                 <div className="relative h-60">
-// //                   {blog.blogImageUrl && (
-// //                     <Image
-// //                       src={blog.blogImageUrl}
-// //                       alt={blog.title}
-// //                       fill
-// //                       className="object-cover group-hover:scale-105 transition-transform duration-500"
-// //                     />
-// //                   )}
-// //                 </div>
-// //                 <div className="p-5">
-// //                   <h3 className="text-2xl font-bold mb-2 group-hover:text-[#7b3fe4]">
-// //                     {blog.title}
-// //                   </h3>
-// //                   <p className="text-sm text-gray-600 line-clamp-3">
-// //                     {stripHtmlTags(blog.content).slice(0, 150)}...
-// //                   </p>
-// //                   <div className="mt-3 text-xs text-gray-500 flex gap-2">
-// //                     <span>{blog.author || "RC Tech Team"}</span>
-// //                     • <span>{formatDate(blog.date)}</span> •{" "}
-// //                     <span>{computeReadingTime(blog.content)} min read</span>
-// //                   </div>
-// //                 </div>
-// //               </Link>
-// //             ))}
-// //           </div>
-// //         </section>
-// //       )}
+      {/* Featured Articles */}
+      {featured.length > 0 && (
+        <section className="max-w-7xl mx-auto px-6 py-12">
+          <h2 className="text-xl font-semibold mb-6">🌟 Featured Articles</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {featured.map((blog) => (
+              <Link
+                key={blog.id}
+                href={`/blogs/${blog.slug}`}
+                className="group rounded-2xl overflow-hidden shadow-lg bg-white hover:shadow-2xl transition"
+              >
+                <div className="relative h-60">
+                  {blog.blogImageUrl && (
+                    <Image
+                      src={blog.blogImageUrl}
+                      alt={blog.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  )}
+                </div>
+                <div className="p-5">
+                  <h3 className="text-2xl font-bold mb-2 group-hover:text-[#7b3fe4]">
+                    {blog.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 line-clamp-3">
+                    {stripHtmlTags(blog.content).slice(0, 150)}...
+                  </p>
+                  <div className="mt-3 text-xs text-gray-500 flex gap-2">
+                    <span>{blog.author || "RC Tech Team"}</span>
+                    • <span>{formatDate(blog.date)}</span> •{" "}
+                    <span>{computeReadingTime(blog.content)} min read</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
-// //       {/* Blog Grid */}
-// //       <section className="max-w-7xl mx-auto px-6 py-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-// //         {blogs.map((blog) => (
-// //           <div key={blog.id}>
-// //             <Link
-// //               href={`/blogs/${blog.slug}`}
-// //               className="group block rounded-2xl overflow-hidden shadow-md bg-white border border-gray-200 hover:shadow-lg transition"
-// //             >
-// //               <div className="relative h-40">
-// //                 {blog.blogImageUrl && (
-// //                   <Image
-// //                     src={blog.blogImageUrl}
-// //                     alt={blog.title}
-// //                     fill
-// //                     className="object-cover group-hover:scale-105 transition-transform duration-500"
-// //                   />
-// //                 )}
-// //               </div>
-// //               <div className="p-4">
-// //                 <h3 className="text-lg font-semibold line-clamp-2 group-hover:text-[#7b3fe4]">
-// //                   {blog.title}
-// //                 </h3>
-// //                 <p className="text-sm text-gray-600 line-clamp-3">
-// //                   {stripHtmlTags(blog.content).slice(0, 120)}...
-// //                 </p>
-// //                 <div className="mt-2 text-xs text-gray-500 flex gap-2">
-// //                   <span>{blog.author || "RC Tech Team"}</span>
-// //                   • <span>{formatDate(blog.date)}</span> •{" "}
-// //                   <span>{computeReadingTime(blog.content)} min</span>
-// //                 </div>
-// //               </div>
-// //             </Link>
-// //           </div>
-// //         ))}
-// //       </section>
+      {/* Blog Grid */}
+      <section className="max-w-7xl mx-auto px-6 py-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {blogs.map((blog) => (
+          <div key={blog.id}>
+            <Link
+              href={`/blogs/${blog.slug}`}
+              className="group block rounded-2xl overflow-hidden shadow-md bg-white border border-gray-200 hover:shadow-lg transition"
+            >
+              <div className="relative h-40">
+                {blog.blogImageUrl && (
+                  <Image
+                    src={blog.blogImageUrl}
+                    alt={blog.title}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                )}
+              </div>
+              <div className="p-4">
+                <h3 className="text-lg font-semibold line-clamp-2 group-hover:text-[#7b3fe4]">
+                  {blog.title}
+                </h3>
+                <p className="text-sm text-gray-600 line-clamp-3">
+                  {stripHtmlTags(blog.content).slice(0, 120)}...
+                </p>
+                <div className="mt-2 text-xs text-gray-500 flex gap-2">
+                  <span>{blog.author || "RC Tech Team"}</span>
+                  • <span>{formatDate(blog.date)}</span> •{" "}
+                  <span>{computeReadingTime(blog.content)} min</span>
+                </div>
+              </div>
+            </Link>
+          </div>
+        ))}
+      </section>
 
-// //       {/* Pagination */}
-// //       <div className="text-center my-8 flex justify-center gap-4">
-// //         {Array.from({ length: totalPages }, (_, i) => (
-// //           <Link
-// //             key={i}
-// //             href={`/blogs?search=${search}&category=${category}&page=${i + 1}`}
-// //             className={`px-4 py-2 rounded-lg ${
-// //               page === i + 1 ? "bg-[#7b3fe4] text-white" : "bg-gray-100"
-// //             }`}
-// //           >
-// //             {i + 1}
-// //           </Link>
-// //         ))}
-// //       </div>
-// //     </div>
-// //   );
-// // }
+      {/* Pagination */}
+      <div className="text-center my-8 flex justify-center gap-4">
+        {Array.from({ length: totalPages }, (_, i) => (
+          <Link
+            key={i}
+            href={`/blogs?search=${search}&category=${category}&page=${i + 1}`}
+            className={`px-4 py-2 rounded-lg ${
+              page === i + 1 ? "bg-[#7b3fe4] text-white" : "bg-gray-100"
+            }`}
+          >
+            {i + 1}
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 
 // // app/blogs/page.jsx
@@ -2661,116 +2661,116 @@
 
 
 // app/blogs/page.jsx
-import { db } from "../firebase";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
-import Image from "next/image";
-import Link from "next/link";
-import InfiniteScroll from "./InfiniteBlogs";
+// import { db } from "../firebase";
+// import { collection, getDocs, query, orderBy } from "firebase/firestore";
+// import Image from "next/image";
+// import Link from "next/link";
+// import InfiniteScroll from "./InfiniteBlogs";
 
-export const revalidate = 300;
-const PAGE_SIZE = 6;
+// export const revalidate = 300;
+// const PAGE_SIZE = 6;
 
-const stripHtml = (s = "") => s.replace(/<[^>]+>/g, "");
-const formatDate = (value) => {
-  if (!value) return "";
-  const d = value.toDate ? value.toDate() : new Date(value);
-  return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
-};
-const getExcerpt = (blog) => blog.excerpt || stripHtml(blog.content || "");
+// const stripHtml = (s = "") => s.replace(/<[^>]+>/g, "");
+// const formatDate = (value) => {
+//   if (!value) return "";
+//   const d = value.toDate ? value.toDate() : new Date(value);
+//   return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
+// };
+// const getExcerpt = (blog) => blog.excerpt || stripHtml(blog.content || "");
 
-async function fetchAll() {
-  const snap = await getDocs(query(collection(db, "blogs"), orderBy("date", "desc")));
-  return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-}
+// async function fetchAll() {
+//   const snap = await getDocs(query(collection(db, "blogs"), orderBy("date", "desc")));
+//   return snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+// }
 
-export default async function BlogsPage({ searchParams }) {
-  const page = Math.max(1, Number(searchParams?.page || 1));
-  const search = (searchParams?.search || "").toLowerCase();
-  const category = searchParams?.category || "All";
+// export default async function BlogsPage({ searchParams }) {
+//   const page = Math.max(1, Number(searchParams?.page || 1));
+//   const search = (searchParams?.search || "").toLowerCase();
+//   const category = searchParams?.category || "All";
 
-  const allBlogs = await fetchAll();
+//   const allBlogs = await fetchAll();
 
-  let filtered = allBlogs;
-  if (category !== "All") filtered = filtered.filter((b) => b.category === category);
-  if (search) {
-    filtered = filtered.filter((b) =>
-      b.title?.toLowerCase().includes(search) ||
-      stripHtml(b.content || "").toLowerCase().includes(search)
-    );
-  }
+//   let filtered = allBlogs;
+//   if (category !== "All") filtered = filtered.filter((b) => b.category === category);
+//   if (search) {
+//     filtered = filtered.filter((b) =>
+//       b.title?.toLowerCase().includes(search) ||
+//       stripHtml(b.content || "").toLowerCase().includes(search)
+//     );
+//   }
 
-  const blogs = filtered.slice(0, page * PAGE_SIZE);
-  const hasNext = blogs.length < filtered.length;
+//   const blogs = filtered.slice(0, page * PAGE_SIZE);
+//   const hasNext = blogs.length < filtered.length;
 
-  return (
-    <main className="bg-white py-16 sm:py-20 px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto">
+//   return (
+//     <main className="bg-white py-16 sm:py-20 px-4 sm:px-6">
+//       <div className="max-w-7xl mx-auto">
 
-        <div className="text-center mb-12">
-          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">
-            RC Journal
-          </h1>
-          <p className="mt-3 text-gray-500">
-            Learn how to grow your business with expert insights.
-          </p>
-        </div>
+//         <div className="text-center mb-12">
+//           <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900">
+//             RC Journal
+//           </h1>
+//           <p className="mt-3 text-gray-500">
+//             Learn how to grow your business with expert insights.
+//           </p>
+//         </div>
 
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {blogs.map((blog) => (
-            <article
-              key={blog.id}
-              className="group flex flex-col h-full rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
-            >
-              <Link href={`/blogs/${blog.slug}`} className="block overflow-hidden rounded-t-2xl">
-                {blog.blogImageUrl && (
-                  <Image
-                    src={blog.blogImageUrl}
-                    alt={blog.title}
-                    width={600}
-                    height={400}
-                    className="object-cover w-full h-52 group-hover:scale-105 transition-transform duration-500"
-                  />
-                )}
-              </Link>
+//         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+//           {blogs.map((blog) => (
+//             <article
+//               key={blog.id}
+//               className="group flex flex-col h-full rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 animate-in fade-in slide-in-from-bottom-4"
+//             >
+//               <Link href={`/blogs/${blog.slug}`} className="block overflow-hidden rounded-t-2xl">
+//                 {blog.blogImageUrl && (
+//                   <Image
+//                     src={blog.blogImageUrl}
+//                     alt={blog.title}
+//                     width={600}
+//                     height={400}
+//                     className="object-cover w-full h-52 group-hover:scale-105 transition-transform duration-500"
+//                   />
+//                 )}
+//               </Link>
 
-              <div className="flex flex-col flex-1 p-5">
-                <time className="text-xs text-gray-500">{formatDate(blog.date)}</time>
+//               <div className="flex flex-col flex-1 p-5">
+//                 <time className="text-xs text-gray-500">{formatDate(blog.date)}</time>
 
-                <h3 className="mt-2 font-bold text-lg leading-snug line-clamp-2">
-                  <Link href={`/blogs/${blog.slug}`} className="hover:text-indigo-600">
-                    {blog.title}
-                  </Link>
-                </h3>
+//                 <h3 className="mt-2 font-bold text-lg leading-snug line-clamp-2">
+//                   <Link href={`/blogs/${blog.slug}`} className="hover:text-indigo-600">
+//                     {blog.title}
+//                   </Link>
+//                 </h3>
 
-                <p className="mt-2 text-sm text-gray-600 line-clamp-3">
-                  {getExcerpt(blog)}
-                </p>
+//                 <p className="mt-2 text-sm text-gray-600 line-clamp-3">
+//                   {getExcerpt(blog)}
+//                 </p>
 
-                <div className="mt-auto pt-4 flex items-center gap-3">
-                  <Image
-                    src="/rahul.jpeg"
-                    alt={blog.author || "Author"}
-                    width={40}
-                    height={40}
-                    className="w-9 h-9 rounded-full object-cover border"
-                  />
-                  <div className="text-sm">
-                    <p className="font-semibold text-gray-900">{blog.author || "RC Team"}</p>
-                    <p className="text-xs text-gray-500">{blog.authorRole || "Founder & CEO"}</p>
-                  </div>
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
+//                 <div className="mt-auto pt-4 flex items-center gap-3">
+//                   <Image
+//                     src="/rahul.jpeg"
+//                     alt={blog.author || "Author"}
+//                     width={40}
+//                     height={40}
+//                     className="w-9 h-9 rounded-full object-cover border"
+//                   />
+//                   <div className="text-sm">
+//                     <p className="font-semibold text-gray-900">{blog.author || "RC Team"}</p>
+//                     <p className="text-xs text-gray-500">{blog.authorRole || "Founder & CEO"}</p>
+//                   </div>
+//                 </div>
+//               </div>
+//             </article>
+//           ))}
+//         </div>
 
-        <InfiniteScroll
-          hasNext={hasNext}
-          nextHref={`/blogs?page=${page + 1}&category=${category}&search=${search}`}
-        />
+//         <InfiniteScroll
+//           hasNext={hasNext}
+//           nextHref={`/blogs?page=${page + 1}&category=${category}&search=${search}`}
+//         />
 
-      </div>
-    </main>
-  );
-}
+//       </div>
+//     </main>
+//   );
+// }
 

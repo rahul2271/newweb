@@ -110,7 +110,7 @@ export default function EbookClient() {
     if (finalPrice === 0) return sendEbookDirect();
 
     const options = {
-      key: "rzp_live_R5X3mt2251rX6I",
+      key: "rzp_live_SbgJVnRmjgGGLW",
       amount: Math.round(finalPrice),
       currency: "INR",
       name: "RC Tech Solutions",

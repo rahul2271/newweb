@@ -242,16 +242,32 @@ export default async function BlogsPage({ searchParams }) {
                 href={`/blogs/${blog.slug}`}
                 className="group rounded-2xl overflow-hidden shadow-lg bg-white hover:shadow-2xl transition"
               >
-                <div className="relative h-60">
-                  {blog.blogImageUrl && (
-                    <Image
-                      src={blog.blogImageUrl}
-                      alt={blog.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  )}
-                </div>
+                // <div className="relative h-60">
+                //   {blog.blogImageUrl && (
+                //     <Image
+                //       src={blog.blogImageUrl}
+                //       alt={blog.title}
+                //       fill
+                //       className="object-cover group-hover:scale-105 transition-transform duration-500"
+                //     />
+                //   )}
+                // </div>
+                  <div className="relative h-60">
+  {/* 👇 ADD THIS TEMPORARY DEBUG BOX 👇 */}
+  <div className="absolute inset-0 z-50 bg-black/80 text-white p-2 text-xs break-all overflow-auto">
+    RAW URL: {String(blog.blogImageUrl)}
+  </div>
+  {/* 👆 ADD THIS TEMPORARY DEBUG BOX 👆 */}
+
+  {blog.blogImageUrl && (
+    <Image
+      src={blog.blogImageUrl}
+      alt={blog.title}
+      fill
+      className="object-cover group-hover:scale-105 transition-transform duration-500"
+    />
+  )}
+</div>
                 <div className="p-5">
                   <h3 className="text-2xl font-bold mb-2 group-hover:text-[#7b3fe4]">
                     {blog.title}

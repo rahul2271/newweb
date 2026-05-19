@@ -252,6 +252,7 @@ export default async function BlogsPage({ searchParams }) {
                         src={imgSrc}
                         alt={blog.title}
                         fill
+                        unoptimized
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     ) : (
@@ -294,6 +295,7 @@ export default async function BlogsPage({ searchParams }) {
                       src={imgSrc}
                       alt={blog.title}
                       fill
+                      unoptimized
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
